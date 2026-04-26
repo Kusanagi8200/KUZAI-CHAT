@@ -1,7 +1,7 @@
-#### KUZAI - INSTALLATION AND APPLICATION DEVELOPMENT PROCESS
+#### **`KUZAI - INSTALLATION AND APPLICATION DEVELOPMENT PROCESS`**
 
 ------------------------------------------------------------------------
-#### GLOBAL SYNOPTIC
+#### **`GLOBAL SYNOPTIC`**
 
 <picture>
  <source media="(prefers-color-scheme: dark)" srcset="https://github.com/Kusanagi8200/KUZAI-CHAT/blob/main/02-KUZAI-CHAT-SYNOPTIC.png">
@@ -68,7 +68,7 @@ storage/conversations            systemd -->  searxng.service
 ```
 ------------------------------------------------------------------------
 
-#### PROJECT PRESENTATION
+#### **`PROJECT PRESENTATION`**
 
 KUZAI is a standalone PHP web application that provides access to a local AI assistant through a custom interface.
 
@@ -82,7 +82,7 @@ Upload support allows text files, source code, logs, or JSON files to be sent to
 
 ------------------------------------------------------------------------
 
-#### VALIDATED FEATURES
+#### **`VALIDATED FEATURES`**
 
 ```text
 Local chat through llama.cpp
@@ -100,7 +100,7 @@ Validation through PHP linting, curl, jq, and apache2ctl configtest
 ```
 ------------------------------------------------------------------------
 
-#### TECHNICAL SPECIFICATIONS
+#### **`TECHNICAL SPECIFICATIONS`**
 
 ```text
 Application -->  KUZAI
@@ -121,7 +121,7 @@ Conversation storage -->  /var/www/html/KUZAI/storage/conversations
 ```
 ------------------------------------------------------------------------
 
-#### TARGET DIRECTORY TREE
+#### **`TARGET DIRECTORY TREE`**
 
 ```text
 /var/www/html/KUZAI
@@ -145,7 +145,7 @@ Conversation storage -->  /var/www/html/KUZAI/storage/conversations
 ```
 ------------------------------------------------------------------------
 
-#### STEP 1 - SYSTEM PREREQUISITES
+#### **`STEP 1 - SYSTEM PREREQUISITES`**
 
 Install the required packages for Apache2, PHP, curl, jq, Python, venv, and SearXNG dependencies.
 
@@ -186,7 +186,7 @@ php -m | grep -Ei 'curl|json|mbstring'
 ```
 ------------------------------------------------------------------------
 
-#### STEP 2 - KUZAI DIRECTORY PREPARATION
+#### **`STEP 2 - KUZAI DIRECTORY PREPARATION`**
 
 Create the application directory tree.
 
@@ -207,7 +207,7 @@ chmod 750 /var/www/html/KUZAI/storage/conversations
 ```
 ------------------------------------------------------------------------
 
-#### STEP 3 - MAIN APPLICATION CONFIGURATION
+#### **`STEP 3 - MAIN APPLICATION CONFIGURATION`**
 
 Create `/var/www/html/KUZAI/app/config.php`.
 
@@ -269,7 +269,7 @@ chmod 644 /var/www/html/KUZAI/app/config.php
 ```
 ------------------------------------------------------------------------
 
-#### STEP 4 - MAIN PHP INTERFACE
+#### **`STEP 4 - MAIN PHP INTERFACE`**
 
 Create `/var/www/html/KUZAI/public/index.php`.
 
@@ -399,7 +399,7 @@ chmod 644 /var/www/html/KUZAI/public/index.php
 ```
 ------------------------------------------------------------------------
 
-#### STEP 5 - STATUS API
+#### **`STEP 5 - STATUS API`**
 
 Create `/var/www/html/KUZAI/public/api/status.php`.
 
@@ -508,7 +508,7 @@ chmod 644 /var/www/html/KUZAI/public/api/status.php
 ```
 ------------------------------------------------------------------------
 
-#### STEP 6 - UPLOAD API
+#### **`STEP 6 - UPLOAD API`**
 
 Create `/var/www/html/KUZAI/public/api/upload.php`.
 
@@ -660,7 +660,7 @@ chmod 644 /var/www/html/KUZAI/public/api/upload.php
 ```
 ------------------------------------------------------------------------
 
-#### STEP 7 - WEB SEARCH API
+#### **`STEP 7 - WEB SEARCH API`**
 
 Create `/var/www/html/KUZAI/public/api/web-search.php`.
 
@@ -836,7 +836,7 @@ chmod 644 /var/www/html/KUZAI/public/api/web-search.php
 ```
 ------------------------------------------------------------------------
 
-#### STEP 8 - CHAT API
+#### **`STEP 8 - CHAT API`**
 
 Create `/var/www/html/KUZAI/public/api/chat.php`.
 
@@ -1174,7 +1174,7 @@ chmod 644 /var/www/html/KUZAI/public/api/chat.php
 ```
 ------------------------------------------------------------------------
 
-#### STEP 9 - JAVASCRIPT FRONTEND
+#### **`STEP 9 - JAVASCRIPT FRONTEND`**
 
 Create `/var/www/html/KUZAI/public/assets/js/app.js`.
 
@@ -1804,7 +1804,7 @@ chmod 644 /var/www/html/KUZAI/public/assets/js/app.js
 ```
 ------------------------------------------------------------------------
 
-#### STEP 10 - COMPLETE CSS
+#### **`STEP 10 - COMPLETE CSS`**
 
 Create `/var/www/html/KUZAI/public/assets/css/style.css`.
 
@@ -2355,7 +2355,7 @@ chmod 644 /var/www/html/KUZAI/public/assets/css/style.css
 ```
 ------------------------------------------------------------------------
 
-#### STEP 11 - LLAMA.CPP SERVICE FOR QWEN
+#### **`STEP 11 - LLAMA.CPP SERVICE FOR QWEN`**
 
 Create or adapt `/etc/systemd/system/llama-server-a.service`.
 
@@ -2414,7 +2414,7 @@ curl -s http --> //127.0.0.1 --> 8080/v1/chat/completions \
 ```
 ------------------------------------------------------------------------
 
-#### STEP 12 - NATIVE SEARXNG INSTALLATION
+#### **`STEP 12 - NATIVE SEARXNG INSTALLATION`**
 
 Create the system user.
 
@@ -2455,7 +2455,7 @@ PY
 ```
 ------------------------------------------------------------------------
 
-#### STEP 13 - SEARXNG CONFIGURATION
+#### **`STEP 13 - SEARXNG CONFIGURATION`**
 
 Create `/etc/searxng/settings.yml`.
 
@@ -2539,7 +2539,7 @@ This configuration enables `json`, disables the `tracker_url_remover` plugin tha
 
 ------------------------------------------------------------------------
 
-#### STEP 14 - SEARXNG SYSTEMD SERVICE
+#### **`STEP 14 - SEARXNG SYSTEMD SERVICE`**
 
 Create `/etc/systemd/system/searxng.service`.
 
@@ -2582,7 +2582,7 @@ curl -s --max-time 25 "http --> //127.0.0.1 --> 8888/search?q=OpenAI&format=json
 ```
 ------------------------------------------------------------------------
 
-#### STEP 15 - APACHE CONFIGURATION
+#### **`STEP 15 - APACHE CONFIGURATION`**
 
 The application is accessible under `/KUZAI/` if Apache serves `/var/www/html` as the default root.
 
@@ -2620,7 +2620,7 @@ If the application is already accessible through `/KUZAI/`, this dedicated confi
 
 ------------------------------------------------------------------------
 
-#### STEP 16 - FINAL PERMISSIONS
+#### **`STEP 16 - FINAL PERMISSIONS`**
 
 Apply final permissions.
 
@@ -2634,7 +2634,7 @@ chmod 750 /var/www/html/KUZAI/storage/conversations
 ```
 ------------------------------------------------------------------------
 
-#### STEP 17 - PHP SYNTAX VALIDATION
+#### **`STEP 17 - PHP SYNTAX VALIDATION`**
 
 Check all PHP files.
 
@@ -2648,7 +2648,7 @@ php -l /var/www/html/KUZAI/public/api/web-search.php
 ```
 ------------------------------------------------------------------------
 
-#### STEP 18 - APACHE, LLAMA.CPP, SEARXNG VALIDATION
+#### **`STEP 18 - APACHE, LLAMA.CPP, SEARXNG VALIDATION`**
 
 ```bash
 apache2ctl configtest
@@ -2662,7 +2662,7 @@ curl -s "http --> //127.0.0.1 --> 8888/search?q=OpenAI&format=json" | jq '.query
 ```
 ------------------------------------------------------------------------
 
-#### STEP 19 - KUZAI STATUS API TEST
+#### **`STEP 19 - KUZAI STATUS API TEST`**
 
 ```bash
 curl -s http --> //127.0.0.1/KUZAI/api/status.php | jq .
@@ -2690,7 +2690,7 @@ Expected result.
 ```
 ------------------------------------------------------------------------
 
-#### STEP 20 - CHAT API TEST
+#### **`STEP 20 - CHAT API TEST`**
 
 ```bash
 curl -s http --> //127.0.0.1/KUZAI/api/chat.php \
@@ -2712,7 +2712,7 @@ Expected result.
 ```
 ------------------------------------------------------------------------
 
-#### STEP 21 - FILE UPLOAD TEST
+#### **`STEP 21 - FILE UPLOAD TEST`**
 
 Create a test file.
 
@@ -2754,7 +2754,7 @@ curl -s http --> //127.0.0.1/KUZAI/api/chat.php \
 ```
 ------------------------------------------------------------------------
 
-#### STEP 22 - WEB SEARCH API TEST
+#### **`STEP 22 - WEB SEARCH API TEST`**
 
 ```bash
 curl -s http --> //127.0.0.1/KUZAI/api/web-search.php \
@@ -2781,7 +2781,7 @@ Expected result -->
 ```
 ------------------------------------------------------------------------
 
-#### STEP 23 - CHAT TEST WITH INJECTED WEB RESULTS
+#### **`STEP 23 - CHAT TEST WITH INJECTED WEB RESULTS`**
 
 ```bash
 SEARCH_JSON="$(curl -s http --> //127.0.0.1/KUZAI/api/web-search.php \
@@ -2808,7 +2808,7 @@ message.content contains a Sources section with URLs
 ```
 ------------------------------------------------------------------------
 
-#### STEP 24 - BROWSER UI TEST
+#### **`STEP 24 - BROWSER UI TEST`**
 
 Open --> 
 
@@ -2834,7 +2834,7 @@ Manual tests -->
 ```
 ------------------------------------------------------------------------
 
-#### STEP 25 - SEARXNG LOG CLEANUP
+#### **`STEP 25 - SEARXNG LOG CLEANUP`**
 
 Check that there are no recent errors.
 
@@ -2846,7 +2846,7 @@ The provided configuration disables the engines that generated errors or rate li
 
 ------------------------------------------------------------------------
 
-#### STEP 26 - `.BK` BACKUPS OF CRITICAL FILES
+#### **`STEP 26 - `.BK` BACKUPS OF CRITICAL FILES`**
 
 Create timestamped backups.
 
@@ -2897,7 +2897,7 @@ find /etc/searxng /etc/systemd/system /etc/apache2 -maxdepth 3 -type f -name "*.
 ```
 ------------------------------------------------------------------------
 
-#### STEP 27 - COMPLETE FINAL VALIDATION
+#### **`STEP 27 - COMPLETE FINAL VALIDATION`**
 
 ```bash
 php -l /var/www/html/KUZAI/public/index.php
@@ -2926,7 +2926,7 @@ web-search.php ok true
 ```
 ------------------------------------------------------------------------
 
-#### FINAL RESULT
+#### **`FINAL RESULT`**
 
 The KUZAI installation provides a local AI application usable through a browser, with --> 
 
@@ -2944,7 +2944,7 @@ Services supervised by systemd
 Complete validation through system and API commands
 ```
 
-#### POSSIBLE IMPROVEMENTS
+#### **`POSSIBLE IMPROVEMENTS`**
 
 ```text
 PDF support with text extraction
@@ -2960,4 +2960,4 @@ Markdown export of conversations
 ```
 ------------------------------------------------------------------------
 
-THE KUZ NETWORK - KUSANAGI8200 - @2026
+#### **`THE KUZ NETWORK - KUSANAGI8200 - @2026`**
