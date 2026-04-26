@@ -7,7 +7,7 @@
         |
         v
 [ APACHE2 / PHP ]
-  http://<SERVER_IP>/KUZAI/
+  http --> //<SERVER_IP>/KUZAI/
         |
         v
 [ KUZAI WEB APP ]
@@ -27,8 +27,8 @@ public/api/chat.php              public/api/status.php
         |                       llama.cpp health/model check
         |
         +---------------------> [ LLAMA.CPP SERVER ]
-        |                       http://127.0.0.1:8080
-        |                       model: qwen3-8b-q5km
+        |                       http --> //127.0.0.1 --> 8080
+        |                       model -->  qwen3-8b-q5km
         |
         +------------------------------+
         |                              |
@@ -38,8 +38,8 @@ public/api/upload.php            public/api/web-search.php
         |                              |
         v                              v
 [ STORAGE ]                      [ SEARXNG LOCAL ]
-storage/uploads                  http://127.0.0.1:8888
-storage/conversations            systemd: searxng.service
+storage/uploads                  http --> //127.0.0.1 --> 8888
+storage/conversations            systemd -->  searxng.service
                                  /opt/searxng/src
                                  /opt/searxng/venv
                                  /etc/searxng/settings.yml
@@ -57,18 +57,21 @@ storage/conversations            systemd: searxng.service
                                         v
                               enriched local LLM answer
 ```
+------------------------------------------------------------------------
 
 #### PROJECT PRESENTATION
 
 KUZAI is a standalone PHP web application that provides access to a local AI assistant through a custom interface.
 
-The project follows a simple principle: keep inference, files, searches, and services under local control. The application is not a dependency of KUZCHAT LLM DUO. It runs as a standalone application served by Apache2.
+The project follows a simple principle -->  keep inference, files, searches, and services under local control. The application is not a dependency of KUZCHAT LLM DUO. It runs as a standalone application served by Apache2.
 
-The LLM backend is provided by `llama.cpp` on `127.0.0.1:8080`. The model used in this installation is `qwen3-8b-q5km`, based on a Qwen3-8B GGUF file quantized in Q5_K_M.
+The LLM backend is provided by `llama.cpp` on `127.0.0.1 --> 8080`. The model used in this installation is `qwen3-8b-q5km`, based on a Qwen3-8B GGUF file quantized in Q5_K_M.
 
-Web search is provided by a native SearXNG installation, exposed only locally on `127.0.0.1:8888`. The PHP application queries SearXNG through `web-search.php`, then injects the results into `chat.php` to enrich the context sent to the local model.
+Web search is provided by a native SearXNG installation, exposed only locally on `127.0.0.1 --> 8888`. The PHP application queries SearXNG through `web-search.php`, then injects the results into `chat.php` to enrich the context sent to the local model.
 
 Upload support allows text files, source code, logs, or JSON files to be sent to the server. Their content is extracted server-side and then injected into the prompt for analysis by the LLM.
+
+------------------------------------------------------------------------
 
 #### VALIDATED FEATURES
 
@@ -86,26 +89,28 @@ Dynamic response container
 Services managed by systemd
 Validation through PHP linting, curl, jq, and apache2ctl configtest
 ```
+------------------------------------------------------------------------
 
 #### TECHNICAL SPECIFICATIONS
 
 ```text
-Application: KUZAI
-Type: standalone PHP web application
-Web server: Apache2
-Backend language: PHP 8.3+
-Frontend: HTML / CSS / JavaScript
-LLM server: llama.cpp server
-LLM endpoint: http://127.0.0.1:8080/v1/chat/completions
-Model alias: qwen3-8b-q5km
-Model file: /opt/llm/models/Qwen3-8B-Q5_K_M.gguf
-Web search: SearXNG native install
-SearXNG endpoint: http://127.0.0.1:8888/search
-Search service: searxng.service
-Application path: /var/www/html/KUZAI
-Upload storage: /var/www/html/KUZAI/storage/uploads
-Conversation storage: /var/www/html/KUZAI/storage/conversations
+Application -->  KUZAI
+Type -->  standalone PHP web application
+Web server -->  Apache2
+Backend language -->  PHP 8.3+
+Frontend -->  HTML / CSS / JavaScript
+LLM server -->  llama.cpp server
+LLM endpoint -->  http --> //127.0.0.1 --> 8080/v1/chat/completions
+Model alias -->  qwen3-8b-q5km
+Model file -->  /opt/llm/models/Qwen3-8B-Q5_K_M.gguf
+Web search -->  SearXNG native install
+SearXNG endpoint -->  http --> //127.0.0.1 --> 8888/search
+Search service -->  searxng.service
+Application path -->  /var/www/html/KUZAI
+Upload storage -->  /var/www/html/KUZAI/storage/uploads
+Conversation storage -->  /var/www/html/KUZAI/storage/conversations
 ```
+------------------------------------------------------------------------
 
 #### TARGET DIRECTORY TREE
 
@@ -129,6 +134,7 @@ Conversation storage: /var/www/html/KUZAI/storage/conversations
     ├── conversations
     └── uploads
 ```
+------------------------------------------------------------------------
 
 #### STEP 1 - SYSTEM PREREQUISITES
 
@@ -169,6 +175,7 @@ Check the required PHP modules.
 ```bash
 php -m | grep -Ei 'curl|json|mbstring'
 ```
+------------------------------------------------------------------------
 
 #### STEP 2 - KUZAI DIRECTORY PREPARATION
 
@@ -182,13 +189,14 @@ mkdir -p /var/www/html/KUZAI/public/assets/js
 mkdir -p /var/www/html/KUZAI/storage/uploads
 mkdir -p /var/www/html/KUZAI/storage/conversations
 
-chown -R www-data:www-data /var/www/html/KUZAI
+chown -R www-data --> www-data /var/www/html/KUZAI
 find /var/www/html/KUZAI -type d -exec chmod 755 {} \;
 find /var/www/html/KUZAI -type f -exec chmod 644 {} \;
 chmod 750 /var/www/html/KUZAI/storage
 chmod 750 /var/www/html/KUZAI/storage/uploads
 chmod 750 /var/www/html/KUZAI/storage/conversations
 ```
+------------------------------------------------------------------------
 
 #### STEP 3 - MAIN APPLICATION CONFIGURATION
 
@@ -210,9 +218,9 @@ return [
     ],
 
     'llm' => [
-        'api_base' => 'http://127.0.0.1:8080',
-        'chat_endpoint' => 'http://127.0.0.1:8080/v1/chat/completions',
-        'models_endpoint' => 'http://127.0.0.1:8080/v1/models',
+        'api_base' => 'http --> //127.0.0.1 --> 8080',
+        'chat_endpoint' => 'http --> //127.0.0.1 --> 8080/v1/chat/completions',
+        'models_endpoint' => 'http --> //127.0.0.1 --> 8080/v1/models',
         'model' => 'qwen3-8b-q5km',
 
         'temperature' => 0.4,
@@ -240,16 +248,17 @@ return [
     ],
 
     'web_search' => [
-        'endpoint' => 'http://127.0.0.1:8888/search',
+        'endpoint' => 'http --> //127.0.0.1 --> 8888/search',
         'timeout' => 25,
         'max_results' => 8,
     ],
 ];
 PHP
 
-chown www-data:www-data /var/www/html/KUZAI/app/config.php
+chown www-data --> www-data /var/www/html/KUZAI/app/config.php
 chmod 644 /var/www/html/KUZAI/app/config.php
 ```
+------------------------------------------------------------------------
 
 #### STEP 4 - MAIN PHP INTERFACE
 
@@ -376,9 +385,10 @@ $model = htmlspecialchars($config['llm']['model'], ENT_QUOTES, 'UTF-8');
 </html>
 PHP
 
-chown www-data:www-data /var/www/html/KUZAI/public/index.php
+chown www-data --> www-data /var/www/html/KUZAI/public/index.php
 chmod 644 /var/www/html/KUZAI/public/index.php
 ```
+------------------------------------------------------------------------
 
 #### STEP 5 - STATUS API
 
@@ -390,13 +400,13 @@ cat > /var/www/html/KUZAI/public/api/status.php <<'PHP'
 
 declare(strict_types=1);
 
-header('Content-Type: application/json; charset=utf-8');
+header('Content-Type -->  application/json; charset=utf-8');
 
 $config = require __DIR__ . '/../../app/config.php';
 
 date_default_timezone_set($config['app']['timezone'] ?? 'UTC');
 
-function httpGetJson(string $url, int $timeout = 5): array
+function httpGetJson(string $url, int $timeout = 5) -->  array
 {
     $ch = curl_init($url);
 
@@ -414,8 +424,8 @@ function httpGetJson(string $url, int $timeout = 5): array
         CURLOPT_CONNECTTIMEOUT => 2,
         CURLOPT_TIMEOUT => $timeout,
         CURLOPT_HTTPHEADER => [
-            'Accept: application/json',
-            'User-Agent: KUZAI-Status/0.1',
+            'Accept -->  application/json',
+            'User-Agent -->  KUZAI-Status/0.1',
         ],
     ]);
 
@@ -429,7 +439,7 @@ function httpGetJson(string $url, int $timeout = 5): array
             'ok' => false,
             'http_code' => $httpCode,
             'data' => null,
-            'error' => $error ?: 'empty response',
+            'error' => $error ? -->  'empty response',
         ];
     }
 
@@ -438,8 +448,8 @@ function httpGetJson(string $url, int $timeout = 5): array
     return [
         'ok' => $httpCode >= 200 && $httpCode < 300 && is_array($data),
         'http_code' => $httpCode,
-        'data' => is_array($data) ? $data : null,
-        'error' => is_array($data) ? null : 'invalid json',
+        'data' => is_array($data) ? $data  -->  null,
+        'error' => is_array($data) ? null  -->  'invalid json',
     ];
 }
 
@@ -470,7 +480,7 @@ echo json_encode([
         'name' => $config['app']['name'],
         'brand_line' => $config['app']['brand_line'],
         'version' => $config['app']['version'],
-        'timestamp' => date('Y-m-d H:i:s'),
+        'timestamp' => date('Y-m-d H --> i --> s'),
         'php_version' => PHP_VERSION,
     ],
     'llm' => [
@@ -484,9 +494,10 @@ echo json_encode([
 ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 PHP
 
-chown www-data:www-data /var/www/html/KUZAI/public/api/status.php
+chown www-data --> www-data /var/www/html/KUZAI/public/api/status.php
 chmod 644 /var/www/html/KUZAI/public/api/status.php
 ```
+------------------------------------------------------------------------
 
 #### STEP 6 - UPLOAD API
 
@@ -498,11 +509,11 @@ cat > /var/www/html/KUZAI/public/api/upload.php <<'PHP'
 
 declare(strict_types=1);
 
-header('Content-Type: application/json; charset=utf-8');
+header('Content-Type -->  application/json; charset=utf-8');
 
 $config = require __DIR__ . '/../../app/config.php';
 
-function failJson(string $message, int $code = 400, array $extra = []): never
+function failJson(string $message, int $code = 400, array $extra = []) -->  never
 {
     http_response_code($code);
     echo json_encode(array_merge([
@@ -512,7 +523,7 @@ function failJson(string $message, int $code = 400, array $extra = []): never
     exit;
 }
 
-function successJson(array $data): never
+function successJson(array $data) -->  never
 {
     echo json_encode(array_merge([
         'ok' => true,
@@ -520,7 +531,7 @@ function successJson(array $data): never
     exit;
 }
 
-function normalizeText(string $text): string
+function normalizeText(string $text) -->  string
 {
     $text = str_replace(["\r\n", "\r"], "\n", $text);
     $text = preg_replace('/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/u', '', $text) ?? $text;
@@ -635,9 +646,10 @@ successJson([
 ]);
 PHP
 
-chown www-data:www-data /var/www/html/KUZAI/public/api/upload.php
+chown www-data --> www-data /var/www/html/KUZAI/public/api/upload.php
 chmod 644 /var/www/html/KUZAI/public/api/upload.php
 ```
+------------------------------------------------------------------------
 
 #### STEP 7 - WEB SEARCH API
 
@@ -649,11 +661,11 @@ cat > /var/www/html/KUZAI/public/api/web-search.php <<'PHP'
 
 declare(strict_types=1);
 
-header('Content-Type: application/json; charset=utf-8');
+header('Content-Type -->  application/json; charset=utf-8');
 
 $config = require __DIR__ . '/../../app/config.php';
 
-function failJson(string $message, int $code = 400, array $extra = []): never
+function failJson(string $message, int $code = 400, array $extra = []) -->  never
 {
     http_response_code($code);
     echo json_encode(array_merge([
@@ -663,7 +675,7 @@ function failJson(string $message, int $code = 400, array $extra = []): never
     exit;
 }
 
-function successJson(array $data): never
+function successJson(array $data) -->  never
 {
     echo json_encode(array_merge([
         'ok' => true,
@@ -671,7 +683,7 @@ function successJson(array $data): never
     exit;
 }
 
-function cleanText(string $value): string
+function cleanText(string $value) -->  string
 {
     $value = str_replace(["\r\n", "\r"], "\n", $value);
     $value = preg_replace('/[ \t]+/', ' ', $value) ?? $value;
@@ -684,8 +696,8 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     failJson('Method not allowed', 405);
 }
 
-$rawInput = file_get_contents('php://input');
-$data = json_decode($rawInput ?: '', true);
+$rawInput = file_get_contents('php --> //input');
+$data = json_decode($rawInput ? -->  '', true);
 
 if (!is_array($data)) {
     failJson('Invalid JSON payload');
@@ -713,7 +725,7 @@ if ($limit > $maxResults) {
     $limit = $maxResults;
 }
 
-$endpoint = (string) ($config['web_search']['endpoint'] ?? 'http://127.0.0.1:8888/search');
+$endpoint = (string) ($config['web_search']['endpoint'] ?? 'http --> //127.0.0.1 --> 8888/search');
 $searxngUrl = $endpoint . '?' . http_build_query([
     'q' => $query,
     'format' => 'json',
@@ -732,10 +744,10 @@ curl_setopt_array($ch, [
     CURLOPT_CONNECTTIMEOUT => 5,
     CURLOPT_TIMEOUT => (int) ($config['web_search']['timeout'] ?? 25),
     CURLOPT_HTTPHEADER => [
-        'Accept: application/json',
-        'User-Agent: KUZAI-WebSearch/0.1',
-        'X-Real-IP: 127.0.0.1',
-        'X-Forwarded-For: 127.0.0.1',
+        'Accept -->  application/json',
+        'User-Agent -->  KUZAI-WebSearch/0.1',
+        'X-Real-IP -->  127.0.0.1',
+        'X-Forwarded-For -->  127.0.0.1',
     ],
 ]);
 
@@ -810,9 +822,10 @@ successJson([
 ]);
 PHP
 
-chown www-data:www-data /var/www/html/KUZAI/public/api/web-search.php
+chown www-data --> www-data /var/www/html/KUZAI/public/api/web-search.php
 chmod 644 /var/www/html/KUZAI/public/api/web-search.php
 ```
+------------------------------------------------------------------------
 
 #### STEP 8 - CHAT API
 
@@ -824,11 +837,11 @@ cat > /var/www/html/KUZAI/public/api/chat.php <<'PHP'
 
 declare(strict_types=1);
 
-header('Content-Type: application/json; charset=utf-8');
+header('Content-Type -->  application/json; charset=utf-8');
 
 $config = require __DIR__ . '/../../app/config.php';
 
-function failJson(string $message, int $code = 400, array $extra = []): never
+function failJson(string $message, int $code = 400, array $extra = []) -->  never
 {
     http_response_code($code);
     echo json_encode(array_merge([
@@ -838,7 +851,7 @@ function failJson(string $message, int $code = 400, array $extra = []): never
     exit;
 }
 
-function cleanMessageContent(string $value): string
+function cleanMessageContent(string $value) -->  string
 {
     $value = str_replace(["\r\n", "\r"], "\n", $value);
     $value = preg_replace('/[ \t]+/', ' ', $value) ?? $value;
@@ -847,7 +860,7 @@ function cleanMessageContent(string $value): string
     return trim($value);
 }
 
-function loadUploadedFileContext(array $config, array $attachments): string
+function loadUploadedFileContext(array $config, array $attachments) -->  string
 {
     $uploadsDir = rtrim((string) ($config['storage']['uploads_dir'] ?? '/var/www/html/KUZAI/storage/uploads'), '/');
     $blocks = [];
@@ -891,7 +904,7 @@ function loadUploadedFileContext(array $config, array $attachments): string
         }
 
         $count++;
-        $blocks[] = "UPLOADED FILE {$count}: {$name}\nTYPE: {$extension}\nCONTENT:\n{$text}";
+        $blocks[] = "UPLOADED FILE {$count} -->  {$name}\nTYPE -->  {$extension}\nCONTENT --> \n{$text}";
 
         if ($count >= 6) {
             break;
@@ -909,8 +922,8 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     failJson('Method not allowed', 405);
 }
 
-$rawInput = file_get_contents('php://input');
-$data = json_decode($rawInput ?: '', true);
+$rawInput = file_get_contents('php --> //input');
+$data = json_decode($rawInput ? -->  '', true);
 
 if (!is_array($data)) {
     failJson('Invalid JSON payload');
@@ -970,7 +983,7 @@ if (is_array($webResultsInput) && count($webResultsInput) > 0) {
         }
 
         $webCount++;
-        $webBlocks[] = "SOURCE {$webCount}: {$title}\nURL: {$url}\nEXCERPT: {$content}";
+        $webBlocks[] = "SOURCE {$webCount} -->  {$title}\nURL -->  {$url}\nEXCERPT -->  {$content}";
         $webSourcesForOutput[] = [
             'title' => $title,
             'url' => $url,
@@ -1067,9 +1080,9 @@ curl_setopt_array($ch, [
     CURLOPT_POST => true,
     CURLOPT_POSTFIELDS => json_encode($payload, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES),
     CURLOPT_HTTPHEADER => [
-        'Content-Type: application/json',
-        'Accept: application/json',
-        'User-Agent: KUZAI-Chat/0.1',
+        'Content-Type -->  application/json',
+        'Accept -->  application/json',
+        'User-Agent -->  KUZAI-Chat/0.1',
     ],
 ]);
 
@@ -1125,11 +1138,11 @@ if (!empty($webSourcesForOutput)) {
             continue;
         }
 
-        $sourceLines[] = '- ' . $sourceTitle . ': ' . $sourceUrl;
+        $sourceLines[] = '- ' . $sourceTitle . ' -->  ' . $sourceUrl;
     }
 
     if ($sourceLines) {
-        $content .= "\n\nSources:\n" . implode("\n", $sourceLines);
+        $content .= "\n\nSources --> \n" . implode("\n", $sourceLines);
     }
 }
 
@@ -1147,9 +1160,10 @@ echo json_encode([
 ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 PHP
 
-chown www-data:www-data /var/www/html/KUZAI/public/api/chat.php
+chown www-data --> www-data /var/www/html/KUZAI/public/api/chat.php
 chmod 644 /var/www/html/KUZAI/public/api/chat.php
 ```
+------------------------------------------------------------------------
 
 #### STEP 9 - JAVASCRIPT FRONTEND
 
@@ -1232,7 +1246,7 @@ function appendMessage(role, content, persist = true) {
     const wrapper = document.createElement('div');
     wrapper.className = `message message-${role}`;
 
-    const roleLabel = role === 'user' ? 'USER' : 'KUZAI';
+    const roleLabel = role === 'user' ? 'USER'  -->  'KUZAI';
 
     wrapper.innerHTML = `
         <div class="message-role">${roleLabel}</div>
@@ -1301,8 +1315,8 @@ function renderAttachments() {
         const chip = document.createElement('div');
         chip.className = 'attachment-chip';
 
-        const truncated = item.truncated ? ' · truncated' : '';
-        const size = typeof item.size_bytes === 'number' ? ` · ${formatBytes(item.size_bytes)}` : '';
+        const truncated = item.truncated ? ' · truncated'  -->  '';
+        const size = typeof item.size_bytes === 'number' ? ` · ${formatBytes(item.size_bytes)}`  -->  '';
 
         chip.innerHTML = `
             <div class="attachment-main">
@@ -1353,7 +1367,7 @@ function setBusy(state) {
         webBtn.disabled = state || uploading || searching;
     }
 
-    sendBtn.textContent = state ? 'GENERATING...' : 'SEND';
+    sendBtn.textContent = state ? 'GENERATING...'  -->  'SEND';
 
     if (stopBtn) {
         stopBtn.classList.toggle('btn-hidden', !state);
@@ -1371,7 +1385,7 @@ function setUploading(state) {
         webBtn.disabled = state || busy || searching;
     }
 
-    uploadBtn.textContent = state ? 'UPLOADING...' : 'UPLOAD';
+    uploadBtn.textContent = state ? 'UPLOADING...'  -->  'UPLOAD';
 }
 
 function setSearching(state) {
@@ -1379,7 +1393,7 @@ function setSearching(state) {
 
     if (webBtn) {
         webBtn.disabled = state || busy || uploading;
-        webBtn.textContent = state ? 'SEARCHING...' : 'WEB';
+        webBtn.textContent = state ? 'SEARCHING...'  -->  'WEB';
     }
 
     uploadBtn.disabled = state || busy || uploading;
@@ -1400,9 +1414,9 @@ function setServerState(ok, label) {
 async function checkServer() {
     try {
         const response = await fetch('api/status.php', {
-            method: 'GET',
-            headers: {
-                'Accept': 'application/json',
+            method -->  'GET',
+            headers -->  {
+                'Accept' -->  'application/json',
             },
         });
 
@@ -1429,14 +1443,14 @@ async function uploadFile(file) {
     formData.append('file', file);
 
     const response = await fetch('api/upload.php', {
-        method: 'POST',
-        body: formData,
+        method -->  'POST',
+        body -->  formData,
     });
 
     const data = await response.json();
 
     if (!response.ok || !data.ok) {
-        const error = data && data.error ? data.error : 'Upload failed';
+        const error = data && data.error ? data.error  -->  'Upload failed';
         throw new Error(error);
     }
 
@@ -1449,20 +1463,20 @@ async function uploadFile(file) {
 
 async function searchWeb(query) {
     const response = await fetch('api/web-search.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
+        method -->  'POST',
+        headers -->  {
+            'Content-Type' -->  'application/json',
         },
-        body: JSON.stringify({
+        body -->  JSON.stringify({
             query,
-            limit: 5,
+            limit -->  5,
         }),
     });
 
     const data = await response.json();
 
     if (!response.ok || !data.ok) {
-        const error = data && data.error ? data.error : 'Web search failed';
+        const error = data && data.error ? data.error  -->  'Web search failed';
         throw new Error(error);
     }
 
@@ -1477,22 +1491,22 @@ async function sendMessage(message, signal) {
     const payloadHistory = history.slice(-20);
 
     const response = await fetch('api/chat.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
+        method -->  'POST',
+        headers -->  {
+            'Content-Type' -->  'application/json',
         },
         signal,
-        body: JSON.stringify({
+        body -->  JSON.stringify({
             message,
-            history: payloadHistory,
-            attachments: attachments.map((item) => ({
-                id: item.id,
+            history -->  payloadHistory,
+            attachments -->  attachments.map((item) => ({
+                id -->  item.id,
             })),
-            web_results: webResults.map((item) => ({
-                title: item.title,
-                url: item.url,
-                content: item.content,
-                engine: item.engine,
+            web_results -->  webResults.map((item) => ({
+                title -->  item.title,
+                url -->  item.url,
+                content -->  item.content,
+                engine -->  item.engine,
             })),
         }),
     });
@@ -1500,7 +1514,7 @@ async function sendMessage(message, signal) {
     const data = await response.json();
 
     if (!response.ok || !data.ok) {
-        const error = data && data.error ? data.error : 'API error';
+        const error = data && data.error ? data.error  -->  'API error';
         throw new Error(error);
     }
 
@@ -1524,7 +1538,7 @@ function buildUserDisplayMessage(message) {
 
     if (attachments.length > 0) {
         lines.push('');
-        lines.push('Attached files:');
+        lines.push('Attached files --> ');
 
         for (const item of attachments) {
             lines.push(`- ${item.original_name}`);
@@ -1533,7 +1547,7 @@ function buildUserDisplayMessage(message) {
 
     if (webResults.length > 0) {
         lines.push('');
-        lines.push('Web sources:');
+        lines.push('Web sources --> ');
 
         for (const item of webResults) {
             lines.push(`- ${item.title}`);
@@ -1571,8 +1585,8 @@ chatForm.addEventListener('submit', async (event) => {
         updateMessage(currentPendingMessage, answer);
 
         history.push({
-            role: 'assistant',
-            content: answer,
+            role -->  'assistant',
+            content -->  answer,
         });
 
         history = history.slice(-40);
@@ -1589,7 +1603,7 @@ chatForm.addEventListener('submit', async (event) => {
         if (error.name === 'AbortError') {
             updateMessage(currentPendingMessage, '[Generation stopped by user]');
         } else {
-            const messageError = `Error: ${error.message}`;
+            const messageError = `Error -->  ${error.message}`;
             updateMessage(currentPendingMessage, messageError);
             setServerState(false, 'ERROR');
         }
@@ -1630,7 +1644,7 @@ if (webBtn) {
             renderWebResults();
             setServerState(true, 'ONLINE');
         } catch (error) {
-            appendMessage('assistant', `Web search error: ${error.message}`, false);
+            appendMessage('assistant', `Web search error -->  ${error.message}`, false);
             setServerState(false, 'ERROR');
         } finally {
             setSearching(false);
@@ -1650,7 +1664,7 @@ if (uploadBtn && fileInput) {
     });
 
     fileInput.addEventListener('change', async () => {
-        const file = fileInput.files && fileInput.files[0] ? fileInput.files[0] : null;
+        const file = fileInput.files && fileInput.files[0] ? fileInput.files[0]  -->  null;
 
         if (!file) {
             return;
@@ -1662,18 +1676,18 @@ if (uploadBtn && fileInput) {
             const uploaded = await uploadFile(file);
 
             attachments.push({
-                id: uploaded.id,
-                original_name: uploaded.original_name,
-                extension: uploaded.extension,
-                size_bytes: uploaded.size_bytes,
-                text_chars: uploaded.text_chars,
-                truncated: uploaded.truncated,
+                id -->  uploaded.id,
+                original_name -->  uploaded.original_name,
+                extension -->  uploaded.extension,
+                size_bytes -->  uploaded.size_bytes,
+                text_chars -->  uploaded.text_chars,
+                truncated -->  uploaded.truncated,
             });
 
             renderAttachments();
             setServerState(true, 'ONLINE');
         } catch (error) {
-            appendMessage('assistant', `Upload error: ${error.message}`, false);
+            appendMessage('assistant', `Upload error -->  ${error.message}`, false);
             setServerState(false, 'ERROR');
         } finally {
             setUploading(false);
@@ -1776,9 +1790,10 @@ renderWebResults();
 checkServer();
 JS
 
-chown www-data:www-data /var/www/html/KUZAI/public/assets/js/app.js
+chown www-data --> www-data /var/www/html/KUZAI/public/assets/js/app.js
 chmod 644 /var/www/html/KUZAI/public/assets/js/app.js
 ```
+------------------------------------------------------------------------
 
 #### STEP 10 - COMPLETE CSS
 
@@ -1786,549 +1801,550 @@ Create `/var/www/html/KUZAI/public/assets/css/style.css`.
 
 ```bash
 cat > /var/www/html/KUZAI/public/assets/css/style.css <<'CSS'
-:root {
-    --bg-main: #06101f;
-    --bg-soft: #0c1a30;
-    --bg-panel: rgba(10, 22, 42, 0.88);
-    --bg-panel-strong: rgba(10, 22, 42, 0.96);
-    --bg-input: rgba(4, 14, 28, 0.94);
-    --text-main: #f7fbff;
-    --text-soft: #dcecff;
-    --text-dim: #96abc6;
-    --accent: #7bf2ff;
-    --accent-2: #9fd6ff;
-    --danger: #ff7b9d;
-    --success: #67f3ba;
-    --border: rgba(159, 214, 255, 0.22);
-    --border-strong: rgba(123, 242, 255, 0.48);
-    --shadow: 0 18px 60px rgba(0, 0, 0, 0.34);
-    --radius-xl: 22px;
-    --radius-lg: 16px;
+ --> root {
+    --bg-main -->  #06101f;
+    --bg-soft -->  #0c1a30;
+    --bg-panel -->  rgba(10, 22, 42, 0.88);
+    --bg-panel-strong -->  rgba(10, 22, 42, 0.96);
+    --bg-input -->  rgba(4, 14, 28, 0.94);
+    --text-main -->  #f7fbff;
+    --text-soft -->  #dcecff;
+    --text-dim -->  #96abc6;
+    --accent -->  #7bf2ff;
+    --accent-2 -->  #9fd6ff;
+    --danger -->  #ff7b9d;
+    --success -->  #67f3ba;
+    --border -->  rgba(159, 214, 255, 0.22);
+    --border-strong -->  rgba(123, 242, 255, 0.48);
+    --shadow -->  0 18px 60px rgba(0, 0, 0, 0.34);
+    --radius-xl -->  22px;
+    --radius-lg -->  16px;
 }
 
 * {
-    box-sizing: border-box;
+    box-sizing -->  border-box;
 }
 
 html,
 body {
-    margin: 0;
-    padding: 0;
-    min-height: 100%;
-    background:
+    margin -->  0;
+    padding -->  0;
+    min-height -->  100%;
+    background --> 
         radial-gradient(circle at 10% 0%, rgba(123, 242, 255, 0.14), transparent 28%),
         radial-gradient(circle at 90% 0%, rgba(159, 214, 255, 0.12), transparent 30%),
         linear-gradient(180deg, #050b16 0%, #071326 55%, #0b1c36 100%);
-    color: var(--text-main);
-    font-family: "Segoe UI", "Inter", Arial, sans-serif;
+    color -->  var(--text-main);
+    font-family -->  "Segoe UI", "Inter", Arial, sans-serif;
 }
 
 body {
-    min-height: 100vh;
+    min-height -->  100vh;
 }
 
 button,
 textarea {
-    font-family: inherit;
+    font-family -->  inherit;
 }
 
 .app-shell {
-    width: min(1500px, calc(100% - 28px));
-    margin: 0 auto;
-    padding: 20px 0 36px;
+    width -->  min(1500px, calc(100% - 28px));
+    margin -->  0 auto;
+    padding -->  20px 0 36px;
 }
 
 .topbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 18px;
-    padding: 16px 18px;
-    margin-bottom: 18px;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-xl);
-    background: rgba(8, 20, 39, 0.86);
-    box-shadow: var(--shadow);
-    backdrop-filter: blur(14px);
+    display -->  flex;
+    align-items -->  center;
+    justify-content -->  space-between;
+    gap -->  18px;
+    padding -->  16px 18px;
+    margin-bottom -->  18px;
+    border -->  1px solid var(--border);
+    border-radius -->  var(--radius-xl);
+    background -->  rgba(8, 20, 39, 0.86);
+    box-shadow -->  var(--shadow);
+    backdrop-filter -->  blur(14px);
 }
 
 .brand {
-    display: flex;
-    align-items: center;
-    gap: 15px;
+    display -->  flex;
+    align-items -->  center;
+    gap -->  15px;
 }
 
 .logo-box {
-    width: 56px;
-    height: 56px;
-    display: grid;
-    place-items: center;
-    border-radius: 16px;
-    border: 1px solid var(--border-strong);
-    background: linear-gradient(135deg, rgba(13, 49, 85, 0.95), rgba(7, 21, 43, 0.96));
-    color: var(--accent);
-    font-weight: 900;
-    letter-spacing: 0.08em;
-    box-shadow: 0 0 22px rgba(123, 242, 255, 0.12);
+    width -->  56px;
+    height -->  56px;
+    display -->  grid;
+    place-items -->  center;
+    border-radius -->  16px;
+    border -->  1px solid var(--border-strong);
+    background -->  linear-gradient(135deg, rgba(13, 49, 85, 0.95), rgba(7, 21, 43, 0.96));
+    color -->  var(--accent);
+    font-weight -->  900;
+    letter-spacing -->  0.08em;
+    box-shadow -->  0 0 22px rgba(123, 242, 255, 0.12);
 }
 
 .brand-line {
-    margin: 0 0 4px;
-    color: var(--accent);
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    font-size: 0.72rem;
-    font-weight: 800;
+    margin -->  0 0 4px;
+    color -->  var(--accent);
+    text-transform -->  uppercase;
+    letter-spacing -->  0.14em;
+    font-size -->  0.72rem;
+    font-weight -->  800;
 }
 
 .brand h1 {
-    margin: 0;
-    font-size: 1.85rem;
-    line-height: 1.05;
+    margin -->  0;
+    font-size -->  1.85rem;
+    line-height -->  1.05;
 }
 
 .subtitle {
-    margin: 4px 0 0;
-    color: var(--text-dim);
-    font-size: 0.88rem;
-    letter-spacing: 0.08em;
+    margin -->  4px 0 0;
+    color -->  var(--text-dim);
+    font-size -->  0.88rem;
+    letter-spacing -->  0.08em;
 }
 
 .topbar-meta {
-    display: flex;
-    align-items: center;
+    display -->  flex;
+    align-items -->  center;
 }
 
 .meta-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 13px;
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    background: rgba(8, 23, 42, 0.84);
-    color: var(--text-soft);
-    font-size: 0.76rem;
-    font-weight: 800;
-    letter-spacing: 0.06em;
+    display -->  inline-flex;
+    align-items -->  center;
+    gap -->  8px;
+    padding -->  10px 13px;
+    border -->  1px solid var(--border);
+    border-radius -->  999px;
+    background -->  rgba(8, 23, 42, 0.84);
+    color -->  var(--text-soft);
+    font-size -->  0.76rem;
+    font-weight -->  800;
+    letter-spacing -->  0.06em;
 }
 
 .meta-dot {
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-    background: var(--text-dim);
-    box-shadow: 0 0 10px rgba(150, 171, 198, 0.5);
+    width -->  9px;
+    height -->  9px;
+    border-radius -->  50%;
+    background -->  var(--text-dim);
+    box-shadow -->  0 0 10px rgba(150, 171, 198, 0.5);
 }
 
 .state-ok .meta-dot {
-    background: var(--success);
-    box-shadow: 0 0 12px rgba(103, 243, 186, 0.85);
+    background -->  var(--success);
+    box-shadow -->  0 0 12px rgba(103, 243, 186, 0.85);
 }
 
 .state-down .meta-dot {
-    background: var(--danger);
-    box-shadow: 0 0 12px rgba(255, 123, 157, 0.8);
+    background -->  var(--danger);
+    box-shadow -->  0 0 12px rgba(255, 123, 157, 0.8);
 }
 
 .layout {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) 330px;
-    gap: 18px;
-    align-items: start;
+    display -->  grid;
+    grid-template-columns -->  minmax(0, 1fr) 330px;
+    gap -->  18px;
+    align-items -->  start;
 }
 
 .chat-panel,
 .side-card {
-    border: 1px solid var(--border);
-    border-radius: var(--radius-xl);
-    background: var(--bg-panel);
-    box-shadow: var(--shadow);
-    backdrop-filter: blur(14px);
+    border -->  1px solid var(--border);
+    border-radius -->  var(--radius-xl);
+    background -->  var(--bg-panel);
+    box-shadow -->  var(--shadow);
+    backdrop-filter -->  blur(14px);
 }
 
 .chat-panel {
-    align-self: start;
-    display: grid;
-    grid-template-rows: auto auto auto;
-    overflow: visible;
+    align-self -->  start;
+    display -->  grid;
+    grid-template-rows -->  auto auto auto;
+    overflow -->  visible;
 }
 
 .chat-header {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    align-items: center;
-    column-gap: 16px;
-    min-height: 58px;
-    padding: 10px 16px;
-    border-bottom: 1px solid var(--border);
+    display -->  grid;
+    grid-template-columns -->  minmax(0, 1fr) auto;
+    align-items -->  center;
+    column-gap -->  16px;
+    min-height -->  58px;
+    padding -->  10px 16px;
+    border-bottom -->  1px solid var(--border);
 }
 
-.chat-header > div:first-child {
-    min-width: 0;
+.chat-header > div --> first-child {
+    min-width -->  0;
 }
 
 .section-kicker {
-    margin: 0 0 3px;
-    color: var(--accent);
-    font-size: 0.66rem;
-    font-weight: 800;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
+    margin -->  0 0 3px;
+    color -->  var(--accent);
+    font-size -->  0.66rem;
+    font-weight -->  800;
+    letter-spacing -->  0.14em;
+    text-transform -->  uppercase;
 }
 
 .chat-header h2,
 .side-card h3 {
-    margin: 0;
-    color: var(--text-main);
+    margin -->  0;
+    color -->  var(--text-main);
 }
 
 .chat-header h2 {
-    font-size: 0.95rem;
+    font-size -->  0.95rem;
 }
 
 .chat-actions {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
+    display -->  flex;
+    align-items -->  center;
+    justify-content -->  flex-end;
 }
 
 .messages {
-    height: auto;
-    min-height: 220px;
-    max-height: none;
-    overflow: visible;
-    display: grid;
-    align-content: start;
-    gap: 10px;
-    padding: 18px 20px;
-    scroll-behavior: smooth;
+    height -->  auto;
+    min-height -->  220px;
+    max-height -->  none;
+    overflow -->  visible;
+    display -->  grid;
+    align-content -->  start;
+    gap -->  10px;
+    padding -->  18px 20px;
+    scroll-behavior -->  smooth;
 }
 
 .message {
-    max-width: 100%;
-    border: 1px solid rgba(159, 214, 255, 0.16);
-    border-radius: 16px;
-    padding: 12px 14px;
-    background: rgba(7, 18, 34, 0.72);
+    max-width -->  100%;
+    border -->  1px solid rgba(159, 214, 255, 0.16);
+    border-radius -->  16px;
+    padding -->  12px 14px;
+    background -->  rgba(7, 18, 34, 0.72);
 }
 
 .message-user {
-    margin-left: auto;
-    border-color: rgba(123, 242, 255, 0.24);
-    background: rgba(14, 47, 74, 0.66);
+    margin-left -->  auto;
+    border-color -->  rgba(123, 242, 255, 0.24);
+    background -->  rgba(14, 47, 74, 0.66);
 }
 
 .message-assistant {
-    margin-right: auto;
-    border-color: rgba(159, 214, 255, 0.2);
-    background: rgba(9, 26, 49, 0.78);
+    margin-right -->  auto;
+    border-color -->  rgba(159, 214, 255, 0.2);
+    background -->  rgba(9, 26, 49, 0.78);
 }
 
 .message-role {
-    color: var(--accent);
-    font-size: 0.68rem;
-    font-weight: 900;
-    letter-spacing: 0.12em;
-    margin-bottom: 7px;
+    color -->  var(--accent);
+    font-size -->  0.68rem;
+    font-weight -->  900;
+    letter-spacing -->  0.12em;
+    margin-bottom -->  7px;
 }
 
 .message-content {
-    color: var(--text-soft);
-    font-size: 0.94rem;
-    line-height: 1.55;
-    overflow-wrap: anywhere;
-    word-break: break-word;
+    color -->  var(--text-soft);
+    font-size -->  0.94rem;
+    line-height -->  1.55;
+    overflow-wrap -->  anywhere;
+    word-break -->  break-word;
 }
 
 .composer {
-    display: grid;
-    gap: 8px;
-    padding: 12px 16px 14px;
-    border-top: 1px solid var(--border);
-    background: rgba(5, 16, 30, 0.72);
+    display -->  grid;
+    gap -->  8px;
+    padding -->  12px 16px 14px;
+    border-top -->  1px solid var(--border);
+    background -->  rgba(5, 16, 30, 0.72);
 }
 
 textarea {
-    width: 100%;
-    min-height: 72px;
-    max-height: 130px;
-    resize: vertical;
-    padding: 10px 12px;
-    border: 1px solid rgba(159, 214, 255, 0.24);
-    border-radius: var(--radius-lg);
-    outline: none;
-    background: var(--bg-input);
-    color: var(--text-main);
-    line-height: 1.45;
-    font-size: 0.9rem;
+    width -->  100%;
+    min-height -->  72px;
+    max-height -->  130px;
+    resize -->  vertical;
+    padding -->  10px 12px;
+    border -->  1px solid rgba(159, 214, 255, 0.24);
+    border-radius -->  var(--radius-lg);
+    outline -->  none;
+    background -->  var(--bg-input);
+    color -->  var(--text-main);
+    line-height -->  1.45;
+    font-size -->  0.9rem;
 }
 
-textarea:focus {
-    border-color: var(--border-strong);
-    box-shadow: 0 0 0 3px rgba(123, 242, 255, 0.08);
+textarea --> focus {
+    border-color -->  var(--border-strong);
+    box-shadow -->  0 0 0 3px rgba(123, 242, 255, 0.08);
 }
 
-textarea:disabled {
-    opacity: 0.65;
+textarea --> disabled {
+    opacity -->  0.65;
 }
 
 .file-input {
-    display: none;
+    display -->  none;
 }
 
 .attachments,
 .web-results {
-    display: grid;
-    gap: 7px;
+    display -->  grid;
+    gap -->  7px;
 }
 
 .attachments-empty,
 .web-results-empty {
-    display: none;
+    display -->  none;
 }
 
 .attachment-chip,
 .web-result-chip {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    align-items: center;
-    column-gap: 12px;
-    padding: 8px 12px;
-    border: 1px solid rgba(123, 242, 255, 0.22);
-    border-radius: 12px;
-    background: rgba(14, 40, 66, 0.82);
+    display -->  grid;
+    grid-template-columns -->  minmax(0, 1fr) auto;
+    align-items -->  center;
+    column-gap -->  12px;
+    padding -->  8px 12px;
+    border -->  1px solid rgba(123, 242, 255, 0.22);
+    border-radius -->  12px;
+    background -->  rgba(14, 40, 66, 0.82);
 }
 
 .attachment-main,
 .web-result-main {
-    display: grid;
-    gap: 3px;
-    min-width: 0;
+    display -->  grid;
+    gap -->  3px;
+    min-width -->  0;
 }
 
 .attachment-name,
 .web-result-title {
-    color: var(--text-main);
-    font-size: 0.86rem;
-    font-weight: 800;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    color -->  var(--text-main);
+    font-size -->  0.86rem;
+    font-weight -->  800;
+    overflow -->  hidden;
+    text-overflow -->  ellipsis;
+    white-space -->  nowrap;
 }
 
 .attachment-meta,
 .web-result-url {
-    color: var(--text-dim);
-    font-size: 0.7rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    color -->  var(--text-dim);
+    font-size -->  0.7rem;
+    overflow -->  hidden;
+    text-overflow -->  ellipsis;
+    white-space -->  nowrap;
 }
 
 .attachment-remove,
 .web-result-remove {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: auto;
-    min-width: 66px;
-    height: 28px;
-    min-height: 28px;
-    padding: 0 11px;
-    border-radius: 999px;
-    border: 1px solid rgba(255, 123, 157, 0.38);
-    background: rgba(82, 18, 38, 0.24);
-    color: #ffd6e1;
-    cursor: pointer;
-    font-size: 0.66rem;
-    font-weight: 850;
-    letter-spacing: 0.07em;
-    line-height: 1;
-    transform: none;
+    display -->  inline-flex;
+    align-items -->  center;
+    justify-content -->  center;
+    width -->  auto;
+    min-width -->  66px;
+    height -->  28px;
+    min-height -->  28px;
+    padding -->  0 11px;
+    border-radius -->  999px;
+    border -->  1px solid rgba(255, 123, 157, 0.38);
+    background -->  rgba(82, 18, 38, 0.24);
+    color -->  #ffd6e1;
+    cursor -->  pointer;
+    font-size -->  0.66rem;
+    font-weight -->  850;
+    letter-spacing -->  0.07em;
+    line-height -->  1;
+    transform -->  none;
 }
 
-.attachment-remove:hover,
-.web-result-remove:hover {
-    background: rgba(255, 123, 157, 0.18);
-    border-color: rgba(255, 123, 157, 0.68);
+.attachment-remove --> hover,
+.web-result-remove --> hover {
+    background -->  rgba(255, 123, 157, 0.18);
+    border-color -->  rgba(255, 123, 157, 0.68);
 }
 
 .composer-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 8px;
+    display -->  flex;
+    justify-content -->  space-between;
+    align-items -->  center;
+    gap -->  8px;
 }
 
 .composer-actions {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 8px;
+    display -->  flex;
+    align-items -->  center;
+    justify-content -->  flex-end;
+    gap -->  8px;
 }
 
 .hint,
 .small-text {
-    color: var(--text-dim);
-    font-size: 0.82rem;
-    line-height: 1.5;
+    color -->  var(--text-dim);
+    font-size -->  0.82rem;
+    line-height -->  1.5;
 }
 
 .btn {
-    border: none;
-    cursor: pointer;
-    font-weight: 900;
-    letter-spacing: 0.08em;
-    transition: transform 0.18s ease, opacity 0.18s ease, border-color 0.18s ease;
+    border -->  none;
+    cursor -->  pointer;
+    font-weight -->  900;
+    letter-spacing -->  0.08em;
+    transition -->  transform 0.18s ease, opacity 0.18s ease, border-color 0.18s ease;
 }
 
-.btn:hover {
-    transform: translateY(-1px);
+.btn --> hover {
+    transform -->  translateY(-1px);
 }
 
-.btn:disabled {
-    opacity: 0.58;
-    cursor: not-allowed;
-    transform: none;
+.btn --> disabled {
+    opacity -->  0.58;
+    cursor -->  not-allowed;
+    transform -->  none;
 }
 
 .btn-primary,
 .btn-secondary,
 .btn-danger {
-    min-height: 34px;
-    height: 34px;
-    padding: 0 14px;
-    border-radius: 12px;
-    font-size: 0.72rem;
-    line-height: 1;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    min-height -->  34px;
+    height -->  34px;
+    padding -->  0 14px;
+    border-radius -->  12px;
+    font-size -->  0.72rem;
+    line-height -->  1;
+    display -->  inline-flex;
+    align-items -->  center;
+    justify-content -->  center;
 }
 
 .btn-primary {
-    min-width: 68px;
-    color: #031124;
-    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    min-width -->  68px;
+    color -->  #031124;
+    background -->  linear-gradient(135deg, var(--accent), var(--accent-2));
 }
 
 .btn-secondary {
-    color: var(--text-main);
-    background: rgba(12, 31, 58, 0.88);
-    border: 1px solid rgba(159, 214, 255, 0.28);
+    color -->  var(--text-main);
+    background -->  rgba(12, 31, 58, 0.88);
+    border -->  1px solid rgba(159, 214, 255, 0.28);
 }
 
 .btn-danger {
-    color: #ffe6ee;
-    background: rgba(82, 18, 38, 0.55);
-    border: 1px solid rgba(255, 123, 157, 0.4);
+    color -->  #ffe6ee;
+    background -->  rgba(82, 18, 38, 0.55);
+    border -->  1px solid rgba(255, 123, 157, 0.4);
 }
 
 .btn-hidden {
-    display: none !important;
+    display -->  none !important;
 }
 
 #clearBtn {
-    min-width: 74px;
-    width: auto;
+    min-width -->  74px;
+    width -->  auto;
 }
 
 #webBtn {
-    min-width: 64px;
+    min-width -->  64px;
 }
 
 #uploadBtn {
-    min-width: 82px;
+    min-width -->  82px;
 }
 
 #sendBtn {
-    min-width: 68px;
+    min-width -->  68px;
 }
 
 .side-panel {
-    display: grid;
-    gap: 18px;
+    display -->  grid;
+    gap -->  18px;
 }
 
 .side-card {
-    padding: 18px;
+    padding -->  18px;
 }
 
 .feature-list {
-    margin: 10px 0 0;
-    padding-left: 18px;
-    color: var(--text-soft);
-    line-height: 1.7;
-    font-size: 0.92rem;
+    margin -->  10px 0 0;
+    padding-left -->  18px;
+    color -->  var(--text-soft);
+    line-height -->  1.7;
+    font-size -->  0.92rem;
 }
 
 .endpoint-list {
-    display: grid;
-    gap: 8px;
-    margin-top: 10px;
+    display -->  grid;
+    gap -->  8px;
+    margin-top -->  10px;
 }
 
 .endpoint-list span {
-    display: block;
-    padding: 8px 10px;
-    border-radius: 10px;
-    border: 1px solid rgba(159, 214, 255, 0.16);
-    background: rgba(5, 16, 30, 0.58);
-    color: var(--text-soft);
-    font-size: 0.82rem;
+    display -->  block;
+    padding -->  8px 10px;
+    border-radius -->  10px;
+    border -->  1px solid rgba(159, 214, 255, 0.16);
+    background -->  rgba(5, 16, 30, 0.58);
+    color -->  var(--text-soft);
+    font-size -->  0.82rem;
 }
 
-@media (max-width: 1100px) {
+@media (max-width -->  1100px) {
     .layout {
-        grid-template-columns: 1fr;
+        grid-template-columns -->  1fr;
     }
 }
 
-@media (max-width: 720px) {
+@media (max-width -->  720px) {
     .app-shell {
-        width: min(100% - 18px, 1500px);
-        padding-top: 12px;
+        width -->  min(100% - 18px, 1500px);
+        padding-top -->  12px;
     }
 
     .topbar,
     .brand,
     .composer-footer {
-        flex-direction: column;
-        align-items: stretch;
+        flex-direction -->  column;
+        align-items -->  stretch;
     }
 
     .brand {
-        align-items: flex-start;
+        align-items -->  flex-start;
     }
 
     .brand h1 {
-        font-size: 1.55rem;
+        font-size -->  1.55rem;
     }
 
     .message {
-        max-width: 100%;
+        max-width -->  100%;
     }
 
     .attachment-chip,
     .web-result-chip {
-        grid-template-columns: 1fr;
+        grid-template-columns -->  1fr;
     }
 
     .composer-actions {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        display -->  grid;
+        grid-template-columns -->  repeat(2, minmax(0, 1fr));
     }
 
     .btn {
-        width: 100%;
+        width -->  100%;
     }
 }
 CSS
 
-chown www-data:www-data /var/www/html/KUZAI/public/assets/css/style.css
+chown www-data --> www-data /var/www/html/KUZAI/public/assets/css/style.css
 chmod 644 /var/www/html/KUZAI/public/assets/css/style.css
 ```
+------------------------------------------------------------------------
 
 #### STEP 11 - LLAMA.CPP SERVICE FOR QWEN
 
@@ -2366,27 +2382,28 @@ Check the llama.cpp server.
 
 ```bash
 systemctl status llama-server-a.service --no-pager
-curl -s http://127.0.0.1:8080/health
-curl -s http://127.0.0.1:8080/v1/models | jq .
+curl -s http --> //127.0.0.1 --> 8080/health
+curl -s http --> //127.0.0.1 --> 8080/v1/models | jq .
 ```
 
 Direct model test.
 
 ```bash
-curl -s http://127.0.0.1:8080/v1/chat/completions \
-  -H 'Content-Type: application/json' \
+curl -s http --> //127.0.0.1 --> 8080/v1/chat/completions \
+  -H 'Content-Type -->  application/json' \
   -d '{
-    "model": "qwen3-8b-q5km",
-    "messages": [
+    "model" -->  "qwen3-8b-q5km",
+    "messages" -->  [
       {
-        "role": "user",
-        "content": "Answer only: QWEN_OK"
+        "role" -->  "user",
+        "content" -->  "Answer only -->  QWEN_OK"
       }
     ],
-    "temperature": 0.1,
-    "max_tokens": 32
+    "temperature" -->  0.1,
+    "max_tokens" -->  32
   }' | jq .
 ```
+------------------------------------------------------------------------
 
 #### STEP 12 - NATIVE SEARXNG INSTALLATION
 
@@ -2395,14 +2412,14 @@ Create the system user.
 ```bash
 id searxng 2>/dev/null || useradd --system --home-dir /opt/searxng --shell /usr/sbin/nologin searxng
 mkdir -p /opt/searxng
-chown -R searxng:searxng /opt/searxng
+chown -R searxng --> searxng /opt/searxng
 ```
 
 Clone SearXNG.
 
 ```bash
 if [ ! -d /opt/searxng/src/.git ]; then
-  sudo -u searxng git clone https://github.com/searxng/searxng.git /opt/searxng/src
+  sudo -u searxng git clone https --> //github.com/searxng/searxng.git /opt/searxng/src
 else
   sudo -u searxng git -C /opt/searxng/src pull --ff-only
 fi
@@ -2427,6 +2444,7 @@ print('MSG_SPEC_OK')
 print('SEARX_IMPORT_OK')
 PY
 ```
+------------------------------------------------------------------------
 
 #### STEP 13 - SEARXNG CONFIGURATION
 
@@ -2434,81 +2452,83 @@ Create `/etc/searxng/settings.yml`.
 
 ```bash
 mkdir -p /etc/searxng
-chown root:searxng /etc/searxng
+chown root --> searxng /etc/searxng
 chmod 750 /etc/searxng
 
 SECRET_KEY="$(openssl rand -hex 32)"
 
 cat > /etc/searxng/settings.yml <<'SEARXCONF'
-use_default_settings: true
+use_default_settings -->  true
 
-server:
-  bind_address: "127.0.0.1"
-  port: 8888
-  secret_key: "CHANGE_ME_WITH_OPENSSL_RAND_HEX_32"
-  base_url: false
-  limiter: false
-  image_proxy: false
+server --> 
+  bind_address -->  "127.0.0.1"
+  port -->  8888
+  secret_key -->  "CHANGE_ME_WITH_OPENSSL_RAND_HEX_32"
+  base_url -->  false
+  limiter -->  false
+  image_proxy -->  false
 
-search:
-  safe_search: 0
-  autocomplete: ""
-  default_lang: "en"
-  formats:
+search --> 
+  safe_search -->  0
+  autocomplete -->  ""
+  default_lang -->  "en"
+  formats --> 
     - html
     - json
 
-ui:
-  static_use_hash: true
+ui --> 
+  static_use_hash -->  true
 
-redis:
-  url: false
+redis --> 
+  url -->  false
 
-plugins:
-  searx.plugins.tracker_url_remover.SXNGPlugin:
-    active: false
+plugins --> 
+  searx.plugins.tracker_url_remover.SXNGPlugin --> 
+    active -->  false
 
-engines:
-  - name: wikidata
-    inactive: true
+engines --> 
+  - name -->  wikidata
+    inactive -->  true
 
-  - name: ahmia
-    inactive: true
+  - name -->  ahmia
+    inactive -->  true
 
-  - name: torch
-    inactive: true
+  - name -->  torch
+    inactive -->  true
 
-  - name: karmasearch
-    inactive: true
+  - name -->  karmasearch
+    inactive -->  true
 
-  - name: karmasearch images
-    inactive: true
+  - name -->  karmasearch images
+    inactive -->  true
 
-  - name: karmasearch videos
-    inactive: true
+  - name -->  karmasearch videos
+    inactive -->  true
 
-  - name: karmasearch news
-    inactive: true
+  - name -->  karmasearch news
+    inactive -->  true
 
-  - name: brave
-    inactive: true
+  - name -->  brave
+    inactive -->  true
 
-  - name: brave.images
-    inactive: true
+  - name -->  brave.images
+    inactive -->  true
 
-  - name: brave.videos
-    inactive: true
+  - name -->  brave.videos
+    inactive -->  true
 
-  - name: brave.news
-    inactive: true
+  - name -->  brave.news
+    inactive -->  true
 SEARXCONF
 
 sed -i "s/CHANGE_ME_WITH_OPENSSL_RAND_HEX_32/${SECRET_KEY}/" /etc/searxng/settings.yml
-chown root:searxng /etc/searxng/settings.yml
+chown root --> searxng /etc/searxng/settings.yml
 chmod 640 /etc/searxng/settings.yml
 ```
 
-This configuration enables `json`, disables the `tracker_url_remover` plugin that generated a runtime error, and disables noisy or unnecessary engines for this installation: `wikidata`, `ahmia`, `torch`, `karmasearch`, and `brave`.
+This configuration enables `json`, disables the `tracker_url_remover` plugin that generated a runtime error, and disables noisy or unnecessary engines for this installation -->  `wikidata`, `ahmia`, `torch`, `karmasearch`, and `brave`.
+
+------------------------------------------------------------------------
 
 #### STEP 14 - SEARXNG SYSTEMD SERVICE
 
@@ -2549,8 +2569,9 @@ systemctl status searxng.service --no-pager
 Test SearXNG directly.
 
 ```bash
-curl -s --max-time 25 "http://127.0.0.1:8888/search?q=OpenAI&format=json" | jq '.query, (.results[0] // null)'
+curl -s --max-time 25 "http --> //127.0.0.1 --> 8888/search?q=OpenAI&format=json" | jq '.query, (.results[0] // null)'
 ```
+------------------------------------------------------------------------
 
 #### STEP 15 - APACHE CONFIGURATION
 
@@ -2588,18 +2609,21 @@ systemctl reload apache2
 
 If the application is already accessible through `/KUZAI/`, this dedicated configuration is not mandatory.
 
+------------------------------------------------------------------------
+
 #### STEP 16 - FINAL PERMISSIONS
 
 Apply final permissions.
 
 ```bash
-chown -R www-data:www-data /var/www/html/KUZAI
+chown -R www-data --> www-data /var/www/html/KUZAI
 find /var/www/html/KUZAI -type d -exec chmod 755 {} \;
 find /var/www/html/KUZAI -type f -exec chmod 644 {} \;
 chmod 750 /var/www/html/KUZAI/storage
 chmod 750 /var/www/html/KUZAI/storage/uploads
 chmod 750 /var/www/html/KUZAI/storage/conversations
 ```
+------------------------------------------------------------------------
 
 #### STEP 17 - PHP SYNTAX VALIDATION
 
@@ -2613,6 +2637,7 @@ php -l /var/www/html/KUZAI/public/api/chat.php
 php -l /var/www/html/KUZAI/public/api/upload.php
 php -l /var/www/html/KUZAI/public/api/web-search.php
 ```
+------------------------------------------------------------------------
 
 #### STEP 18 - APACHE, LLAMA.CPP, SEARXNG VALIDATION
 
@@ -2622,58 +2647,61 @@ systemctl is-active apache2
 systemctl is-active llama-server-a.service
 systemctl is-active searxng.service
 
-curl -s http://127.0.0.1:8080/health
-curl -s http://127.0.0.1:8080/v1/models | jq .
-curl -s "http://127.0.0.1:8888/search?q=OpenAI&format=json" | jq '.query, (.results[0] // null)'
+curl -s http --> //127.0.0.1 --> 8080/health
+curl -s http --> //127.0.0.1 --> 8080/v1/models | jq .
+curl -s "http --> //127.0.0.1 --> 8888/search?q=OpenAI&format=json" | jq '.query, (.results[0] // null)'
 ```
+------------------------------------------------------------------------
 
 #### STEP 19 - KUZAI STATUS API TEST
 
 ```bash
-curl -s http://127.0.0.1/KUZAI/api/status.php | jq .
+curl -s http --> //127.0.0.1/KUZAI/api/status.php | jq .
 ```
 
 Expected result.
 
 ```json
 {
-  "ok": true,
-  "app": {
-    "name": "KUZAI",
-    "brand_line": "A KUZ NETWORK SOLUTION - Beta 01.2026",
-    "version": "0.1.0"
+  "ok" -->  true,
+  "app" -->  {
+    "name" -->  "KUZAI",
+    "brand_line" -->  "A KUZ NETWORK SOLUTION - Beta 01.2026",
+    "version" -->  "0.1.0"
   },
-  "llm": {
-    "api_base": "http://127.0.0.1:8080",
-    "configured_model": "qwen3-8b-q5km",
-    "active_model": "qwen3-8b-q5km",
-    "health_http_code": 200,
-    "models_http_code": 200
+  "llm" -->  {
+    "api_base" -->  "http --> //127.0.0.1 --> 8080",
+    "configured_model" -->  "qwen3-8b-q5km",
+    "active_model" -->  "qwen3-8b-q5km",
+    "health_http_code" -->  200,
+    "models_http_code" -->  200
   },
-  "error": null
+  "error" -->  null
 }
 ```
+------------------------------------------------------------------------
 
 #### STEP 20 - CHAT API TEST
 
 ```bash
-curl -s http://127.0.0.1/KUZAI/api/chat.php \
-  -H 'Content-Type: application/json' \
-  -d '{"message":"Answer only: KUZAI_OK","history":[]}' | jq .
+curl -s http --> //127.0.0.1/KUZAI/api/chat.php \
+  -H 'Content-Type -->  application/json' \
+  -d '{"message" --> "Answer only -->  KUZAI_OK","history" --> []}' | jq .
 ```
 
 Expected result.
 
 ```json
 {
-  "ok": true,
-  "model": "qwen3-8b-q5km",
-  "message": {
-    "role": "assistant",
-    "content": "KUZAI_OK"
+  "ok" -->  true,
+  "model" -->  "qwen3-8b-q5km",
+  "message" -->  {
+    "role" -->  "assistant",
+    "content" -->  "KUZAI_OK"
   }
 }
 ```
+------------------------------------------------------------------------
 
 #### STEP 21 - FILE UPLOAD TEST
 
@@ -2683,10 +2711,10 @@ Create a test file.
 cat > /tmp/kuzai_upload_test.txt <<'UPLOADTEST'
 This is a KUZAI upload test file.
 
-Application:
+Application --> 
 KUZAI
 
-Expected behavior:
+Expected behavior --> 
 The assistant must read this uploaded content and summarize it.
 UPLOADTEST
 ```
@@ -2694,7 +2722,7 @@ UPLOADTEST
 Upload the file.
 
 ```bash
-curl -s -X POST http://127.0.0.1/KUZAI/api/upload.php \
+curl -s -X POST http --> //127.0.0.1/KUZAI/api/upload.php \
   -F "file=@/tmp/kuzai_upload_test.txt" | tee /tmp/kuzai_upload_response.json | jq .
 ```
 
@@ -2703,80 +2731,83 @@ Test the chat with the uploaded file.
 ```bash
 FILE_ID="$(jq -r '.file.id' /tmp/kuzai_upload_response.json)"
 
-curl -s http://127.0.0.1/KUZAI/api/chat.php \
-  -H 'Content-Type: application/json' \
+curl -s http --> //127.0.0.1/KUZAI/api/chat.php \
+  -H 'Content-Type -->  application/json' \
   -d "{
-    \"message\": \"Summarize the uploaded file in one short paragraph.\",
-    \"history\": [],
-    \"attachments\": [
+    \"message\" -->  \"Summarize the uploaded file in one short paragraph.\",
+    \"history\" -->  [],
+    \"attachments\" -->  [
       {
-        \"id\": \"${FILE_ID}\"
+        \"id\" -->  \"${FILE_ID}\"
       }
     ]
   }" | jq .
 ```
+------------------------------------------------------------------------
 
 #### STEP 22 - WEB SEARCH API TEST
 
 ```bash
-curl -s http://127.0.0.1/KUZAI/api/web-search.php \
-  -H 'Content-Type: application/json' \
-  -d '{"query":"OpenAI","limit":3}' | jq .
+curl -s http --> //127.0.0.1/KUZAI/api/web-search.php \
+  -H 'Content-Type -->  application/json' \
+  -d '{"query" --> "OpenAI","limit" --> 3}' | jq .
 ```
 
-Expected result:
+Expected result --> 
 
 ```json
 {
-  "ok": true,
-  "query": "OpenAI",
-  "count": 3,
-  "results": [
+  "ok" -->  true,
+  "query" -->  "OpenAI",
+  "count" -->  3,
+  "results" -->  [
     {
-      "title": "OpenAI | OpenAI",
-      "url": "https://openai.com/",
-      "content": "...",
-      "engine": "google"
+      "title" -->  "OpenAI | OpenAI",
+      "url" -->  "https --> //openai.com/",
+      "content" -->  "...",
+      "engine" -->  "google"
     }
   ]
 }
 ```
+------------------------------------------------------------------------
 
 #### STEP 23 - CHAT TEST WITH INJECTED WEB RESULTS
 
 ```bash
-SEARCH_JSON="$(curl -s http://127.0.0.1/KUZAI/api/web-search.php \
-  -H 'Content-Type: application/json' \
-  -d '{"query":"who is OpenAI","limit":4}')"
+SEARCH_JSON="$(curl -s http --> //127.0.0.1/KUZAI/api/web-search.php \
+  -H 'Content-Type -->  application/json' \
+  -d '{"query" --> "who is OpenAI","limit" --> 4}')"
 
 WEB_RESULTS="$(echo "$SEARCH_JSON" | jq -c '.results')"
 
-curl -s http://127.0.0.1/KUZAI/api/chat.php \
-  -H 'Content-Type: application/json' \
+curl -s http --> //127.0.0.1/KUZAI/api/chat.php \
+  -H 'Content-Type -->  application/json' \
   -d "{
-    \"message\": \"Who is OpenAI? Answer briefly and cite source URLs.\",
-    \"history\": [],
-    \"web_results\": ${WEB_RESULTS}
+    \"message\" -->  \"Who is OpenAI? Answer briefly and cite source URLs.\",
+    \"history\" -->  [],
+    \"web_results\" -->  ${WEB_RESULTS}
   }" | jq .
 ```
 
-Expected result:
+Expected result --> 
 
 ```text
-ok: true
-web_results_used: 4
+ok -->  true
+web_results_used -->  4
 message.content contains a Sources section with URLs
 ```
+------------------------------------------------------------------------
 
 #### STEP 24 - BROWSER UI TEST
 
-Open:
+Open --> 
 
 ```text
-http://<SERVER_IP>/KUZAI/?v=21
+http --> //<SERVER_IP>/KUZAI/?v=21
 ```
 
-Manual tests:
+Manual tests --> 
 
 ```text
 1. Send a simple message.
@@ -2792,6 +2823,7 @@ Manual tests:
 11. Click CLEAR.
 12. Check that the local history is cleared.
 ```
+------------------------------------------------------------------------
 
 #### STEP 25 - SEARXNG LOG CLEANUP
 
@@ -2802,6 +2834,8 @@ journalctl -u searxng.service --since "5 minutes ago" --no-pager | grep -Ei "ERR
 ```
 
 The provided configuration disables the engines that generated errors or rate limits.
+
+------------------------------------------------------------------------
 
 #### STEP 26 - `.BK` BACKUPS OF CRITICAL FILES
 
@@ -2852,6 +2886,7 @@ find /var/www/html/KUZAI -type f -name "*.bk-$TS" -ls | sort
 echo
 find /etc/searxng /etc/systemd/system /etc/apache2 -maxdepth 3 -type f -name "*.bk-$TS" -ls 2>/dev/null | sort
 ```
+------------------------------------------------------------------------
 
 #### STEP 27 - COMPLETE FINAL VALIDATION
 
@@ -2864,13 +2899,13 @@ php -l /var/www/html/KUZAI/public/api/status.php
 apache2ctl configtest
 systemctl is-active searxng.service
 systemctl is-active llama-server-a.service
-curl -s http://127.0.0.1/KUZAI/api/status.php | jq .
-curl -s http://127.0.0.1/KUZAI/api/web-search.php \
-  -H 'Content-Type: application/json' \
-  -d '{"query":"OpenAI","limit":2}' | jq .
+curl -s http --> //127.0.0.1/KUZAI/api/status.php | jq .
+curl -s http --> //127.0.0.1/KUZAI/api/web-search.php \
+  -H 'Content-Type -->  application/json' \
+  -d '{"query" --> "OpenAI","limit" --> 2}' | jq .
 ```
 
-Expected result:
+Expected result --> 
 
 ```text
 No syntax errors detected
@@ -2880,10 +2915,11 @@ active
 status.php ok true
 web-search.php ok true
 ```
+------------------------------------------------------------------------
 
 #### FINAL RESULT
 
-The KUZAI installation provides a local AI application usable through a browser, with:
+The KUZAI installation provides a local AI application usable through a browser, with --> 
 
 ```text
 Standalone PHP web interface
@@ -2913,3 +2949,4 @@ HTTP authentication
 Application logging
 Markdown export of conversations
 ```
+------------------------------------------------------------------------
