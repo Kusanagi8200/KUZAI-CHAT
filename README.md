@@ -1,4 +1,4 @@
-#### KUZAI — process d’installation et de développement de l’application
+#### KUZAI - process d’installation et de développement de l’application
 
 #### Synoptic global
 
@@ -130,7 +130,7 @@ Conversation storage: /var/www/html/KUZAI/storage/conversations
     └── uploads
 ```
 
-#### Étape 1 — prérequis système
+#### Étape 1 - prérequis système
 
 Installer les paquets nécessaires pour Apache2, PHP, curl, jq, Python, venv et les dépendances SearXNG.
 
