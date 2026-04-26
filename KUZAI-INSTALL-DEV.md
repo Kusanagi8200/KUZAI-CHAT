@@ -82,6 +82,14 @@ Upload support allows text files, source code, logs, or JSON files to be sent to
 
 ------------------------------------------------------------------------
 
+<picture>
+ <source media="(prefers-color-scheme: dark)" srcset="https://github.com/Kusanagi8200/KUZAI-CHAT/blob/main/03-A%20KUZ%20NETWORK%20SOLUTION%20-%20Beta-0.01.2026.png">
+ <source media="(prefers-color-scheme: light)" srcset="https://github.com/Kusanagi8200/KUZAI-CHAT/blob/main/03-A%20KUZ%20NETWORK%20SOLUTION%20-%20Beta-0.01.2026.png">
+ <img alt="" src="">
+</picture> 
+
+------------------------------------------------------------------------
+
 #### **`VALIDATED FEATURES`**
 
 ```text
