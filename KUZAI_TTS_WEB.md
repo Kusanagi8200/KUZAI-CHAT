@@ -10,7 +10,7 @@
 
 ------------------------------------------------------------------------
 
-##### **`1. Document purpose`**
+#### **`1. Document purpose`**
 
 This document describes the KUZAI installation and evolution process starting from the introduction of text-to-speech voice synthesis.
 
@@ -28,7 +28,7 @@ The document starts after the base KUZAI application is already operational with
 
 ---
 
-##### **`2. Initial baseline`**
+#### **`2. Initial baseline`**
 
 Before this process starts, KUZAI already has the following baseline --> 
 
@@ -46,7 +46,7 @@ The initial system can already generate text answers locally, but it cannot yet 
 
 ---
 
-##### **`3. Target result`**
+#### **`3. Target result`**
 
 The target result of this process is a local KUZAI instance with --> 
 
@@ -82,7 +82,7 @@ Audio format -->  WAV
 
 ---
 
-##### **`4. Functional installation synoptic`**
+#### **`4. Functional installation synoptic`**
 
 ```text
 [ USER / BROWSER ]
@@ -158,9 +158,9 @@ Extended circuit with web search and upload -->
 
 ---
 
-##### **`5. Step-by-step implementation process`**
+#### **`5. Step-by-step implementation process`**
 
-###### **`5.1. Step 1 - Add a local TTS directory`**
+#### **`5.1. Step 1 - Add a local TTS directory`**
 
 A dedicated storage directory is required for generated audio files.
 
@@ -190,7 +190,7 @@ Expected directory mode -->
 
 ---
 
-###### **`5.2. Step 2 - Validate eSpeak NG`**
+#### **`5.2. Step 2 - Validate eSpeak NG`**
 
 The first TTS engine used is `espeak-ng` because it is simple, local, and easy to validate.
 
@@ -215,7 +215,7 @@ The voice works but sounds robotic.
 
 ---
 
-###### **`5.3. Step 3 - Configure English voice synthesis`**
+#### **`5.3. Step 3 - Configure English voice synthesis`**
 
 The initial French voice configuration is replaced by an English voice.
 
@@ -233,7 +233,7 @@ The system is then tested with short English sentences to confirm that -->
 
 ---
 
-###### **`5.4. Step 4 - Select a female eSpeak voice variant`**
+#### **`5.4. Step 4 - Select a female eSpeak voice variant`**
 
 Several eSpeak female variants are tested.
 
@@ -256,7 +256,7 @@ This voice is kept as fallback after Piper is introduced.
 
 ---
 
-###### **`5.5. Step 5 - Create the TTS API`**
+#### **`5.5. Step 5 - Create the TTS API`**
 
 A new PHP endpoint is introduced --> 
 
@@ -291,7 +291,7 @@ HEAD /KUZAI/api/tts.php?id=<audio_id>
 
 ---
 
-###### **`5.6. Step 6 - Add manual voice playback to the interface`**
+#### **`5.6. Step 6 - Add manual voice playback to the interface`**
 
 The frontend controller `app.js` is updated so that every assistant answer can be spoken manually.
 
@@ -324,7 +324,7 @@ Any KUZAI response can be spoken manually by the user.
 
 ---
 
-###### **`5.7. Step 7 - Add automatic voice playback`**
+#### **`5.7. Step 7 - Add automatic voice playback`**
 
 A global voice mode is added.
 
@@ -362,7 +362,7 @@ Manual `SPEAK` remains available even when `VOICE OFF` is active.
 
 ---
 
-###### **`5.8. Step 8 - Install Piper for higher-quality local TTS`**
+#### **`5.8. Step 8 - Install Piper for higher-quality local TTS`**
 
 Because eSpeak remains robotic, Piper is installed as the primary local neural TTS engine.
 
@@ -411,7 +411,7 @@ Piper generates local WAV audio with a much more natural voice than eSpeak.
 
 ---
 
-###### **`5.9. Step 9 - Set Piper as default TTS engine`**
+#### **`5.9. Step 9 - Set Piper as default TTS engine`**
 
 The TTS API is updated so that Piper is used by default.
 
@@ -440,7 +440,7 @@ Fallback logic -->
 
 ---
 
-###### **`5.10. Step 10 - Tune Piper quality settings`**
+#### **`5.10. Step 10 - Tune Piper quality settings`**
 
 Some audio artifacts are detected during real tests.
 
@@ -470,7 +470,7 @@ Audio becomes cleaner, less saturated, and more stable.
 
 ---
 
-###### **`5.11. Step 11 - Clean text before voice generation`**
+#### **`5.11. Step 11 - Clean text before voice generation`**
 
 Technical answers often contain content that should not be spoken directly.
 
@@ -514,7 +514,7 @@ The UI still shows the complete technical answer, but Piper only reads a clean s
 
 ---
 
-###### **`5.12. Step 12 - Remove initial assistant messages`**
+#### **`5.12. Step 12 - Remove initial assistant messages`**
 
 The chat window originally displayed an automatic assistant message when the page loaded or after `CLEAR`.
 
@@ -533,7 +533,7 @@ No unnecessary SPEAK / STOP AUDIO buttons appear before a real response.
 
 ---
 
-###### **`5.13. Step 13 - Validate web search behavior`**
+#### **`5.13. Step 13 - Validate web search behavior`**
 
 KUZAI uses SearXNG for local web search.
 
@@ -562,7 +562,7 @@ WEB then SEND
 
 ---
 
-###### **`5.14. Step 14 - Add automatic web search mode`**
+#### **`5.14. Step 14 - Add automatic web search mode`**
 
 To avoid manually clicking `WEB` before `SEND`, an automatic web mode is added.
 
@@ -607,7 +607,7 @@ If automatic web search fails, SEND continues in local mode.
 
 ---
 
-###### **`5.15. Step 15 - Remove the manual WEB button`**
+#### **`5.15. Step 15 - Remove the manual WEB button`**
 
 Once `WEB ON / WEB OFF` is available, the old manual `WEB` button becomes redundant.
 
@@ -642,7 +642,7 @@ The toolbar is simpler and the control flow is clearer.
 
 ---
 
-###### **`5.16. Step 16 - Stabilize toolbar layout`**
+#### **`5.16. Step 16 - Stabilize toolbar layout`**
 
 Several UI layout fixes are applied after adding the new buttons.
 
@@ -668,9 +668,9 @@ WEB ON | VOICE ON | UPLOAD | SEND | STOP
 
 ---
 
-##### **`6. Final operating logic`**
+#### **`6. Final operating logic`**
 
-###### **`6.1. Local-only answer`**
+#### **`6.1. Local-only answer`**
 
 ```text
 User writes a prompt
@@ -683,7 +683,7 @@ User writes a prompt
 
 ---
 
-###### **`6.2. Web-enabled answer`**
+#### **`6.2. Web-enabled answer`**
 
 ```text
 WEB ON
@@ -700,7 +700,7 @@ User writes a prompt
 
 ---
 
-###### **`6.3. Manual voice playback`**
+#### **`6.3. Manual voice playback`**
 
 ```text
 Assistant answer displayed
@@ -713,7 +713,7 @@ Assistant answer displayed
 
 ---
 
-###### **`6.4. Automatic voice playback`**
+#### **`6.4. Automatic voice playback`**
 
 ```text
 VOICE ON
@@ -726,7 +726,7 @@ Assistant answer generated
 
 ---
 
-###### **`6.5. Stop behavior`**
+#### **`6.5. Stop behavior`**
 
 ```text
 STOP during generation
@@ -742,9 +742,9 @@ Escape key
 
 ---
 
-##### **`7. Files impacted by this process`**
+#### **`7. Files impacted by this process`**
 
-###### **`Frontend files`**
+#### **`Frontend files`**
 
 ```text
 /var/www/html/KUZAI/public/index.php
@@ -752,7 +752,7 @@ Escape key
 /var/www/html/KUZAI/public/assets/css/style.css
 ```
 
-###### **`API files`**
+#### **`API files`**
 
 ```text
 /var/www/html/KUZAI/public/api/tts.php
@@ -762,13 +762,13 @@ Escape key
 /var/www/html/KUZAI/public/api/status.php
 ```
 
-###### **`Application configuration`**
+#### **`Application configuration`**
 
 ```text
 /var/www/html/KUZAI/app/config.php
 ```
 
-###### **`TTS components`**
+#### **`TTS components`**
 
 ```text
 /opt/kuzai-tts/piper/venv/bin/piper
@@ -777,7 +777,7 @@ Escape key
 /usr/bin/espeak-ng
 ```
 
-###### **`Storage paths`**
+#### **`Storage paths`**
 
 ```text
 /var/www/html/KUZAI/storage/tts
@@ -785,7 +785,7 @@ Escape key
 /var/www/html/KUZAI/storage/conversations
 ```
 
-###### **`Web search components`**
+#### **`Web search components`**
 
 ```text
 /etc/searxng/settings.yml
@@ -795,7 +795,7 @@ Escape key
 
 ---
 
-##### **`8. Final validation checklist`**
+#### **`8. Final validation checklist`**
 
 The system is considered stable when the following checks pass --> 
 
@@ -816,7 +816,7 @@ Toolbar layout remains stable
 
 ---
 
-##### **`9. Stable final state before Step 44`**
+#### **`9. Stable final state before Step 44`**
 
 Before moving to Step 44, the validated stable state is --> 
 
