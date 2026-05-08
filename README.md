@@ -80,6 +80,7 @@
 **Simple, readable, maintainable PHP backend.**
 **Services managed by systemd.**
 **Full validation through PHP linting, API tests, Apache configtest, and service checks.**
+**Voice Synthesis with PiperTTS system.**
 
 ------------------------------------------------------------------------
 
