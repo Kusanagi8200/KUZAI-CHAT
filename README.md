@@ -70,17 +70,17 @@
 
 #### **`Validated features -->`**
 
-**Local chat with an LLM served by llama.cpp.**
-**Uploaded file analysis.**
-**Local web search through SearXNG.**
-**Injection of web sources into the model context.**
-**Automatic addition of source URLs in answers.**
-**STOP button to interrupt generation.**
-**Dynamic and customized interface.**
-**Simple, readable, maintainable PHP backend.**
-**Services managed by systemd.**
-**Full validation through PHP linting, API tests, Apache configtest, and service checks.**
-**Voice Synthesis with PiperTTS system.**
+#### **Local chat with an LLM served by llama.cpp.** 
+#### **Uploaded file analysis.** 
+#### **Local web search through SearXNG.** 
+#### **Injection of web sources into the model context.** 
+#### **Automatic addition of source URLs in answers.** 
+#### **STOP button to interrupt generation.** 
+#### **Dynamic and customized interface.** 
+#### **Simple, readable, maintainable PHP backend.** 
+#### **Services managed by systemd.** 
+#### **Full validation through PHP linting, API tests, Apache configtest, and service checks.** 
+#### **Voice Synthesis with PiperTTS system.** 
 
 ------------------------------------------------------------------------
 
