@@ -1,26 +1,36 @@
-#### KUZAI - Installation and Evolution Process from Voice Synthesis
+#### **`KUZAI - Installation and Evolution Process from Voice Synthesis`**
 
-##### 1. Document purpose
+------------------------------------------------------------------------
+
+<picture>
+ <source media="(prefers-color-scheme -->  dark)" srcset="">
+ <source media="(prefers-color-scheme -->  light)" srcset="">
+ <img alt="" src="">
+</picture> 
+
+------------------------------------------------------------------------
+
+##### **`1. Document purpose`**
 
 This document describes the KUZAI installation and evolution process starting from the introduction of text-to-speech voice synthesis.
 
-It covers the validated implementation path for:
+It covers the validated implementation path for --> 
 
-- voice playback of chatbot responses;
-- improved voice quality with a local neural TTS engine;
-- browser-side audio controls;
-- optional automatic voice playback;
-- web search integration through local SearXNG;
-- automatic web search before sending a prompt;
+- voice playback of chatbot responses.
+- improved voice quality with a local neural TTS engine.
+- browser-side audio controls.
+- optional automatic voice playback.
+- web search integration through local SearXNG.
+- automatic web search before sending a prompt.
 - interface cleanup and UX stabilization.
 
 The document starts after the base KUZAI application is already operational with a local `llama.cpp` backend.
 
 ---
 
-##### 2. Initial baseline
+##### **`2. Initial baseline`**
 
-Before this process starts, KUZAI already has the following baseline:
+Before this process starts, KUZAI already has the following baseline --> 
 
 ```text
 User browser
@@ -36,9 +46,9 @@ The initial system can already generate text answers locally, but it cannot yet 
 
 ---
 
-##### 3. Target result
+##### **`3. Target result`**
 
-The target result of this process is a local KUZAI instance with:
+The target result of this process is a local KUZAI instance with --> 
 
 ```text
 Text chat
@@ -52,27 +62,27 @@ Upload support preserved
 Stable control toolbar
 ```
 
-The final validated components are:
+The final validated components are --> 
 
 ```text
-Application: KUZAI
-Web server: Apache2
-Backend language: PHP
-Frontend: HTML / CSS / JavaScript
-LLM backend: llama.cpp
-Model: qwen3-8b-q5km
-Primary TTS engine: Piper
-Primary TTS voice: en_US-lessac-high
-Fallback TTS engine: eSpeak NG
-Fallback TTS voice: en-us+f4
-Web search engine: SearXNG
-Browser state: localStorage
-Audio format: WAV
+Application -->  KUZAI
+Web server -->  Apache2
+Backend language -->  PHP
+Frontend -->  HTML / CSS / JavaScript
+LLM backend -->  llama.cpp
+Model -->  qwen3-8b-q5km
+Primary TTS engine -->  Piper
+Primary TTS voice -->  en_US-lessac-high
+Fallback TTS engine -->  eSpeak NG
+Fallback TTS voice -->  en-us+f4
+Web search engine -->  SearXNG
+Browser state -->  localStorage
+Audio format -->  WAV
 ```
 
 ---
 
-##### 4. Functional installation synoptic
+##### **`4. Functional installation synoptic`**
 
 ```text
 [ USER / BROWSER ]
@@ -104,7 +114,7 @@ Audio format: WAV
 [ Browser display ]       [ Browser playback ]
 ```
 
-Extended circuit with web search and upload:
+Extended circuit with web search and upload --> 
 
 ```text
 [ USER / BROWSER ]
@@ -148,31 +158,31 @@ Extended circuit with web search and upload:
 
 ---
 
-##### 5. Step-by-step implementation process
+##### **`5. Step-by-step implementation process`**
 
-###### 5.1. Step 1 - Add a local TTS directory
+###### **`5.1. Step 1 - Add a local TTS directory`**
 
 A dedicated storage directory is required for generated audio files.
 
-Target directory:
+Target directory --> 
 
 ```text
 /var/www/html/KUZAI/storage/tts
 ```
 
-Purpose:
+Purpose --> 
 
-- store generated WAV files;
-- store temporary text files used by the TTS engine;
+- store generated WAV files.
+- store temporary text files used by the TTS engine.
 - allow PHP and Apache to serve generated audio safely through the TTS API.
 
-Expected ownership:
+Expected ownership --> 
 
 ```text
-www-data:www-data
+www-data --> www-data
 ```
 
-Expected directory mode:
+Expected directory mode --> 
 
 ```text
 750
@@ -180,24 +190,24 @@ Expected directory mode:
 
 ---
 
-###### 5.2. Step 2 - Validate eSpeak NG
+###### **`5.2. Step 2 - Validate eSpeak NG`**
 
 The first TTS engine used is `espeak-ng` because it is simple, local, and easy to validate.
 
-Validation objectives:
+Validation objectives --> 
 
-- confirm the binary exists;
-- confirm the engine can generate a WAV file;
-- confirm generation works under the `www-data` user;
+- confirm the binary exists.
+- confirm the engine can generate a WAV file.
+- confirm generation works under the `www-data` user.
 - confirm the generated WAV file is readable.
 
-Validated result:
+Validated result --> 
 
 ```text
 eSpeak NG can generate WAV audio files in storage/tts.
 ```
 
-Initial limitation:
+Initial limitation --> 
 
 ```text
 The voice works but sounds robotic.
@@ -205,29 +215,29 @@ The voice works but sounds robotic.
 
 ---
 
-###### 5.3. Step 3 - Configure English voice synthesis
+###### **`5.3. Step 3 - Configure English voice synthesis`**
 
 The initial French voice configuration is replaced by an English voice.
 
-Validated English voice family:
+Validated English voice family --> 
 
 ```text
 en-us
 ```
 
-The system is then tested with short English sentences to confirm that:
+The system is then tested with short English sentences to confirm that --> 
 
-- the voice is English;
-- the generated WAV is valid;
+- the voice is English.
+- the generated WAV is valid.
 - the audio can be downloaded through the API.
 
 ---
 
-###### 5.4. Step 4 - Select a female eSpeak voice variant
+###### **`5.4. Step 4 - Select a female eSpeak voice variant`**
 
 Several eSpeak female variants are tested.
 
-Tested variants:
+Tested variants --> 
 
 ```text
 en-us+f1
@@ -236,7 +246,7 @@ en-us+f3
 en-us+f4
 ```
 
-Selected fallback voice:
+Selected fallback voice --> 
 
 ```text
 en-us+f4
@@ -246,26 +256,26 @@ This voice is kept as fallback after Piper is introduced.
 
 ---
 
-###### 5.5. Step 5 - Create the TTS API
+###### **`5.5. Step 5 - Create the TTS API`**
 
-A new PHP endpoint is introduced:
+A new PHP endpoint is introduced --> 
 
 ```text
 /var/www/html/KUZAI/public/api/tts.php
 ```
 
-Responsibilities:
+Responsibilities --> 
 
-- receive text from the browser;
-- generate a unique audio ID;
-- create a temporary input text file;
-- generate a WAV file;
-- return the audio URL;
-- serve audio by ID through HTTP GET;
-- support HTTP HEAD for browser and diagnostic checks;
+- receive text from the browser.
+- generate a unique audio ID.
+- create a temporary input text file.
+- generate a WAV file.
+- return the audio URL.
+- serve audio by ID through HTTP GET.
+- support HTTP HEAD for browser and diagnostic checks.
 - clean old generated files.
 
-Initial API behavior:
+Initial API behavior --> 
 
 ```text
 POST /KUZAI/api/tts.php
@@ -281,18 +291,18 @@ HEAD /KUZAI/api/tts.php?id=<audio_id>
 
 ---
 
-###### 5.6. Step 6 - Add manual voice playback to the interface
+###### **`5.6. Step 6 - Add manual voice playback to the interface`**
 
 The frontend controller `app.js` is updated so that every assistant answer can be spoken manually.
 
-Added UI controls below assistant responses:
+Added UI controls below assistant responses --> 
 
 ```text
 SPEAK
 STOP AUDIO
 ```
 
-Frontend logic:
+Frontend logic --> 
 
 ```text
 SPEAK
@@ -306,7 +316,7 @@ STOP AUDIO
   -> resets the audio control state
 ```
 
-Result:
+Result --> 
 
 ```text
 Any KUZAI response can be spoken manually by the user.
@@ -314,31 +324,31 @@ Any KUZAI response can be spoken manually by the user.
 
 ---
 
-###### 5.7. Step 7 - Add automatic voice playback
+###### **`5.7. Step 7 - Add automatic voice playback`**
 
 A global voice mode is added.
 
-Initial labels:
+Initial labels --> 
 
 ```text
 AUTO VOICE OFF
 AUTO VOICE ON
 ```
 
-Final simplified labels:
+Final simplified labels --> 
 
 ```text
 VOICE OFF
 VOICE ON
 ```
 
-State management:
+State management --> 
 
 ```text
-localStorage key: kuzai.autoSpeak.v1
+localStorage key -->  kuzai.autoSpeak.v1
 ```
 
-Behavior:
+Behavior --> 
 
 ```text
 VOICE OFF
@@ -352,48 +362,48 @@ Manual `SPEAK` remains available even when `VOICE OFF` is active.
 
 ---
 
-###### 5.8. Step 8 - Install Piper for higher-quality local TTS
+###### **`5.8. Step 8 - Install Piper for higher-quality local TTS`**
 
 Because eSpeak remains robotic, Piper is installed as the primary local neural TTS engine.
 
-Target Piper path:
+Target Piper path --> 
 
 ```text
 /opt/kuzai-tts/piper
 ```
 
-Python virtual environment:
+Python virtual environment --> 
 
 ```text
 /opt/kuzai-tts/piper/venv
 ```
 
-Piper binary:
+Piper binary --> 
 
 ```text
 /opt/kuzai-tts/piper/venv/bin/piper
 ```
 
-Primary model directory:
+Primary model directory --> 
 
 ```text
 /opt/kuzai-tts/piper/models
 ```
 
-Selected model:
+Selected model --> 
 
 ```text
 en_US-lessac-high.onnx
 en_US-lessac-high.onnx.json
 ```
 
-Validated voice:
+Validated voice --> 
 
 ```text
 en_US-lessac-high
 ```
 
-Result:
+Result --> 
 
 ```text
 Piper generates local WAV audio with a much more natural voice than eSpeak.
@@ -401,25 +411,25 @@ Piper generates local WAV audio with a much more natural voice than eSpeak.
 
 ---
 
-###### 5.9. Step 9 - Set Piper as default TTS engine
+###### **`5.9. Step 9 - Set Piper as default TTS engine`**
 
 The TTS API is updated so that Piper is used by default.
 
-Final TTS engine order:
+Final TTS engine order --> 
 
 ```text
-Primary: Piper
-Fallback: eSpeak NG
+Primary -->  Piper
+Fallback -->  eSpeak NG
 ```
 
-Final default voice:
+Final default voice --> 
 
 ```text
-Piper: en_US-lessac-high
-Fallback eSpeak: en-us+f4
+Piper -->  en_US-lessac-high
+Fallback eSpeak -->  en-us+f4
 ```
 
-Fallback logic:
+Fallback logic --> 
 
 ```text
 1. tts.php receives text.
@@ -430,11 +440,11 @@ Fallback logic:
 
 ---
 
-###### 5.10. Step 10 - Tune Piper quality settings
+###### **`5.10. Step 10 - Tune Piper quality settings`**
 
 Some audio artifacts are detected during real tests.
 
-Symptoms:
+Symptoms --> 
 
 ```text
 scratch noise
@@ -443,16 +453,16 @@ inaudible fragments
 then normal playback resumes
 ```
 
-Stabilized Piper parameters:
+Stabilized Piper parameters --> 
 
 ```text
-Default speed: 145
-Length scale: calculated from speed, typically around 1.07
-Sentence silence: 0.35
-Volume: 0.75
+Default speed -->  145
+Length scale -->  calculated from speed, typically around 1.07
+Sentence silence -->  0.35
+Volume -->  0.75
 ```
 
-Result:
+Result --> 
 
 ```text
 Audio becomes cleaner, less saturated, and more stable.
@@ -460,11 +470,11 @@ Audio becomes cleaner, less saturated, and more stable.
 
 ---
 
-###### 5.11. Step 11 - Clean text before voice generation
+###### **`5.11. Step 11 - Clean text before voice generation`**
 
 Technical answers often contain content that should not be spoken directly.
 
-Problematic content:
+Problematic content --> 
 
 ```text
 URLs
@@ -479,24 +489,24 @@ markdown formatting
 
 A speech cleanup function is added to `tts.php`.
 
-Principle:
+Principle --> 
 
 ```text
-Displayed answer: unchanged and complete
-Spoken answer: cleaned and simplified
+Displayed answer -->  unchanged and complete
+Spoken answer -->  cleaned and simplified
 ```
 
-Cleanup behavior:
+Cleanup behavior --> 
 
-- remove markdown code blocks;
-- remove `Sources:` sections;
-- remove URLs;
-- remove shell-command-heavy lines;
-- remove noisy markdown characters;
-- limit spoken text length;
+- remove markdown code blocks.
+- remove `Sources --> ` sections.
+- remove URLs.
+- remove shell-command-heavy lines.
+- remove noisy markdown characters.
+- limit spoken text length.
 - keep the useful natural-language explanation.
 
-Result:
+Result --> 
 
 ```text
 The UI still shows the complete technical answer, but Piper only reads a clean spoken version.
@@ -504,17 +514,17 @@ The UI still shows the complete technical answer, but Piper only reads a clean s
 
 ---
 
-###### 5.12. Step 12 - Remove initial assistant messages
+###### **`5.12. Step 12 - Remove initial assistant messages`**
 
 The chat window originally displayed an automatic assistant message when the page loaded or after `CLEAR`.
 
-Decision:
+Decision --> 
 
 ```text
 The conversation area must be empty on page load and after CLEAR.
 ```
 
-Result:
+Result --> 
 
 ```text
 No fake assistant message appears.
@@ -523,23 +533,23 @@ No unnecessary SPEAK / STOP AUDIO buttons appear before a real response.
 
 ---
 
-###### 5.13. Step 13 - Validate web search behavior
+###### **`5.13. Step 13 - Validate web search behavior`**
 
 KUZAI uses SearXNG for local web search.
 
-Search chain:
+Search chain --> 
 
 ```text
 app.js
   -> web-search.php
-  -> SearXNG on 127.0.0.1:8888
+  -> SearXNG on 127.0.0.1 --> 8888
   -> search results
   -> app.js
   -> chat.php
   -> llama.cpp with injected sources
 ```
 
-Important behavior:
+Important behavior --> 
 
 ```text
 SEND only
@@ -552,31 +562,31 @@ WEB then SEND
 
 ---
 
-###### 5.14. Step 14 - Add automatic web search mode
+###### **`5.14. Step 14 - Add automatic web search mode`**
 
 To avoid manually clicking `WEB` before `SEND`, an automatic web mode is added.
 
-Initial labels:
+Initial labels --> 
 
 ```text
 AUTO WEB OFF
 AUTO WEB ON
 ```
 
-Final simplified labels:
+Final simplified labels --> 
 
 ```text
 WEB OFF
 WEB ON
 ```
 
-State management:
+State management --> 
 
 ```text
-localStorage key: kuzai.autoWeb.v1
+localStorage key -->  kuzai.autoWeb.v1
 ```
 
-Behavior:
+Behavior --> 
 
 ```text
 WEB OFF
@@ -589,7 +599,7 @@ WEB ON
   -> answer is generated with web context
 ```
 
-Fallback behavior:
+Fallback behavior --> 
 
 ```text
 If automatic web search fails, SEND continues in local mode.
@@ -597,24 +607,24 @@ If automatic web search fails, SEND continues in local mode.
 
 ---
 
-###### 5.15. Step 15 - Remove the manual WEB button
+###### **`5.15. Step 15 - Remove the manual WEB button`**
 
 Once `WEB ON / WEB OFF` is available, the old manual `WEB` button becomes redundant.
 
-Decision:
+Decision --> 
 
 ```text
 Hide the manual WEB button.
 Keep WEB ON/OFF as the web mode control.
 ```
 
-Final toolbar order:
+Final toolbar order --> 
 
 ```text
 WEB | VOICE | UPLOAD | SEND | STOP
 ```
 
-Expanded labels:
+Expanded labels --> 
 
 ```text
 WEB OFF / WEB ON
@@ -624,7 +634,7 @@ SEND
 STOP
 ```
 
-Result:
+Result --> 
 
 ```text
 The toolbar is simpler and the control flow is clearer.
@@ -632,25 +642,25 @@ The toolbar is simpler and the control flow is clearer.
 
 ---
 
-###### 5.16. Step 16 - Stabilize toolbar layout
+###### **`5.16. Step 16 - Stabilize toolbar layout`**
 
 Several UI layout fixes are applied after adding the new buttons.
 
-Goals:
+Goals --> 
 
-- keep buttons on one line when possible;
-- add spacing between buttons;
-- make `VOICE OFF / VOICE ON` wide enough;
-- keep the manual `WEB` button hidden;
+- keep buttons on one line when possible.
+- add spacing between buttons.
+- make `VOICE OFF / VOICE ON` wide enough.
+- keep the manual `WEB` button hidden.
 - preserve `STOP` behavior.
 
-Final intended toolbar display:
+Final intended toolbar display --> 
 
 ```text
 WEB OFF | VOICE OFF | UPLOAD | SEND | STOP
 ```
 
-or:
+or --> 
 
 ```text
 WEB ON | VOICE ON | UPLOAD | SEND | STOP
@@ -658,9 +668,9 @@ WEB ON | VOICE ON | UPLOAD | SEND | STOP
 
 ---
 
-##### 6. Final operating logic
+##### **`6. Final operating logic`**
 
-###### 6.1. Local-only answer
+###### **`6.1. Local-only answer`**
 
 ```text
 User writes a prompt
@@ -673,7 +683,7 @@ User writes a prompt
 
 ---
 
-###### 6.2. Web-enabled answer
+###### **`6.2. Web-enabled answer`**
 
 ```text
 WEB ON
@@ -690,7 +700,7 @@ User writes a prompt
 
 ---
 
-###### 6.3. Manual voice playback
+###### **`6.3. Manual voice playback`**
 
 ```text
 Assistant answer displayed
@@ -703,7 +713,7 @@ Assistant answer displayed
 
 ---
 
-###### 6.4. Automatic voice playback
+###### **`6.4. Automatic voice playback`**
 
 ```text
 VOICE ON
@@ -716,7 +726,7 @@ Assistant answer generated
 
 ---
 
-###### 6.5. Stop behavior
+###### **`6.5. Stop behavior`**
 
 ```text
 STOP during generation
@@ -732,9 +742,9 @@ Escape key
 
 ---
 
-##### 7. Files impacted by this process
+##### **`7. Files impacted by this process`**
 
-###### Frontend files
+###### **`Frontend files`**
 
 ```text
 /var/www/html/KUZAI/public/index.php
@@ -742,7 +752,7 @@ Escape key
 /var/www/html/KUZAI/public/assets/css/style.css
 ```
 
-###### API files
+###### **`API files`**
 
 ```text
 /var/www/html/KUZAI/public/api/tts.php
@@ -752,13 +762,13 @@ Escape key
 /var/www/html/KUZAI/public/api/status.php
 ```
 
-###### Application configuration
+###### **`Application configuration`**
 
 ```text
 /var/www/html/KUZAI/app/config.php
 ```
 
-###### TTS components
+###### **`TTS components`**
 
 ```text
 /opt/kuzai-tts/piper/venv/bin/piper
@@ -767,7 +777,7 @@ Escape key
 /usr/bin/espeak-ng
 ```
 
-###### Storage paths
+###### **`Storage paths`**
 
 ```text
 /var/www/html/KUZAI/storage/tts
@@ -775,7 +785,7 @@ Escape key
 /var/www/html/KUZAI/storage/conversations
 ```
 
-###### Web search components
+###### **`Web search components`**
 
 ```text
 /etc/searxng/settings.yml
@@ -785,9 +795,9 @@ Escape key
 
 ---
 
-##### 8. Final validation checklist
+##### **`8. Final validation checklist`**
 
-The system is considered stable when the following checks pass:
+The system is considered stable when the following checks pass --> 
 
 ```text
 KUZAI status API returns ok true
@@ -806,25 +816,29 @@ Toolbar layout remains stable
 
 ---
 
-##### 9. Stable final state before Step 44
+##### **`9. Stable final state before Step 44`**
 
-Before moving to Step 44, the validated stable state is:
+Before moving to Step 44, the validated stable state is --> 
 
 ```text
-Local LLM chat: operational
-Piper TTS: operational
-Fallback eSpeak: operational
-Speech cleanup: operational
-Web search through SearXNG: operational
-Automatic web mode: operational
-Automatic voice mode: operational
-Upload support: preserved
-Toolbar layout: stabilized
-Conversation window: empty on load and after CLEAR
+Local LLM chat -->  operational
+Piper TTS -->  operational
+Fallback eSpeak -->  operational
+Speech cleanup -->  operational
+Web search through SearXNG -->  operational
+Automatic web mode -->  operational
+Automatic voice mode -->  operational
+Upload support -->  preserved
+Toolbar layout -->  stabilized
+Conversation window -->  empty on load and after CLEAR
 ```
 
-Recommended next step:
+Recommended next step --> 
 
 ```text
 STEP 44 - Server-side conversation history
 ```
+
+------------------------------------------------------------------------
+
+#### **`THE KUZ NETWORK - KUSANAGI8200 - @2026`**
