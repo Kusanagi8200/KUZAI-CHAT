@@ -31,6 +31,7 @@
 #### **`6/ Qwen3-8B Q5_K_M as the active LLM model. `**
 #### **`7/ SearXNG installed natively for local web search. `**
 #### **`8/ systemd for service management. `**
+#### **`9/ Voice Synthesis - PiperTTS`**
 
 ------------------------------------------------------------------------
 
