@@ -3,8 +3,8 @@
 ------------------------------------------------------------------------
 
 <picture>
- <source media="(prefers-color-scheme -->  dark)" srcset="">
- <source media="(prefers-color-scheme -->  light)" srcset="">
+ <source media="(prefers-color-scheme -->  dark)" srcset="https://github.com/Kusanagi8200/KUZAI-CHAT/blob/main/KUZAI-SYNOPTIC2.png">
+ <source media="(prefers-color-scheme -->  light)" srcset="https://github.com/Kusanagi8200/KUZAI-CHAT/blob/main/KUZAI-SYNOPTIC2.png">
  <img alt="" src="">
 </picture> 
 
