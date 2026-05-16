@@ -13,3 +13,7 @@ backups/kuzai-current/storage/conversations/*
 *.bk-*
 *.backup
 *.onnx
+
+# KUZAI TTS runtime cache
+backups/kuzai-current/storage/tts/*
+!backups/kuzai-current/storage/tts/.gitkeep
