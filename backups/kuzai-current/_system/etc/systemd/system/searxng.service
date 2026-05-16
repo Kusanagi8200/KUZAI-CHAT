@@ -1,0 +1,22 @@
+[Unit]
+Description=SearXNG local metasearch engine
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=searxng
+Group=searxng
+WorkingDirectory=/opt/searxng/src
+Environment=SEARXNG_SETTINGS_PATH=/etc/searxng/settings.yml
+ExecStart=/opt/searxng/venv/bin/python /opt/searxng/src/searx/webapp.py
+Restart=always
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=true
+ReadWritePaths=/opt/searxng /tmp
+
+[Install]
+WantedBy=multi-user.target

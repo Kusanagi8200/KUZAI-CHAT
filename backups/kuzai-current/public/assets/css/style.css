@@ -1,0 +1,2520 @@
+:root {
+    --bg-main: #06111f;
+    --bg-panel: rgba(13, 27, 48, 0.94);
+    --bg-panel-soft: rgba(18, 37, 66, 0.86);
+    --bg-input: rgba(6, 17, 31, 0.96);
+
+    --text-main: #f5f9ff;
+    --text-soft: #cfe0f5;
+    --text-dim: #86a4c8;
+
+    --accent: #7bf2ff;
+    --accent-2: #9fc7ff;
+    --accent-3: #c19cff;
+
+    --ok: #67f3ba;
+    --danger: #ff7b9d;
+
+    --border: rgba(159, 214, 255, 0.22);
+    --border-strong: rgba(123, 242, 255, 0.42);
+
+    --shadow: 0 24px 70px rgba(0, 0, 0, 0.36);
+
+    --radius-xl: 24px;
+    --radius-lg: 18px;
+    --radius-md: 14px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Segoe UI", "Inter", Arial, sans-serif;
+    color: var(--text-main);
+    background:
+        radial-gradient(circle at 12% 8%, rgba(123, 242, 255, 0.18), transparent 28%),
+        radial-gradient(circle at 88% 4%, rgba(193, 156, 255, 0.18), transparent 26%),
+        linear-gradient(180deg, #04101f 0%, #07182d 52%, #0c2340 100%);
+}
+
+button,
+
+.app-shell {
+    width: min(1400px, calc(100% - 28px));
+    margin: 0 auto;
+    padding: 8px 0 16px;
+}
+
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 14px;
+    padding: 12px 16px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    background: rgba(7, 21, 39, 0.9);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(14px);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.brand-logo {
+    width: 58px;
+    height: 58px;
+    display: grid;
+    place-items: center;
+    border-radius: 18px;
+    border: 1px solid var(--border-strong);
+    background: linear-gradient(135deg, rgba(123, 242, 255, 0.18), rgba(193, 156, 255, 0.16));
+    color: var(--accent);
+    font-weight: 900;
+    font-size: 1.45rem;
+    box-shadow: 0 0 24px rgba(123, 242, 255, 0.14);
+}
+
+.brand h1 {
+    margin: 0;
+    font-size: 2rem;
+    line-height: 1.1;
+    letter-spacing: 0.04em;
+}
+
+.brand-line {
+    margin: 5px 0 0;
+    color: var(--accent);
+    font-size: 0.82rem;
+    letter-spacing: 0.16em;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.subtitle {
+    margin: 5px 0 0;
+    color: var(--text-dim);
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    font-weight: 700;
+}
+
+.topbar-meta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.meta-pill {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: rgba(11, 27, 49, 0.86);
+}
+
+.meta-label {
+    color: var(--text-dim);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+}
+
+.meta-value {
+    color: var(--text-main);
+    font-size: 0.88rem;
+    font-weight: 800;
+}
+
+.state-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--text-dim);
+    box-shadow: 0 0 12px rgba(134, 164, 200, 0.4);
+}
+
+.state-ok .state-dot {
+    background: var(--ok);
+    box-shadow: 0 0 12px rgba(103, 243, 186, 0.75);
+}
+
+.state-down .state-dot {
+    background: var(--danger);
+    box-shadow: 0 0 12px rgba(255, 123, 157, 0.75);
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 360px;
+    gap: 24px;
+}
+
+.chat-panel,
+.side-card {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    background: var(--bg-panel);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(14px);
+}
+
+.chat-panel {
+    display: grid;
+    grid-template-rows: auto 220px auto;
+    overflow: hidden;
+}
+
+.chat-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    align-items: center;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+}
+
+.section-kicker {
+    margin: 0 0 3px;
+    color: var(--accent);
+    font-size: 0.66rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+}
+
+.chat-header h2,
+.side-card h3 {
+    margin: 0;
+    color: var(--text-main);
+}
+
+.chat-header h2 {
+    font-size: 0.95rem;
+}
+
+.messages {
+    height: 220px;
+    min-height: 220px;
+    max-height: 220px;
+    overflow-y: auto;
+    display: grid;
+    align-content: start;
+    gap: 8px;
+    padding: 10px 14px;
+    scroll-behavior: smooth;
+}
+
+.message {
+    max-width: 88%;
+    padding: 16px 18px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    background: var(--bg-panel-soft);
+}
+
+.message-user {
+    justify-self: end;
+    border-color: rgba(193, 156, 255, 0.34);
+    background: rgba(35, 35, 76, 0.9);
+}
+
+.message-assistant {
+    justify-self: start;
+    border-color: rgba(123, 242, 255, 0.28);
+    background: rgba(12, 31, 58, 0.92);
+}
+
+.message-role {
+    margin-bottom: 8px;
+    color: var(--accent);
+    font-size: 0.75rem;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+}
+
+.message-user .message-role {
+    color: var(--accent-3);
+}
+
+.message-content {
+    color: var(--text-soft);
+    font-size: 1rem;
+    line-height: 1.68;
+    white-space: normal;
+    word-break: break-word;
+}
+
+.composer {
+    display: grid;
+    gap: 8px;
+    padding: 10px 14px 12px;
+    border-top: 1px solid var(--border);
+    background: rgba(5, 16, 30, 0.72);
+}
+
+textarea {
+    width: 100%;
+    min-height: 52px;
+    max-height: 110px;
+    resize: vertical;
+    padding: 9px 12px;
+    border: 1px solid rgba(159, 214, 255, 0.24);
+    border-radius: var(--radius-lg);
+    outline: none;
+    background: var(--bg-input);
+    color: var(--text-main);
+    line-height: 1.35;
+    font-size: 0.9rem;
+}
+
+textarea:focus {
+    border-color: var(--border-strong);
+    box-shadow: 0 0 0 3px rgba(123, 242, 255, 0.08);
+}
+
+textarea:disabled {
+    opacity: 0.65;
+}
+
+.file-input {
+    display: none;
+}
+
+.attachments {
+    display: grid;
+    gap: 8px;
+}
+
+.attachments-empty {
+    display: none;
+}
+
+.attachment-chip {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 8px;
+    align-items: center;
+    padding: 10px 12px;
+    border: 1px solid rgba(123, 242, 255, 0.22);
+    border-radius: 14px;
+    background: rgba(12, 31, 58, 0.82);
+}
+
+.attachment-main {
+    display: grid;
+    gap: 4px;
+    min-width: 0;
+}
+
+.attachment-name {
+    color: var(--text-main);
+    font-size: 0.94rem;
+    font-weight: 800;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.attachment-meta {
+    color: var(--text-dim);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.attachment-remove {
+    appearance: none;
+    border: 1px solid rgba(255, 123, 157, 0.34);
+    border-radius: 999px;
+    padding: 8px 10px;
+    background: rgba(82, 18, 38, 0.36);
+    color: #ffe7ee;
+    cursor: pointer;
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+}
+
+.composer-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+}
+
+.composer-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.hint,
+.small-text {
+    color: var(--text-dim);
+    font-size: 0.88rem;
+    line-height: 1.55;
+}
+
+.btn {
+    appearance: none;
+    border: none;
+    cursor: pointer;
+    min-height: 44px;
+    padding: 12px 16px;
+    border-radius: 14px;
+    font-weight: 900;
+    font-size: 0.84rem;
+    letter-spacing: 0.08em;
+    transition: transform 0.16s ease, opacity 0.16s ease;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+}
+
+.btn:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.btn-hidden {
+    display: none;
+}
+
+.btn-primary {
+    color: #03111f;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    box-shadow: 0 14px 32px rgba(123, 242, 255, 0.18);
+}
+
+.btn-secondary {
+    color: var(--text-main);
+    background: rgba(20, 42, 74, 0.94);
+    border: 1px solid var(--border);
+}
+
+.btn-danger {
+    color: #2a0610;
+    background: linear-gradient(135deg, #ff7b9d, #ffd1dc);
+    box-shadow: 0 14px 32px rgba(255, 123, 157, 0.16);
+}
+
+.side-panel {
+    display: grid;
+    gap: 18px;
+    align-content: start;
+}
+
+.side-card {
+    padding: 20px;
+}
+
+.kv {
+    display: grid;
+    gap: 6px;
+    padding: 13px 0;
+    border-bottom: 1px solid rgba(159, 214, 255, 0.12);
+}
+
+.kv:last-child {
+    border-bottom: none;
+}
+
+.kv span {
+    color: var(--text-dim);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 800;
+}
+
+.kv strong {
+    color: var(--text-soft);
+    font-size: 0.94rem;
+    word-break: break-word;
+}
+
+@media (max-width: 1100px) {
+    .layout {
+        grid-template-columns: 1fr;
+    }
+
+    .chat-panel {
+        min-height: auto;
+    }
+
+    .messages {
+        height: 300px;
+        min-height: 220px;
+        max-height: 300px;
+    }
+}
+
+@media (max-width: 760px) {
+    .app-shell {
+        width: min(100% - 20px, 1500px);
+        padding-top: 12px;
+    }
+
+    .topbar,
+    .chat-header,
+    .composer-footer {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .composer-actions {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .topbar-meta {
+        justify-content: flex-start;
+    }
+
+    .brand {
+        align-items: flex-start;
+    }
+
+    .brand h1 {
+        font-size: 1.55rem;
+    }
+
+    .message {
+        max-width: 100%;
+    }
+
+    .attachment-chip {
+        grid-template-columns: 1fr;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}
+
+
+/* KUZAI layout override v14 */
+.layout {
+    align-items: start !important;
+}
+
+.chat-panel {
+    align-self: start !important;
+    display: grid !important;
+    grid-template-rows: auto 550px auto !important;
+    overflow: hidden !important;
+}
+
+.chat-header {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) auto !important;
+    align-items: center !important;
+    column-gap: 16px !important;
+    min-height: 58px !important;
+    padding: 10px 16px !important;
+    position: relative !important;
+}
+
+.chat-header > div:first-child {
+    min-width: 0 !important;
+}
+
+.chat-actions {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    position: static !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+#clearBtn {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: static !important;
+    top: auto !important;
+    right: auto !important;
+    transform: none !important;
+    min-width: 74px !important;
+    width: auto !important;
+    height: 34px !important;
+    min-height: 34px !important;
+    padding: 0 14px !important;
+    border-radius: 12px !important;
+    font-size: 0.72rem !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+}
+
+.messages {
+    height: 550px !important;
+    min-height: 550px !important;
+    max-height: 550px !important;
+    overflow-y: auto !important;
+    padding: 18px 20px !important;
+}
+
+.composer {
+    padding: 12px 16px 14px !important;
+}
+
+textarea {
+    min-height: 72px !important;
+    max-height: 130px !important;
+    padding: 10px 12px !important;
+}
+
+
+/* KUZAI attachment remove button override v15 */
+.attachment-chip {
+    grid-template-columns: minmax(0, 1fr) auto !important;
+    align-items: center !important;
+    padding: 8px 12px !important;
+}
+
+.attachment-remove {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-width: 58px !important;
+    height: 26px !important;
+    min-height: 26px !important;
+    padding: 0 10px !important;
+    border-radius: 999px !important;
+    border: 1px solid rgba(255, 123, 157, 0.38) !important;
+    background: rgba(82, 18, 38, 0.28) !important;
+    color: #ffd6e1 !important;
+    cursor: pointer !important;
+    font-size: 0.62rem !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.06em !important;
+    line-height: 1 !important;
+    transform: none !important;
+}
+
+.attachment-remove:hover {
+    background: rgba(255, 123, 157, 0.18) !important;
+    border-color: rgba(255, 123, 157, 0.62) !important;
+}
+
+
+/* KUZAI attachment remove button override v16 */
+.attachment-chip {
+    grid-template-columns: minmax(0, 1fr) 30px !important;
+    align-items: center !important;
+    column-gap: 10px !important;
+    padding: 8px 10px 8px 12px !important;
+}
+
+.attachment-remove {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 26px !important;
+    min-width: 26px !important;
+    height: 26px !important;
+    min-height: 26px !important;
+    padding: 0 !important;
+    border-radius: 8px !important;
+    border: 1px solid rgba(255, 123, 157, 0.42) !important;
+    background: rgba(82, 18, 38, 0.24) !important;
+    color: #ffd6e1 !important;
+    cursor: pointer !important;
+    font-size: 1.05rem !important;
+    font-weight: 800 !important;
+    letter-spacing: 0 !important;
+    line-height: 1 !important;
+    transform: none !important;
+}
+
+.attachment-remove:hover {
+    background: rgba(255, 123, 157, 0.18) !important;
+    border-color: rgba(255, 123, 157, 0.68) !important;
+}
+
+
+/* KUZAI attachment remove text button override v17 */
+.attachment-chip {
+    grid-template-columns: minmax(0, 1fr) auto !important;
+    align-items: center !important;
+    column-gap: 12px !important;
+    padding: 8px 12px !important;
+}
+
+.attachment-remove {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: auto !important;
+    min-width: 66px !important;
+    height: 28px !important;
+    min-height: 28px !important;
+    padding: 0 11px !important;
+    border-radius: 999px !important;
+    border: 1px solid rgba(255, 123, 157, 0.38) !important;
+    background: rgba(82, 18, 38, 0.24) !important;
+    color: #ffd6e1 !important;
+    cursor: pointer !important;
+    font-size: 0.66rem !important;
+    font-weight: 850 !important;
+    letter-spacing: 0.07em !important;
+    line-height: 1 !important;
+    transform: none !important;
+}
+
+.attachment-remove:hover {
+    background: rgba(255, 123, 157, 0.18) !important;
+    border-color: rgba(255, 123, 157, 0.68) !important;
+}
+
+
+/* KUZAI composer buttons compact override v18 */
+.composer-actions {
+    gap: 8px !important;
+}
+
+.composer-actions .btn {
+    min-height: 34px !important;
+    height: 34px !important;
+    padding: 0 14px !important;
+    border-radius: 12px !important;
+    font-size: 0.72rem !important;
+    line-height: 1 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+#uploadBtn {
+    min-width: 82px !important;
+}
+
+#sendBtn {
+    min-width: 68px !important;
+}
+
+/* KUZAI web search UI override v19 */
+.web-results {
+    display: grid;
+    gap: 7px;
+}
+
+.web-results-empty {
+    display: none;
+}
+
+.web-result-chip {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    column-gap: 12px;
+    padding: 8px 12px;
+    border: 1px solid rgba(123, 242, 255, 0.22);
+    border-radius: 12px;
+    background: rgba(14, 40, 66, 0.82);
+}
+
+.web-result-main {
+    display: grid;
+    gap: 3px;
+    min-width: 0;
+}
+
+.web-result-title {
+    color: var(--text-main);
+    font-size: 0.86rem;
+    font-weight: 800;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.web-result-url {
+    color: var(--text-dim);
+    font-size: 0.7rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.web-result-remove {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    min-width: 66px;
+    height: 28px;
+    min-height: 28px;
+    padding: 0 11px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 123, 157, 0.38);
+    background: rgba(82, 18, 38, 0.24);
+    color: #ffd6e1;
+    cursor: pointer;
+    font-size: 0.66rem;
+    font-weight: 850;
+    letter-spacing: 0.07em;
+    line-height: 1;
+    transform: none;
+}
+
+.web-result-remove:hover {
+    background: rgba(255, 123, 157, 0.18);
+    border-color: rgba(255, 123, 157, 0.68);
+}
+
+#webBtn {
+    min-width: 64px !important;
+}
+
+/* KUZAI dynamic chat height override */
+.chat-panel {
+    align-self: start !important;
+    display: grid !important;
+    grid-template-rows: auto auto auto !important;
+    overflow: visible !important;
+}
+
+.messages {
+    height: auto !important;
+    min-height: 220px !important;
+    max-height: none !important;
+    overflow: visible !important;
+    padding: 18px 20px !important;
+    align-content: start !important;
+}
+
+.composer {
+    padding: 12px 16px 14px !important;
+    border-top: 1px solid var(--border) !important;
+    background: rgba(5, 16, 30, 0.72) !important;
+}
+
+.message {
+    max-width: 100% !important;
+}
+
+.message .message-body,
+.message-content,
+.message-text {
+    overflow-wrap: anywhere !important;
+    word-break: break-word !important;
+}
+
+/* KUZAI toolbar layout override */
+.composer-actions {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 12px !important;
+}
+
+.composer-actions .btn {
+    width: auto !important;
+    flex: 0 0 auto !important;
+    white-space: nowrap !important;
+}
+
+#webBtn {
+    display: none !important;
+}
+
+#autoWebBtn {
+    min-width: 96px !important;
+}
+
+#autoSpeakBtn {
+    min-width: 118px !important;
+}
+
+#uploadBtn {
+    min-width: 92px !important;
+}
+
+#sendBtn {
+    min-width: 82px !important;
+}
+
+#stopBtn {
+    min-width: 82px !important;
+}
+
+.btn-hidden {
+    display: none !important;
+}
+
+/* KUZAI brand logo image override */
+.brand-logo.brand-logo-image {
+    padding: 5px;
+    overflow: hidden;
+}
+
+.brand-logo.brand-logo-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+}
+
+/* KUZAI strict brand logo image fix */
+.brand-logo.brand-logo-image {
+    width: 56px !important;
+    height: 56px !important;
+    min-width: 56px !important;
+    max-width: 56px !important;
+    min-height: 56px !important;
+    max-height: 56px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex: 0 0 56px !important;
+    padding: 5px !important;
+    overflow: hidden !important;
+    position: relative !important;
+    line-height: 0 !important;
+}
+
+.brand-logo.brand-logo-image > img {
+    display: block !important;
+    position: static !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    object-fit: contain !important;
+    object-position: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    transform: none !important;
+}
+
+/* KUZAI logo size 75 percent of topbar */
+.topbar {
+    min-height: 104px !important;
+}
+
+.brand-logo.brand-logo-image {
+    width: 78px !important;
+    height: 78px !important;
+    min-width: 78px !important;
+    max-width: 78px !important;
+    min-height: 78px !important;
+    max-height: 78px !important;
+    flex: 0 0 78px !important;
+    padding: 3px !important;
+    overflow: hidden !important;
+}
+
+.brand-logo.brand-logo-image > img {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    object-fit: contain !important;
+    object-position: center !important;
+}
+
+/* =========================================================
+   KUZAI SITE-STYLE GRAPHIC CHARTER
+   Black background / white text / Anta font
+   Buttons:
+   - normal: black bg / white text / white border
+   - selected: white bg / black text / grey border
+   ========================================================= */
+
+:root {
+    --kz-bg: #000000;
+    --kz-panel: #040404;
+    --kz-panel-2: #0a0a0a;
+    --kz-border: #ffffff;
+    --kz-border-soft: #3a3a3a;
+    --kz-text: #ffffff;
+    --kz-text-soft: #cfcfcf;
+    --kz-text-dim: #9c9c9c;
+    --kz-selected-bg: #ffffff;
+    --kz-selected-text: #000000;
+    --kz-selected-border: #7d7d7d;
+}
+
+/* Global */
+html,
+body {
+    background: var(--kz-bg) !important;
+    color: var(--kz-text) !important;
+    font-family: 'Anta', sans-serif !important;
+}
+
+body *,
+button,
+input,
+textarea,
+select {
+    font-family: 'Anta', sans-serif !important;
+}
+
+/* Main background areas */
+body,
+.app-shell,
+.layout,
+main,
+aside,
+section {
+    background-color: var(--kz-bg) !important;
+    color: var(--kz-text) !important;
+}
+
+/* Header / topbar */
+.topbar,
+.header,
+.brandbar,
+.app-header {
+    background: #000000 !important;
+    border: 1px solid rgba(255,255,255,0.10) !important;
+    color: var(--kz-text) !important;
+}
+
+/* Cards / side panels / chat panel */
+.chat-panel,
+.side-panel,
+.side-card,
+.panel,
+.card,
+.status-card,
+.upload-card,
+.settings-card {
+    background: #050505 !important;
+    color: var(--kz-text) !important;
+    border: 1px solid rgba(255,255,255,0.10) !important;
+    box-shadow: none !important;
+}
+
+/* Conversation area */
+.messages,
+.message-list,
+.chat-body {
+    background: #050505 !important;
+    color: var(--kz-text) !important;
+}
+
+/* Assistant message */
+.message-assistant,
+.message.assistant,
+.message-kuzai {
+    background: #090909 !important;
+    color: var(--kz-text) !important;
+    border: 1px solid rgba(255,255,255,0.12) !important;
+}
+
+/* User message */
+.message-user,
+.message.user {
+    background: #111111 !important;
+    color: var(--kz-text) !important;
+    border: 1px solid rgba(255,255,255,0.12) !important;
+}
+
+/* Inputs */
+textarea,
+input[type="text"],
+input[type="search"],
+input[type="email"],
+input[type="url"],
+input[type="password"] {
+    background: #000000 !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(255,255,255,0.25) !important;
+    box-shadow: none !important;
+}
+
+textarea::placeholder,
+input::placeholder {
+    color: #8f8f8f !important;
+}
+
+/* Titles / labels */
+h1, h2, h3, h4, h5, h6,
+strong,
+label,
+.brand-title,
+.brand-line,
+.panel-title,
+.section-title {
+    color: #ffffff !important;
+}
+
+small,
+.muted,
+.hint,
+.subtle,
+.description {
+    color: #b8b8b8 !important;
+}
+
+/* Links */
+a {
+    color: #ffffff !important;
+    text-decoration-color: rgba(255,255,255,0.35) !important;
+}
+
+/* Dividers */
+hr,
+.separator,
+.side-card hr,
+.panel hr {
+    border-color: rgba(255,255,255,0.10) !important;
+}
+
+/* =========================================================
+   BUTTON SYSTEM
+   Default / unselected = black / white / white border
+   Selected = white / black / grey border
+   ========================================================= */
+
+.btn,
+button,
+input[type="button"],
+input[type="submit"] {
+    background: #000000 !important;
+    color: #ffffff !important;
+    border: 1px solid #ffffff !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+}
+
+/* Hover for default buttons */
+.btn:hover,
+button:hover,
+input[type="button"]:hover,
+input[type="submit"]:hover {
+    background: #111111 !important;
+    color: #ffffff !important;
+    border-color: #ffffff !important;
+}
+
+/* Selected buttons */
+.btn-primary,
+.btn.active,
+.btn.is-active,
+.btn[aria-pressed="true"] {
+    background: #ffffff !important;
+    color: #000000 !important;
+    border: 1px solid #7a7a7a !important;
+}
+
+/* Make current app toggle buttons follow the selected style */
+#autoWebBtn.btn-primary,
+#autoSpeakBtn.btn-primary,
+#sendBtn.btn-primary {
+    background: #ffffff !important;
+    color: #000000 !important;
+    border: 1px solid #7a7a7a !important;
+}
+
+/* Secondary / default state */
+.btn-secondary,
+#autoWebBtn.btn-secondary,
+#autoSpeakBtn.btn-secondary,
+#uploadBtn,
+#stopBtn,
+#clearBtn,
+#sendBtn:not(.btn-primary) {
+    background: #000000 !important;
+    color: #ffffff !important;
+    border: 1px solid #ffffff !important;
+}
+
+/* Optional: keep STOP visually coherent with the theme */
+#stopBtn {
+    background: #000000 !important;
+    color: #ffffff !important;
+    border: 1px solid #ffffff !important;
+}
+
+/* Buttons inside assistant messages */
+.message .btn,
+.message-actions .btn,
+.audio-controls .btn {
+    background: #000000 !important;
+    color: #ffffff !important;
+    border: 1px solid #ffffff !important;
+}
+
+.message .btn.btn-primary,
+.message-actions .btn.btn-primary,
+.audio-controls .btn.btn-primary {
+    background: #ffffff !important;
+    color: #000000 !important;
+    border: 1px solid #7a7a7a !important;
+}
+
+/* Focus */
+button:focus,
+.btn:focus,
+textarea:focus,
+input:focus {
+    outline: 1px solid rgba(255,255,255,0.45) !important;
+    outline-offset: 1px !important;
+    box-shadow: none !important;
+}
+
+/* Online badge / pills */
+.badge,
+.pill,
+.status-pill,
+.model-pill {
+    background: #000000 !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(255,255,255,0.18) !important;
+}
+
+/* Make green online dot optional but keep readable */
+.online-dot,
+.status-dot {
+    box-shadow: none !important;
+}
+
+/* Logo area stays dark */
+.brand-logo,
+.logo-box {
+    background: #000000 !important;
+    border-color: rgba(255,255,255,0.15) !important;
+}
+
+/* =========================================================
+   KUZAI SITE-STYLE GRAPHIC CHARTER
+   black / white / Anta
+   ========================================================= */
+
+:root {
+    --kz-bg: #000000;
+    --kz-panel: #050505;
+    --kz-panel-2: #0a0a0a;
+    --kz-text: #ffffff;
+    --kz-text-soft: #d7d7d7;
+    --kz-text-dim: #9a9a9a;
+    --kz-border: #ffffff;
+    --kz-border-soft: rgba(255, 255, 255, 0.18);
+    --kz-selected-bg: #ffffff;
+    --kz-selected-text: #000000;
+    --kz-selected-border: #777777;
+}
+
+html,
+body {
+    background: #000000 !important;
+    color: #ffffff !important;
+    font-family: "Anta", "Segoe UI", Arial, sans-serif !important;
+}
+
+body *,
+button,
+textarea,
+input,
+select {
+    font-family: "Anta", "Segoe UI", Arial, sans-serif !important;
+}
+
+body,
+.app-shell,
+.layout,
+main,
+aside,
+section {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+}
+
+.app-shell {
+    width: min(1500px, calc(100% - 28px)) !important;
+}
+
+.topbar {
+    background: #000000 !important;
+    border: 1px solid rgba(255,255,255,0.12) !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+}
+
+.chat-panel,
+.side-panel,
+.side-card,
+.messages,
+.composer,
+.chat-header {
+    background: #050505 !important;
+    color: #ffffff !important;
+    border-color: rgba(255,255,255,0.12) !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+}
+
+.side-card,
+.chat-panel {
+    border: 1px solid rgba(255,255,255,0.12) !important;
+}
+
+.message {
+    background: #080808 !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(255,255,255,0.18) !important;
+}
+
+.message-user {
+    background: #111111 !important;
+    border-color: rgba(255,255,255,0.22) !important;
+}
+
+.message-assistant {
+    background: #070707 !important;
+    border-color: rgba(255,255,255,0.16) !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+strong,
+.brand-line,
+.subtitle,
+.section-kicker,
+.message-role,
+.message-content,
+.kv span,
+.kv strong,
+.meta-label,
+.meta-value {
+    color: #ffffff !important;
+}
+
+.subtitle,
+.kv span,
+.small-text,
+.hint {
+    color: #9a9a9a !important;
+}
+
+.brand-line,
+.section-kicker,
+.message-role {
+    letter-spacing: 0.18em !important;
+    text-transform: uppercase !important;
+}
+
+.brand h1 {
+    letter-spacing: 0.12em !important;
+    font-weight: 400 !important;
+}
+
+textarea {
+    background: #000000 !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(255,255,255,0.25) !important;
+    box-shadow: none !important;
+}
+
+textarea::placeholder {
+    color: #777777 !important;
+}
+
+textarea:focus {
+    border-color: #ffffff !important;
+    box-shadow: none !important;
+    outline: 1px solid rgba(255,255,255,0.45) !important;
+    outline-offset: 1px !important;
+}
+
+.meta-pill {
+    background: #000000 !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(255,255,255,0.18) !important;
+    box-shadow: none !important;
+}
+
+.state-dot,
+.meta-dot,
+.status-dot {
+    box-shadow: none !important;
+}
+
+/* Buttons default / OFF */
+.btn,
+button,
+input[type="button"],
+input[type="submit"] {
+    background: #000000 !important;
+    color: #ffffff !important;
+    border: 1px solid #ffffff !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    border-radius: 0 !important;
+    font-weight: 400 !important;
+    letter-spacing: 0.12em !important;
+}
+
+.btn:hover,
+button:hover,
+input[type="button"]:hover,
+input[type="submit"]:hover {
+    background: #111111 !important;
+    color: #ffffff !important;
+    border-color: #ffffff !important;
+}
+
+/* Buttons selected / ON */
+.btn-primary,
+.btn.active,
+.btn.is-active,
+.btn[aria-pressed="true"],
+#autoWebBtn.btn-primary,
+#autoSpeakBtn.btn-primary,
+#sendBtn.btn-primary {
+    background: #ffffff !important;
+    color: #000000 !important;
+    border: 1px solid #777777 !important;
+}
+
+/* Buttons OFF / secondary */
+.btn-secondary,
+.btn-danger,
+#autoWebBtn.btn-secondary,
+#autoSpeakBtn.btn-secondary,
+#uploadBtn,
+#clearBtn,
+#stopBtn {
+    background: #000000 !important;
+    color: #ffffff !important;
+    border: 1px solid #ffffff !important;
+}
+
+#stopBtn {
+    background: #000000 !important;
+    color: #ffffff !important;
+    border: 1px solid #ffffff !important;
+}
+
+.composer-actions {
+    gap: 14px !important;
+}
+
+.brand-logo,
+.logo-box {
+    background: #000000 !important;
+    border: 1px solid rgba(255,255,255,0.18) !important;
+    box-shadow: none !important;
+}
+
+.brand-logo.brand-logo-image,
+.logo-box.logo-box-image {
+    background: #000000 !important;
+}
+
+.attachment-chip,
+.web-result-chip {
+    background: #050505 !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(255,255,255,0.18) !important;
+}
+
+.attachment-remove,
+.web-result-remove {
+    background: #000000 !important;
+    color: #ffffff !important;
+    border: 1px solid #ffffff !important;
+    border-radius: 0 !important;
+}
+
+/* =========================================================
+   KUZAI FINAL OVERRIDE
+   all backgrounds black
+   container borders white
+   ========================================================= */
+
+html,
+body,
+.app-shell,
+.layout,
+main,
+aside,
+section,
+.topbar,
+.chat-panel,
+.side-panel,
+.side-card,
+.chat-header,
+.messages,
+.composer,
+.composer-footer,
+.attachments,
+.web-results,
+.message,
+.message-user,
+.message-assistant,
+textarea,
+input,
+select,
+.endpoint-list span,
+.feature-list,
+.attachment-chip,
+.web-result-chip {
+    background: #000000 !important;
+    background-color: #000000 !important;
+    color: #ffffff !important;
+}
+
+/* principaux containers */
+.topbar,
+.chat-panel,
+.side-card,
+.chat-header,
+.messages,
+.composer,
+textarea,
+.message,
+.endpoint-list span,
+.attachment-chip,
+.web-result-chip {
+    border-color: #ffffff !important;
+}
+
+/* bordures explicites */
+.topbar,
+.chat-panel,
+.side-card,
+.chat-header,
+.messages,
+.composer {
+    border: 1px solid #ffffff !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+}
+
+/* zone de saisie */
+textarea {
+    border: 1px solid #ffffff !important;
+    color: #ffffff !important;
+}
+
+textarea::placeholder {
+    color: #8e8e8e !important;
+}
+
+textarea:focus {
+    border: 1px solid #ffffff !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* messages */
+.message,
+.message-user,
+.message-assistant {
+    border: 1px solid #ffffff !important;
+}
+
+/* petits blocs à droite */
+.endpoint-list span,
+.attachment-chip,
+.web-result-chip {
+    border: 1px solid #ffffff !important;
+}
+
+/* textes secondaires */
+.small-text,
+.hint,
+.subtitle,
+.attachment-meta,
+.web-result-url {
+    color: #bfbfbf !important;
+}
+
+/* logo container */
+.brand-logo,
+.logo-box,
+.brand-logo.brand-logo-image,
+.logo-box.logo-box-image {
+    background: #000000 !important;
+    border: 1px solid #ffffff !important;
+    box-shadow: none !important;
+}
+
+/* pastille état */
+.meta-pill {
+    background: #000000 !important;
+    color: #ffffff !important;
+    border: 1px solid #ffffff !important;
+    box-shadow: none !important;
+}
+
+/* boutons : on garde la logique déjà voulue */
+.btn,
+button,
+input[type="button"],
+input[type="submit"] {
+    box-shadow: none !important;
+}
+
+/* OFF */
+.btn-secondary,
+.btn-danger,
+#autoWebBtn.btn-secondary,
+#autoSpeakBtn.btn-secondary,
+#uploadBtn,
+#clearBtn,
+#stopBtn {
+    background: #000000 !important;
+    color: #ffffff !important;
+    border: 1px solid #ffffff !important;
+}
+
+/* ON / sélectionné */
+.btn-primary,
+.btn.active,
+.btn.is-active,
+.btn[aria-pressed="true"],
+#autoWebBtn.btn-primary,
+#autoSpeakBtn.btn-primary,
+#sendBtn.btn-primary {
+    background: #ffffff !important;
+    color: #000000 !important;
+    border: 1px solid #9a9a9a !important;
+}
+
+/* =========================================================
+   KUZAI SOFT CORRECTION
+   black backgrounds
+   light grey container borders
+   ========================================================= */
+
+:root {
+    --kz-black: #000000;
+    --kz-panel-black: #050505;
+    --kz-border-light: #8f8f8f;
+    --kz-border-mid: #6f6f6f;
+    --kz-text-white: #ffffff;
+    --kz-text-soft: #bdbdbd;
+}
+
+/* fonds noirs partout */
+html,
+body,
+.app-shell,
+.layout,
+main,
+aside,
+section,
+.topbar,
+.chat-panel,
+.side-panel,
+.side-card,
+.chat-header,
+.messages,
+.composer,
+.composer-footer,
+.message,
+.message-user,
+.message-assistant,
+textarea,
+input,
+select,
+.brand-logo,
+.logo-box,
+.brand-logo.brand-logo-image,
+.logo-box.logo-box-image,
+.meta-pill,
+.attachment-chip,
+.web-result-chip {
+    background: var(--kz-black) !important;
+    background-color: var(--kz-black) !important;
+    color: var(--kz-text-white) !important;
+}
+
+/* containers principaux : contour gris clair */
+.topbar,
+.chat-panel,
+.side-card,
+.chat-header,
+.messages,
+.composer,
+.message,
+textarea,
+.meta-pill,
+.brand-logo,
+.logo-box,
+.attachment-chip,
+.web-result-chip {
+    border-color: var(--kz-border-light) !important;
+}
+
+/* bordure explicite */
+.topbar,
+.chat-panel,
+.side-card,
+.chat-header,
+.messages,
+.composer {
+    border: 1px solid var(--kz-border-light) !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+}
+
+/* messages */
+.message,
+.message-user,
+.message-assistant {
+    border: 1px solid var(--kz-border-light) !important;
+}
+
+/* zone de saisie */
+textarea {
+    border: 1px solid var(--kz-border-light) !important;
+    color: #ffffff !important;
+}
+
+textarea::placeholder {
+    color: #7f7f7f !important;
+}
+
+textarea:focus {
+    border: 1px solid #b5b5b5 !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* petits éléments */
+.meta-pill,
+.attachment-chip,
+.web-result-chip {
+    border: 1px solid var(--kz-border-light) !important;
+}
+
+/* textes secondaires */
+.subtitle,
+.small-text,
+.hint,
+.attachment-meta,
+.web-result-url,
+.kv span {
+    color: var(--kz-text-soft) !important;
+}
+
+/* boutons OFF */
+.btn-secondary,
+.btn-danger,
+#autoWebBtn.btn-secondary,
+#autoSpeakBtn.btn-secondary,
+#uploadBtn,
+#clearBtn,
+#stopBtn,
+.btn,
+button,
+input[type="button"],
+input[type="submit"] {
+    background: #000000 !important;
+    color: #ffffff !important;
+    border: 1px solid var(--kz-border-light) !important;
+    box-shadow: none !important;
+}
+
+/* hover OFF */
+.btn:hover,
+button:hover,
+input[type="button"]:hover,
+input[type="submit"]:hover {
+    background: #0d0d0d !important;
+    color: #ffffff !important;
+    border-color: #b0b0b0 !important;
+}
+
+/* boutons ON / sélectionnés */
+.btn-primary,
+.btn.active,
+.btn.is-active,
+.btn[aria-pressed="true"],
+#autoWebBtn.btn-primary,
+#autoSpeakBtn.btn-primary,
+#sendBtn.btn-primary {
+    background: #ffffff !important;
+    color: #000000 !important;
+    border: 1px solid var(--kz-border-mid) !important;
+}
+
+/* cartes de droite */
+.side-card hr,
+.side-card .separator,
+.chat-panel hr {
+    border-color: rgba(255,255,255,0.10) !important;
+}
+
+/* conserver le logo propre */
+.brand-logo,
+.logo-box {
+    box-shadow: none !important;
+}
+
+/* =========================================================
+   KUZAI FINAL SOFT UI FIX
+   black backgrounds / grey borders / grey labels / white values
+   ========================================================= */
+
+:root {
+    --kz-black-final: #000000;
+    --kz-border-final: #5f5f5f;
+    --kz-border-soft-final: #323232;
+    --kz-title-grey-final: #9a9a9a;
+    --kz-label-grey-final: #8a8a8a;
+    --kz-white-final: #ffffff;
+}
+
+/* fonds noirs */
+html,
+body,
+.app-shell,
+.layout,
+main,
+aside,
+section,
+.topbar,
+.chat-panel,
+.side-panel,
+.side-card,
+.chat-header,
+.messages,
+.composer,
+.composer-footer,
+.message,
+.message-user,
+.message-assistant,
+textarea,
+input,
+select,
+.meta-pill,
+.brand-logo,
+.logo-box,
+.brand-logo.brand-logo-image,
+.logo-box.logo-box-image,
+.attachment-chip,
+.web-result-chip {
+    background: #000000 !important;
+    background-color: #000000 !important;
+    color: #ffffff !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+}
+
+/* contours containers principaux */
+.topbar,
+.chat-panel,
+.side-card,
+.messages,
+.composer,
+textarea,
+.message,
+.meta-pill,
+.brand-logo,
+.logo-box,
+.attachment-chip,
+.web-result-chip {
+    border: 1px solid var(--kz-border-final) !important;
+}
+
+/* lignes internes moins visibles */
+.chat-header,
+.composer,
+.side-card hr,
+.side-card .separator,
+.kv,
+.endpoint-list span {
+    border-color: var(--kz-border-soft-final) !important;
+}
+
+/* éviter le gros contour blanc agressif */
+.chat-header {
+    border-bottom: 1px solid var(--kz-border-soft-final) !important;
+}
+
+.composer {
+    border-top: 1px solid var(--kz-border-soft-final) !important;
+}
+
+/* titres / labels en gris */
+.section-kicker,
+.message-role,
+.meta-label,
+.kv span,
+.side-card label,
+.side-card dt,
+.side-card .label,
+.panel-title,
+.card-title,
+.small-title {
+    color: var(--kz-title-grey-final) !important;
+}
+
+/* titres de blocs secondaires en gris */
+.side-card .section-kicker,
+.chat-header .section-kicker {
+    color: var(--kz-title-grey-final) !important;
+}
+
+/* informations / valeurs en blanc */
+.side-card h3,
+.kv strong,
+.kv p,
+.kv div,
+.meta-value,
+.message-content,
+.endpoint-list span,
+.feature-list,
+.feature-list li,
+.side-card p:not(.section-kicker),
+.side-card span:not(.section-kicker),
+.chat-header h2,
+.brand h1 {
+    color: var(--kz-white-final) !important;
+}
+
+/* texte placeholder et textes secondaires */
+textarea::placeholder {
+    color: #6f6f6f !important;
+}
+
+.subtitle,
+.small-text,
+.hint,
+.attachment-meta,
+.web-result-url {
+    color: var(--kz-label-grey-final) !important;
+}
+
+/* textarea */
+textarea {
+    border-color: var(--kz-border-final) !important;
+    outline: none !important;
+}
+
+textarea:focus {
+    border-color: #8a8a8a !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* boutons OFF */
+.btn,
+button,
+input[type="button"],
+input[type="submit"],
+.btn-secondary,
+.btn-danger,
+#autoWebBtn.btn-secondary,
+#autoSpeakBtn.btn-secondary,
+#uploadBtn,
+#clearBtn,
+#stopBtn {
+    background: #000000 !important;
+    color: #ffffff !important;
+    border: 1px solid var(--kz-border-final) !important;
+    box-shadow: none !important;
+}
+
+/* boutons hover */
+.btn:hover,
+button:hover,
+input[type="button"]:hover,
+input[type="submit"]:hover {
+    background: #080808 !important;
+    color: #ffffff !important;
+    border-color: #8a8a8a !important;
+}
+
+/* boutons ON / sélection */
+.btn-primary,
+.btn.active,
+.btn.is-active,
+.btn[aria-pressed="true"],
+#autoWebBtn.btn-primary,
+#autoSpeakBtn.btn-primary,
+#sendBtn.btn-primary {
+    background: #ffffff !important;
+    color: #000000 !important;
+    border: 1px solid #777777 !important;
+}
+
+/* ne pas mettre de blanc pur sur les containers */
+.topbar,
+.chat-panel,
+.side-card {
+    border-color: var(--kz-border-final) !important;
+}
+
+/* réduire l'agressivité des séparations */
+.side-card > * + *,
+.kv + .kv {
+    border-color: var(--kz-border-soft-final) !important;
+}
+
+/* =========================================================
+   KUZAI BORDER FIX
+   remove square inner frame under rounded containers
+   increase container border thickness by +1px
+   ========================================================= */
+
+:root {
+    --kz-border-fix-color: #5f5f5f;
+    --kz-border-fix-soft: #323232;
+    --kz-border-fix-width: 2px; /* +1px compared to 1px */
+}
+
+/* containers principaux : plus épais + coins arrondis propres */
+.topbar,
+.chat-panel,
+.side-card,
+.meta-pill,
+.brand-logo,
+.logo-box,
+.brand-logo.brand-logo-image,
+.logo-box.logo-box-image {
+    border: var(--kz-border-fix-width) solid var(--kz-border-fix-color) !important;
+    border-radius: 22px !important;
+    overflow: hidden !important;
+    position: relative !important;
+    box-sizing: border-box !important;
+    background: #000000 !important;
+}
+
+/* textarea / petits blocs arrondis */
+textarea,
+.message,
+.btn,
+button,
+.attachment-chip,
+.web-result-chip {
+    box-sizing: border-box !important;
+}
+
+/* blocs internes du chat : pas de cadre extérieur parasite */
+.chat-header,
+.messages,
+.composer {
+    border-left: 0 !important;
+    border-right: 0 !important;
+    border-radius: 0 !important;
+    background: #000000 !important;
+}
+
+/* séparations internes plus fines */
+.chat-header {
+    border-top: 0 !important;
+    border-bottom: 1px solid var(--kz-border-fix-soft) !important;
+}
+
+.composer {
+    border-top: 1px solid var(--kz-border-fix-soft) !important;
+    border-bottom: 0 !important;
+}
+
+/* éviter l'effet "container carré dessous" dans les side cards */
+.side-card > *:first-child {
+    border-top-left-radius: inherit !important;
+    border-top-right-radius: inherit !important;
+}
+
+.side-card > *:last-child {
+    border-bottom-left-radius: inherit !important;
+    border-bottom-right-radius: inherit !important;
+}
+
+/* si des pseudo-elements existent, les neutraliser */
+.chat-panel::before,
+.chat-panel::after,
+.side-card::before,
+.side-card::after,
+.topbar::before,
+.topbar::after {
+    border-radius: inherit !important;
+    box-sizing: border-box !important;
+}
+
+/* le bloc messages ne doit pas recréer un grand cadre carré */
+.messages {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* le footer composer reste propre dans le container principal */
+.composer-footer {
+    background: #000000 !important;
+    border: 0 !important;
+}
+
+/* petits ajustements du textarea */
+textarea {
+    border: 1px solid var(--kz-border-fix-color) !important;
+    border-radius: 20px !important;
+    background: #000000 !important;
+}
+
+/* side cards : traits internes plus doux */
+.side-card hr,
+.side-card .separator,
+.endpoint-list span,
+.kv,
+.feature-list li {
+    border-color: var(--kz-border-fix-soft) !important;
+}
+
+/* =========================================================
+   KUZAI LABELS GREY / VALUES WHITE
+   ========================================================= */
+
+:root {
+    --kz-title-grey-2: #8f8f8f;
+    --kz-value-white-2: #ffffff;
+}
+
+/* Titres / labels gris */
+.section-kicker,
+.meta-label,
+.kv span,
+.side-card label,
+.side-card dt,
+.side-card .label,
+.card-title,
+.panel-title,
+.small-title,
+.upload-label,
+.settings-label,
+.backend-label,
+.endpoint-label,
+.supported-label,
+.maxsize-label,
+.temperature-label,
+.topp-label,
+.maxtokens-label {
+    color: var(--kz-title-grey-2) !important;
+}
+
+/* Cas fréquents dans la colonne de droite :
+   premier élément de ligne = label */
+.side-card .kv span:first-child,
+.side-card p strong:first-child,
+.side-card div strong:first-child {
+    color: var(--kz-title-grey-2) !important;
+}
+
+/* Infos / valeurs blanches */
+.kv strong,
+.kv p,
+.kv div,
+.meta-value,
+.side-card p,
+.side-card li,
+.side-card span,
+.side-card strong,
+.endpoint-list,
+.feature-list,
+.feature-list li {
+    color: var(--kz-value-white-2) !important;
+}
+
+/* Mais on remet explicitement les titres déjà ciblés en gris */
+.section-kicker,
+.meta-label,
+.kv span {
+    color: var(--kz-title-grey-2) !important;
+}
+
+/* =========================================================
+   KUZAI INNER SQUARE FRAME FIX
+   remove inner square borders inside rounded containers
+   ========================================================= */
+
+:root {
+    --kz-outer-border: #5f5f5f;
+    --kz-inner-separator: #2f2f2f;
+    --kz-title-grey-final-2: #8e8e8e;
+    --kz-white-final-2: #ffffff;
+}
+
+/* Outer rounded containers stay visible */
+.topbar,
+.chat-panel,
+.side-card {
+    border: 2px solid var(--kz-outer-border) !important;
+    border-radius: 22px !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+    background: #000000 !important;
+}
+
+/* Remove square frame effect from internal wrappers */
+.chat-panel > .chat-header,
+.chat-panel > .messages,
+.chat-panel > .composer,
+.side-card > div,
+.side-card > section,
+.side-card > article,
+.side-card > header,
+.side-card > footer {
+    background: #000000 !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+/* Chat panel internals must NOT draw a full rectangle */
+.chat-panel > .chat-header,
+.chat-panel > .messages,
+.chat-panel > .composer {
+    border-left: 0 !important;
+    border-right: 0 !important;
+    border-radius: 0 !important;
+}
+
+/* Internal separators only */
+.chat-panel > .chat-header {
+    border-top: 0 !important;
+    border-bottom: 1px solid var(--kz-inner-separator) !important;
+}
+
+.chat-panel > .messages {
+    border-top: 0 !important;
+    border-bottom: 0 !important;
+}
+
+.chat-panel > .composer {
+    border-top: 1px solid var(--kz-inner-separator) !important;
+    border-bottom: 0 !important;
+}
+
+/* Right column cards:
+   remove inner boxed rows, keep only horizontal separators */
+.side-card .kv,
+.side-card .endpoint-list span,
+.side-card .feature-list li,
+.side-card .row,
+.side-card .meta-row,
+.side-card .line {
+    background: transparent !important;
+    box-shadow: none !important;
+    outline: none !important;
+    border-left: 0 !important;
+    border-right: 0 !important;
+    border-top: 0 !important;
+    border-radius: 0 !important;
+    border-bottom: 1px solid var(--kz-inner-separator) !important;
+}
+
+/* Last row in a card should not add extra border */
+.side-card .kv:last-child,
+.side-card .endpoint-list span:last-child,
+.side-card .feature-list li:last-child,
+.side-card .row:last-child,
+.side-card .meta-row:last-child,
+.side-card .line:last-child {
+    border-bottom: 0 !important;
+}
+
+/* Titles grey */
+.side-card .section-kicker,
+.side-card .meta-label,
+.side-card .kv span,
+.chat-header .section-kicker {
+    color: var(--kz-title-grey-final-2) !important;
+}
+
+/* Values white */
+.side-card p,
+.side-card strong,
+.side-card li,
+.side-card span:not(.section-kicker),
+.side-card .meta-value,
+.message-content {
+    color: var(--kz-white-final-2) !important;
+}
+
+/* Textarea still rounded but independent */
+textarea {
+    border: 1px solid var(--kz-outer-border) !important;
+    border-radius: 20px !important;
+    background: #000000 !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+/* Prevent pseudo-elements from drawing extra rectangular frames */
+.chat-panel::before,
+.chat-panel::after,
+.side-card::before,
+.side-card::after,
+.chat-header::before,
+.chat-header::after,
+.messages::before,
+.messages::after,
+.composer::before,
+.composer::after {
+    box-shadow: none !important;
+    border: 0 !important;
+    outline: 0 !important;
+    background: transparent !important;
+}
+
+/* Keep logo clean */
+.brand-logo,
+.logo-box {
+    border: 2px solid var(--kz-outer-border) !important;
+    border-radius: 20px !important;
+    overflow: hidden !important;
+}
+
+/* =========================================================
+   KUZAI SIDE PANEL WRAPPER FIX
+   remove square parent containers behind rounded side cards
+   ========================================================= */
+
+:root {
+    --kz-card-border-final: #5f5f5f;
+    --kz-card-separator-final: #2f2f2f;
+    --kz-title-grey-final-3: #8e8e8e;
+    --kz-value-white-final-3: #ffffff;
+}
+
+/* Neutraliser les wrappers parents qui créent les cadres carrés */
+.layout,
+.side-panel,
+aside.side-panel,
+main.layout,
+aside,
+section {
+    background: #000000 !important;
+    background-color: #000000 !important;
+    border: 0 !important;
+    outline: 0 !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+}
+
+/* Empêcher tout pseudo-contour sur les wrappers */
+.layout::before,
+.layout::after,
+.side-panel::before,
+.side-panel::after,
+aside.side-panel::before,
+aside.side-panel::after,
+aside::before,
+aside::after {
+    content: none !important;
+    display: none !important;
+    border: 0 !important;
+    outline: 0 !important;
+    box-shadow: none !important;
+    background: transparent !important;
+}
+
+/* Les seules cartes de droite doivent porter un contour */
+.side-card {
+    background: #000000 !important;
+    border: 2px solid var(--kz-card-border-final) !important;
+    border-radius: 22px !important;
+    overflow: hidden !important;
+    box-shadow: none !important;
+    outline: 0 !important;
+    box-sizing: border-box !important;
+}
+
+/* Aucun enfant direct ne doit recréer un cadre complet */
+.side-card > *,
+.side-card .kv,
+.side-card .endpoint-list,
+.side-card .feature-list,
+.side-card p,
+.side-card div,
+.side-card ul,
+.side-card li {
+    background: transparent !important;
+    outline: 0 !important;
+    box-shadow: none !important;
+}
+
+/* Les lignes internes doivent être uniquement horizontales */
+.side-card .kv,
+.side-card .endpoint-list span,
+.side-card .feature-list li {
+    border-left: 0 !important;
+    border-right: 0 !important;
+    border-top: 0 !important;
+    border-radius: 0 !important;
+    border-bottom: 1px solid var(--kz-card-separator-final) !important;
+}
+
+/* Dernier item sans bordure basse */
+.side-card .kv:last-child,
+.side-card .endpoint-list span:last-child,
+.side-card .feature-list li:last-child {
+    border-bottom: 0 !important;
+}
+
+/* Titres gris */
+.side-card .section-kicker,
+.side-card .meta-label,
+.side-card .kv span,
+.side-card label,
+.side-card dt,
+.side-card .label {
+    color: var(--kz-title-grey-final-3) !important;
+}
+
+/* Valeurs blanches */
+.side-card h3,
+.side-card p:not(.section-kicker),
+.side-card strong,
+.side-card li,
+.side-card .meta-value,
+.side-card .kv strong,
+.side-card .kv p,
+.side-card .kv div {
+    color: var(--kz-value-white-final-3) !important;
+}
+
+/* Chat : neutraliser les wrappers carrés éventuels aussi */
+.chat-panel {
+    background: #000000 !important;
+    border: 2px solid var(--kz-card-border-final) !important;
+    border-radius: 22px !important;
+    overflow: hidden !important;
+    box-shadow: none !important;
+    outline: 0 !important;
+}
+
+.chat-header,
+.messages,
+.composer,
+.composer-footer {
+    background: #000000 !important;
+    border-left: 0 !important;
+    border-right: 0 !important;
+    box-shadow: none !important;
+    outline: 0 !important;
+}
+
+.chat-header {
+    border-top: 0 !important;
+    border-bottom: 1px solid var(--kz-card-separator-final) !important;
+    border-radius: 0 !important;
+}
+
+.messages {
+    border: 0 !important;
+    border-radius: 0 !important;
+}
+
+.composer {
+    border-top: 1px solid var(--kz-card-separator-final) !important;
+    border-bottom: 0 !important;
+    border-radius: 0 !important;
+}
+
+/* =========================================================
+   KUZAI APP INTERNAL SCALE
+   make Firefox 100% look like browser zoom 120%
+   ========================================================= */
+
+:root {
+    --kuzai-app-scale: 1.20;
+}
+
+/* Native CSS zoom when supported */
+@supports (zoom: 1) {
+    .app-shell {
+        zoom: var(--kuzai-app-scale) !important;
+    }
+
+    body {
+        overflow-x: hidden !important;
+    }
+}
+
+/* Fallback for engines without CSS zoom */
+@supports not (zoom: 1) {
+    .app-shell {
+        transform: scale(var(--kuzai-app-scale)) !important;
+        transform-origin: top center !important;
+        width: calc((100% - 28px) / var(--kuzai-app-scale)) !important;
+    }
+
+    body {
+        overflow-x: hidden !important;
+    }
+}
+
+/* =========================================================
+   KUZAI LOGO NO FRAME +25%
+   ========================================================= */
+
+/* Plus d’espace entre le logo et le bloc titre */
+.brand {
+    gap: 26px !important;
+}
+
+/* Supprimer complètement le cadre du logo */
+.brand-logo,
+.logo-box,
+.brand-logo.brand-logo-image,
+.logo-box.logo-box-image {
+    background: transparent !important;
+    border: 0 !important;
+    outline: 0 !important;
+    box-shadow: none !important;
+    overflow: visible !important;
+    padding: 0 !important;
+}
+
+/* Conserver une zone de placement stable */
+.brand-logo.brand-logo-image,
+.logo-box.logo-box-image {
+    width: 78px !important;
+    height: 78px !important;
+    min-width: 78px !important;
+    max-width: 78px !important;
+    min-height: 78px !important;
+    max-height: 78px !important;
+    flex: 0 0 78px !important;
+}
+
+/* Agrandir visuellement le logo de 25 % */
+.brand-logo.brand-logo-image > img,
+.logo-box.logo-box-image > img {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    max-height: none !important;
+    object-fit: contain !important;
+    object-position: center !important;
+    transform: scale(1.25) !important;
+    transform-origin: center center !important;
+}

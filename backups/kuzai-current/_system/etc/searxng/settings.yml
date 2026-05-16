@@ -1,0 +1,61 @@
+use_default_settings: true
+
+server:
+  bind_address: "127.0.0.1"
+  port: 8888
+  secret_key: "cfb530d27d2b6aea6ed28b013b5ab9d9be40bf7957bd6d2a8fda519c554e1a23"
+  base_url: false
+  limiter: false
+  image_proxy: false
+
+search:
+  safe_search: 0
+  autocomplete: ""
+  default_lang: "en"
+  formats:
+    - html
+    - json
+
+ui:
+  static_use_hash: true
+
+redis:
+  url: false
+
+plugins:
+  searx.plugins.tracker_url_remover.SXNGPlugin:
+    active: false
+
+engines:
+  - name: wikidata
+    inactive: true
+
+  - name: ahmia
+    inactive: true
+
+  - name: torch
+    inactive: true
+
+  - name: karmasearch
+    inactive: true
+
+  - name: karmasearch images
+    inactive: true
+
+  - name: karmasearch videos
+    inactive: true
+
+  - name: karmasearch news
+    inactive: true
+
+  - name: brave
+    inactive: true
+
+  - name: brave.images
+    inactive: true
+
+  - name: brave.videos
+    inactive: true
+
+  - name: brave.news
+    inactive: true
