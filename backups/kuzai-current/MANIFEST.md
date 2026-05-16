@@ -1,10 +1,12 @@
 # KUZAI CURRENT BACKUP
 
+## BACKUP METADATA
+
+Generated at: 20260516-181134
+Source path: /var/www/html/KUZAI
+Repository path: /root/KUZAI-CHAT
+
 ## BACKUP CONTENT
-
-This backup contains the current validated KUZAI application state.
-
-Included:
 
 - KUZAI PHP application
 - public interface

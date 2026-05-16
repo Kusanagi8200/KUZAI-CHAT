@@ -1,0 +1,15 @@
+
+# KUZAI runtime exclusions
+backups/kuzai-current/storage/tts/*.wav
+backups/kuzai-current/storage/tts/*.tmp
+backups/kuzai-current/storage/tts/*.txt
+backups/kuzai-current/storage/uploads/*
+!backups/kuzai-current/storage/uploads/.gitkeep
+backups/kuzai-current/storage/conversations/*
+!backups/kuzai-current/storage/conversations/.gitkeep
+*.bak
+*.bak-*
+*.bak.*
+*.bk-*
+*.backup
+*.onnx
