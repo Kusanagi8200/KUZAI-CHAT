@@ -289,6 +289,10 @@ async function requestTtsAudio(text) {
         },
         signal: activeTtsController.signal,
         body: JSON.stringify({
+            personality_profile_id: (
+                window.KUZAI_CUSTOM_LLM
+                && typeof window.KUZAI_CUSTOM_LLM.getActiveProfileId === 'function'
+            ) ? window.KUZAI_CUSTOM_LLM.getActiveProfileId() : '',
             text,
             engine: 'piper',
             voice: 'en_US-lessac-high',
@@ -707,6 +711,7 @@ async function searchWeb(query) {
     return data.results;
 }
 
+/* KUZAI_CUSTOM_LLM_SEND_PROFILE_BEGIN */
 async function sendMessage(message, signal) {
     const payloadHistory = history.slice(-20);
 
@@ -717,7 +722,8 @@ async function sendMessage(message, signal) {
         },
         signal,
         body: JSON.stringify({
-            message,
+            
+            personality_profile_id: sessionStorage.getItem('kuzai.customLlm.activeProfileId.session.v1') || '',message,
             history: payloadHistory,
             attachments: attachments.map((item) => ({
                 id: item.id,
@@ -752,6 +758,7 @@ function stopCurrentGeneration() {
 
     currentController.abort();
 }
+/* KUZAI_CUSTOM_LLM_SEND_PROFILE_END */
 
 function buildUserDisplayMessage(message) {
     const lines = [message];
@@ -1031,3 +1038,112 @@ renderInitialHistory();
 renderAttachments();
 renderWebResults();
 checkServer();
+
+
+/* KUZAI_CUSTOM_LLM_PAGE_MODULE_BEGIN */
+(function () {
+    'use strict';
+
+    const ACTIVE_ID_KEY = 'kuzai.customLlm.activeProfileId.session.v1';
+    const ACTIVE_LABEL_KEY = 'kuzai.customLlm.activeProfileLabel.session.v1';
+    const LOCKED_KEY = 'kuzai.customLlm.locked.session.v1';
+
+    function getActiveProfileId() {
+        return sessionStorage.getItem(ACTIVE_ID_KEY) || '';
+    }
+
+    function getActiveProfileLabel() {
+        return sessionStorage.getItem(ACTIVE_LABEL_KEY) || '';
+    }
+
+    function isLocked() {
+        return sessionStorage.getItem(LOCKED_KEY) === '1';
+    }
+
+    function setLocked(value) {
+        if (value) {
+            sessionStorage.setItem(LOCKED_KEY, '1');
+        } else {
+            sessionStorage.removeItem(LOCKED_KEY);
+        }
+
+        updateButtonState();
+    }
+
+    function updateButtonState() {
+        const customBtn = document.getElementById('customLlmBtn');
+
+        if (!customBtn) {
+            return;
+        }
+
+        const id = getActiveProfileId();
+        const label = getActiveProfileLabel() || id;
+
+        customBtn.classList.toggle('custom-llm-btn--selected', Boolean(id));
+        customBtn.classList.toggle('custom-llm-btn--locked', isLocked());
+
+        if (!id) {
+            customBtn.textContent = 'CUSTOM LLM';
+            customBtn.title = 'No active profile. Select a KUZAI behavior profile.';
+            return;
+        }
+
+        customBtn.textContent = isLocked() ? 'CUSTOM LLM LOCKED' : 'CUSTOM LLM';
+        customBtn.title = `Active profile: ${label}${isLocked() ? ' / locked during discussion' : ''}`;
+    }
+
+    function openProfilePage() {
+        window.location.href = '/KUZAI/profiles.php';
+    }
+
+    function setupCustomLlmPageEvents() {
+        const customBtn = document.getElementById('customLlmBtn');
+        const clearBtn = document.getElementById('clearBtn');
+
+        if (customBtn) {
+            customBtn.addEventListener('click', () => {
+                openProfilePage();
+            });
+        }
+
+        if (clearBtn) {
+            clearBtn.addEventListener('click', () => {
+                setLocked(false);
+            });
+        }
+
+        document.addEventListener('submit', (event) => {
+            const target = event.target;
+
+            if (!(target instanceof HTMLFormElement)) {
+                return;
+            }
+
+            if (target.id !== 'chatForm') {
+                return;
+            }
+
+            if (!getActiveProfileId()) {
+                event.preventDefault();
+                event.stopImmediatePropagation();
+                openProfilePage();
+                return;
+            }
+
+            setLocked(true);
+        }, true);
+    }
+
+    window.KUZAI_CUSTOM_LLM = {
+        getActiveProfileId,
+        getActiveProfileLabel,
+        isLocked,
+        setLocked,
+    };
+
+    setupCustomLlmPageEvents();
+    updateButtonState();
+}());
+/* KUZAI_CUSTOM_LLM_PAGE_MODULE_END */
+

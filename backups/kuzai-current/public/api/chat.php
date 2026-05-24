@@ -106,6 +106,115 @@ function loadUploadedFileContext(array $config, array $fileIds): string
         . implode("\n\n---\n\n", $blocks);
 }
 
+
+/* KUZAI_CUSTOM_LLM_PROFILE_HELPERS_BEGIN */
+function kuzaiNormalizePersonalityProfileId(string $id): string
+{
+    $id = trim($id);
+
+    if ($id === '') {
+        return '';
+    }
+
+    if (!preg_match('/^[A-Za-z0-9][A-Za-z0-9._-]{0,80}$/', $id)) {
+        return '';
+    }
+
+    return $id;
+}
+
+function kuzaiProfileScalar(array $profile, array $keys): string
+{
+    foreach ($keys as $key) {
+        if (isset($profile[$key]) && is_scalar($profile[$key])) {
+            $value = trim((string) $profile[$key]);
+
+            if ($value !== '') {
+                return preg_replace('/\s+/', ' ', $value) ?? $value;
+            }
+        }
+    }
+
+    return '';
+}
+
+function kuzaiLoadPersonalityProfilePrompt(string $profileId, ?string &$loadedId = null, ?string &$loadedLabel = null): string
+{
+    $loadedId = null;
+    $loadedLabel = null;
+
+    if ($profileId === '') {
+        return '';
+    }
+
+    $baseDir = realpath(__DIR__ . '/../../storage/personality_profiles');
+
+    if ($baseDir === false || !is_dir($baseDir)) {
+        return '';
+    }
+
+    $candidate = $baseDir . DIRECTORY_SEPARATOR . $profileId . '.json';
+    $realPath = realpath($candidate);
+
+    if ($realPath === false || !is_file($realPath)) {
+        return '';
+    }
+
+    if (strpos($realPath, $baseDir . DIRECTORY_SEPARATOR) !== 0) {
+        return '';
+    }
+
+    $raw = file_get_contents($realPath);
+
+    if ($raw === false || trim($raw) === '') {
+        return '';
+    }
+
+    $profile = json_decode($raw, true);
+
+    if (!is_array($profile)) {
+        return '';
+    }
+
+    $loadedId = $profileId;
+    $loadedLabel = kuzaiProfileScalar($profile, ['label', 'profile_label', 'name', 'title']);
+
+    if ($loadedLabel === '') {
+        $loadedLabel = $profileId;
+    }
+
+    return kuzaiBuildPersonalityProfilePrompt($profile, $loadedId, $loadedLabel);
+}
+
+function kuzaiBuildPersonalityProfilePrompt(array $profile, string $profileId, string $profileLabel): string
+{
+    $json = json_encode(
+        $profile,
+        JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT | JSON_INVALID_UTF8_SUBSTITUTE
+    );
+
+    if (!is_string($json) || $json === '') {
+        $json = '{}';
+    }
+
+    return implode("\n", [
+        'CUSTOM LLM PROFILE ACTIVE.',
+        'This profile is selected by the user for the current KUZAI conversation.',
+        'Apply it as an additional system-level behavior profile.',
+        'It defines the assistant role, tone, answer style, priorities, constraints, and expected behavior.',
+        'It must complement the base KUZAI system prompt.',
+        'Use this profile for the current answer unless the user explicitly requests otherwise.',
+        '',
+        'PROFILE ID: ' . $profileId,
+        'PROFILE LABEL: ' . $profileLabel,
+        '',
+        'PROFILE DEFINITION JSON:',
+        $json,
+    ]);
+}
+/* KUZAI_CUSTOM_LLM_PROFILE_HELPERS_END */
+
+
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     failJson('Method not allowed', 405);
 }
@@ -172,6 +281,23 @@ if (isset($data['attachments']) && is_array($data['attachments'])) {
     }
 }
 
+
+/* KUZAI_CUSTOM_LLM_PROFILE_RUNTIME_BEGIN */
+$personalityProfileId = kuzaiNormalizePersonalityProfileId((string) ($data['personality_profile_id'] ?? ''));
+$personalityProfileLoadedId = null;
+$personalityProfileLoadedLabel = null;
+$personalityProfilePrompt = kuzaiLoadPersonalityProfilePrompt(
+    $personalityProfileId,
+    $personalityProfileLoadedId,
+    $personalityProfileLoadedLabel
+);
+
+if (!headers_sent()) {
+    header('X-KUZAI-Personality-Profile-Requested: ' . ($personalityProfileId !== '' ? $personalityProfileId : 'none'));
+    header('X-KUZAI-Personality-Profile-Loaded: ' . ($personalityProfileLoadedId !== null ? $personalityProfileLoadedId : 'none'));
+}
+/* KUZAI_CUSTOM_LLM_PROFILE_RUNTIME_END */
+
 $fileContext = loadUploadedFileContext($config, $attachments);
 
 $webResultsInput = $data['web_results'] ?? [];
@@ -227,10 +353,18 @@ if ((bool) $config['llm']['no_think']) {
     $userMessage = "/no_think\n" . $userMessage;
 }
 
+/* KUZAI_CUSTOM_LLM_PROFILE_SYSTEM_PROMPT_BEGIN */
+$systemPrompt = (string) $config['llm']['system_prompt'];
+
+if ($personalityProfilePrompt !== '') {
+    $systemPrompt = rtrim($systemPrompt) . "\n\n" . $personalityProfilePrompt;
+}
+/* KUZAI_CUSTOM_LLM_PROFILE_SYSTEM_PROMPT_END */
+
 $messages = [
     [
         'role' => 'system',
-        'content' => (string) $config['llm']['system_prompt'],
+        'content' => $systemPrompt,
     ],
 ];
 
@@ -358,6 +492,12 @@ echo json_encode([
     ],
     'usage' => $responseData['usage'] ?? null,
     'finish_reason' => $responseData['choices'][0]['finish_reason'] ?? null,
+    'personality_profile' => [
+        'requested_id' => $personalityProfileId,
+        'loaded_id' => $personalityProfileLoadedId,
+        'loaded_label' => $personalityProfileLoadedLabel,
+        'loaded' => $personalityProfilePrompt !== '',
+    ],
     'attachments_used' => count($attachments),
     'web_results_used' => isset($webCount) ? $webCount : 0,
 ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);

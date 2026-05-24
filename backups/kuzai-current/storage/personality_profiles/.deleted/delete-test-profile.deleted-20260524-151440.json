@@ -1,0 +1,8 @@
+{
+    "id": "delete-test-profile",
+    "label": "Delete Test Profile",
+    "description": "Temporary profile used to validate DELETE.",
+    "role": "Temporary test profile.",
+    "updated_at": "2026-05-24T15:14:40+00:00",
+    "locked": false
+}

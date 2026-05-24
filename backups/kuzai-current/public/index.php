@@ -17,7 +17,7 @@ $model = htmlspecialchars($config['llm']['model'], ENT_QUOTES, 'UTF-8');
     <title><?= $appName ?> - <?= $brandLine ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="application-name" content="<?= $appName ?>">
-    <link rel="stylesheet" href="assets/css/style.css?v=64">
+    <link rel="stylesheet" href="assets/css/style.css?v=clean-4-bold-all">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -58,6 +58,7 @@ $model = htmlspecialchars($config['llm']['model'], ENT_QUOTES, 'UTF-8');
                         <h2>/Start a new process/</h2>
                     </div>
                     <div class="chat-actions">
+                        <button type="button" class="btn btn-secondary custom-llm-main-btn" id="customLlmBtn" title="Select KUZAI behavior profile">CUSTOM LLM</button>
                         <button type="button" class="btn btn-secondary" id="clearBtn">CLEAR</button>
                     </div>
                 </div>
@@ -159,6 +160,6 @@ $model = htmlspecialchars($config['llm']['model'], ENT_QUOTES, 'UTF-8');
         </main>
     </div>
 
-    <script src="assets/js/app.js?v=21"></script>
+    <script src="assets/js/app.js?v=custom-llm-runtime-1"></script>
 </body>
 </html>

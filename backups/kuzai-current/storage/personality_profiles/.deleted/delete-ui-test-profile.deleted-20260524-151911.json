@@ -1,0 +1,7 @@
+{
+    "id": "delete-ui-test-profile",
+    "label": "Delete UI Test Profile",
+    "description": "Temporary profile used to validate UI delete fix.",
+    "locked": false,
+    "updated_at": "2026-05-24T15:19:11+00:00"
+}
