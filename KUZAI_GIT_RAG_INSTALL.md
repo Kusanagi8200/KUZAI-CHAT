@@ -1,16 +1,25 @@
-# KUZAI — INSTALLATION OF THE LOCAL GIT-RAG SYSTEM
+####   **`KUZAI - INSTALLATION OF THE LOCAL GIT-RAG SYSTEM`**
 
 Generation date --> 2026-06-14  
-Project --> KUZAI Local AI — Beta-0.01.2026  
+Project --> KUZAI Local AI - Beta-0.01.2026  
 Module --> local GIT-RAG for Git repositories cloned on the machine.
 
 This document is a reinstallation base. It describes the validated system, the steps, paths, services, endpoints, test commands, and the code blocks created or added on the KUZAI side. For a strictly byte-identical restoration, also use the section **Exact export of the installed code**.
 
 KUZAI rule --> always create a backup before modifying an existing file.
 
----
+------------------------------------------------------------------------
+#### **`GLOBAL SYNOPTIC`**
 
-## 1. FUNCTIONAL SYNOPTIC
+<picture>
+ <source media="(prefers-color-scheme: dark)" srcset="https://github.com/Kusanagi8200/KUZAI-CHAT/blob/main/01-KUZAI-SYNOPTIC-GIT-RAG.png">
+ <source media="(prefers-color-scheme: light)" srcset="https://github.com/Kusanagi8200/KUZAI-CHAT/blob/main/01-KUZAI-SYNOPTIC-GIT-RAG.png">
+ <img alt="" src="">
+</picture> 
+
+------------------------------------------------------------------------
+
+####  **`1. FUNCTIONAL SYNOPTIC`**
 
 ```text
 USER
@@ -94,7 +103,7 @@ open file
 
 ---
 
-## 2. VALIDATED STATE
+####  **`2. VALIDATED STATE`**
 
 ```text
 Repo ID              KUZAI.ORG-VS2
@@ -133,7 +142,7 @@ GIT-RAG UI overlay            OK
 
 ---
 
-## 3. INSTALLED DIRECTORY TREE
+####  **`3. INSTALLED DIRECTORY TREE`**
 
 ```text
 /opt/kuzai-git-rag/
@@ -176,7 +185,7 @@ GIT-RAG UI overlay            OK
 
 ---
 
-## 4. STEP 1 — PREPARE USER, GROUPS, AND DIRECTORIES
+####  **`4. STEP 1 - PREPARE USER, GROUPS, AND DIRECTORIES`**
 
 Brief --> the GIT-RAG service runs with the `kuzrag` system user. Apache/PHP runs with `www-data`. Permissions must allow UI reading and controlled writes.
 
@@ -207,7 +216,7 @@ ls -ld /opt/kuzai-git-rag /var/lib/kuzai-git-rag /srv/kuzai-git-rag/repos
 
 ---
 
-## 5. STEP 2 — CLONE THE LOCAL GIT REPOSITORY
+####  **`5. STEP 2 - CLONE THE LOCAL GIT REPOSITORY`**
 
 Brief --> the repository is manipulated locally. GitHub is only used for `pull` and `push` through SSH.
 
@@ -248,7 +257,7 @@ sudo -u kuzrag git -C /srv/kuzai-git-rag/repos/KUZAI.ORG-VS2 rev-parse HEAD
 
 ---
 
-## 6. STEP 3 — PHP REPOSITORY WHITELIST
+####  **`6. STEP 3 - PHP REPOSITORY WHITELIST`**
 
 Created file --> `/var/www/html/KUZAI/app/git-rag.repos.php`
 
@@ -281,7 +290,7 @@ php -l /var/www/html/KUZAI/app/git-rag.repos.php
 
 ---
 
-## 7. STEP 4 — ENABLE LLAMA.CPP EMBEDDINGS
+####  **`7. STEP 4 - ENABLE LLAMA.CPP EMBEDDINGS`**
 
 Brief --> the local RAG uses the llama.cpp `/v1/embeddings` endpoint. The options `--embeddings --pooling mean` are mandatory.
 
@@ -317,7 +326,7 @@ Expected result -->
 
 ---
 
-## 8. STEP 5 — GIT-RAG PYTHON SERVICE
+####  **`8. STEP 5 - GIT-RAG PYTHON SERVICE`**
 
 Created file --> `/opt/kuzai-git-rag/app/server.py`
 
@@ -351,19 +360,19 @@ LLAMA_MODEL = qwen3-8b-q5km
 Reproducible service pseudo-code -->
 
 ```python
-# /opt/kuzai-git-rag/app/server.py
-# Role: local HTTP service for indexing, RAG query, and Git actions.
+####   **`/opt/kuzai-git-rag/app/server.py
+####   **`Role: local HTTP service for indexing, RAG query, and Git actions.
 
-# 1. Load the repository whitelist.
-# 2. Check repo enabled + path + .git + branch.
-# 3. List text files in the repository.
-# 4. Index: read files, split into chunks, call llama.cpp /v1/embeddings.
-# 5. Write chunks.jsonl + manifest.json.
-# 6. Query: vectorize question, cosine similarity, return top_k chunks.
-# 7. Git status/diff: git -C repo status/diff.
-# 8. Git commit: block empty commits, git add --all, git commit -m.
-# 9. Git push: git push origin main.
-# 10. Git pull: block if dirty, git pull --ff-only origin main.
+####   **`1. Load the repository whitelist.
+####   **`2. Check repo enabled + path + .git + branch.
+####   **`3. List text files in the repository.
+####   **`4. Index: read files, split into chunks, call llama.cpp /v1/embeddings.
+####   **`5. Write chunks.jsonl + manifest.json.
+####   **`6. Query: vectorize question, cosine similarity, return top_k chunks.
+####   **`7. Git status/diff: git -C repo status/diff.
+####   **`8. Git commit: block empty commits, git add --all, git commit -m.
+####   **`9. Git push: git push origin main.
+####   **`10. Git pull: block if dirty, git pull --ff-only origin main.
 ```
 
 Note --> to reinstall the exact validated version, recover the real file through the exact export in section 19.
@@ -377,7 +386,7 @@ sudo chmod 750 /opt/kuzai-git-rag/app/server.py
 
 ---
 
-## 9. STEP 6 — SYSTEMD SERVICE
+####  **`9. STEP 6 - SYSTEMD SERVICE`**
 
 Created file --> `/etc/systemd/system/kuzai-git-rag.service`
 
@@ -418,11 +427,11 @@ curl -sS http://127.0.0.1:8890/repos | jq .
 
 ---
 
-## 10. STEP 7 — CREATED PHP ENDPOINTS
+####  **`10. STEP 7 - CREATED PHP ENDPOINTS`**
 
 Brief --> PHP endpoints are bridges between the KUZAI interface and the local Python service. They must remain local and return JSON.
 
-### ENDPOINT LIST
+####  **`ENDPOINT LIST`**
 
 ```text
 /var/www/html/KUZAI/public/api/git-rag-status.php
@@ -439,7 +448,7 @@ Brief --> PHP endpoints are bridges between the KUZAI interface and the local Py
 /var/www/html/KUZAI/public/api/git-rag-git-pull.php
 ```
 
-### VALIDATED PAYLOADS
+####  **`VALIDATED PAYLOADS`**
 
 ```text
 git-rag-file-read.php       POST { repo, path }
@@ -453,7 +462,7 @@ git-rag-git-push.php        POST { repo }
 git-rag-git-pull.php        POST { repo }
 ```
 
-### VALIDATED PHP SECURITY CONTROLS
+####  **`VALIDATED PHP SECURITY CONTROLS`**
 
 ```text
 normalizeRepoId
@@ -467,7 +476,7 @@ non-whitelisted repo blocked
 POST required for sensitive actions
 ```
 
-### COMMON BASE CODE USED IN ENDPOINTS
+####  **`COMMON BASE CODE USED IN ENDPOINTS`**
 
 ```php
 <?php
@@ -514,7 +523,7 @@ function normalizeRepoFilePath(string $filePath): string
 }
 ```
 
-### TYPICAL LOCAL SERVICE BRIDGE
+####  **`TYPICAL LOCAL SERVICE BRIDGE`**
 
 ```php
 function callGitRagService(string $method, string $path, ?array $payload = null): array
@@ -548,7 +557,7 @@ function callGitRagService(string $method, string $path, ?array $payload = null)
 }
 ```
 
-### GIT STATUS ENDPOINT EXAMPLE
+#### **`GIT STATUS ENDPOINT EXAMPLE`**
 
 ```php
 <?php
@@ -570,7 +579,7 @@ $result = callGitRagService('GET', '/git-status?repo=' . rawurlencode($repoId));
 jsonOut($result, ($result['ok'] ?? false) ? 200 : 500);
 ```
 
-### FILE-WRITE ENDPOINT EXAMPLE
+#### **`FILE-WRITE ENDPOINT EXAMPLE`**
 
 ```php
 <?php
@@ -633,7 +642,7 @@ find /var/www/html/KUZAI/public/api -maxdepth 1 -name 'git-rag-*.php' -print -ex
 
 ---
 
-## 11. STEP 8 — `CHAT.PHP` INTEGRATION
+####  **`11. STEP 8 - CHAT.PHP INTEGRATION`**
 
 Brief --> `chat.php` receives `git_rag_repo_id`, retrieves relevant chunks, then adds a context block to the prompt sent to the LLM.
 
@@ -681,7 +690,7 @@ Validated test --> LLM response using files `app/pages.php`, `public/index.php`,
 
 ---
 
-## 12. STEP 9 — `APP.JS` INTEGRATION
+####  **`12. STEP 9 - APP.JS INTEGRATION`**
 
 Brief --> adds the GIT-RAG UI, repository selection, file menu, viewer, editor, and Git actions.
 
@@ -809,7 +818,7 @@ window.KUZAI_GIT_RAG = {
 
 ---
 
-## 13. STEP 10 — FINAL UI CSS
+####  **`13. STEP 10 - FINAL UI CSS`**
 
 Brief --> GIT-RAG window as an overlay, width aligned with the top banner, top placed over the panels, defined bottom, internal scrolling.
 
@@ -930,7 +939,7 @@ Validated top adjustment added later -->
 
 ---
 
-## 14. STEP 11 — `INDEX.PHP` CACHE BUSTING
+####  **`14. STEP 11 - INDEX.PHP CACHE BUSTING`**
 
 Brief --> each CSS/JS patch must change the query string to avoid browser cache problems.
 
@@ -949,7 +958,7 @@ Ctrl + Shift + R
 
 ---
 
-## 15. REPRODUCIBLE BACKEND TESTS
+####  **`15. REPRODUCIBLE BACKEND TESTS`**
 
 Service -->
 
@@ -1017,7 +1026,7 @@ curl -sS http://127.0.0.1/KUZAI/api/git-rag-git-pull.php   -H 'Content-Type: app
 
 ---
 
-## 16. VALIDATED UI TESTS
+####  **`16. VALIDATED UI TESTS`**
 
 ```text
 1. Ctrl + Shift + R
@@ -1049,14 +1058,14 @@ Expected final result -->
   "working_tree_clean": true,
   "status_short": [],
   "status_branch": [
-    "## main...origin/main"
+    "####  **`main...origin/main"
   ]
 }
 ```
 
 ---
 
-## 17. APPLIED SECURITY CONTROLS
+####  **`17. APPLIED SECURITY CONTROLS`**
 
 ```text
 Whitelisted repositories only
@@ -1078,7 +1087,7 @@ Important operational point --> do not validate the GitHub SSH key from a root s
 
 ---
 
-## 18. STANDARD BACKUPS
+####  **`18. STANDARD BACKUPS`**
 
 Before PHP patch -->
 
@@ -1103,7 +1112,7 @@ sudo cp -a /etc/systemd/system/kuzai-git-rag.service "/etc/systemd/system/kuzai-
 
 ---
 
-## 19. EXACT EXPORT OF THE INSTALLED CODE
+####  **`19. EXACT EXPORT OF THE INSTALLED CODE`**
 
 This command creates a complete archive of the files actually installed. This is the reference to use for a bit-by-bit reinstallation.
 
@@ -1123,7 +1132,7 @@ sudo systemctl reload apache2
 
 ---
 
-## 20. RECOMMENDED FUTURE CONTINUATION
+####  **`20. RECOMMENDED FUTURE CONTINUATION`**
 
 The GIT-RAG system is stable at this stage. The next logical phase is LLM-assisted editing -->
 
@@ -1138,5 +1147,6 @@ COMMIT
 PUSH
 REINDEX
 ```
+---
 
-Before this phase, keep the current module as a stable restore point.
+####   **`THE KUZ NETWORK - KUSANAGI8200 - @2026`**
