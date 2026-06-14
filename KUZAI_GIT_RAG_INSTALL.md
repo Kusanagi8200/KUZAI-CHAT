@@ -9,7 +9,7 @@ This document is a reinstallation base. It describes the validated system, the s
 KUZAI rule --> always create a backup before modifying an existing file.
 
 ------------------------------------------------------------------------
-#### **`GLOBAL SYNOPTIC`**
+#### **`KUZAI - GIT-RAG SYNOPTIC`**
 
 <picture>
  <source media="(prefers-color-scheme: dark)" srcset="https://github.com/Kusanagi8200/KUZAI-CHAT/blob/main/01-KUZAI-SYNOPTIC-GIT-RAG.png">
