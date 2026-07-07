@@ -3,51 +3,33 @@
 
 ------------------------------------------------------------------------
 
-<picture>
- <source media="(prefers-color-scheme: dark)" srcset="https://github.com/Kusanagi8200/Kusanagi8200/blob/main/KUZAI-LLM3.png">
- <source media="(prefers-color-scheme: light)" srcset="https://github.com/Kusanagi8200/Kusanagi8200/blob/main/KUZAI-LLM3.png">
- <img alt="" src="">
-</picture> 
+![KUZAI LLM3](https://github.com/Kusanagi8200/Kusanagi8200/blob/main/KUZAI-LLM3.png) 
 
 ------------------------------------------------------------------------
 #### **`KUZAI - CORE CHAT-WEB`**
 
-<picture>
- <source media="(prefers-color-scheme: dark)" srcset="https://github.com/Kusanagi8200/KUZAI-CHAT/blob/main/02-KUZAI-CHAT-SYNOPTIC.png">
- <source media="(prefers-color-scheme: light)" srcset="https://github.com/Kusanagi8200/KUZAI-CHAT/blob/main/02-KUZAI-CHAT-SYNOPTIC.png">
- <img alt="" src="">
-</picture> 
+![02 KUZAI CHAT SYNOPTIC](https://github.com/Kusanagi8200/KUZAI-CHAT/blob/main/02-KUZAI-CHAT-SYNOPTIC.png) 
 
 ------------------------------------------------------------------------
 #### **`KUZAI - VOICE SYNTHESIS`**
 
-<picture>
- <source media="(prefers-color-scheme: dark)" srcset="https://github.com/Kusanagi8200/KUZAI-CHAT/blob/main/KUZAI-SYNOPTIC2.png">
- <source media="(prefers-color-scheme: light)" srcset="https://github.com/Kusanagi8200/KUZAI-CHAT/blob/main/KUZAI-SYNOPTIC2.png">
- <img alt="" src="">
-</picture> 
+![KUZAI SYNOPTIC2](https://github.com/Kusanagi8200/KUZAI-CHAT/blob/main/KUZAI-SYNOPTIC2.png) 
 
 ------------------------------------------------------------------------
 #### **`KUZAI - GIT-RAG SYNOPTIC`**
 
-<picture>
- <source media="(prefers-color-scheme: dark)" srcset="https://github.com/Kusanagi8200/KUZAI-CHAT/blob/main/01-KUZAI-SYNOPTIC-GIT-RAG.png">
- <source media="(prefers-color-scheme: light)" srcset="https://github.com/Kusanagi8200/KUZAI-CHAT/blob/main/01-KUZAI-SYNOPTIC-GIT-RAG.png">
- <img alt="" src="">
-</picture> 
+![01 KUZAI SYNOPTIC GIT RAG](https://github.com/Kusanagi8200/KUZAI-CHAT/blob/main/01-KUZAI-SYNOPTIC-GIT-RAG.png) 
 
 ------------------------------------------------------------------------
 
-<h1 align="center">KUZAI AI</h1>
+# KUZAI AI
 
-<p align="center"><strong>THE LOCAL AI - WHITE PAPER</strong></p>
+**THE LOCAL AI - WHITE PAPER**
 
-<p align="center">
-  <a href="#project-information"><img src="https://img.shields.io/badge/status-BETA--0.01.2026-7bf2ff?style=flat-square" alt="Status: Beta 0.01.2026"></a>
-  <a href="#project-information"><img src="https://img.shields.io/badge/deployment-local%20%7C%20self--hosted%20%7C%20modular-8fc4ff?style=flat-square" alt="Deployment: local, self-hosted, modular"></a>
-  <a href="#deployment"><img src="https://img.shields.io/badge/runtime-llama.cpp-c19cff?style=flat-square" alt="Runtime: llama.cpp"></a>
-  <a href="#deployment"><img src="https://img.shields.io/badge/platform-Linux-fbfdff?style=flat-square&logo=linux&logoColor=000000" alt="Platform: Linux"></a>
-</p>
+[![Status: Beta 0.01.2026](https://img.shields.io/badge/status-BETA--0.01.2026-7bf2ff?style=flat-square)](#project-information)
+  [![Deployment: local, self-hosted, modular](https://img.shields.io/badge/deployment-local%20%7C%20self--hosted%20%7C%20modular-8fc4ff?style=flat-square)](#project-information)
+  [![Runtime: llama.cpp](https://img.shields.io/badge/runtime-llama.cpp-c19cff?style=flat-square)](#deployment)
+  [![Platform: Linux](https://img.shields.io/badge/platform-Linux-fbfdff?style=flat-square&logo=linux&logoColor=000000)](#deployment)
 
 > **LOCAL AI IS NOT JUST ABOUT RUNNING A MODEL. IT IS ABOUT OWNING THE FULL STACK.**
 
