@@ -23,7 +23,7 @@
 
 <a id="project-information"></a>
 
-#### **`Project information`**
+#### **`PROJECT INFORMATION`**
 
 | Field | Value |
 |---|---|
@@ -38,7 +38,7 @@
 
 ---
 
-#### **`Contents`**
+#### **`CONTENTS`**
 
 - [1. EXECUTIVE SUMMARY](#executive-summary)
 - [2. PROJECT POSITION](#project-position)
@@ -291,7 +291,7 @@ The selected profile is activated as an explicit runtime layer and injected into
 
 <a id="git-rag"></a>
 
-#### **`11. GIT-RAG REPOSITORY ANALYSIS`**
+#### **`11. GIT-RAG REPOSITORY ANALYSIS - THE CODEX`**
 
 ![01 KUZAI SYNOPTIC GIT RAG](https://github.com/Kusanagi8200/KUZAI-CHAT/blob/main/01-KUZAI-SYNOPTIC-GIT-RAG.png) 
 
