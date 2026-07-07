@@ -22,24 +22,24 @@
 
 ------------------------------------------------------------------------
 
-# KUZAI AI
+#### **`KUZAI AI`**
 
-**THE LOCAL AI - WHITE PAPER**
+#### **`THE LOCAL AI - WHITE PAPER`**
 
 [![Status: Beta 0.01.2026](https://img.shields.io/badge/status-BETA--0.01.2026-7bf2ff?style=flat-square)](#project-information)
   [![Deployment: local, self-hosted, modular](https://img.shields.io/badge/deployment-local%20%7C%20self--hosted%20%7C%20modular-8fc4ff?style=flat-square)](#project-information)
   [![Runtime: llama.cpp](https://img.shields.io/badge/runtime-llama.cpp-c19cff?style=flat-square)](#deployment)
   [![Platform: Linux](https://img.shields.io/badge/platform-Linux-fbfdff?style=flat-square&logo=linux&logoColor=000000)](#deployment)
 
-> **LOCAL AI IS NOT JUST ABOUT RUNNING A MODEL. IT IS ABOUT OWNING THE FULL STACK.**
+> #### **`LOCAL AI IS NOT JUST ABOUT RUNNING A MODEL. IT IS ABOUT OWNING THE FULL STACK.`**
 
-KUZAI AI is a self-hosted local artificial intelligence control layer designed to keep models, prompts, files, repositories, voice generation, search workflows, and runtime services under the direct control of the operator.
+**KUZAI AI is a self-hosted local artificial intelligence control layer designed to keep models, prompts, files, repositories, voice generation, search workflows, and runtime services under the direct control of the operator.**
 
 ---
 
 <a id="project-information"></a>
 
-#### Project information
+#### **`Project information`**
 
 | Field | Value |
 |---|---|
@@ -54,7 +54,7 @@ KUZAI AI is a self-hosted local artificial intelligence control layer designed t
 
 ---
 
-#### Contents
+#### **`Contents`**
 
 - [1. EXECUTIVE SUMMARY](#executive-summary)
 - [2. PROJECT POSITION](#project-position)
@@ -80,7 +80,7 @@ KUZAI AI is a self-hosted local artificial intelligence control layer designed t
 
 <a id="executive-summary"></a>
 
-#### 1. EXECUTIVE SUMMARY
+#### **`1. EXECUTIVE SUMMARY`**
 
 KUZAI AI is a local AI application and control layer that connects a browser interface to locally operated language models and supporting services.
 
@@ -94,7 +94,7 @@ KUZAI AI is intended for developers, technical operators, researchers, small org
 
 <a id="project-position"></a>
 
-#### 2. PROJECT POSITION
+#### **`2. PROJECT POSITION`**
 
 Most commercial AI services centralize the model, application logic, pricing, data flow, feature set, and infrastructure inside an external platform.
 
@@ -108,7 +108,7 @@ KUZAI AI provides this application layer while preserving the ability to replace
 
 <a id="objectives"></a>
 
-#### 3. CORE OBJECTIVES
+#### **`3. CORE OBJECTIVES`**
 
 - Run language-model inference on infrastructure controlled by the operator.
 - Keep prompts, uploaded files, repository content, profiles, and generated data inside the local environment whenever possible.
@@ -122,7 +122,7 @@ KUZAI AI provides this application layer while preserving the ability to replace
 
 <a id="architecture"></a>
 
-#### 4. SYSTEM ARCHITECTURE
+#### **`4. SYSTEM ARCHITECTURE`**
 
 KUZAI AI uses a browser-based frontend, a PHP application layer, and a local OpenAI-compatible inference endpoint provided by llama.cpp.
 
@@ -165,7 +165,7 @@ Optional services extend the local model with web results, uploaded documents, r
 
 <a id="capabilities"></a>
 
-#### 5. CORE CAPABILITIES
+#### **`5. CORE CAPABILITIES`**
 
 | Capability | Description |
 |---|---|
@@ -186,7 +186,7 @@ Optional services extend the local model with web results, uploaded documents, r
 
 <a id="local-chat"></a>
 
-#### 6. LOCAL CHAT AND MODEL CONTROL
+#### **`6. LOCAL CHAT AND MODEL CONTROL`**
 
 The chat API assembles the system prompt, conversation history, user input, uploaded file context, web results, active profile data, and optional repository context before sending the request to the local model.
 
@@ -205,7 +205,7 @@ Model selection can therefore be based on available VRAM, system RAM, CPU perfor
 
 <a id="file-analysis"></a>
 
-#### 7. FILE UPLOAD AND ANALYSIS
+#### **`7. FILE UPLOAD AND ANALYSIS`**
 
 The upload module validates each file, checks its size and extension, extracts supported textual content, normalizes the result, applies configured length limits, and stores local metadata.
 
@@ -225,7 +225,7 @@ This enables technical analysis without transferring the source document to a re
 
 <a id="web-search"></a>
 
-#### 8. WEB SEARCH AND SOURCE CONTEXT
+#### **`8. WEB SEARCH AND SOURCE CONTEXT`**
 
 A local language model cannot independently retrieve current information. KUZAI AI uses a locally hosted SearXNG instance to provide controlled web-assisted research.
 
@@ -258,7 +258,7 @@ LOCAL MODEL GENERATION
 
 <a id="voice"></a>
 
-#### 9. LOCAL VOICE SYNTHESIS
+#### **`9. LOCAL VOICE SYNTHESIS`**
 
 KUZAI AI includes a local speech pipeline that converts assistant responses into WAV audio without using a remote text-to-speech provider.
 
@@ -279,7 +279,7 @@ The browser can request speech manually or play assistant answers automatically 
 
 <a id="profiles"></a>
 
-#### 10. CUSTOM PROFILES AND SYSTEM PROMPTS
+#### **`10. CUSTOM PROFILES AND SYSTEM PROMPTS`**
 
 Custom profiles provide task-specific model behavior without modifying or retraining the model weights.
 
@@ -300,7 +300,7 @@ The selected profile is activated as an explicit runtime layer and injected into
 
 <a id="git-rag"></a>
 
-#### 11. GIT-RAG REPOSITORY ANALYSIS
+#### **`11. GIT-RAG REPOSITORY ANALYSIS`**
 
 Git-RAG is an optional local retrieval module designed to connect the assistant to source repositories cloned on the controlled infrastructure.
 
@@ -325,7 +325,7 @@ Embedding strategy, indexing quality, branch management, repository synchronizat
 
 <a id="runtime"></a>
 
-#### 12. RUNTIME AND SERVICE CONTROL
+#### **`12. RUNTIME AND SERVICE CONTROL`**
 
 KUZAI AI exposes local status information for the application, configured model, active model, inference server, PHP runtime, and supporting services.
 
@@ -344,7 +344,7 @@ The infrastructure uses systemd for service supervision, automatic restart, star
 
 <a id="data-flow"></a>
 
-#### 13. COMPLETE REQUEST DATA FLOW
+#### **`13. COMPLETE REQUEST DATA FLOW`**
 
 Each optional context source is added only when it is selected, available, and relevant to the active request.
 
@@ -381,7 +381,7 @@ BROWSER DISPLAY          LOCAL TTS GENERATION
 
 <a id="privacy"></a>
 
-#### 14. PRIVACY AND SECURITY MODEL
+#### **`14. PRIVACY AND SECURITY MODEL`**
 
 Local inference reduces the need to transmit prompts, documents, code, and private context to an external AI API.
 
@@ -401,7 +401,7 @@ External network traffic can still occur when web search is enabled, repositorie
 
 <a id="deployment"></a>
 
-#### 15. DEPLOYMENT STACK
+#### **`15. DEPLOYMENT STACK`**
 
 The application can run on a workstation, development computer, dedicated GPU host, private LAN server, or small organizational infrastructure.
 
@@ -426,7 +426,7 @@ REPOSITORY LAYER     GIT + LOCAL GIT-RAG SERVICE
 
 <a id="use-cases"></a>
 
-#### 16. USE CASES
+#### **`16. USE CASES`**
 
 - Private technical assistance.
 - Linux, server, and network troubleshooting.
@@ -444,7 +444,7 @@ REPOSITORY LAYER     GIT + LOCAL GIT-RAG SERVICE
 
 <a id="limitations"></a>
 
-#### 17. CURRENT LIMITATIONS
+#### **`17. CURRENT LIMITATIONS`**
 
 KUZAI AI is an evolving beta project. Owning the stack also means owning its validation, operation, security, maintenance, and technical debt.
 
@@ -462,7 +462,7 @@ KUZAI AI is an evolving beta project. Owning the stack also means owning its val
 
 <a id="roadmap"></a>
 
-#### 18. DEVELOPMENT ROADMAP
+#### **`18. DEVELOPMENT ROADMAP`**
 
 - Stabilized local embedding services.
 - Improved Git-RAG indexing and source attribution.
@@ -484,7 +484,7 @@ KUZAI AI is an evolving beta project. Owning the stack also means owning its val
 
 <a id="conclusion"></a>
 
-#### 19. CONCLUSION
+#### **`19. CONCLUSION`**
 
 KUZAI AI transforms local model inference into a complete local AI environment.
 
