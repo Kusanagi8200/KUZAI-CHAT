@@ -10,10 +10,10 @@
 
 #### **`WHITE PAPER`**
 
-[![Status: Beta 0.01.2026](https://img.shields.io/badge/status-BETA--0.01.2026-7bf2ff?style=flat-square)](#project-information)
-[![Deployment: local, self-hosted, modular](https://img.shields.io/badge/deployment-local%20%7C%20self--hosted%20%7C%20modular-8fc4ff?style=flat-square)](#project-information)
-[![Runtime: llama.cpp](https://img.shields.io/badge/runtime-llama.cpp-c19cff?style=flat-square)](#deployment)
-[![Platform: Linux](https://img.shields.io/badge/platform-Linux-fbfdff?style=flat-square&logo=linux&logoColor=000000)](#deployment)
+[![STATUS: BETA 0.03.2026](https://img.shields.io/badge/STATUS-BETA--0.03.2026-7bf2ff?style=flat-square)](#project-information)
+[![DEPLOYMENT: LOCAL, SELF-HOSTED, MODULAR](https://img.shields.io/badge/DEPLOYMENT-LOCAL%20%7C%20SELF--HOSTED%20%7C%20MODULAR-8fc4ff?style=flat-square)](#project-information)
+[![RUNTIME: LLAMA.CPP](https://img.shields.io/badge/RUNTIME-LLAMA.CPP-c19cff?style=flat-square)](#deployment)
+[![PLATFORM: LINUX](https://img.shields.io/badge/PLATFORM-LINUX-fbfdff?style=flat-square&logo=linux&logoColor=000000)](#deployment)
 
 > #### **`LOCAL AI IS NOT JUST ABOUT RUNNING A MODEL. IT IS ABOUT OWNING THE FULL STACK.`**
 
