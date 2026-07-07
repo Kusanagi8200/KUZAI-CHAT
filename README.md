@@ -1,6 +1,6 @@
-#### **`KUZAI AI`**
+#### **`KUZAI - THE LOCAL AI`**
 
-#### **`Complete installation of a local, autonomous, and extensible AI assistant.`**
+#### **`COMPLETE INSTALLATION OF A LOCAL, AUTONOMOUS, AND EXTENSIBLE AI ASSISTANT.`**
 
 ------------------------------------------------------------------------
 
@@ -172,8 +172,6 @@ Optional services extend the local model with web results, uploaded documents, r
 
 #### **`6. LOCAL CHAT AND MODEL CONTROL`**
 
-#### **`KUZAI - CORE CHAT-WEB`**
-
 ![02 KUZAI CHAT SYNOPTIC](https://github.com/Kusanagi8200/KUZAI-CHAT/blob/main/02-KUZAI-CHAT-SYNOPTIC.png) 
 
 ------------------------------------------------------------------------
@@ -249,9 +247,6 @@ LOCAL MODEL GENERATION
 <a id="voice"></a>
 
 #### **`9. LOCAL VOICE SYNTHESIS`**
-------------------------------------------------------------------------
-
-#### **`KUZAI - VOICE SYNTHESIS`**
 
 ![KUZAI SYNOPTIC2](https://github.com/Kusanagi8200/KUZAI-CHAT/blob/main/KUZAI-SYNOPTIC2.png) 
 
@@ -297,8 +292,6 @@ The selected profile is activated as an explicit runtime layer and injected into
 <a id="git-rag"></a>
 
 #### **`11. GIT-RAG REPOSITORY ANALYSIS`**
-------------------------------------------------------------------------
-#### **`KUZAI - GIT-RAG SYNOPTIC`**
 
 ![01 KUZAI SYNOPTIC GIT RAG](https://github.com/Kusanagi8200/KUZAI-CHAT/blob/main/01-KUZAI-SYNOPTIC-GIT-RAG.png) 
 
