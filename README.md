@@ -27,8 +27,8 @@
 
 | Field | Value |
 |---|---|
-| **Project** | KUZAI AI |
-| **Ecosystem** | KUZ NETWORK |
+| **Project** | KUZAI - LOCAL AI |
+| **Ecosystem** | THE KUZ NETWORK |
 | **Status** | BETA-0.01.2026 |
 | **Deployment** | LOCAL / SELF-HOSTED / MODULAR |
 | **Inference** | LOCAL LLAMA.CPP RUNTIME |
