@@ -1,7 +1,3 @@
-<p align="center">
-  <img src="assets/img/kuz_network_logo_transparent.png" alt="KUZ Network logo" width="140">
-</p>
-
 <h1 align="center">KUZAI AI</h1>
 
 <p align="center"><strong>THE LOCAL AI - WHITE PAPER</strong></p>
