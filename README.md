@@ -1,35 +1,19 @@
+#### **`KUZAI AI`**
 
-#### **`KUZAI Local AI - Complete installation of a local, autonomous, and extensible AI assistant.`**
+#### **`Complete installation of a local, autonomous, and extensible AI assistant.`**
 
 ------------------------------------------------------------------------
 
 ![KUZAI LLM3](https://github.com/Kusanagi8200/Kusanagi8200/blob/main/KUZAI-LLM3.png) 
 
 ------------------------------------------------------------------------
-#### **`KUZAI - CORE CHAT-WEB`**
 
-![02 KUZAI CHAT SYNOPTIC](https://github.com/Kusanagi8200/KUZAI-CHAT/blob/main/02-KUZAI-CHAT-SYNOPTIC.png) 
-
-------------------------------------------------------------------------
-#### **`KUZAI - VOICE SYNTHESIS`**
-
-![KUZAI SYNOPTIC2](https://github.com/Kusanagi8200/KUZAI-CHAT/blob/main/KUZAI-SYNOPTIC2.png) 
-
-------------------------------------------------------------------------
-#### **`KUZAI - GIT-RAG SYNOPTIC`**
-
-![01 KUZAI SYNOPTIC GIT RAG](https://github.com/Kusanagi8200/KUZAI-CHAT/blob/main/01-KUZAI-SYNOPTIC-GIT-RAG.png) 
-
-------------------------------------------------------------------------
-
-#### **`KUZAI AI`**
-
-#### **`THE LOCAL AI - WHITE PAPER`**
+#### **`WHITE PAPER`**
 
 [![Status: Beta 0.01.2026](https://img.shields.io/badge/status-BETA--0.01.2026-7bf2ff?style=flat-square)](#project-information)
-  [![Deployment: local, self-hosted, modular](https://img.shields.io/badge/deployment-local%20%7C%20self--hosted%20%7C%20modular-8fc4ff?style=flat-square)](#project-information)
-  [![Runtime: llama.cpp](https://img.shields.io/badge/runtime-llama.cpp-c19cff?style=flat-square)](#deployment)
-  [![Platform: Linux](https://img.shields.io/badge/platform-Linux-fbfdff?style=flat-square&logo=linux&logoColor=000000)](#deployment)
+[![Deployment: local, self-hosted, modular](https://img.shields.io/badge/deployment-local%20%7C%20self--hosted%20%7C%20modular-8fc4ff?style=flat-square)](#project-information)
+[![Runtime: llama.cpp](https://img.shields.io/badge/runtime-llama.cpp-c19cff?style=flat-square)](#deployment)
+[![Platform: Linux](https://img.shields.io/badge/platform-Linux-fbfdff?style=flat-square&logo=linux&logoColor=000000)](#deployment)
 
 > #### **`LOCAL AI IS NOT JUST ABOUT RUNNING A MODEL. IT IS ABOUT OWNING THE FULL STACK.`**
 
@@ -188,6 +172,12 @@ Optional services extend the local model with web results, uploaded documents, r
 
 #### **`6. LOCAL CHAT AND MODEL CONTROL`**
 
+#### **`KUZAI - CORE CHAT-WEB`**
+
+![02 KUZAI CHAT SYNOPTIC](https://github.com/Kusanagi8200/KUZAI-CHAT/blob/main/02-KUZAI-CHAT-SYNOPTIC.png) 
+
+------------------------------------------------------------------------
+
 The chat API assembles the system prompt, conversation history, user input, uploaded file context, web results, active profile data, and optional repository context before sending the request to the local model.
 
 The use of an OpenAI-compatible API reduces coupling between the interface and the model runtime. The operator can replace the active model without redesigning the browser application, provided the selected runtime remains compatible.
@@ -259,6 +249,12 @@ LOCAL MODEL GENERATION
 <a id="voice"></a>
 
 #### **`9. LOCAL VOICE SYNTHESIS`**
+------------------------------------------------------------------------
+
+#### **`KUZAI - VOICE SYNTHESIS`**
+
+![KUZAI SYNOPTIC2](https://github.com/Kusanagi8200/KUZAI-CHAT/blob/main/KUZAI-SYNOPTIC2.png) 
+
 
 KUZAI AI includes a local speech pipeline that converts assistant responses into WAV audio without using a remote text-to-speech provider.
 
@@ -301,6 +297,10 @@ The selected profile is activated as an explicit runtime layer and injected into
 <a id="git-rag"></a>
 
 #### **`11. GIT-RAG REPOSITORY ANALYSIS`**
+------------------------------------------------------------------------
+#### **`KUZAI - GIT-RAG SYNOPTIC`**
+
+![01 KUZAI SYNOPTIC GIT RAG](https://github.com/Kusanagi8200/KUZAI-CHAT/blob/main/01-KUZAI-SYNOPTIC-GIT-RAG.png) 
 
 Git-RAG is an optional local retrieval module designed to connect the assistant to source repositories cloned on the controlled infrastructure.
 
