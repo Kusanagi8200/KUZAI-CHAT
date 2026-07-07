@@ -4,16 +4,35 @@
 ------------------------------------------------------------------------
 
 <picture>
- <source media="(prefers-color-scheme: dark)" srcset="https://github.com/Kusanagi8200/KUZAI-CHAT/blob/main/01-A%20KUZ%20NETWORK%20SOLUTION%20-%20Beta-0.01.2026.png">
- <source media="(prefers-color-scheme: light)" srcset="https://github.com/Kusanagi8200/KUZAI-CHAT/blob/main/01-A%20KUZ%20NETWORK%20SOLUTION%20-%20Beta-0.01.2026.png">
+ <source media="(prefers-color-scheme: dark)" srcset="https://github.com/Kusanagi8200/Kusanagi8200/blob/main/KUZAI-LLM3.png">
+ <source media="(prefers-color-scheme: light)" srcset="https://github.com/Kusanagi8200/Kusanagi8200/blob/main/KUZAI-LLM3.png">
  <img alt="" src="">
 </picture> 
 
 ------------------------------------------------------------------------
+#### **`KUZAI - CORE CHAT-WEB`**
+
+<picture>
+ <source media="(prefers-color-scheme: dark)" srcset="https://github.com/Kusanagi8200/KUZAI-CHAT/blob/main/02-KUZAI-CHAT-SYNOPTIC.png">
+ <source media="(prefers-color-scheme: light)" srcset="https://github.com/Kusanagi8200/KUZAI-CHAT/blob/main/02-KUZAI-CHAT-SYNOPTIC.png">
+ <img alt="" src="">
+</picture> 
+
+------------------------------------------------------------------------
+#### **`KUZAI - VOICE SYNTHESIS`**
 
 <picture>
  <source media="(prefers-color-scheme: dark)" srcset="https://github.com/Kusanagi8200/KUZAI-CHAT/blob/main/KUZAI-SYNOPTIC2.png">
  <source media="(prefers-color-scheme: light)" srcset="https://github.com/Kusanagi8200/KUZAI-CHAT/blob/main/KUZAI-SYNOPTIC2.png">
+ <img alt="" src="">
+</picture> 
+
+------------------------------------------------------------------------
+#### **`KUZAI - GIT-RAG SYNOPTIC`**
+
+<picture>
+ <source media="(prefers-color-scheme: dark)" srcset="https://github.com/Kusanagi8200/KUZAI-CHAT/blob/main/01-KUZAI-SYNOPTIC-GIT-RAG.png">
+ <source media="(prefers-color-scheme: light)" srcset="https://github.com/Kusanagi8200/KUZAI-CHAT/blob/main/01-KUZAI-SYNOPTIC-GIT-RAG.png">
  <img alt="" src="">
 </picture> 
 
@@ -30,8 +49,9 @@
 #### **`5/ llama.cpp to serve the local model. `**
 #### **`6/ Qwen3-8B Q5_K_M as the active LLM model. `**
 #### **`7/ SearXNG installed natively for local web search. `**
-#### **`8/ systemd for service management. `**
+#### **`8/ Systemd for service management. `**
 #### **`9/ Voice Synthesis - PiperTTS`**
+#### **`10/ GIT-RAG - Codex System`**
 
 ------------------------------------------------------------------------
 
