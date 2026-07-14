@@ -215,6 +215,286 @@ function kuzaiBuildPersonalityProfilePrompt(array $profile, string $profileId, s
 /* KUZAI_CUSTOM_LLM_PROFILE_HELPERS_END */
 
 
+
+/* KUZAI_GIT_RAG_STEP6_BEGIN */
+function gitRagLoadPhpArrayFile(string $path): array
+{
+    if (!is_file($path) || !is_readable($path)) {
+        return [];
+    }
+
+    $data = require $path;
+
+    return is_array($data) ? $data : [];
+}
+
+function gitRagPathInside(string $baseDir, string $candidate): bool
+{
+    $baseReal = realpath($baseDir);
+    $candidateReal = realpath($candidate);
+
+    if ($baseReal === false || $candidateReal === false) {
+        return false;
+    }
+
+    $baseReal = rtrim($baseReal, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR;
+    $candidateReal = rtrim($candidateReal, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR;
+
+    return str_starts_with($candidateReal, $baseReal);
+}
+
+function gitRagResolveSelection(string $requestedRepoId): array
+{
+    $requestedRepoId = trim($requestedRepoId);
+
+    if ($requestedRepoId === '') {
+        return [
+            'requested' => '',
+            'active' => false,
+            'ready' => false,
+            'error' => null,
+            'repo' => null,
+        ];
+    }
+
+    if (!preg_match('/^[A-Za-z0-9._-]{1,120}$/', $requestedRepoId)) {
+        return [
+            'requested' => $requestedRepoId,
+            'active' => false,
+            'ready' => false,
+            'error' => 'Invalid GIT-RAG repository id format',
+            'repo' => null,
+        ];
+    }
+
+    $configPath = __DIR__ . '/../../app/git-rag.config.php';
+    $reposPath = __DIR__ . '/../../app/git-rag.repos.php';
+
+    if (!is_file($configPath) || !is_readable($configPath)) {
+        return [
+            'requested' => $requestedRepoId,
+            'active' => false,
+            'ready' => false,
+            'error' => 'GIT-RAG config unavailable',
+            'repo' => null,
+        ];
+    }
+
+    $gitRagConfig = require $configPath;
+
+    if (!is_array($gitRagConfig)) {
+        return [
+            'requested' => $requestedRepoId,
+            'active' => false,
+            'ready' => false,
+            'error' => 'Invalid GIT-RAG config',
+            'repo' => null,
+        ];
+    }
+
+    $repos = [];
+
+    if (isset($gitRagConfig['repos']) && is_array($gitRagConfig['repos'])) {
+        $repos = $gitRagConfig['repos'];
+    }
+
+    $repos = array_merge($repos, gitRagLoadPhpArrayFile($reposPath));
+
+    if (!isset($repos[$requestedRepoId]) || !is_array($repos[$requestedRepoId])) {
+        return [
+            'requested' => $requestedRepoId,
+            'active' => false,
+            'ready' => false,
+            'error' => 'GIT-RAG repository is not whitelisted',
+            'repo' => null,
+        ];
+    }
+
+    $repo = $repos[$requestedRepoId];
+
+    if (!(bool) ($repo['enabled'] ?? false)) {
+        return [
+            'requested' => $requestedRepoId,
+            'active' => false,
+            'ready' => false,
+            'error' => 'GIT-RAG repository is disabled',
+            'repo' => null,
+        ];
+    }
+
+    $reposDir = (string) ($gitRagConfig['paths']['repos_dir'] ?? '/srv/kuzai-git-rag/repos');
+    $repoPath = (string) ($repo['path'] ?? '');
+
+    $exists = $repoPath !== '' && is_dir($repoPath);
+    $inside = $exists && gitRagPathInside($reposDir, $repoPath);
+    $isGitRepo = $inside && is_dir(rtrim($repoPath, DIRECTORY_SEPARATOR) . '/.git');
+
+    $ready = $exists && $inside && $isGitRepo;
+
+    return [
+        'requested' => $requestedRepoId,
+        'active' => $ready,
+        'ready' => $ready,
+        'error' => $ready ? null : 'GIT-RAG repository is not ready',
+        'repo' => [
+            'id' => $requestedRepoId,
+            'name' => (string) ($repo['name'] ?? $requestedRepoId),
+            'path' => $repoPath,
+            'active_branch' => (string) ($repo['active_branch'] ?? ''),
+        ],
+    ];
+}
+
+/* KUZAI_GIT_RAG_STEP11_BEGIN */
+function gitRagCallLocalQueryService(string $repoId, string $query, int $topK = 6): array
+{
+    $configPath = __DIR__ . '/../../app/git-rag.config.php';
+    $endpoint = 'http://127.0.0.1:8890';
+    $timeout = 120;
+
+    if (is_file($configPath) && is_readable($configPath)) {
+        $config = require $configPath;
+
+        if (is_array($config)) {
+            $endpoint = (string) ($config['service']['endpoint'] ?? $endpoint);
+            $timeout = (int) ($config['service']['timeout'] ?? $timeout);
+        }
+    }
+
+    if ($timeout < 5) {
+        $timeout = 5;
+    }
+
+    if ($timeout > 300) {
+        $timeout = 300;
+    }
+
+    $topK = max(1, min($topK, 12));
+
+    $payload = [
+        'repo' => $repoId,
+        'query' => mb_substr($query, 0, 4000, 'UTF-8'),
+        'top_k' => $topK,
+    ];
+
+    $ch = curl_init(rtrim($endpoint, '/') . '/query');
+
+    if ($ch === false) {
+        return [
+            'ok' => false,
+            'error' => 'Unable to initialize GIT-RAG curl',
+            'chunks' => [],
+        ];
+    }
+
+    curl_setopt_array($ch, [
+        CURLOPT_POST => true,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_CONNECTTIMEOUT => 3,
+        CURLOPT_TIMEOUT => $timeout,
+        CURLOPT_HTTPHEADER => [
+            'Content-Type: application/json',
+            'Accept: application/json',
+            'User-Agent: KUZAI-Chat-GIT-RAG/0.1',
+        ],
+        CURLOPT_POSTFIELDS => json_encode($payload, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES),
+    ]);
+
+    $body = curl_exec($ch);
+    $curlError = curl_error($ch);
+    $httpCode = (int) curl_getinfo($ch, CURLINFO_RESPONSE_CODE);
+    curl_close($ch);
+
+    if ($body === false || $body === '') {
+        return [
+            'ok' => false,
+            'error' => $curlError !== '' ? $curlError : 'Empty GIT-RAG response',
+            'http_code' => $httpCode,
+            'chunks' => [],
+        ];
+    }
+
+    $data = json_decode($body, true);
+
+    if (!is_array($data)) {
+        return [
+            'ok' => false,
+            'error' => 'Invalid GIT-RAG JSON response',
+            'http_code' => $httpCode,
+            'chunks' => [],
+        ];
+    }
+
+    return [
+        'ok' => $httpCode >= 200 && $httpCode < 300 && (bool) ($data['ok'] ?? false),
+        'error' => $data['error'] ?? null,
+        'http_code' => $httpCode,
+        'mode' => (string) ($data['mode'] ?? ''),
+        'chunks' => is_array($data['chunks'] ?? null) ? $data['chunks'] : [],
+    ];
+}
+
+function gitRagBuildContextBlock(string $repoId, array $chunks, int $maxChunks = 6, int $maxTotalChars = 7200): string
+{
+    if (!$chunks) {
+        return '';
+    }
+
+    $blocks = [];
+    $usedChars = 0;
+    $count = 0;
+
+    foreach ($chunks as $chunk) {
+        if (!is_array($chunk)) {
+            continue;
+        }
+
+        $path = cleanMessageContent((string) ($chunk['path'] ?? ''));
+        $text = cleanMessageContent((string) ($chunk['text'] ?? ''));
+
+        if ($path === '' || $text === '') {
+            continue;
+        }
+
+        $remaining = $maxTotalChars - $usedChars;
+
+        if ($remaining <= 0) {
+            break;
+        }
+
+        $text = mb_substr($text, 0, min(1400, $remaining), 'UTF-8');
+        $usedChars += mb_strlen($text, 'UTF-8');
+
+        $score = is_numeric($chunk['score'] ?? null)
+            ? number_format((float) $chunk['score'], 4, '.', '')
+            : '0.0000';
+
+        $chunkIndex = (int) ($chunk['chunk_index'] ?? 0);
+        $count++;
+
+        $blocks[] = "GIT-RAG SOURCE {$count}\n"
+            . "REPOSITORY: {$repoId}\n"
+            . "FILE: {$path}\n"
+            . "CHUNK: {$chunkIndex}\n"
+            . "SCORE: {$score}\n"
+            . "CONTENT:\n{$text}";
+
+        if ($count >= $maxChunks) {
+            break;
+        }
+    }
+
+    if (!$blocks) {
+        return '';
+    }
+
+    return "GIT-RAG repository context follows. Treat this as trusted local codebase context for the selected repository. Use it before general knowledge when the question concerns this repository. Cite file paths when relevant.\n\n"
+        . implode("\n\n---\n\n", $blocks);
+}
+/* KUZAI_GIT_RAG_STEP11_END */
+
+/* KUZAI_GIT_RAG_STEP6_END */
+
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     failJson('Method not allowed', 405);
 }
@@ -225,6 +505,22 @@ $data = json_decode($rawInput ?: '', true);
 if (!is_array($data)) {
     failJson('Invalid JSON payload');
 }
+
+/* KUZAI_GIT_RAG_STEP6_RUNTIME_BEGIN */
+$gitRagSelection = gitRagResolveSelection((string) ($data['git_rag_repo_id'] ?? ''));
+
+if ($gitRagSelection['requested'] !== '') {
+    $safeRepoHeader = preg_replace('/[^A-Za-z0-9._-]/', '', (string) $gitRagSelection['requested']);
+
+    header('X-KUZAI-Git-Rag-Repo-Requested: ' . $safeRepoHeader);
+    header('X-KUZAI-Git-Rag-Repo-Ready: ' . ($gitRagSelection['ready'] ? 'true' : 'false'));
+
+    if ($gitRagSelection['error'] !== null) {
+        header('X-KUZAI-Git-Rag-Error: ' . substr(str_replace(["\r", "\n"], '', (string) $gitRagSelection['error']), 0, 160));
+    }
+}
+/* KUZAI_GIT_RAG_STEP6_RUNTIME_END */
+
 
 $userMessage = cleanMessageContent((string) ($data['message'] ?? ''));
 
@@ -342,6 +638,52 @@ if (is_array($webResultsInput) && count($webResultsInput) > 0) {
     }
 }
 
+
+/* KUZAI_GIT_RAG_STEP11_RUNTIME_BEGIN */
+$gitRagContext = '';
+$gitRagChunks = [];
+$gitRagInjected = false;
+$gitRagError = null;
+$gitRagMode = '';
+
+if (($gitRagSelection['ready'] ?? false) && is_array($gitRagSelection['repo'] ?? null)) {
+    $gitRagRepoId = (string) ($gitRagSelection['repo']['id'] ?? '');
+
+    if ($gitRagRepoId !== '') {
+        $gitRagQueryResult = gitRagCallLocalQueryService($gitRagRepoId, $userMessage, 6);
+
+        if (($gitRagQueryResult['ok'] ?? false) && is_array($gitRagQueryResult['chunks'] ?? null)) {
+            $gitRagChunks = $gitRagQueryResult['chunks'];
+            $gitRagMode = (string) ($gitRagQueryResult['mode'] ?? '');
+            $gitRagContext = gitRagBuildContextBlock($gitRagRepoId, $gitRagChunks, 6, 7200);
+            $gitRagInjected = $gitRagContext !== '';
+        } else {
+            $gitRagError = (string) ($gitRagQueryResult['error'] ?? 'GIT-RAG query failed');
+        }
+    }
+}
+
+if (!headers_sent()) {
+    header('X-KUZAI-Git-Rag-Injected: ' . ($gitRagInjected ? 'true' : 'false'));
+    header('X-KUZAI-Git-Rag-Chunks: ' . count($gitRagChunks));
+
+    if ($gitRagMode !== '') {
+        header('X-KUZAI-Git-Rag-Mode: ' . preg_replace('/[^A-Za-z0-9._-]/', '', $gitRagMode));
+    }
+
+    if ($gitRagError !== null && $gitRagError !== '') {
+        header('X-KUZAI-Git-Rag-Query-Error: ' . substr(str_replace(["\r", "\n"], '', $gitRagError), 0, 160));
+    }
+}
+
+if ($gitRagContext !== '') {
+    $userMessage = "Use the attached GIT-RAG repository context to answer the user question. "
+        . "Prefer the selected repository context for codebase-specific answers. "
+        . "Mention file paths when relevant. If the context is insufficient, say so.\n\n"
+        . $userMessage;
+}
+/* KUZAI_GIT_RAG_STEP11_RUNTIME_END */
+
 if ($webContext !== '') {
     $userMessage = "Use the attached web search results to answer the user question. "
         . "Do not ignore the web sources. "
@@ -383,6 +725,13 @@ if ($webContext !== '') {
     $messages[] = [
         'role' => 'user',
         'content' => $webContext,
+    ];
+}
+
+if ($gitRagContext !== '') {
+    $messages[] = [
+        'role' => 'user',
+        'content' => $gitRagContext,
     ];
 }
 

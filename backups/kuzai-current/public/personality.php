@@ -1028,6 +1028,86 @@ $brandLine = htmlspecialchars((string)($config['app']['brand_line'] ?? 'A KUZ NE
         }
         /* KUZAI_SECONDARY_VALUE_TEXT_SIZE_MATCH_INDEX_END */
 
+    
+        /* KUZAI_PERSONALITY_SERVER_PROFILES_CLEAN_BEGIN */
+        #profileList {
+            display: grid !important;
+            gap: 12px !important;
+        }
+
+        #profileList .profile-card {
+            display: grid !important;
+            grid-template-columns: minmax(0, 1fr) auto !important;
+            align-items: center !important;
+            gap: 16px !important;
+            padding: 16px 18px !important;
+            border: 2px solid #5f5f5f !important;
+            border-radius: 18px !important;
+            background: #000000 !important;
+        }
+
+        #profileList .profile-card-title {
+            margin: 0 !important;
+            padding: 0 !important;
+            color: #ffffff !important;
+            font-family: "Anta", "Segoe UI", "Inter", Arial, sans-serif !important;
+            font-size: 0.94rem !important;
+            line-height: 1.45 !important;
+            font-weight: 900 !important;
+            letter-spacing: 0.02em !important;
+        }
+
+        #profileList .profile-card-desc,
+        #profileList .profile-card-meta,
+        #profileList .profile-desc,
+        #profileList .profile-meta {
+            display: none !important;
+        }
+
+        #profileList .profile-card-actions {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: flex-end !important;
+            gap: 10px !important;
+            margin: 0 !important;
+        }
+
+        #profileList .server-profile-delete-btn,
+        #profileList .delete-profile-btn {
+            min-width: 100px !important;
+            height: 38px !important;
+            min-height: 38px !important;
+            border: 2px solid rgba(255, 255, 255, 0.78) !important;
+            border-radius: 14px !important;
+            background: #000000 !important;
+            color: #ffffff !important;
+            font-family: "Anta", "Segoe UI", "Inter", Arial, sans-serif !important;
+            font-size: 0.72rem !important;
+            line-height: 1 !important;
+            font-weight: 900 !important;
+            letter-spacing: 0.12em !important;
+        }
+
+        #profileList .server-profile-delete-btn:hover:not(:disabled),
+        #profileList .delete-profile-btn:hover:not(:disabled) {
+            border-color: rgba(255, 255, 255, 0.96) !important;
+            background: rgba(255, 255, 255, 0.08) !important;
+        }
+
+        #profileList .server-profile-delete-btn:disabled,
+        #profileList .delete-profile-btn:disabled {
+            opacity: 0.35 !important;
+            cursor: not-allowed !important;
+        }
+
+        .panel:has(#profileList) .status:empty {
+            display: none !important;
+            border: 0 !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        /* KUZAI_PERSONALITY_SERVER_PROFILES_CLEAN_END */
+
     </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1514,12 +1594,78 @@ async function deleteProfile(id, label) {
 }
 
 
+
+async function kuzaiDeleteServerProfile(id, label) {
+    id = String(id || '').trim();
+    label = String(label || id).trim();
+
+    if (!id) {
+        setStatus('Invalid profile ID.', 'error');
+        return;
+    }
+
+    if (id === 'default-generalist') {
+        setStatus('default-generalist is protected and cannot be deleted.', 'error');
+        return;
+    }
+
+    if (sessionStorage.getItem(LOCKED_KEY) === '1' && sessionStorage.getItem(ACTIVE_ID_KEY) === id) {
+        setStatus('This profile is locked in the current discussion. Return to chat and use CLEAR before deleting it.', 'error');
+        return;
+    }
+
+    const confirmed = window.confirm(
+        `DELETE profile "${label}" ?\n\nThe JSON file will be moved to storage/personality_profiles/.deleted/`
+    );
+
+    if (!confirmed) {
+        return;
+    }
+
+    try {
+        const response = await fetch(API_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                action: 'delete',
+                id,
+            }),
+        });
+
+        const data = await response.json();
+
+        if (!response.ok || !data.ok) {
+            throw new Error(data.error || 'Unable to delete profile');
+        }
+
+        if (sessionStorage.getItem(ACTIVE_ID_KEY) === id) {
+            sessionStorage.removeItem(ACTIVE_ID_KEY);
+            sessionStorage.removeItem(ACTIVE_LABEL_KEY);
+            sessionStorage.removeItem(LOCKED_KEY);
+        }
+
+        await loadProfiles();
+    } catch (error) {
+        setStatus(`Delete error: ${error.message}`, 'error');
+    }
+}
+
+
 async function loadProfiles() {
+    if (!profileList) {
+        return;
+    }
+
+    profileList.innerHTML = '<p class="help">Loading profiles...</p>';
+
     try {
         const response = await fetch(`${API_URL}?action=list`, {
+            method: 'GET',
             headers: {
-                'Accept': 'application/json'
-            }
+                'Accept': 'application/json',
+            },
         });
 
         const data = await response.json();
@@ -1536,15 +1682,25 @@ async function loadProfiles() {
         }
 
         for (const profile of data.profiles) {
+            const id = String(profile.id || '');
+            const label = String(profile.label || id);
+            const protectedProfile = id === 'default-generalist' || profile.protected === true;
+
             const card = document.createElement('div');
             card.className = 'profile-card';
 
             card.innerHTML = `
-                <p class="profile-card-title">${escapeHtml(profile.label || profile.id)}</p>
-                <p class="profile-card-desc">${escapeHtml(profile.description || '')}</p>
-                <div class="profile-card-meta">${escapeHtml(profile.file || '')}<br>${escapeHtml(profile.updated_at || '')}</div>
+                <div class="profile-card-main">
+                    <p class="profile-card-title">${escapeHtml(label)}</p>
+                </div>
                 <div class="profile-card-actions">
-                    <button type="button" class="btn delete-profile-btn" data-id="${escapeHtml(profile.id || '')}" data-label="${escapeHtml(profile.label || profile.id || '')}" ${(profile.id || '') === 'default-generalist' ? 'disabled title="Default profile is protected"' : ''}>
+                    <button
+                        type="button"
+                        class="btn server-profile-delete-btn"
+                        data-id="${escapeHtml(id)}"
+                        data-label="${escapeHtml(label)}"
+                        ${protectedProfile ? 'disabled title="Default profile is protected"' : 'title="Delete profile"'}
+                    >
                         DELETE
                     </button>
                 </div>
@@ -1552,8 +1708,11 @@ async function loadProfiles() {
 
             profileList.appendChild(card);
         }
+
+        kuzaiHideReadyStatus();
     } catch (error) {
-        setStatus(`Profile list error: ${error.message}`, 'error');
+        profileList.innerHTML = '';
+        setStatus(`Profile load error: ${error.message}`, 'error');
     }
 }
 
@@ -1653,6 +1812,28 @@ profileList.addEventListener('click', (event) => {
     deleteProfile(target.dataset.id || '', target.dataset.label || target.dataset.id || '');
 });
 
+
+/* KUZAI_SERVER_PROFILE_DELETE_LISTENER_BEGIN */
+if (profileList) {
+    profileList.addEventListener('click', (event) => {
+        const target = event.target;
+
+        if (!(target instanceof HTMLButtonElement)) {
+            return;
+        }
+
+        if (!target.classList.contains('server-profile-delete-btn')) {
+            return;
+        }
+
+        kuzaiDeleteServerProfile(
+            target.dataset.id || '',
+            target.dataset.label || target.dataset.id || ''
+        );
+    });
+}
+/* KUZAI_SERVER_PROFILE_DELETE_LISTENER_END */
+
 saveRunBtn.addEventListener('click', () => {
     saveProfile(true);
 });
@@ -1663,6 +1844,33 @@ profileForm.addEventListener('input', () => {
 
 refreshPreview();
 loadProfiles();
+
+function kuzaiHideReadyStatus() {
+    document.querySelectorAll('.status').forEach((element) => {
+        const value = String(element.textContent || '').trim().toLowerCase();
+
+        if (value === 'ready' || value === 'ready.') {
+            element.textContent = '';
+            element.style.display = 'none';
+            element.style.border = '0';
+            element.style.padding = '0';
+            element.style.margin = '0';
+        }
+    });
+}
+
+const kuzaiReadyStatusObserver = new MutationObserver(() => {
+    kuzaiHideReadyStatus();
+});
+
+kuzaiReadyStatusObserver.observe(document.body, {
+    childList: true,
+    subtree: true,
+    characterData: true,
+});
+
+kuzaiHideReadyStatus();
+
 </script>
 </body>
 </html>

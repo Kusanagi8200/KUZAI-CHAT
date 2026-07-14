@@ -17,7 +17,7 @@ $model = htmlspecialchars($config['llm']['model'], ENT_QUOTES, 'UTF-8');
     <title><?= $appName ?> - <?= $brandLine ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="application-name" content="<?= $appName ?>">
-    <link rel="stylesheet" href="assets/css/style.css?v=clean-4-bold-all">
+    <link rel="stylesheet" href="assets/css/style.css?v=header-meta-minus-1pt-1784036677">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,25 +26,29 @@ $model = htmlspecialchars($config['llm']['model'], ENT_QUOTES, 'UTF-8');
 </head>
 <body>
     <div class="app-shell">
-        <header class="topbar">
-            <div class="brand">
-                <div class="brand-logo brand-logo-image">
-                    <img src="assets/img/kuzai-logo.png" alt="KUZAI logo">
-                </div>
-                <div>
-                    <h1><?= $appName ?></h1>
-                    <p class="brand-line"><?= $brandLine ?></p>
-                    <p class="subtitle"><?= $subtitle ?></p>
-                </div>
+        <header class="topbar site-style-topbar" aria-label="Main header">
+            <a class="brand-mark" href="./" aria-label="KUZAI home">
+                <img
+                    class="brand-mark__logo"
+                    src="assets/img/kuz_network_logo_transparent.png"
+                    alt="KUZ Network logo"
+                    width="112"
+                    height="112"
+                >
+            </a>
+
+            <div class="header-title-block" aria-label="Project title">
+                <h1 class="header-title-block__title">KUZAI - THE LOCAL AI</h1>
+                <p class="header-title-block__meta">A KUZ NETWORK SOLUTION - BETA-0.03.2026</p>
             </div>
 
-            <div class="topbar-meta">
-                <div class="meta-pill">
+            <div class="topbar-meta site-header-runtime" aria-label="Runtime status">
+                <div class="meta-pill site-header-runtime__pill">
                     <span class="meta-label">MODEL</span>
                     <span class="meta-value" id="modelName"><?= $model ?></span>
                 </div>
-                <div class="meta-pill" id="serverState">
-                    <span class="state-dot"></span>
+                <div class="meta-pill site-header-runtime__pill" id="serverState">
+                    <span class="state-dot meta-dot"></span>
                     <span class="meta-value">CHECKING</span>
                 </div>
             </div>
@@ -58,6 +62,12 @@ $model = htmlspecialchars($config['llm']['model'], ENT_QUOTES, 'UTF-8');
                         <h2>/Start a new process/</h2>
                     </div>
                     <div class="chat-actions">
+                        <div class="git-rag-toolbar" id="gitRagToolbar">
+                            <button type="button" class="btn btn-secondary git-rag-active-repo-btn" id="gitRagActiveRepoBtn" title="No GIT-RAG repository selected">NO REPO</button>
+                            <button type="button" class="btn btn-secondary git-rag-main-btn" id="gitRagBtn" title="Select GIT-RAG repository">GIT-RAG</button>
+                            <div class="git-rag-menu git-rag-menu-repos" id="gitRagRepoMenu" hidden></div>
+                            <div class="git-rag-menu git-rag-menu-files" id="gitRagFilesMenu" hidden></div>
+                        </div>
                         <button type="button" class="btn btn-secondary custom-llm-main-btn" id="customLlmBtn" title="Select KUZAI behavior profile">CUSTOM LLM</button>
                         <button type="button" class="btn btn-secondary" id="clearBtn">CLEAR</button>
                     </div>
@@ -158,8 +168,14 @@ $model = htmlspecialchars($config['llm']['model'], ENT_QUOTES, 'UTF-8');
                 </div>
 </aside>
         </main>
+
+        <footer class="site-footer site-footer--dynamic app-site-footer" aria-label="KUZ Network footer">
+            <div class="site-footer__inner">
+                <p class="site-footer__text">THE KUZ NETWORK - @2026 / BUILD LOCAL / KEEP CONTROL / OWN THE STACK</p>
+            </div>
+        </footer>
     </div>
 
-    <script src="assets/js/app.js?v=custom-llm-runtime-1"></script>
+    <script src="assets/js/app.js?v=custom-llm-runtime-1-git-rag-file-edit-ui-1"></script>
 </body>
 </html>

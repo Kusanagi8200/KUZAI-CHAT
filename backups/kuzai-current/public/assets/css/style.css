@@ -978,3 +978,2332 @@ input[type="reset"],
     font-weight: 900 !important;
 }
 /* KUZAI_ALL_TEXT_BOLD_FINAL_END */
+
+
+/* KUZAI_GIT_RAG_UI_BEGIN */
+.git-rag-toolbar {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+}
+
+#gitRagActiveRepoBtn,
+#gitRagBtn {
+    min-height: 42px;
+    white-space: nowrap;
+    font-weight: 900;
+}
+
+#gitRagActiveRepoBtn {
+    max-width: 240px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.git-rag-active-repo-btn--selected {
+    border-color: var(--button-border-hover);
+}
+
+.git-rag-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    z-index: 80;
+    width: min(620px, calc(100vw - 32px));
+    max-height: 420px;
+    padding: 10px;
+    border: 2px solid var(--border-strong);
+    border-radius: var(--radius-md);
+    background: var(--bg-main);
+    color: var(--text-main);
+    box-shadow: 0 18px 38px rgba(0, 0, 0, 0.82);
+    overflow: auto;
+}
+
+.git-rag-menu[hidden] {
+    display: none !important;
+}
+
+.git-rag-menu-title {
+    margin: 0 0 8px;
+    color: var(--text-main);
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.git-rag-menu-subtitle {
+    margin: 0 0 8px;
+    color: var(--text-dim);
+    font-size: 0.72rem;
+    font-weight: 700;
+}
+
+.git-rag-menu-empty {
+    padding: 10px;
+    color: var(--text-dim);
+    font-size: 0.82rem;
+    line-height: 1.45;
+}
+
+.git-rag-menu-item,
+.git-rag-file-item {
+    width: 100%;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 3px;
+    margin: 0 0 6px;
+    padding: 9px 10px;
+    border: 1px solid var(--border-main);
+    border-radius: 10px;
+    background: var(--bg-panel);
+    color: var(--text-main);
+    text-align: left;
+    cursor: pointer;
+}
+
+.git-rag-menu-item:hover:not(:disabled),
+.git-rag-file-item:hover:not(:disabled) {
+    border-color: var(--button-border-hover);
+}
+
+.git-rag-menu-item:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.git-rag-menu-item--selected {
+    border-color: var(--button-border-hover);
+}
+
+.git-rag-menu-item-main,
+.git-rag-file-path {
+    min-width: 0;
+    overflow: hidden;
+    color: var(--text-main);
+    font-size: 0.82rem;
+    font-weight: 900;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.git-rag-menu-item-meta,
+.git-rag-file-meta {
+    color: var(--text-dim);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.git-rag-files-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.git-rag-menu-close {
+    width: 34px;
+    height: 34px;
+    min-width: 34px;
+    padding: 0;
+    border: 1px solid var(--border-main);
+    border-radius: 999px;
+    background: var(--bg-main);
+    color: var(--text-main);
+    font-size: 1.2rem;
+    font-weight: 900;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.git-rag-files-list {
+    display: grid;
+    gap: 0;
+}
+
+@media (max-width: 900px) {
+    .git-rag-toolbar {
+        width: 100%;
+        justify-content: flex-end;
+    }
+
+    #gitRagActiveRepoBtn,
+    #gitRagBtn {
+        flex: 1 1 auto;
+        min-width: 0;
+    }
+
+    .git-rag-menu {
+        left: auto;
+        right: 0;
+        width: min(520px, calc(100vw - 32px));
+    }
+}
+/* KUZAI_GIT_RAG_UI_END */
+
+
+/* KUZAI_GIT_RAG_UI_STEP5C_BEGIN */
+.chat-panel,
+.chat-header {
+    overflow: visible;
+}
+
+.chat-header {
+    position: relative;
+    z-index: 60;
+}
+
+.chat-actions {
+    position: relative;
+    z-index: 70;
+}
+
+.git-rag-toolbar {
+    z-index: 90;
+}
+
+.git-rag-active-repo-btn--hidden {
+    display: none !important;
+}
+
+.git-rag-menu {
+    left: auto;
+    right: 0;
+    top: calc(100% + 12px);
+    z-index: 999;
+    width: min(520px, calc(100vw - 48px));
+    max-height: 360px;
+    padding: 14px;
+    line-height: 1.45;
+}
+
+.git-rag-menu-repos {
+    min-width: 420px;
+}
+
+.git-rag-menu-title {
+    margin-bottom: 12px;
+    line-height: 1.4;
+}
+
+.git-rag-menu-item,
+.git-rag-file-item {
+    margin-bottom: 10px;
+    padding: 12px 14px;
+    gap: 8px;
+    line-height: 1.45;
+}
+
+.git-rag-menu-item-main,
+.git-rag-file-path {
+    line-height: 1.35;
+}
+
+.git-rag-menu-item-meta,
+.git-rag-file-meta {
+    display: block;
+    line-height: 1.45;
+    white-space: normal;
+}
+
+.git-rag-files-header {
+    margin-bottom: 12px;
+}
+
+.git-rag-files-list {
+    max-height: 280px;
+    overflow: auto;
+}
+
+@media (max-width: 900px) {
+    .git-rag-menu,
+    .git-rag-menu-repos {
+        left: auto;
+        right: 0;
+        width: min(520px, calc(100vw - 32px));
+        min-width: 0;
+    }
+}
+/* KUZAI_GIT_RAG_UI_STEP5C_END */
+
+
+/* KUZAI_GIT_RAG_UI_STEP5D_BEGIN */
+.git-rag-menu {
+    position: fixed !important;
+    top: clamp(145px, 18vh, 220px) !important;
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%) !important;
+    z-index: 9999 !important;
+    width: min(680px, calc(100vw - 96px)) !important;
+    max-height: min(460px, calc(100vh - 220px)) !important;
+    padding: 18px !important;
+    border: 2px solid var(--border-strong) !important;
+    border-radius: var(--radius-lg) !important;
+    background: var(--bg-main) !important;
+    box-shadow: 0 22px 60px rgba(0, 0, 0, 0.92) !important;
+}
+
+.git-rag-menu-repos {
+    min-width: 560px;
+}
+
+.git-rag-menu-title {
+    margin-bottom: 16px !important;
+    line-height: 1.5 !important;
+}
+
+.git-rag-menu-item {
+    min-height: 58px;
+    padding: 14px 18px !important;
+    gap: 10px !important;
+}
+
+.git-rag-menu-item-main {
+    line-height: 1.45 !important;
+}
+
+.git-rag-menu-item-meta {
+    line-height: 1.6 !important;
+    letter-spacing: 0.08em;
+}
+
+.git-rag-files-list {
+    max-height: min(330px, calc(100vh - 320px)) !important;
+}
+
+@media (max-width: 900px) {
+    .git-rag-menu,
+    .git-rag-menu-repos {
+        top: 130px !important;
+        width: min(560px, calc(100vw - 32px)) !important;
+        min-width: 0 !important;
+    }
+}
+/* KUZAI_GIT_RAG_UI_STEP5D_END */
+
+
+/* KUZAI_GIT_RAG_UI_STEP5E_BEGIN */
+.git-rag-files-header {
+    align-items: center;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border-soft);
+}
+
+.git-rag-menu-subtitle {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 8px;
+    line-height: 1.5;
+}
+
+.git-rag-menu-subtitle span {
+    display: inline-flex;
+    align-items: center;
+    min-height: 24px;
+    padding: 3px 9px;
+    border: 1px solid var(--border-soft);
+    border-radius: 999px;
+    color: var(--text-dim);
+    font-size: 0.68rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.git-rag-file-item {
+    grid-template-columns: minmax(0, 1fr) auto !important;
+    align-items: center;
+    column-gap: 18px !important;
+    min-height: 66px;
+    padding: 13px 16px !important;
+}
+
+.git-rag-file-main {
+    min-width: 0;
+    display: grid;
+    gap: 5px;
+}
+
+.git-rag-file-name {
+    min-width: 0;
+    overflow: hidden;
+    color: var(--text-main);
+    font-size: 0.9rem;
+    font-weight: 900;
+    line-height: 1.3;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.git-rag-file-dir {
+    min-width: 0;
+    overflow: hidden;
+    color: var(--text-dim);
+    font-size: 0.68rem;
+    font-weight: 700;
+    line-height: 1.35;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.git-rag-file-info {
+    display: inline-flex;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 6px;
+    min-width: 180px;
+}
+
+.git-rag-file-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 24px;
+    padding: 3px 8px;
+    border: 1px solid var(--border-main);
+    border-radius: 999px;
+    color: var(--text-soft);
+    font-size: 0.62rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.git-rag-file-badge--binary {
+    border-color: var(--border-strong);
+    color: var(--text-main);
+}
+
+.git-rag-file-path,
+.git-rag-file-meta {
+    display: none !important;
+}
+
+@media (max-width: 900px) {
+    .git-rag-file-item {
+        grid-template-columns: minmax(0, 1fr) !important;
+        row-gap: 10px !important;
+    }
+
+    .git-rag-file-info {
+        justify-content: flex-start;
+        min-width: 0;
+    }
+}
+/* KUZAI_GIT_RAG_UI_STEP5E_END */
+
+
+/* KUZAI_GIT_RAG_FILE_VIEW_BEGIN */
+.git-rag-file-viewer {
+    width: 100%;
+    max-height: min(58vh, 620px);
+    overflow: auto;
+    margin: 14px 0 0;
+    padding: 16px;
+    border: 1px solid var(--border-soft);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--text-main);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    font-size: 0.76rem;
+    font-weight: 600;
+    line-height: 1.55;
+    white-space: pre;
+    tab-size: 4;
+}
+/* KUZAI_GIT_RAG_FILE_VIEW_END */
+
+/* KUZAI_GIT_RAG_FILE_EDIT_BEGIN */
+.git-rag-file-editor {
+    width: 100%;
+    min-height: min(58vh, 620px);
+    max-height: min(58vh, 620px);
+    overflow: auto;
+    resize: vertical;
+    margin: 14px 0 0;
+    padding: 16px;
+    border: 1px solid var(--border-strong);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-main);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    font-size: 0.76rem;
+    font-weight: 600;
+    line-height: 1.55;
+    white-space: pre;
+    tab-size: 4;
+    outline: none;
+}
+
+.git-rag-git-output--error {
+    border-color: var(--danger, #ff6b6b);
+}
+/* KUZAI_GIT_RAG_FILE_EDIT_END */
+
+
+/* KUZAI_GIT_RAG_UI_POLISH_CSS1_BEGIN */
+.git-rag-menu {
+    width: min(920px, calc(100vw - 72px)) !important;
+    max-height: min(72vh, 720px) !important;
+    padding: 20px !important;
+    overflow: hidden !important;
+}
+
+.git-rag-menu-repos {
+    min-width: min(720px, calc(100vw - 96px)) !important;
+}
+
+.git-rag-files-header {
+    align-items: flex-start !important;
+    gap: 18px !important;
+    margin-bottom: 14px !important;
+}
+
+.git-rag-files-header > div:first-child {
+    min-width: 260px;
+    flex: 1 1 360px;
+}
+
+.git-rag-files-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 8px;
+    max-width: 470px;
+}
+
+.git-rag-reindex-btn {
+    min-height: 34px;
+    padding: 7px 11px;
+    border: 1px solid var(--border-main);
+    border-radius: 999px;
+    background: var(--bg-panel);
+    color: var(--text-main);
+    font-size: 0.66rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.git-rag-reindex-btn:hover:not(:disabled) {
+    border-color: var(--button-border-hover);
+}
+
+.git-rag-reindex-btn:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+.git-rag-menu-close {
+    margin-left: 2px;
+}
+
+.git-rag-reindex-status {
+    margin: 8px 0 0;
+    padding: 8px 11px;
+    border: 1px solid var(--border-soft);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.025);
+    color: var(--text-dim);
+    font-size: 0.68rem;
+    font-weight: 800;
+    line-height: 1.45;
+}
+
+.git-rag-git-output {
+    max-height: min(26vh, 260px) !important;
+    white-space: pre-wrap !important;
+    word-break: break-word;
+}
+
+.git-rag-files-list {
+    max-height: min(48vh, 430px) !important;
+    margin-top: 14px;
+    padding-right: 4px;
+    overflow: auto !important;
+}
+
+.git-rag-file-item {
+    border-radius: 14px !important;
+}
+
+.git-rag-file-viewer,
+.git-rag-file-editor {
+    max-height: min(62vh, 680px) !important;
+    font-size: 0.78rem !important;
+    line-height: 1.6 !important;
+}
+
+.git-rag-file-editor {
+    min-height: min(54vh, 560px) !important;
+}
+
+@media (max-width: 900px) {
+    .git-rag-menu {
+        width: min(620px, calc(100vw - 28px)) !important;
+        max-height: calc(100vh - 160px) !important;
+        padding: 14px !important;
+    }
+
+    .git-rag-files-header {
+        display: grid !important;
+        gap: 12px !important;
+    }
+
+    .git-rag-files-actions {
+        justify-content: flex-start;
+        max-width: none;
+    }
+
+    .git-rag-reindex-btn {
+        min-height: 32px;
+        padding: 6px 9px;
+        font-size: 0.62rem;
+    }
+}
+/* KUZAI_GIT_RAG_UI_POLISH_CSS1_END */
+
+
+/* KUZAI_GIT_RAG_OVERLAY_ALIGN_BEGIN */
+.git-rag-menu {
+    position: fixed !important;
+    top: 134px !important;
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%) !important;
+    z-index: 10000 !important;
+    width: min(920px, calc(100vw - 72px)) !important;
+    max-height: calc(100vh - 164px) !important;
+    overflow: hidden !important;
+}
+
+.git-rag-files-list {
+    max-height: calc(100vh - 430px) !important;
+    overflow: auto !important;
+}
+
+.git-rag-file-viewer,
+.git-rag-file-editor {
+    max-height: calc(100vh - 360px) !important;
+}
+
+@media (max-width: 900px) {
+    .git-rag-menu {
+        top: 118px !important;
+        width: min(620px, calc(100vw - 28px)) !important;
+        max-height: calc(100vh - 138px) !important;
+    }
+
+    .git-rag-files-list {
+        max-height: calc(100vh - 390px) !important;
+    }
+}
+/* KUZAI_GIT_RAG_OVERLAY_ALIGN_END */
+
+
+/* KUZAI_GIT_RAG_BANNER_WIDTH_SCROLL_BEGIN */
+.git-rag-menu {
+    position: fixed !important;
+    top: 134px !important;
+    left: 50% !important;
+    right: auto !important;
+    bottom: 24px !important;
+    transform: translateX(-50%) !important;
+    z-index: 10000 !important;
+    width: min(1440px, calc(100vw - 96px)) !important;
+    max-width: min(1440px, calc(100vw - 96px)) !important;
+    height: auto !important;
+    max-height: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+}
+
+.git-rag-menu-repos {
+    width: 100% !important;
+    min-width: 0 !important;
+}
+
+.git-rag-files-header {
+    flex: 0 0 auto !important;
+}
+
+.git-rag-reindex-status {
+    flex: 0 0 auto !important;
+}
+
+.git-rag-files-list {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow: auto !important;
+    padding-right: 6px !important;
+}
+
+.git-rag-file-viewer,
+.git-rag-file-editor {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow: auto !important;
+}
+
+.git-rag-git-output {
+    flex: 0 0 auto !important;
+    max-height: 220px !important;
+    overflow: auto !important;
+}
+
+@media (max-width: 900px) {
+    .git-rag-menu {
+        top: 118px !important;
+        bottom: 14px !important;
+        width: calc(100vw - 28px) !important;
+        max-width: calc(100vw - 28px) !important;
+    }
+}
+/* KUZAI_GIT_RAG_BANNER_WIDTH_SCROLL_END */
+
+
+/* KUZAI_GIT_RAG_BANNER_ALIGN2_BEGIN */
+.git-rag-menu {
+    position: fixed !important;
+    top: 148px !important;
+    left: 48px !important;
+    right: 48px !important;
+    bottom: 24px !important;
+    transform: none !important;
+    width: auto !important;
+    max-width: none !important;
+    height: auto !important;
+    max-height: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+}
+
+.git-rag-files-list {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow: auto !important;
+}
+
+.git-rag-file-viewer,
+.git-rag-file-editor {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow: auto !important;
+}
+
+@media (max-width: 900px) {
+    .git-rag-menu {
+        top: 126px !important;
+        left: 14px !important;
+        right: 14px !important;
+        bottom: 14px !important;
+        width: auto !important;
+        max-width: none !important;
+    }
+}
+/* KUZAI_GIT_RAG_BANNER_ALIGN2_END */
+
+
+/* KUZAI_GIT_RAG_TOP_ADJUST_BEGIN */
+.git-rag-menu {
+    top: 136px !important;
+}
+
+@media (max-width: 900px) {
+    .git-rag-menu {
+        top: 118px !important;
+    }
+}
+/* KUZAI_GIT_RAG_TOP_ADJUST_END */
+
+
+/* KUZAI_SITE_HEADER_SYNC_STEP165_BEGIN */
+
+body {
+    background: #000 !important;
+    color: #fff !important;
+}
+
+.app-shell {
+    width: min(1680px, calc(100% - 32px)) !important;
+    margin: 0 auto !important;
+    padding-top: 16px !important;
+}
+
+.topbar.site-style-topbar {
+    width: 100% !important;
+    min-height: 118px !important;
+    max-height: 132px !important;
+    padding: 14px 22px !important;
+    margin-bottom: 18px !important;
+    display: grid !important;
+    grid-template-columns: 132px minmax(0, 1fr) 260px !important;
+    align-items: center !important;
+    gap: 0 !important;
+    overflow: hidden !important;
+    position: relative !important;
+    border: 1px solid #fff !important;
+    border-radius: 0 !important;
+    background: #000 !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+}
+
+.topbar.site-style-topbar .brand-mark {
+    grid-column: 1 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    width: 132px !important;
+    min-width: 132px !important;
+    max-width: 132px !important;
+    text-decoration: none !important;
+}
+
+.topbar.site-style-topbar .brand-mark__logo {
+    display: block !important;
+    width: 112px !important;
+    height: auto !important;
+    object-fit: contain !important;
+}
+
+.topbar.site-style-topbar .header-title-block {
+    grid-column: 2 !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    display: grid !important;
+    justify-items: center !important;
+    align-content: center !important;
+    text-align: center !important;
+    gap: 7px !important;
+}
+
+.topbar.site-style-topbar .header-title-block__title {
+    width: 100% !important;
+    margin: 0 !important;
+    color: #fff !important;
+    text-align: center !important;
+    text-transform: uppercase !important;
+    white-space: nowrap !important;
+    font-size: clamp(2.05rem, 3.05vw, 3.65rem) !important;
+    line-height: 0.9 !important;
+    letter-spacing: -0.035em !important;
+}
+
+.topbar.site-style-topbar .header-title-block__meta {
+    width: 100% !important;
+    margin: 0 !important;
+    color: #fff !important;
+    text-align: center !important;
+    text-transform: uppercase !important;
+    white-space: nowrap !important;
+    font-size: clamp(0.58rem, 0.76vw, 0.86rem) !important;
+    line-height: 1 !important;
+    letter-spacing: 0.18em !important;
+}
+
+.topbar.site-style-topbar .site-header-runtime {
+    grid-column: 3 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    gap: 8px !important;
+    flex-wrap: wrap !important;
+    width: 260px !important;
+    min-width: 260px !important;
+    max-width: 260px !important;
+}
+
+.topbar.site-style-topbar .site-header-runtime__pill {
+    min-height: 32px !important;
+    padding: 7px 9px !important;
+    border: 1px solid #fff !important;
+    border-radius: 0 !important;
+    background: #000 !important;
+    color: #fff !important;
+    box-shadow: none !important;
+    font-size: 0.66rem !important;
+    line-height: 1 !important;
+    letter-spacing: 0.08em !important;
+    text-transform: uppercase !important;
+}
+
+.topbar.site-style-topbar .meta-label,
+.topbar.site-style-topbar .meta-value {
+    color: #fff !important;
+}
+
+.topbar.site-style-topbar .meta-dot,
+.topbar.site-style-topbar .state-dot {
+    width: 8px !important;
+    height: 8px !important;
+    border-radius: 0 !important;
+    background: #fff !important;
+    box-shadow: none !important;
+}
+
+.topbar.site-style-topbar .state-ok .meta-dot,
+.topbar.site-style-topbar .state-ok .state-dot {
+    background: #fff !important;
+}
+
+.topbar.site-style-topbar .state-down .meta-dot,
+.topbar.site-style-topbar .state-down .state-dot {
+    background: #777 !important;
+}
+
+@media (max-width: 1100px) {
+    .topbar.site-style-topbar {
+        grid-template-columns: 96px minmax(0, 1fr) 220px !important;
+        min-height: 108px !important;
+        padding: 12px 16px !important;
+    }
+
+    .topbar.site-style-topbar .brand-mark {
+        width: 96px !important;
+        min-width: 96px !important;
+        max-width: 96px !important;
+    }
+
+    .topbar.site-style-topbar .brand-mark__logo {
+        width: 84px !important;
+    }
+
+    .topbar.site-style-topbar .site-header-runtime {
+        width: 220px !important;
+        min-width: 220px !important;
+        max-width: 220px !important;
+    }
+}
+
+@media (max-width: 780px) {
+    .topbar.site-style-topbar {
+        grid-template-columns: 72px minmax(0, 1fr) !important;
+        grid-template-rows: auto auto !important;
+        max-height: none !important;
+    }
+
+    .topbar.site-style-topbar .brand-mark {
+        width: 72px !important;
+        min-width: 72px !important;
+        max-width: 72px !important;
+    }
+
+    .topbar.site-style-topbar .brand-mark__logo {
+        width: 64px !important;
+    }
+
+    .topbar.site-style-topbar .header-title-block {
+        grid-column: 2 !important;
+    }
+
+    .topbar.site-style-topbar .header-title-block__title {
+        font-size: clamp(1.3rem, 6vw, 2.2rem) !important;
+    }
+
+    .topbar.site-style-topbar .site-header-runtime {
+        grid-column: 1 / -1 !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: none !important;
+        justify-content: center !important;
+        margin-top: 10px !important;
+    }
+}
+
+/* KUZAI_SITE_HEADER_SYNC_STEP165_END */
+
+/* KUZAI_LAYOUT_BAND_STEP166_BEGIN */
+
+/* Match public website shell proportions */
+.app-shell {
+    width: min(1728px, calc(100% - 70px)) !important;
+    margin: 0 auto !important;
+    padding-top: 16px !important;
+}
+
+/* Header: same visual geometry as public home page */
+.topbar.site-style-topbar {
+    width: 100% !important;
+    min-height: 118px !important;
+    max-height: 132px !important;
+    padding: 14px 22px !important;
+    grid-template-columns: 132px minmax(0, 1fr) 132px !important;
+    border-radius: 0 !important;
+}
+
+/* Runtime pills kept functional but removed from centering calculation */
+.topbar.site-style-topbar .site-header-runtime {
+    position: absolute !important;
+    right: 22px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    grid-column: auto !important;
+    width: 244px !important;
+    min-width: 244px !important;
+    max-width: 244px !important;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    justify-items: end !important;
+    align-content: center !important;
+    gap: 8px !important;
+}
+
+/* Main layout becomes one column: side information moves below chat */
+.layout {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 22px !important;
+    align-items: start !important;
+}
+
+/* Remove rounded container style on current main blocks */
+.chat-panel,
+.side-card,
+.composer,
+.messages,
+.message,
+textarea,
+.attachment-chip,
+.web-result-chip {
+    border-radius: 0 !important;
+}
+
+/* Horizontal information band below chat */
+.side-panel {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 14px !important;
+    width: 100% !important;
+}
+
+.side-card {
+    min-height: 176px !important;
+    padding: 16px 18px !important;
+    border: 1px solid #fff !important;
+    background: #000 !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    color: #fff !important;
+}
+
+.side-card .section-kicker {
+    margin: 0 0 8px !important;
+    color: #888 !important;
+    font-size: 0.78rem !important;
+    letter-spacing: 0.22em !important;
+}
+
+.side-card h3 {
+    margin: 0 0 14px !important;
+    color: #fff !important;
+    font-size: 0.92rem !important;
+}
+
+.side-card .kv {
+    display: grid !important;
+    grid-template-columns: 138px minmax(0, 1fr) !important;
+    gap: 12px !important;
+    align-items: baseline !important;
+    padding: 8px 0 !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.18) !important;
+}
+
+.side-card .kv span {
+    color: #777 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.11em !important;
+    font-size: 0.72rem !important;
+}
+
+.side-card .kv strong {
+    color: #fff !important;
+    font-size: 0.82rem !important;
+    font-weight: 800 !important;
+    overflow-wrap: anywhere !important;
+}
+
+/* MEMORIES SYSTEM dynamic hover */
+.chat-header {
+    border-radius: 0 !important;
+    background: #000 !important;
+    color: #fff !important;
+    transition:
+        background-color 160ms ease,
+        color 160ms ease,
+        border-color 160ms ease !important;
+}
+
+.chat-header:hover {
+    background: #fff !important;
+    color: #000 !important;
+    border-color: #fff !important;
+}
+
+.chat-header:hover .section-kicker,
+.chat-header:hover h2,
+.chat-header:hover .chat-actions,
+.chat-header:hover .chat-actions * {
+    color: #000 !important;
+}
+
+.chat-header:hover .btn,
+.chat-header:hover button {
+    background: #fff !important;
+    color: #000 !important;
+    border-color: #000 !important;
+}
+
+.chat-header:hover .btn:hover,
+.chat-header:hover button:hover {
+    background: #000 !important;
+    color: #fff !important;
+    border-color: #000 !important;
+}
+
+/* Responsive preservation */
+@media (max-width: 1100px) {
+    .app-shell {
+        width: min(100% - 32px, 1728px) !important;
+    }
+
+    .side-panel {
+        grid-template-columns: 1fr !important;
+    }
+
+    .side-card .kv {
+        grid-template-columns: 120px minmax(0, 1fr) !important;
+    }
+
+    .topbar.site-style-topbar .site-header-runtime {
+        position: static !important;
+        transform: none !important;
+        grid-column: 1 / -1 !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: none !important;
+        display: flex !important;
+        justify-content: center !important;
+        margin-top: 10px !important;
+    }
+
+    .topbar.site-style-topbar {
+        max-height: none !important;
+    }
+}
+
+@media (max-width: 780px) {
+    .app-shell {
+        width: min(100% - 20px, 1728px) !important;
+    }
+
+    .topbar.site-style-topbar {
+        grid-template-columns: 72px minmax(0, 1fr) !important;
+    }
+}
+
+/* KUZAI_LAYOUT_BAND_STEP166_END */
+
+/* KUZAI_FLAT_LINES_STEP167_BEGIN */
+
+/* Global page width closer to website home visual rhythm */
+.app-shell {
+    width: min(1660px, calc(100% - 72px)) !important;
+    margin: 0 auto !important;
+    padding-top: 16px !important;
+}
+
+/* Header: no container box, only top and bottom white lines */
+.topbar.site-style-topbar {
+    width: 100% !important;
+    min-height: 88px !important;
+    max-height: 96px !important;
+    padding: 8px 0 !important;
+    margin-bottom: 28px !important;
+    display: grid !important;
+    grid-template-columns: 96px minmax(0, 1fr) auto !important;
+    align-items: center !important;
+    gap: 0 !important;
+    border: 0 !important;
+    border-top: 1px solid #fff !important;
+    border-bottom: 1px solid #fff !important;
+    border-radius: 0 !important;
+    background: #000 !important;
+    box-shadow: none !important;
+    overflow: hidden !important;
+}
+
+/* Logo reduced */
+.topbar.site-style-topbar .brand-mark {
+    width: 96px !important;
+    min-width: 96px !important;
+    max-width: 96px !important;
+    padding-left: 18px !important;
+}
+
+.topbar.site-style-topbar .brand-mark__logo {
+    width: 72px !important;
+    height: auto !important;
+}
+
+/* Center title reduced */
+.topbar.site-style-topbar .header-title-block {
+    gap: 5px !important;
+}
+
+.topbar.site-style-topbar .header-title-block__title {
+    font-size: clamp(1.95rem, 2.65vw, 3.05rem) !important;
+    line-height: 0.9 !important;
+    letter-spacing: -0.035em !important;
+}
+
+.topbar.site-style-topbar .header-title-block__meta {
+    font-size: clamp(0.52rem, 0.66vw, 0.74rem) !important;
+    line-height: 1 !important;
+    letter-spacing: 0.18em !important;
+}
+
+/* Runtime info: smaller, inline, no box borders, only text */
+.topbar.site-style-topbar .site-header-runtime {
+    position: static !important;
+    transform: none !important;
+    grid-column: 3 !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    gap: 14px !important;
+    padding-right: 18px !important;
+}
+
+.topbar.site-style-topbar .site-header-runtime__pill {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 7px !important;
+    min-height: 0 !important;
+    height: auto !important;
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    color: #fff !important;
+    font-size: 0.62rem !important;
+    line-height: 1 !important;
+    letter-spacing: 0.08em !important;
+    white-space: nowrap !important;
+}
+
+.topbar.site-style-topbar .meta-label {
+    color: #8a8a8a !important;
+}
+
+.topbar.site-style-topbar .meta-value {
+    color: #fff !important;
+}
+
+.topbar.site-style-topbar .meta-dot,
+.topbar.site-style-topbar .state-dot {
+    width: 6px !important;
+    height: 6px !important;
+    display: inline-block !important;
+    border-radius: 0 !important;
+    background: #fff !important;
+    box-shadow: none !important;
+}
+
+/* Info area: no boxes, only top/bottom lines */
+.side-panel {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 18px !important;
+    width: 100% !important;
+}
+
+.side-card {
+    min-height: 0 !important;
+    padding: 14px 0 16px !important;
+    border: 0 !important;
+    border-top: 1px solid #fff !important;
+    border-bottom: 1px solid #fff !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+}
+
+.side-card .section-kicker {
+    padding: 0 18px !important;
+}
+
+.side-card h3 {
+    padding: 0 18px !important;
+}
+
+.side-card .kv {
+    grid-template-columns: 150px minmax(0, 1fr) !important;
+    padding: 8px 18px !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.18) !important;
+}
+
+/* Keep chat panel square and remove rounded visual language */
+.chat-panel,
+.chat-header,
+.composer,
+textarea,
+.btn,
+.meta-pill,
+.side-card {
+    border-radius: 0 !important;
+}
+
+/* Buttons: square dynamic inversion */
+.btn,
+button {
+    border-radius: 0 !important;
+}
+
+.btn:hover,
+button:hover {
+    background: #fff !important;
+    color: #000 !important;
+    border-color: #fff !important;
+}
+
+/* MEMORIES header dynamic inversion preserved */
+.chat-header:hover {
+    background: #fff !important;
+    color: #000 !important;
+}
+
+.chat-header:hover * {
+    color: #000 !important;
+}
+
+.chat-header:hover .btn:hover,
+.chat-header:hover button:hover {
+    background: #000 !important;
+    color: #fff !important;
+    border-color: #000 !important;
+}
+
+@media (max-width: 1100px) {
+    .app-shell {
+        width: min(100% - 32px, 1660px) !important;
+    }
+
+    .topbar.site-style-topbar {
+        grid-template-columns: 82px minmax(0, 1fr) !important;
+        max-height: none !important;
+    }
+
+    .topbar.site-style-topbar .site-header-runtime {
+        grid-column: 1 / -1 !important;
+        justify-content: center !important;
+        padding: 8px 0 0 !important;
+    }
+
+    .side-panel {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* KUZAI_FLAT_LINES_STEP167_END */
+
+/* KUZAI_SITE_WIDTH_FOOTER_STEP169_BEGIN */
+
+/* Match site page width more closely: less wide than previous app override */
+.app-shell {
+    width: min(1500px, calc(100% - 80px)) !important;
+    margin: 0 auto !important;
+    padding-top: 16px !important;
+}
+
+/* Header: site-style horizontal lines only, no side frame */
+.topbar.site-style-topbar {
+    width: 100% !important;
+    min-height: 96px !important;
+    max-height: 108px !important;
+    padding: 10px 0 !important;
+    margin-bottom: 26px !important;
+    display: grid !important;
+    grid-template-columns: 132px minmax(0, 1fr) 270px !important;
+    align-items: center !important;
+    border: 0 !important;
+    border-top: 1px solid #fff !important;
+    border-bottom: 1px solid #fff !important;
+    border-left: 0 !important;
+    border-right: 0 !important;
+    border-radius: 0 !important;
+    background: #000 !important;
+    box-shadow: none !important;
+}
+
+/* Logo back to website scale */
+.topbar.site-style-topbar .brand-mark {
+    grid-column: 1 !important;
+    width: 132px !important;
+    min-width: 132px !important;
+    max-width: 132px !important;
+    padding-left: 22px !important;
+}
+
+.topbar.site-style-topbar .brand-mark__logo {
+    width: 92px !important;
+    height: auto !important;
+    object-fit: contain !important;
+}
+
+/* Center block must stay centered visually */
+.topbar.site-style-topbar .header-title-block {
+    grid-column: 2 !important;
+    justify-items: center !important;
+    text-align: center !important;
+    gap: 5px !important;
+}
+
+.topbar.site-style-topbar .header-title-block__title {
+    font-size: clamp(2.05rem, 2.75vw, 3.25rem) !important;
+    line-height: 0.9 !important;
+}
+
+.topbar.site-style-topbar .header-title-block__meta {
+    font-size: clamp(0.54rem, 0.68vw, 0.78rem) !important;
+    line-height: 1 !important;
+}
+
+/* MODEL + STATUS: compact inline band with only top/bottom lines */
+.topbar.site-style-topbar .site-header-runtime {
+    position: static !important;
+    transform: none !important;
+    grid-column: 3 !important;
+    width: 270px !important;
+    min-width: 270px !important;
+    max-width: 270px !important;
+    padding: 7px 0 !important;
+    margin-right: 22px !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    gap: 14px !important;
+    border-top: 1px solid #fff !important;
+    border-bottom: 1px solid #fff !important;
+}
+
+.topbar.site-style-topbar .site-header-runtime__pill {
+    border: 0 !important;
+    padding: 0 !important;
+    min-height: 0 !important;
+    height: auto !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 7px !important;
+    font-size: 0.62rem !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+}
+
+.topbar.site-style-topbar .meta-label {
+    color: #8a8a8a !important;
+}
+
+.topbar.site-style-topbar .meta-value {
+    color: #fff !important;
+}
+
+.topbar.site-style-topbar .meta-dot,
+.topbar.site-style-topbar .state-dot {
+    width: 6px !important;
+    height: 6px !important;
+    border-radius: 0 !important;
+    background: #fff !important;
+    box-shadow: none !important;
+}
+
+/* Bottom info area: only horizontal white lines, no vertical card borders */
+.side-panel {
+    width: 100% !important;
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 18px !important;
+}
+
+.side-card {
+    padding: 14px 0 16px !important;
+    border: 0 !important;
+    border-top: 1px solid #fff !important;
+    border-bottom: 1px solid #fff !important;
+    border-left: 0 !important;
+    border-right: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+}
+
+.side-card .section-kicker,
+.side-card h3 {
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+}
+
+.side-card .kv {
+    padding: 8px 18px !important;
+    grid-template-columns: 150px minmax(0, 1fr) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.18) !important;
+}
+
+/* Force every button square, including STOP */
+.btn,
+button,
+.btn-primary,
+.btn-secondary,
+.btn-danger,
+#stopBtn,
+button#stopBtn,
+.composer-actions #stopBtn {
+    border-radius: 0 !important;
+}
+
+#stopBtn,
+button#stopBtn,
+.composer-actions #stopBtn {
+    border: 1px solid #fff !important;
+    background: #000 !important;
+    color: #fff !important;
+}
+
+#stopBtn:hover,
+button#stopBtn:hover,
+.composer-actions #stopBtn:hover {
+    background: #fff !important;
+    color: #000 !important;
+    border-color: #fff !important;
+}
+
+/* Footer copied from public website visual system */
+.site-footer.app-site-footer {
+    width: 100% !important;
+    margin: 34px 0 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+}
+
+.site-footer.app-site-footer .site-footer__inner {
+    width: 100% !important;
+    min-height: 54px !important;
+    display: grid !important;
+    place-items: center !important;
+    border-top: 1px solid #fff !important;
+    border-bottom: 1px solid #fff !important;
+    background: #000 !important;
+    color: #fff !important;
+    transition: background-color 160ms ease, color 160ms ease !important;
+}
+
+.site-footer.app-site-footer .site-footer__text {
+    margin: 0 !important;
+    color: #fff !important;
+    text-align: center !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.16em !important;
+    font-size: clamp(0.62rem, 0.78vw, 0.82rem) !important;
+    line-height: 1.2 !important;
+}
+
+.site-footer.app-site-footer:hover .site-footer__inner {
+    background: #fff !important;
+    color: #000 !important;
+}
+
+.site-footer.app-site-footer:hover .site-footer__text {
+    color: #000 !important;
+}
+
+/* Responsive */
+@media (max-width: 1100px) {
+    .app-shell {
+        width: min(100% - 32px, 1500px) !important;
+    }
+
+    .topbar.site-style-topbar {
+        grid-template-columns: 108px minmax(0, 1fr) !important;
+        max-height: none !important;
+    }
+
+    .topbar.site-style-topbar .brand-mark {
+        width: 108px !important;
+        min-width: 108px !important;
+        max-width: 108px !important;
+    }
+
+    .topbar.site-style-topbar .brand-mark__logo {
+        width: 84px !important;
+    }
+
+    .topbar.site-style-topbar .site-header-runtime {
+        grid-column: 1 / -1 !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: none !important;
+        margin: 10px 0 0 !important;
+        justify-content: center !important;
+    }
+
+    .side-panel {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* KUZAI_SITE_WIDTH_FOOTER_STEP169_END */
+
+/* KUZAI_HEADER_SMALLER_STEP170_BEGIN */
+
+/* Reduce total visual width to match the public website content rhythm */
+.app-shell {
+    width: min(1380px, calc(100% - 110px)) !important;
+    margin: 0 auto !important;
+    padding-top: 16px !important;
+}
+
+/* Header thinner: only two horizontal white lines */
+.topbar.site-style-topbar {
+    width: 100% !important;
+    min-height: 74px !important;
+    max-height: 82px !important;
+    padding: 6px 0 !important;
+    margin-bottom: 24px !important;
+    grid-template-columns: 110px minmax(0, 1fr) 250px !important;
+    border: 0 !important;
+    border-top: 1px solid #fff !important;
+    border-bottom: 1px solid #fff !important;
+    border-left: 0 !important;
+    border-right: 0 !important;
+    background: #000 !important;
+    box-shadow: none !important;
+}
+
+/* Logo larger than previous step, but not oversized */
+.topbar.site-style-topbar .brand-mark {
+    width: 110px !important;
+    min-width: 110px !important;
+    max-width: 110px !important;
+    padding-left: 16px !important;
+}
+
+.topbar.site-style-topbar .brand-mark__logo {
+    width: 74px !important;
+    height: auto !important;
+}
+
+/* Title compact */
+.topbar.site-style-topbar .header-title-block {
+    gap: 4px !important;
+}
+
+.topbar.site-style-topbar .header-title-block__title {
+    font-size: clamp(1.72rem, 2.2vw, 2.55rem) !important;
+    line-height: 0.9 !important;
+    letter-spacing: -0.035em !important;
+}
+
+.topbar.site-style-topbar .header-title-block__meta {
+    font-size: clamp(0.48rem, 0.58vw, 0.66rem) !important;
+    line-height: 1 !important;
+    letter-spacing: 0.18em !important;
+}
+
+/* Runtime compact right line */
+.topbar.site-style-topbar .site-header-runtime {
+    grid-column: 3 !important;
+    width: 250px !important;
+    min-width: 250px !important;
+    max-width: 250px !important;
+    margin-right: 16px !important;
+    padding: 5px 0 !important;
+    gap: 10px !important;
+    border-top: 1px solid #fff !important;
+    border-bottom: 1px solid #fff !important;
+}
+
+.topbar.site-style-topbar .site-header-runtime__pill {
+    font-size: 0.56rem !important;
+    letter-spacing: 0.075em !important;
+}
+
+/* Keep all main elements aligned to the same reduced width */
+.layout,
+.site-footer.app-site-footer {
+    width: 100% !important;
+}
+
+/* Responsive */
+@media (max-width: 1100px) {
+    .app-shell {
+        width: min(100% - 32px, 1380px) !important;
+    }
+
+    .topbar.site-style-topbar {
+        min-height: 88px !important;
+        max-height: none !important;
+        grid-template-columns: 88px minmax(0, 1fr) !important;
+    }
+
+    .topbar.site-style-topbar .brand-mark {
+        width: 88px !important;
+        min-width: 88px !important;
+        max-width: 88px !important;
+    }
+
+    .topbar.site-style-topbar .brand-mark__logo {
+        width: 68px !important;
+    }
+
+    .topbar.site-style-topbar .site-header-runtime {
+        grid-column: 1 / -1 !important;
+        width: auto !important;
+        min-width: 0 !important;
+        max-width: none !important;
+        margin: 8px auto 0 !important;
+        justify-content: center !important;
+    }
+}
+
+/* KUZAI_HEADER_SMALLER_STEP170_END */
+
+/* KUZAI_EXACT_SITE_HEADER_STEP172_BEGIN */
+
+/* Exact public website shell */
+.app-shell {
+    width: 80vw !important;
+    max-width: 1680px !important;
+    min-height: auto !important;
+    margin: 0 auto !important;
+    padding: 24px 0 40px !important;
+    display: grid !important;
+    grid-template-rows: auto auto auto !important;
+    align-content: start !important;
+}
+
+/* Exact public website header geometry */
+.topbar.site-style-topbar {
+    width: 100% !important;
+    height: 118px !important;
+    min-height: 118px !important;
+    max-height: 118px !important;
+    margin: 0 0 28px 0 !important;
+    padding: 14px 22px !important;
+    box-sizing: border-box !important;
+
+    display: grid !important;
+    grid-template-columns: 132px minmax(0, 1fr) 132px !important;
+    align-items: center !important;
+    gap: 0 !important;
+    overflow: hidden !important;
+    position: relative !important;
+
+    border-top: 1px solid #ffffff !important;
+    border-bottom: 1px solid #ffffff !important;
+    border-left: 0 !important;
+    border-right: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    background: #000000 !important;
+}
+
+/* Exact public website logo column */
+.topbar.site-style-topbar .brand-mark {
+    grid-column: 1 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    width: 132px !important;
+    min-width: 132px !important;
+    max-width: 132px !important;
+    padding: 0 !important;
+}
+
+.topbar.site-style-topbar .brand-mark__logo {
+    display: block !important;
+    width: 112px !important;
+    height: auto !important;
+    object-fit: contain !important;
+}
+
+/* Exact public website centered title zone */
+.topbar.site-style-topbar .header-title-block {
+    grid-column: 2 !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    display: grid !important;
+    justify-items: center !important;
+    align-content: center !important;
+    text-align: center !important;
+    gap: 7px !important;
+    max-height: 100% !important;
+}
+
+.topbar.site-style-topbar .header-title-block__title {
+    width: 100% !important;
+    margin: 0 !important;
+    color: #ffffff !important;
+    text-align: center !important;
+    text-transform: uppercase !important;
+    white-space: nowrap !important;
+    font-size: clamp(2.05rem, 3.05vw, 3.65rem) !important;
+    line-height: 0.9 !important;
+    letter-spacing: -0.035em !important;
+}
+
+.topbar.site-style-topbar .header-title-block__meta {
+    width: 100% !important;
+    margin: 0 !important;
+    color: #ffffff !important;
+    text-align: center !important;
+    text-transform: uppercase !important;
+    white-space: nowrap !important;
+    font-size: clamp(0.58rem, 0.76vw, 0.86rem) !important;
+    line-height: 1 !important;
+    letter-spacing: 0.18em !important;
+}
+
+/* Runtime does not change the title centering.
+   It is overlaid in the right zone. */
+.topbar.site-style-topbar .site-header-runtime {
+    position: absolute !important;
+    right: 22px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+
+    width: 248px !important;
+    min-width: 248px !important;
+    max-width: 248px !important;
+
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    gap: 14px !important;
+
+    padding: 6px 0 !important;
+    margin: 0 !important;
+
+    border-top: 1px solid #ffffff !important;
+    border-bottom: 1px solid #ffffff !important;
+    border-left: 0 !important;
+    border-right: 0 !important;
+}
+
+.topbar.site-style-topbar .site-header-runtime__pill {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 7px !important;
+
+    min-height: 0 !important;
+    height: auto !important;
+    padding: 0 !important;
+    margin: 0 !important;
+
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+
+    color: #ffffff !important;
+    font-size: 0.62rem !important;
+    line-height: 1 !important;
+    letter-spacing: 0.08em !important;
+    white-space: nowrap !important;
+}
+
+.topbar.site-style-topbar .meta-label {
+    color: #8a8a8a !important;
+}
+
+.topbar.site-style-topbar .meta-value {
+    color: #ffffff !important;
+}
+
+.topbar.site-style-topbar .meta-dot,
+.topbar.site-style-topbar .state-dot {
+    width: 6px !important;
+    height: 6px !important;
+    display: inline-block !important;
+    border-radius: 0 !important;
+    background: #ffffff !important;
+    box-shadow: none !important;
+}
+
+/* Footer exact public website behavior */
+.site-footer.app-site-footer {
+    display: block !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 18px 0 12px !important;
+    padding: 0 !important;
+    background: #000000 !important;
+    border: 0 !important;
+}
+
+.site-footer.app-site-footer .site-footer__inner {
+    position: relative !important;
+    width: 100% !important;
+    min-height: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: hidden !important;
+
+    border-top: 1px solid #ffffff !important;
+    border-bottom: 1px solid #ffffff !important;
+
+    background: #ffffff !important;
+
+    transition:
+        border-color 300ms ease,
+        background 300ms ease !important;
+}
+
+.site-footer.app-site-footer .site-footer__inner::before {
+    content: "" !important;
+    position: absolute !important;
+    inset: 0 !important;
+    z-index: 0 !important;
+
+    background: #000000 !important;
+    transform: scaleX(0) !important;
+    transform-origin: center !important;
+
+    transition: transform 340ms ease !important;
+}
+
+.site-footer.app-site-footer .site-footer__text {
+    position: relative !important;
+    z-index: 1 !important;
+
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 3px 24px !important;
+
+    color: #000000 !important;
+    text-align: center !important;
+    text-transform: uppercase !important;
+
+    font-weight: 700 !important;
+    font-size: clamp(1rem, 1.22vw, 1.34rem) !important;
+    line-height: 1.2 !important;
+    letter-spacing: 0.12em !important;
+
+    transform: translateY(0) !important;
+
+    transition:
+        color 260ms ease,
+        letter-spacing 300ms ease,
+        transform 300ms ease !important;
+}
+
+.site-footer.app-site-footer:hover .site-footer__inner {
+    border-top-color: #ffffff !important;
+    border-bottom-color: #ffffff !important;
+}
+
+.site-footer.app-site-footer:hover .site-footer__inner::before {
+    transform: scaleX(1) !important;
+}
+
+.site-footer.app-site-footer:hover .site-footer__text {
+    color: #ffffff !important;
+    letter-spacing: 0.16em !important;
+    transform: translateY(-1px) !important;
+}
+
+/* Keep STOP square against old rules */
+#stopBtn,
+button#stopBtn,
+.btn-danger,
+.composer-actions #stopBtn {
+    border-radius: 0 !important;
+}
+
+/* Responsive values copied from website header */
+@media (max-width: 1180px) {
+    .app-shell {
+        width: 86vw !important;
+    }
+
+    .topbar.site-style-topbar {
+        grid-template-columns: 108px minmax(0, 1fr) 108px !important;
+        min-height: 112px !important;
+        height: 112px !important;
+        max-height: none !important;
+    }
+
+    .topbar.site-style-topbar .brand-mark {
+        width: 108px !important;
+        min-width: 108px !important;
+        max-width: 108px !important;
+    }
+
+    .topbar.site-style-topbar .brand-mark__logo {
+        width: 88px !important;
+    }
+
+    .topbar.site-style-topbar .header-title-block__title {
+        font-size: clamp(1.65rem, 3.8vw, 3rem) !important;
+    }
+
+    .topbar.site-style-topbar .header-title-block__meta {
+        font-size: clamp(0.52rem, 0.9vw, 0.72rem) !important;
+    }
+
+    .topbar.site-style-topbar .site-header-runtime {
+        width: 220px !important;
+        min-width: 220px !important;
+        max-width: 220px !important;
+    }
+}
+
+@media (max-width: 760px) {
+    .app-shell {
+        width: 92vw !important;
+    }
+
+    .topbar.site-style-topbar {
+        grid-template-columns: 68px minmax(0, 1fr) !important;
+        min-height: auto !important;
+        height: auto !important;
+        padding: 14px 16px !important;
+        gap: 14px !important;
+    }
+
+    .topbar.site-style-topbar .brand-mark {
+        width: 68px !important;
+        min-width: 68px !important;
+        max-width: 68px !important;
+    }
+
+    .topbar.site-style-topbar .brand-mark__logo {
+        width: 68px !important;
+    }
+
+    .topbar.site-style-topbar .header-title-block {
+        justify-items: start !important;
+        text-align: left !important;
+    }
+
+    .topbar.site-style-topbar .header-title-block__title,
+    .topbar.site-style-topbar .header-title-block__meta {
+        text-align: left !important;
+        white-space: normal !important;
+    }
+
+    .topbar.site-style-topbar .header-title-block__title {
+        font-size: clamp(1.35rem, 6.5vw, 2.2rem) !important;
+    }
+
+    .topbar.site-style-topbar .site-header-runtime {
+        position: static !important;
+        transform: none !important;
+        grid-column: 1 / -1 !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: none !important;
+        justify-content: center !important;
+        margin-top: 10px !important;
+    }
+}
+
+/* KUZAI_EXACT_SITE_HEADER_STEP172_END */
+
+/* KUZAI_DISABLE_APP_ZOOM_STEP174_BEGIN */
+
+/* The original app CSS scales the whole shell with zoom: 1.20.
+   This must be neutralized to match the public website dimensions. */
+:root {
+    --kuzai-app-scale: 1 !important;
+}
+
+.app-shell {
+    zoom: 1 !important;
+    transform: none !important;
+    transform-origin: initial !important;
+
+    width: 80vw !important;
+    max-width: 1680px !important;
+    min-height: auto !important;
+    margin: 0 auto !important;
+    padding: 24px 0 40px !important;
+
+    display: grid !important;
+    grid-template-rows: auto auto auto !important;
+    align-content: start !important;
+}
+
+/* Exact public website banner dimensions after zoom removal */
+.topbar.site-style-topbar {
+    width: 100% !important;
+    height: 118px !important;
+    min-height: 118px !important;
+    max-height: 118px !important;
+    margin: 0 0 28px 0 !important;
+    padding: 14px 22px !important;
+    box-sizing: border-box !important;
+
+    display: grid !important;
+    grid-template-columns: 132px minmax(0, 1fr) 132px !important;
+    align-items: center !important;
+    gap: 0 !important;
+
+    border-top: 1px solid #fff !important;
+    border-bottom: 1px solid #fff !important;
+    border-left: 0 !important;
+    border-right: 0 !important;
+    border-radius: 0 !important;
+    background: #000 !important;
+    box-shadow: none !important;
+    overflow: hidden !important;
+}
+
+.topbar.site-style-topbar .brand-mark {
+    grid-column: 1 !important;
+    width: 132px !important;
+    min-width: 132px !important;
+    max-width: 132px !important;
+    padding: 0 !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+}
+
+.topbar.site-style-topbar .brand-mark__logo {
+    width: 112px !important;
+    height: auto !important;
+    object-fit: contain !important;
+}
+
+.topbar.site-style-topbar .header-title-block {
+    grid-column: 2 !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    display: grid !important;
+    justify-items: center !important;
+    align-content: center !important;
+    text-align: center !important;
+    gap: 7px !important;
+}
+
+.topbar.site-style-topbar .header-title-block__title {
+    width: 100% !important;
+    margin: 0 !important;
+    color: #fff !important;
+    text-align: center !important;
+    text-transform: uppercase !important;
+    white-space: nowrap !important;
+    font-size: clamp(2.05rem, 3.05vw, 3.65rem) !important;
+    line-height: 0.9 !important;
+    letter-spacing: -0.035em !important;
+}
+
+.topbar.site-style-topbar .header-title-block__meta {
+    width: 100% !important;
+    margin: 0 !important;
+    color: #fff !important;
+    text-align: center !important;
+    text-transform: uppercase !important;
+    white-space: nowrap !important;
+    font-size: clamp(0.58rem, 0.76vw, 0.86rem) !important;
+    line-height: 1 !important;
+    letter-spacing: 0.18em !important;
+}
+
+/* Runtime stays functional but no longer expands the header grid */
+.topbar.site-style-topbar .site-header-runtime {
+    position: absolute !important;
+    right: 22px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+
+    width: 248px !important;
+    min-width: 248px !important;
+    max-width: 248px !important;
+
+    padding: 6px 0 !important;
+    border-top: 1px solid #fff !important;
+    border-bottom: 1px solid #fff !important;
+    border-left: 0 !important;
+    border-right: 0 !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    gap: 14px !important;
+}
+
+.topbar.site-style-topbar .site-header-runtime__pill {
+    border: 0 !important;
+    background: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 7px !important;
+
+    font-size: 0.62rem !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+}
+
+/* Prevent lower sections from forcing visual width */
+.layout,
+.chat-panel,
+.side-panel,
+.site-footer.app-site-footer {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+.side-panel {
+    overflow: hidden !important;
+}
+
+@media (max-width: 1180px) {
+    .app-shell {
+        width: 86vw !important;
+    }
+}
+
+@media (max-width: 760px) {
+    .app-shell {
+        width: 92vw !important;
+    }
+}
+
+/* KUZAI_DISABLE_APP_ZOOM_STEP174_END */
+
+/* KUZAI_WIDTH_90VW_STEP175_BEGIN */
+
+/* Match the visible public site width.
+   Keep zoom disabled. Do not let chat/info blocks define page width. */
+:root {
+    --kuzai-app-scale: 1 !important;
+}
+
+.app-shell {
+    zoom: 1 !important;
+    transform: none !important;
+
+    width: 90vw !important;
+    max-width: 1800px !important;
+    min-width: 0 !important;
+
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+/* All major blocks inherit shell width, never exceed it */
+.topbar.site-style-topbar,
+.layout,
+.chat-panel,
+.chat-header,
+.messages,
+.composer,
+.side-panel,
+.site-footer.app-site-footer {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+}
+
+/* Prevent inner flex/grid children from forcing overflow */
+.chat-actions,
+.composer-actions,
+.side-card,
+.side-card *,
+textarea {
+    min-width: 0 !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+/* Keep the side info band aligned to the same 90vw shell */
+.side-panel {
+    overflow: hidden !important;
+}
+
+/* Keep exact site header height and logo/text scale */
+.topbar.site-style-topbar {
+    height: 118px !important;
+    min-height: 118px !important;
+    max-height: 118px !important;
+    grid-template-columns: 132px minmax(0, 1fr) 132px !important;
+}
+
+.topbar.site-style-topbar .brand-mark__logo {
+    width: 112px !important;
+}
+
+@media (max-width: 1180px) {
+    .app-shell {
+        width: 92vw !important;
+    }
+}
+
+@media (max-width: 760px) {
+    .app-shell {
+        width: 94vw !important;
+    }
+}
+
+/* KUZAI_WIDTH_90VW_STEP175_END */
+
+/* KUZAI_HEADER_META_LIGHT_STEP176_BEGIN */
+
+.topbar.site-style-topbar .header-title-block__meta {
+    font-weight: 400 !important;
+    opacity: 0.92 !important;
+    letter-spacing: 0.20em !important;
+}
+
+/* KUZAI_HEADER_META_LIGHT_STEP176_END */
+
+/* KUZAI_HEADER_META_MINUS_1PT_STEP177_BEGIN */
+
+.topbar.site-style-topbar .header-title-block__meta {
+    font-size: calc(clamp(0.58rem, 0.76vw, 0.86rem) - 1pt) !important;
+    font-weight: 400 !important;
+}
+
+/* KUZAI_HEADER_META_MINUS_1PT_STEP177_END */
