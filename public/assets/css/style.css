@@ -7096,3 +7096,145 @@ html body.git-rag-page-body .app-shell p.section-kicker.git-rag-system-title-sta
   transition: none !important;
   transform: none !important;
 }
+
+/* =========================================================
+   KUZAI_GIT_RAG_REMOVE_EMPTY_CONTROLS_LINE_STEP224
+   Remove grey separator above GIT-RAG REPOSITORIES
+   when the hidden repo/back button leaves an empty controls row.
+   ========================================================= */
+
+html body.git-rag-page-body .app-shell .git-rag-page-controls:has(#gitRagBtn[hidden]) {
+  display: none !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  border: 0 !important;
+  border-top: 0 !important;
+  border-bottom: 0 !important;
+
+  height: 0 !important;
+  min-height: 0 !important;
+  max-height: 0 !important;
+
+  overflow: hidden !important;
+}
+
+html body.git-rag-page-body .app-shell #gitRagRepoMenu:not([hidden]) {
+  margin-top: 0 !important;
+}
+
+/* =========================================================
+   KUZAI_GIT_RAG_REPO_COMPACT_BOTTOM_OFFSET_STEP225
+   Repo row height = text height + 2px.
+   BACK HOME + footer moved 40px lower.
+   ========================================================= */
+
+/* Repo available row: text height + 2px */
+html body.git-rag-page-body .app-shell #gitRagRepoMenu button.git-rag-menu-item {
+  height: calc(1em + 2px) !important;
+  min-height: calc(1em + 2px) !important;
+  max-height: calc(1em + 2px) !important;
+
+  padding-top: 1px !important;
+  padding-bottom: 1px !important;
+  padding-left: 8px !important;
+  padding-right: 8px !important;
+
+  line-height: 1 !important;
+
+  align-items: center !important;
+
+  box-sizing: border-box !important;
+}
+
+html body.git-rag-page-body .app-shell #gitRagRepoMenu button.git-rag-menu-item *,
+html body.git-rag-page-body .app-shell #gitRagRepoMenu .git-rag-menu-item-main,
+html body.git-rag-page-body .app-shell #gitRagRepoMenu .git-rag-menu-item-meta {
+  line-height: 1 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* Move BACK HOME + footer group 40px lower from the repo container */
+html body.git-rag-page-body .app-shell .git-rag-bottom-nav {
+  margin-top: 40px !important;
+}
+
+/* =========================================================
+   KUZAI_GIT_RAG_REPO_ROW_PADDING_10PX_STEP226
+   Repo available row:
+   10px above and below text.
+   ========================================================= */
+
+html body.git-rag-page-body .app-shell #gitRagRepoMenu button.git-rag-menu-item {
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+  padding-left: 8px !important;
+  padding-right: 8px !important;
+
+  line-height: 1 !important;
+
+  align-items: center !important;
+  box-sizing: border-box !important;
+}
+
+html body.git-rag-page-body .app-shell #gitRagRepoMenu button.git-rag-menu-item *,
+html body.git-rag-page-body .app-shell #gitRagRepoMenu .git-rag-menu-item-main,
+html body.git-rag-page-body .app-shell #gitRagRepoMenu .git-rag-menu-item-meta {
+  line-height: 1 !important;
+
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* =========================================================
+   KUZAI_GIT_RAG_DESELECT_REPO_STEP227
+   Deselect active repo button.
+   Same dynamic style as other GIT-RAG action buttons.
+   ========================================================= */
+
+html body.git-rag-page-body .app-shell #gitRagDeselectRepoBtn {
+  background-color: #ffffff !important;
+  background-image: linear-gradient(#000000, #000000) !important;
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
+  background-size: 0 100% !important;
+
+  color: #000000 !important;
+
+  border: 1px solid #ffffff !important;
+  border-radius: 0 !important;
+
+  padding: 2pt 8px !important;
+
+  line-height: 1 !important;
+  white-space: nowrap !important;
+  text-transform: uppercase !important;
+
+  transition:
+    color 180ms ease,
+    background-size 240ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 180ms ease !important;
+}
+
+html body.git-rag-page-body .app-shell #gitRagDeselectRepoBtn:hover,
+html body.git-rag-page-body .app-shell #gitRagDeselectRepoBtn:focus-visible {
+  background-size: 100% 100% !important;
+
+  color: #ffffff !important;
+
+  border-top-color: #ffffff !important;
+  border-bottom-color: #ffffff !important;
+  border-left-color: transparent !important;
+  border-right-color: transparent !important;
+}

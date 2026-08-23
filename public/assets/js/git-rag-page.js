@@ -629,6 +629,16 @@
         }
     }
 
+    function deselectActiveRepo() {
+        saveActiveRepoId('');
+
+        filesMenu.hidden = true;
+        repoMenu.hidden = false;
+        gitRagBtn.hidden = true;
+
+        renderRepoMenu();
+    }
+
     async function loadFilesMenu() {
         const activeRepo = getActiveRepo();
 
@@ -707,6 +717,7 @@
                         <button type="button" class="git-rag-reindex-btn" data-git-rag-action="commit">COMMIT</button>
                         <button type="button" class="git-rag-reindex-btn" data-git-rag-action="push">PUSH</button>
                         <button type="button" class="git-rag-reindex-btn" id="gitRagReindexBtn">REINDEX</button>
+                        <button type="button" class="git-rag-reindex-btn git-rag-deselect-repo-btn" id="gitRagDeselectRepoBtn">DESELECT REPO</button>
                         <button type="button" class="git-rag-menu-close" id="gitRagFilesCloseBtn">×</button>
                     </div>
                 </div>
@@ -726,11 +737,19 @@
             `;
 
             const reindexBtn = document.getElementById('gitRagReindexBtn');
+            const deselectRepoBtn = document.getElementById('gitRagDeselectRepoBtn');
             const closeBtn = document.getElementById('gitRagFilesCloseBtn');
             const gitActionBtns = filesMenu.querySelectorAll('[data-git-rag-action]');
 
             if (reindexBtn) {
                 reindexBtn.addEventListener('click', reindexActiveRepo);
+            }
+
+            if (deselectRepoBtn) {
+                deselectRepoBtn.addEventListener('click', (event) => {
+                    event.stopPropagation();
+                    deselectActiveRepo();
+                });
             }
 
             gitActionBtns.forEach((button) => {

@@ -21,6 +21,50 @@ $assetVersion = (string) time();
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anta&display=swap" rel="stylesheet">
+
+    <style id="git-rag-page-critical-step223">
+        body.git-rag-page-body .git-rag-system-title-line {
+            display: block !important;
+            width: auto !important;
+            margin: 0 0 4px 0 !important;
+            padding: 0 !important;
+            background: transparent !important;
+            color: inherit !important;
+            border: 0 !important;
+            line-height: 1 !important;
+        }
+
+        body.git-rag-page-body #gitRagSystemTitleChip {
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            width: auto !important;
+            max-width: max-content !important;
+            margin: 0 !important;
+            padding: 2pt 8px !important;
+            background: #ffffff !important;
+            background-color: #ffffff !important;
+            background-image: none !important;
+            color: #000000 !important;
+            border: 1px solid #ffffff !important;
+            border-radius: 0 !important;
+            line-height: 1 !important;
+            white-space: nowrap !important;
+            text-transform: uppercase !important;
+            box-shadow: none !important;
+            text-shadow: none !important;
+            cursor: default !important;
+            pointer-events: none !important;
+            transition: none !important;
+            transform: none !important;
+        }
+
+        body.git-rag-page-body #gitRagSystemTitleChip:hover {
+            background: #ffffff !important;
+            color: #000000 !important;
+        }
+    </style>
+
 </head>
 <body class="git-rag-page-body" data-page="git-rag">
     <div class="app-shell">
@@ -56,7 +100,7 @@ $assetVersion = (string) time();
             <section class="chat-panel git-rag-page-panel">
                 <div class="chat-header git-rag-page-header">
                     <div>
-                        <p class="section-kicker git-rag-system-title-static">GIT-RAG SYSTEM</p>
+                        <p class="git-rag-system-title-line"><span id="gitRagSystemTitleChip">GIT-RAG SYSTEM</span></p>
                         <h2>/Repository management/</h2>
                     </div>
 
