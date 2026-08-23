@@ -931,123 +931,28 @@ $model = htmlspecialchars((string)($config['llm']['model'] ?? 'LOCAL MODEL'), EN
     </style>
 
 
-    <style id="profiles-page-bottom-gitrag-reference-step237">
-        body.profiles-page-body .profiles-bottom-nav {
+    <style id="profiles-page-bottom-spacing-final-step239">
+        body.profiles-page-body .profiles-page-shell > nav.profiles-bottom-nav {
+            display: block !important;
             width: 100% !important;
             max-width: 100% !important;
             box-sizing: border-box !important;
 
-            margin: 40px 0 8px 0 !important;
+            margin-top: 40px !important;
+            margin-right: 0 !important;
+            margin-bottom: 26px !important;
+            margin-left: 0 !important;
+
             padding: 0 !important;
         }
 
-        body.profiles-page-body .profiles-bottom-back-home {
-            position: relative !important;
-            isolation: isolate !important;
-
-            display: flex !important;
-            align-items: center !important;
-            justify-content: space-between !important;
-
-            width: 100% !important;
-            max-width: 100% !important;
-
-            box-sizing: border-box !important;
-
+        body.profiles-page-body .profiles-page-shell > nav.profiles-bottom-nav > a.profiles-bottom-back-home {
             margin: 0 !important;
-            padding: 0.48rem 1rem !important;
-
-            background: #000000 !important;
-            color: #ffffff !important;
-
-            border-top: 1px solid #333333 !important;
-            border-bottom: 1px solid #333333 !important;
-            border-left: 0 !important;
-            border-right: 0 !important;
-            border-radius: 0 !important;
-
-            font-size: clamp(1.05rem, 1.25vw, 1.45rem) !important;
-            font-weight: 700 !important;
-            letter-spacing: 0.08em !important;
-            line-height: 1 !important;
-
-            text-decoration: none !important;
-            text-transform: uppercase !important;
-
-            overflow: hidden !important;
-
-            transition:
-                color 180ms ease,
-                border-color 180ms ease !important;
         }
 
-        body.profiles-page-body .profiles-bottom-back-home::before {
-            content: "" !important;
-
-            position: absolute !important;
-            inset: 0 !important;
-
-            z-index: 0 !important;
-
-            background: #ffffff !important;
-
-            transform: scaleX(0) !important;
-            transform-origin: center center !important;
-
-            transition: transform 240ms cubic-bezier(0.16, 1, 0.3, 1) !important;
-
-            pointer-events: none !important;
-        }
-
-        body.profiles-page-body .profiles-bottom-back-home__label,
-        body.profiles-page-body .profiles-bottom-back-home__arrow {
-            position: relative !important;
-            z-index: 1 !important;
-
-            display: inline-flex !important;
-            align-items: center !important;
-
-            margin: 0 !important;
-            padding: 0 !important;
-
-            color: inherit !important;
-
-            font-size: clamp(1.05rem, 1.25vw, 1.45rem) !important;
-            font-weight: 700 !important;
-            letter-spacing: 0.08em !important;
-            line-height: 1 !important;
-
-            white-space: nowrap !important;
-        }
-
-        body.profiles-page-body .profiles-bottom-back-home:hover,
-        body.profiles-page-body .profiles-bottom-back-home:focus-visible {
-            color: #000000 !important;
-            border-top-color: #ffffff !important;
-            border-bottom-color: #ffffff !important;
-            outline: none !important;
-        }
-
-        body.profiles-page-body .profiles-bottom-back-home:hover::before,
-        body.profiles-page-body .profiles-bottom-back-home:focus-visible::before {
-            transform: scaleX(1) !important;
-        }
-
-        body.profiles-page-body .site-footer.app-site-footer {
+        body.profiles-page-body .profiles-page-shell > nav.profiles-bottom-nav + footer.site-footer.app-site-footer {
             margin-top: 0 !important;
             margin-bottom: 0 !important;
-        }
-    </style>
-
-
-    <style id="profiles-page-bottom-gap-step238">
-        body.profiles-page-body .profiles-bottom-nav {
-            margin: 40px 0 26px 0 !important;
-            padding: 0 !important;
-        }
-
-        body.profiles-page-body .site-footer.app-site-footer {
-            margin-top: 0 !important;
         }
     </style>
 
@@ -1093,14 +998,14 @@ $model = htmlspecialchars((string)($config['llm']['model'] ?? 'LOCAL MODEL'), EN
         <div class="profiles" id="profilesList"></div>
     </main>
 
-    <nav class="profiles-bottom-nav" aria-label="Back to main chat">
+    <nav class="profiles-bottom-nav" aria-label="Back to main chat" style="margin: 40px 0 26px 0 !important; padding: 0 !important;">
         <a class="profiles-bottom-back-home" href="/KUZAI/">
             <span class="profiles-bottom-back-home__label">BACK HOME</span>
             <span class="profiles-bottom-back-home__arrow">--&gt;</span>
         </a>
     </nav>
 
-    <footer class="site-footer site-footer--dynamic app-site-footer" aria-label="KUZ Network footer">
+    <footer class="site-footer site-footer--dynamic app-site-footer" aria-label="KUZ Network footer" style="margin-top: 0 !important; margin-bottom: 0 !important;">
         <div class="site-footer__inner">
             <p class="site-footer__text">THE KUZ NETWORK - @2026 / BUILD LOCAL / KEEP CONTROL / OWN THE STACK</p>
         </div>
