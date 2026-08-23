@@ -3307,3 +3307,702 @@ textarea {
 }
 
 /* KUZAI_HEADER_META_MINUS_1PT_STEP177_END */
+
+/* === KUZAI_BUTTON_DYNAMIC_SITE_STEP189 === */
+/* Default: white fill, black text. Hover: black fill, white text, top/bottom border only. */
+
+button,
+.btn,
+.chat-actions button,
+.composer-actions button,
+.topbar button,
+.action-strip button,
+.site-style-topbar button,
+.profile-actions button,
+.git-rag-actions button,
+.upload-actions button,
+input[type="button"],
+input[type="submit"] {
+  background: #ffffff !important;
+  color: #000000 !important;
+  border: 1px solid #ffffff !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  outline: none !important;
+  transition:
+    background-color 160ms ease,
+    color 160ms ease,
+    border-color 160ms ease,
+    transform 160ms ease !important;
+}
+
+button:hover,
+.btn:hover,
+.chat-actions button:hover,
+.composer-actions button:hover,
+.topbar button:hover,
+.action-strip button:hover,
+.site-style-topbar button:hover,
+.profile-actions button:hover,
+.git-rag-actions button:hover,
+.upload-actions button:hover,
+input[type="button"]:hover,
+input[type="submit"]:hover,
+button:focus-visible,
+.btn:focus-visible,
+.chat-actions button:focus-visible,
+.composer-actions button:focus-visible,
+.topbar button:focus-visible,
+.action-strip button:focus-visible,
+.site-style-topbar button:focus-visible,
+.profile-actions button:focus-visible,
+.git-rag-actions button:focus-visible,
+.upload-actions button:focus-visible,
+input[type="button"]:focus-visible,
+input[type="submit"]:focus-visible {
+  background: #000000 !important;
+  color: #ffffff !important;
+  border-top-color: #ffffff !important;
+  border-bottom-color: #ffffff !important;
+  border-left-color: transparent !important;
+  border-right-color: transparent !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+button *,
+.btn *,
+.chat-actions button *,
+.composer-actions button *,
+.topbar button *,
+.action-strip button *,
+.site-style-topbar button *,
+.profile-actions button *,
+.git-rag-actions button *,
+.upload-actions button * {
+  color: inherit !important;
+}
+
+button:disabled,
+.btn:disabled,
+button[disabled],
+.btn[disabled],
+input[type="button"]:disabled,
+input[type="submit"]:disabled {
+  opacity: 0.45 !important;
+  cursor: not-allowed !important;
+}
+
+/* === KUZAI_BUTTON_DYNAMIC_LAYER_STEP190 === */
+/* Same logic as site dynamic blocks: animated black layer on hover. */
+
+button,
+.btn,
+.chat-actions button,
+.composer-actions button,
+.topbar button,
+.action-strip button,
+.site-style-topbar button,
+.profile-actions button,
+.git-rag-actions button,
+.upload-actions button {
+  position: relative !important;
+  overflow: hidden !important;
+  isolation: isolate !important;
+  background: #ffffff !important;
+  color: #000000 !important;
+  border: 1px solid #ffffff !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  transform: none !important;
+  transition:
+    color 180ms ease,
+    border-color 180ms ease !important;
+}
+
+button::before,
+.btn::before,
+.chat-actions button::before,
+.composer-actions button::before,
+.topbar button::before,
+.action-strip button::before,
+.site-style-topbar button::before,
+.profile-actions button::before,
+.git-rag-actions button::before,
+.upload-actions button::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: -1 !important;
+  background: #000000 !important;
+  transform: translateY(100%) !important;
+  transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+button:hover,
+.btn:hover,
+.chat-actions button:hover,
+.composer-actions button:hover,
+.topbar button:hover,
+.action-strip button:hover,
+.site-style-topbar button:hover,
+.profile-actions button:hover,
+.git-rag-actions button:hover,
+.upload-actions button:hover,
+button:focus-visible,
+.btn:focus-visible,
+.chat-actions button:focus-visible,
+.composer-actions button:focus-visible,
+.topbar button:focus-visible,
+.action-strip button:focus-visible,
+.site-style-topbar button:focus-visible,
+.profile-actions button:focus-visible,
+.git-rag-actions button:focus-visible,
+.upload-actions button:focus-visible {
+  color: #ffffff !important;
+  background: transparent !important;
+  border-top-color: #ffffff !important;
+  border-bottom-color: #ffffff !important;
+  border-left-color: transparent !important;
+  border-right-color: transparent !important;
+}
+
+button:hover::before,
+.btn:hover::before,
+.chat-actions button:hover::before,
+.composer-actions button:hover::before,
+.topbar button:hover::before,
+.action-strip button:hover::before,
+.site-style-topbar button:hover::before,
+.profile-actions button:hover::before,
+.git-rag-actions button:hover::before,
+.upload-actions button:hover::before,
+button:focus-visible::before,
+.btn:focus-visible::before,
+.chat-actions button:focus-visible::before,
+.composer-actions button:focus-visible::before,
+.topbar button:focus-visible::before,
+.action-strip button:focus-visible::before,
+.site-style-topbar button:focus-visible::before,
+.profile-actions button:focus-visible::before,
+.git-rag-actions button:focus-visible::before,
+.upload-actions button:focus-visible::before {
+  transform: translateY(0) !important;
+}
+
+button *,
+.btn *,
+.chat-actions button *,
+.composer-actions button *,
+.topbar button *,
+.action-strip button *,
+.site-style-topbar button *,
+.profile-actions button *,
+.git-rag-actions button *,
+.upload-actions button * {
+  position: relative !important;
+  z-index: 1 !important;
+  color: inherit !important;
+}
+
+/* === KUZAI_BUTTON_DYNAMIC_LAYER_STEP190 === */
+/* Same logic as site dynamic blocks: animated black layer on hover. */
+
+button,
+.btn,
+.chat-actions button,
+.composer-actions button,
+.topbar button,
+.action-strip button,
+.site-style-topbar button,
+.profile-actions button,
+.git-rag-actions button,
+.upload-actions button {
+  position: relative !important;
+  overflow: hidden !important;
+  isolation: isolate !important;
+  background: #ffffff !important;
+  color: #000000 !important;
+  border: 1px solid #ffffff !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  transform: none !important;
+  transition:
+    color 180ms ease,
+    border-color 180ms ease !important;
+}
+
+button::before,
+.btn::before,
+.chat-actions button::before,
+.composer-actions button::before,
+.topbar button::before,
+.action-strip button::before,
+.site-style-topbar button::before,
+.profile-actions button::before,
+.git-rag-actions button::before,
+.upload-actions button::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: -1 !important;
+  background: #000000 !important;
+  transform: translateY(100%) !important;
+  transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+button:hover,
+.btn:hover,
+.chat-actions button:hover,
+.composer-actions button:hover,
+.topbar button:hover,
+.action-strip button:hover,
+.site-style-topbar button:hover,
+.profile-actions button:hover,
+.git-rag-actions button:hover,
+.upload-actions button:hover,
+button:focus-visible,
+.btn:focus-visible,
+.chat-actions button:focus-visible,
+.composer-actions button:focus-visible,
+.topbar button:focus-visible,
+.action-strip button:focus-visible,
+.site-style-topbar button:focus-visible,
+.profile-actions button:focus-visible,
+.git-rag-actions button:focus-visible,
+.upload-actions button:focus-visible {
+  color: #ffffff !important;
+  background: transparent !important;
+  border-top-color: #ffffff !important;
+  border-bottom-color: #ffffff !important;
+  border-left-color: transparent !important;
+  border-right-color: transparent !important;
+}
+
+button:hover::before,
+.btn:hover::before,
+.chat-actions button:hover::before,
+.composer-actions button:hover::before,
+.topbar button:hover::before,
+.action-strip button:hover::before,
+.site-style-topbar button:hover::before,
+.profile-actions button:hover::before,
+.git-rag-actions button:hover::before,
+.upload-actions button:hover::before,
+button:focus-visible::before,
+.btn:focus-visible::before,
+.chat-actions button:focus-visible::before,
+.composer-actions button:focus-visible::before,
+.topbar button:focus-visible::before,
+.action-strip button:focus-visible::before,
+.site-style-topbar button:focus-visible::before,
+.profile-actions button:focus-visible::before,
+.git-rag-actions button:focus-visible::before,
+.upload-actions button:focus-visible::before {
+  transform: translateY(0) !important;
+}
+
+button *,
+.btn *,
+.chat-actions button *,
+.composer-actions button *,
+.topbar button *,
+.action-strip button *,
+.site-style-topbar button *,
+.profile-actions button *,
+.git-rag-actions button *,
+.upload-actions button * {
+  position: relative !important;
+  z-index: 1 !important;
+  color: inherit !important;
+}
+
+/* === KUZAI_BUTTON_FORCE_COMPACT_STEP192 === */
+/* Hard override: button height reduced to text height + minimal border. */
+
+html body .app-shell button,
+html body .app-shell .btn,
+html body .app-shell [role="button"],
+html body .app-shell input[type="button"],
+html body .app-shell input[type="submit"],
+html body .app-shell .chat-actions button,
+html body .app-shell .composer-actions button,
+html body .app-shell .action-strip button,
+html body .app-shell .toolbar button,
+html body .app-shell .controls button,
+html body .app-shell .profile-actions button,
+html body .app-shell .git-rag-actions button,
+html body .app-shell .upload-actions button,
+html body .app-shell .topbar button,
+html body .app-shell .site-style-topbar button {
+  box-sizing: border-box !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  height: calc(1em + 6px) !important;
+  min-height: calc(1em + 6px) !important;
+  max-height: calc(1em + 6px) !important;
+
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  padding-block: 0 !important;
+
+  line-height: 1 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+
+  white-space: nowrap !important;
+}
+
+html body .app-shell button,
+html body .app-shell .btn,
+html body .app-shell [role="button"] {
+  padding-left: 0.78rem !important;
+  padding-right: 0.78rem !important;
+  padding-inline: 0.78rem !important;
+}
+
+/* STOP remains pill-shaped but compact. */
+html body .app-shell #stopBtn,
+html body .app-shell .stop,
+html body .app-shell button.stop {
+  height: calc(1em + 6px) !important;
+  min-height: calc(1em + 6px) !important;
+  max-height: calc(1em + 6px) !important;
+  padding-block: 0 !important;
+  line-height: 1 !important;
+}
+
+/* === KUZAI_BUTTON_PADDING_2PT_STEP193 === */
+/* Correct previous hard compacting: keep 2pt vertical padding above/below text. */
+
+html body .app-shell button,
+html body .app-shell .btn,
+html body .app-shell [role="button"],
+html body .app-shell input[type="button"],
+html body .app-shell input[type="submit"],
+html body .app-shell .chat-actions button,
+html body .app-shell .composer-actions button,
+html body .app-shell .action-strip button,
+html body .app-shell .toolbar button,
+html body .app-shell .controls button,
+html body .app-shell .profile-actions button,
+html body .app-shell .git-rag-actions button,
+html body .app-shell .upload-actions button,
+html body .app-shell .topbar button,
+html body .app-shell .site-style-topbar button {
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+
+  padding-top: 2pt !important;
+  padding-bottom: 2pt !important;
+  padding-block: 2pt !important;
+
+  line-height: 1.05 !important;
+  box-sizing: border-box !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+html body .app-shell #stopBtn,
+html body .app-shell .stop,
+html body .app-shell button.stop {
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  padding-top: 2pt !important;
+  padding-bottom: 2pt !important;
+  padding-block: 2pt !important;
+  line-height: 1.05 !important;
+}
+
+/* === KUZAI_BUTTON_FINAL_ALIGN_STEP194 === */
+/* Final button model: centered text, 2pt vertical padding, same dynamic effect for every button including STOP. */
+
+/* Neutralize previous pseudo-layer button animation. */
+html body .app-shell button::before,
+html body .app-shell .btn::before,
+html body .app-shell [role="button"]::before,
+html body .app-shell input[type="button"]::before,
+html body .app-shell input[type="submit"]::before {
+  content: none !important;
+  display: none !important;
+}
+
+/* Unified default button state. */
+html body .app-shell button,
+html body .app-shell .btn,
+html body .app-shell [role="button"],
+html body .app-shell input[type="button"],
+html body .app-shell input[type="submit"],
+html body .app-shell .chat-actions button,
+html body .app-shell .composer-actions button,
+html body .app-shell .action-strip button,
+html body .app-shell .toolbar button,
+html body .app-shell .controls button,
+html body .app-shell .profile-actions button,
+html body .app-shell .git-rag-actions button,
+html body .app-shell .upload-actions button,
+html body .app-shell .topbar button,
+html body .app-shell .site-style-topbar button,
+html body .app-shell #stopBtn,
+html body .app-shell .stop,
+html body .app-shell button.stop {
+  box-sizing: border-box !important;
+
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  height: calc(1em + 4pt + 2px) !important;
+  min-height: calc(1em + 4pt + 2px) !important;
+  max-height: calc(1em + 4pt + 2px) !important;
+
+  padding-top: 2pt !important;
+  padding-bottom: 2pt !important;
+  padding-left: 0.82rem !important;
+  padding-right: 0.82rem !important;
+  padding-block: 2pt !important;
+  padding-inline: 0.82rem !important;
+
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+
+  line-height: 1 !important;
+  vertical-align: middle !important;
+  white-space: nowrap !important;
+
+  border-radius: 0 !important;
+  border: 1px solid #ffffff !important;
+
+  color: #000000 !important;
+  background-color: #ffffff !important;
+  background-image: linear-gradient(#000000, #000000) !important;
+  background-repeat: no-repeat !important;
+  background-position: 0 100% !important;
+  background-size: 100% 0 !important;
+
+  box-shadow: none !important;
+  text-shadow: none !important;
+  outline: none !important;
+  transform: none !important;
+  overflow: hidden !important;
+
+  transition:
+    color 180ms ease,
+    border-color 180ms ease,
+    background-size 220ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+/* Force text centering inside nested spans/icons if present. */
+html body .app-shell button *,
+html body .app-shell .btn *,
+html body .app-shell [role="button"] *,
+html body .app-shell #stopBtn *,
+html body .app-shell .stop * {
+  line-height: 1 !important;
+  color: inherit !important;
+  transform: translateY(0) !important;
+}
+
+/* Unified hover/focus state. */
+html body .app-shell button:hover,
+html body .app-shell .btn:hover,
+html body .app-shell [role="button"]:hover,
+html body .app-shell input[type="button"]:hover,
+html body .app-shell input[type="submit"]:hover,
+html body .app-shell .chat-actions button:hover,
+html body .app-shell .composer-actions button:hover,
+html body .app-shell .action-strip button:hover,
+html body .app-shell .toolbar button:hover,
+html body .app-shell .controls button:hover,
+html body .app-shell .profile-actions button:hover,
+html body .app-shell .git-rag-actions button:hover,
+html body .app-shell .upload-actions button:hover,
+html body .app-shell .topbar button:hover,
+html body .app-shell .site-style-topbar button:hover,
+html body .app-shell #stopBtn:hover,
+html body .app-shell .stop:hover,
+html body .app-shell button.stop:hover,
+html body .app-shell button:focus-visible,
+html body .app-shell .btn:focus-visible,
+html body .app-shell [role="button"]:focus-visible,
+html body .app-shell #stopBtn:focus-visible {
+  color: #ffffff !important;
+  background-color: #ffffff !important;
+  background-size: 100% 100% !important;
+
+  border-top-color: #ffffff !important;
+  border-bottom-color: #ffffff !important;
+  border-left-color: transparent !important;
+  border-right-color: transparent !important;
+
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+/* Disabled buttons stay readable and do not animate aggressively. */
+html body .app-shell button:disabled,
+html body .app-shell .btn:disabled,
+html body .app-shell button[disabled],
+html body .app-shell input[type="button"]:disabled,
+html body .app-shell input[type="submit"]:disabled {
+  opacity: 0.45 !important;
+  cursor: not-allowed !important;
+  background-size: 100% 0 !important;
+  color: #000000 !important;
+}
+
+/* === KUZAI_STEP196_CHAT_HEADER_TEXT_ONLY === */
+
+/* Bannière passive : aucun effet dynamique sur toute la largeur */
+html body .app-shell .chat-panel .chat-header,
+html body .app-shell .chat-panel .chat-header:hover,
+html body .app-shell .chat-panel .chat-header:focus,
+html body .app-shell .chat-panel .chat-header:focus-visible {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  color: inherit !important;
+  cursor: default !important;
+  transition: none !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+/* Neutralisation des pseudo-couches éventuelles sur la bannière */
+html body .app-shell .chat-panel .chat-header::before,
+html body .app-shell .chat-panel .chat-header::after,
+html body .app-shell .chat-panel .chat-header:hover::before,
+html body .app-shell .chat-panel .chat-header:hover::after {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+  background-image: none !important;
+}
+
+/* Le bloc texte n'est pas actif */
+html body .app-shell .chat-panel .chat-header > div:first-child,
+html body .app-shell .chat-panel .chat-header > div:first-child:hover {
+  background: transparent !important;
+  background-image: none !important;
+  pointer-events: none !important;
+  cursor: default !important;
+}
+
+/* Fond noir + texte blanc uniquement derrière les deux lignes */
+html body .app-shell .chat-panel .chat-header > div:first-child .section-kicker,
+html body .app-shell .chat-panel .chat-header > div:first-child h2 {
+  display: table !important;
+  width: fit-content !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+
+  background: #000000 !important;
+  background-image: none !important;
+  color: #ffffff !important;
+
+  padding: 0 0.18rem !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+
+  cursor: default !important;
+  transition: none !important;
+  transform: none !important;
+}
+
+/* Espacement strict entre les deux lignes */
+html body .app-shell .chat-panel .chat-header > div:first-child .section-kicker {
+  margin-bottom: 2px !important;
+}
+
+html body .app-shell .chat-panel .chat-header > div:first-child h2 {
+  margin-top: 0 !important;
+}
+
+/* Les boutons à droite restent actifs : ne pas hériter du pointer-events none */
+html body .app-shell .chat-panel .chat-header .chat-actions,
+html body .app-shell .chat-panel .chat-header .chat-actions *,
+html body .app-shell .chat-panel .chat-header .git-rag-toolbar,
+html body .app-shell .chat-panel .chat-header .git-rag-toolbar * {
+  pointer-events: auto !important;
+}
+
+/* === KUZAI_STEP196_CHAT_HEADER_TEXT_ONLY === */
+
+/* Bannière passive : aucun effet dynamique sur toute la largeur */
+html body .app-shell .chat-panel .chat-header,
+html body .app-shell .chat-panel .chat-header:hover,
+html body .app-shell .chat-panel .chat-header:focus,
+html body .app-shell .chat-panel .chat-header:focus-visible {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  color: inherit !important;
+  cursor: default !important;
+  transition: none !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+/* Neutralisation des pseudo-couches éventuelles */
+html body .app-shell .chat-panel .chat-header::before,
+html body .app-shell .chat-panel .chat-header::after,
+html body .app-shell .chat-panel .chat-header:hover::before,
+html body .app-shell .chat-panel .chat-header:hover::after {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+  background-image: none !important;
+}
+
+/* Le bloc texte reste passif */
+html body .app-shell .chat-panel .chat-header > div:first-child,
+html body .app-shell .chat-panel .chat-header > div:first-child:hover {
+  background: transparent !important;
+  background-image: none !important;
+  pointer-events: none !important;
+  cursor: default !important;
+}
+
+/* Fond noir + texte blanc uniquement derrière les deux lignes */
+html body .app-shell .chat-panel .chat-header > div:first-child .section-kicker,
+html body .app-shell .chat-panel .chat-header > div:first-child h2 {
+  display: table !important;
+  width: fit-content !important;
+
+  background: #000000 !important;
+  background-image: none !important;
+  color: #ffffff !important;
+
+  padding: 0 0.18rem !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+
+  cursor: default !important;
+  transition: none !important;
+  transform: none !important;
+}
+
+/* Espacement entre les deux lignes */
+html body .app-shell .chat-panel .chat-header > div:first-child .section-kicker {
+  margin-bottom: 2px !important;
+}
+
+html body .app-shell .chat-panel .chat-header > div:first-child h2 {
+  margin-top: 0 !important;
+}
+
+/* Les boutons à droite restent actifs */
+html body .app-shell .chat-panel .chat-header .chat-actions,
+html body .app-shell .chat-panel .chat-header .chat-actions * {
+  pointer-events: auto !important;
+}
