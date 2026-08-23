@@ -1064,11 +1064,7 @@ checkServer();
     let activeRepoId = '';
     let filesLoading = false;
 
-    try {
-        localStorage.removeItem(ACTIVE_REPO_KEY);
-    } catch (error) {
-        // ignore localStorage cleanup failure
-    }
+    activeRepoId = loadActiveRepoId();
 
     function gitRagEscapeHtml(value) {
         return String(value)
@@ -1782,7 +1778,7 @@ checkServer();
 
     gitRagBtn.addEventListener('click', (event) => {
         event.stopPropagation();
-        toggleRepoMenu();
+        window.location.href = 'git-rag.php';
     });
 
     repoMenu.addEventListener('click', (event) => {

@@ -17,7 +17,7 @@ $model = htmlspecialchars($config['llm']['model'], ENT_QUOTES, 'UTF-8');
     <title><?= $appName ?> - <?= $brandLine ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="application-name" content="<?= $appName ?>">
-    <link rel="stylesheet" href="assets/css/style.css?v=header-meta-minus-1pt-1784036677">
+    <link rel="stylesheet" href="assets/css/style.css?v=git-rag-page-20260823-110451">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -175,6 +175,6 @@ $model = htmlspecialchars($config['llm']['model'], ENT_QUOTES, 'UTF-8');
         </footer>
     </div>
 
-    <script src="assets/js/app.js?v=custom-llm-runtime-1-git-rag-file-edit-ui-1"></script>
+    <script src="assets/js/app.js?v=git-rag-page-20260823-110451"></script>
 </body>
 </html>

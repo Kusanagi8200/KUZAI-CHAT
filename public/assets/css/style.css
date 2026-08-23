@@ -5291,3 +5291,1808 @@ html body .app-shell #gitRagRepoMenu button.git-rag-menu-item:hover * {
   color: #000000 !important;
 }
 
+
+/* =========================================================
+   KUZAI_GIT_RAG_STANDALONE_PAGE_STEP205
+   Dedicated full page GIT-RAG layout. Not modal.
+   ========================================================= */
+
+html body.git-rag-page-body .app-shell {
+  width: 90vw !important;
+  max-width: 1800px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+html body.git-rag-page-body .git-rag-page-layout {
+  display: block !important;
+
+  width: 100% !important;
+  max-width: 100% !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+html body.git-rag-page-body .git-rag-page-panel {
+  width: 100% !important;
+  max-width: 100% !important;
+
+  box-sizing: border-box !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  border: 1px solid #ffffff !important;
+  border-radius: 0 !important;
+
+  background: #000000 !important;
+  color: #ffffff !important;
+}
+
+html body.git-rag-page-body .git-rag-page-header {
+  width: 100% !important;
+  box-sizing: border-box !important;
+
+  border-bottom: 1px solid #333333 !important;
+
+  background: #000000 !important;
+  color: #ffffff !important;
+}
+
+html body.git-rag-page-body .git-rag-page-content {
+  width: 100% !important;
+  max-width: 100% !important;
+
+  box-sizing: border-box !important;
+
+  padding: 16px !important;
+
+  background: #000000 !important;
+  color: #ffffff !important;
+}
+
+html body.git-rag-page-body .git-rag-page-controls {
+  display: flex !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+
+  width: 100% !important;
+
+  margin: 0 0 16px 0 !important;
+  padding: 0 0 14px 0 !important;
+
+  border-bottom: 1px solid #333333 !important;
+}
+
+/* Override all previous modal/fixed GIT-RAG rules on standalone page */
+html body.git-rag-page-body .app-shell #gitRagRepoMenu,
+html body.git-rag-page-body .app-shell #gitRagFilesMenu,
+html body.git-rag-page-body .app-shell #gitRagRepoMenu:not([hidden]),
+html body.git-rag-page-body .app-shell #gitRagFilesMenu:not([hidden]) {
+  position: static !important;
+
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+
+  transform: none !important;
+
+  display: block !important;
+
+  width: 100% !important;
+  max-width: 100% !important;
+
+  height: auto !important;
+  max-height: none !important;
+
+  box-sizing: border-box !important;
+
+  overflow: visible !important;
+
+  padding: 0 !important;
+  margin: 0 !important;
+
+  background: #000000 !important;
+  color: #ffffff !important;
+
+  border: 0 !important;
+  border-radius: 0 !important;
+
+  z-index: auto !important;
+}
+
+html body.git-rag-page-body .app-shell #gitRagRepoMenu[hidden],
+html body.git-rag-page-body .app-shell #gitRagFilesMenu[hidden],
+html body.git-rag-page-body .app-shell #gitRagGitOutput[hidden],
+html body.git-rag-page-body .app-shell #gitRagFileEditor[hidden] {
+  display: none !important;
+}
+
+/* Standalone header inside repo/files block */
+html body.git-rag-page-body .app-shell .git-rag-files-header {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto !important;
+
+  align-items: start !important;
+  gap: 16px !important;
+
+  width: 100% !important;
+  max-width: 100% !important;
+
+  box-sizing: border-box !important;
+
+  padding: 0 0 14px 0 !important;
+  margin: 0 0 14px 0 !important;
+
+  border-bottom: 1px solid #333333 !important;
+}
+
+html body.git-rag-page-body .app-shell .git-rag-menu-title {
+  display: block !important;
+
+  margin: 0 0 8px 0 !important;
+
+  color: #ffffff !important;
+
+  text-align: left !important;
+}
+
+html body.git-rag-page-body .app-shell .git-rag-menu-subtitle {
+  display: flex !important;
+  flex-wrap: wrap !important;
+
+  gap: 8px !important;
+
+  color: #9a9a9a !important;
+}
+
+html body.git-rag-page-body .app-shell .git-rag-menu-subtitle span {
+  display: inline-flex !important;
+
+  width: auto !important;
+
+  padding: 3px 7px !important;
+
+  background: #000000 !important;
+  color: #9a9a9a !important;
+
+  border: 1px solid #333333 !important;
+  border-radius: 0 !important;
+}
+
+/* Action buttons in GIT-RAG page */
+html body.git-rag-page-body .app-shell .git-rag-files-actions {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: flex-end !important;
+  align-items: center !important;
+
+  gap: 7px !important;
+}
+
+html body.git-rag-page-body .app-shell .git-rag-files-actions button,
+html body.git-rag-page-body .app-shell .git-rag-reindex-btn,
+html body.git-rag-page-body .app-shell .git-rag-menu-close,
+html body.git-rag-page-body .app-shell .git-rag-back-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  width: auto !important;
+
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+
+  padding: 2pt 0.70rem !important;
+
+  background-color: #ffffff !important;
+  background-image: linear-gradient(#000000, #000000) !important;
+  background-repeat: no-repeat !important;
+  background-position: 0 100% !important;
+  background-size: 100% 0 !important;
+
+  color: #000000 !important;
+
+  border: 1px solid #ffffff !important;
+  border-radius: 0 !important;
+
+  line-height: 1 !important;
+  white-space: nowrap !important;
+
+  overflow: hidden !important;
+
+  transition:
+    color 180ms ease,
+    background-size 220ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+html body.git-rag-page-body .app-shell .git-rag-files-actions button:hover,
+html body.git-rag-page-body .app-shell .git-rag-reindex-btn:hover,
+html body.git-rag-page-body .app-shell .git-rag-menu-close:hover,
+html body.git-rag-page-body .app-shell .git-rag-back-btn:hover {
+  background-size: 100% 100% !important;
+  color: #ffffff !important;
+
+  border-left-color: transparent !important;
+  border-right-color: transparent !important;
+}
+
+/* Status */
+html body.git-rag-page-body .app-shell .git-rag-reindex-status {
+  display: block !important;
+
+  width: 100% !important;
+
+  box-sizing: border-box !important;
+
+  padding: 8px 10px !important;
+  margin: 0 0 8px 0 !important;
+
+  background: #000000 !important;
+  color: #ffffff !important;
+
+  border: 1px solid #333333 !important;
+  border-radius: 0 !important;
+
+  text-align: left !important;
+}
+
+/* File list */
+html body.git-rag-page-body .app-shell .git-rag-files-list {
+  display: flex !important;
+  flex-direction: column !important;
+
+  width: 100% !important;
+  max-width: 100% !important;
+
+  box-sizing: border-box !important;
+
+  margin: 12px 0 0 0 !important;
+  padding: 0 !important;
+
+  overflow: visible !important;
+}
+
+html body.git-rag-page-body .app-shell button.git-rag-file-item,
+html body.git-rag-page-body .app-shell button.git-rag-menu-item {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto !important;
+
+  align-items: center !important;
+  column-gap: 14px !important;
+
+  width: 100% !important;
+  max-width: 100% !important;
+
+  height: auto !important;
+  min-height: 44px !important;
+  max-height: none !important;
+
+  box-sizing: border-box !important;
+
+  margin: 0 !important;
+  padding: 8px 8px !important;
+
+  background: #000000 !important;
+  background-image: none !important;
+
+  color: #ffffff !important;
+
+  border: 0 !important;
+  border-bottom: 1px solid #333333 !important;
+  border-radius: 0 !important;
+
+  text-align: left !important;
+
+  overflow: hidden !important;
+  white-space: normal !important;
+
+  box-shadow: none !important;
+  transform: none !important;
+
+  cursor: pointer !important;
+}
+
+html body.git-rag-page-body .app-shell button.git-rag-file-item::before,
+html body.git-rag-page-body .app-shell button.git-rag-file-item::after,
+html body.git-rag-page-body .app-shell button.git-rag-menu-item::before,
+html body.git-rag-page-body .app-shell button.git-rag-menu-item::after {
+  content: none !important;
+  display: none !important;
+}
+
+html body.git-rag-page-body .app-shell .git-rag-file-main {
+  display: flex !important;
+  flex-direction: column !important;
+
+  align-items: flex-start !important;
+
+  min-width: 0 !important;
+  overflow: hidden !important;
+}
+
+html body.git-rag-page-body .app-shell .git-rag-file-name,
+html body.git-rag-page-body .app-shell .git-rag-menu-item-main {
+  display: block !important;
+
+  max-width: 100% !important;
+
+  color: #ffffff !important;
+
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+html body.git-rag-page-body .app-shell .git-rag-file-dir,
+html body.git-rag-page-body .app-shell .git-rag-menu-item-meta {
+  display: block !important;
+
+  max-width: 100% !important;
+
+  margin-top: 3px !important;
+
+  color: #777777 !important;
+
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+html body.git-rag-page-body .app-shell .git-rag-file-info {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+
+  justify-content: flex-end !important;
+  align-items: center !important;
+
+  gap: 6px !important;
+
+  overflow: hidden !important;
+
+  color: #ffffff !important;
+}
+
+html body.git-rag-page-body .app-shell .git-rag-file-badge {
+  display: inline-flex !important;
+
+  flex: 0 0 auto !important;
+
+  align-items: center !important;
+
+  width: auto !important;
+
+  padding: 2px 6px !important;
+
+  background: transparent !important;
+  color: #ffffff !important;
+
+  border: 1px solid currentColor !important;
+  border-radius: 0 !important;
+
+  line-height: 1 !important;
+  white-space: nowrap !important;
+}
+
+/* Hover rows */
+html body.git-rag-page-body .app-shell button.git-rag-file-item:hover,
+html body.git-rag-page-body .app-shell button.git-rag-menu-item:hover {
+  background: #ffffff !important;
+  background-image: none !important;
+
+  color: #000000 !important;
+}
+
+html body.git-rag-page-body .app-shell button.git-rag-file-item:hover *,
+html body.git-rag-page-body .app-shell button.git-rag-menu-item:hover * {
+  color: #000000 !important;
+}
+
+/* Viewer / editor */
+html body.git-rag-page-body .app-shell .git-rag-file-viewer:not([hidden]),
+html body.git-rag-page-body .app-shell .git-rag-git-output:not([hidden]) {
+  display: block !important;
+
+  width: 100% !important;
+  max-width: 100% !important;
+
+  box-sizing: border-box !important;
+
+  margin: 10px 0 !important;
+  padding: 12px !important;
+
+  background: #050505 !important;
+  color: #ffffff !important;
+
+  border: 1px solid #333333 !important;
+  border-radius: 0 !important;
+
+  white-space: pre-wrap !important;
+  overflow-wrap: anywhere !important;
+
+  overflow: auto !important;
+}
+
+html body.git-rag-page-body .app-shell .git-rag-file-editor:not([hidden]) {
+  display: block !important;
+
+  width: 100% !important;
+  min-height: 50vh !important;
+
+  box-sizing: border-box !important;
+
+  padding: 12px !important;
+
+  background: #050505 !important;
+  color: #ffffff !important;
+
+  border: 1px solid #333333 !important;
+  border-radius: 0 !important;
+
+  resize: vertical !important;
+}
+
+
+/* =========================================================
+   KUZAI_GIT_RAG_PAGE_STATUS_LAYOUT_STEP206
+   Top info row = left stats / right index+git status
+   Black background / white text / hover inverted
+   ========================================================= */
+
+html body.git-rag-page-body .app-shell .git-rag-top-meta-row {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: flex-start !important;
+  gap: 16px !important;
+
+  width: 100% !important;
+  box-sizing: border-box !important;
+
+  margin: 0 0 14px 0 !important;
+  padding: 0 0 14px 0 !important;
+
+  border-bottom: 1px solid #333333 !important;
+}
+
+html body.git-rag-page-body .app-shell .git-rag-top-meta-left,
+html body.git-rag-page-body .app-shell .git-rag-top-meta-right {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+html body.git-rag-page-body .app-shell .git-rag-top-meta-left {
+  justify-content: flex-start !important;
+}
+
+html body.git-rag-page-body .app-shell .git-rag-top-meta-right {
+  justify-content: flex-end !important;
+}
+
+html body.git-rag-page-body .app-shell .git-rag-menu-subtitle {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  margin: 0 !important;
+}
+
+html body.git-rag-page-body .app-shell .git-rag-menu-subtitle span,
+html body.git-rag-page-body .app-shell .git-rag-reindex-status--inline {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+
+  margin: 0 !important;
+  padding: 2pt 8px !important;
+
+  background: #000000 !important;
+  color: #ffffff !important;
+
+  border: 1px solid #ffffff !important;
+  border-radius: 0 !important;
+
+  line-height: 1.1 !important;
+  white-space: nowrap !important;
+
+  transition:
+    background-color 180ms ease,
+    color 180ms ease !important;
+}
+
+html body.git-rag-page-body .app-shell .git-rag-menu-subtitle span:hover,
+html body.git-rag-page-body .app-shell .git-rag-reindex-status--inline:hover {
+  background: #ffffff !important;
+  color: #000000 !important;
+}
+
+html body.git-rag-page-body .app-shell .git-rag-reindex-status {
+  box-sizing: border-box !important;
+}
+
+html body.git-rag-page-body .app-shell .git-rag-files-list {
+  margin-top: 8px !important;
+}
+
+/* =========================================================
+   KUZAI_GIT_RAG_META_INLINE_STEP207
+   One-line meta row: 12 FILES / BRANCH MAIN / SIZE / INDEX READY / GIT READY
+   Black idle, white text, hover inverted.
+   ========================================================= */
+
+/* Main row: one line, left stats + right status */
+html body.git-rag-page-body .app-shell .git-rag-top-meta-row {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+
+  width: 100% !important;
+  max-width: 100% !important;
+
+  box-sizing: border-box !important;
+
+  gap: 12px !important;
+
+  margin: 0 0 14px 0 !important;
+  padding: 0 0 14px 0 !important;
+
+  border-bottom: 1px solid #333333 !important;
+}
+
+/* Left group: 12 FILES / BRANCH / SIZE */
+html body.git-rag-page-body .app-shell .git-rag-top-meta-left {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+
+  gap: 8px !important;
+
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: 70% !important;
+
+  flex: 1 1 auto !important;
+}
+
+/* Right group: INDEX READY / GIT READY */
+html body.git-rag-page-body .app-shell .git-rag-top-meta-right {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  justify-content: flex-end !important;
+  align-items: center !important;
+
+  gap: 8px !important;
+
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: 50% !important;
+
+  flex: 0 1 auto !important;
+}
+
+/* The original subtitle must behave as an inline group */
+html body.git-rag-page-body .app-shell .git-rag-top-meta-left .git-rag-menu-subtitle {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+
+  gap: 8px !important;
+
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Meta + status pills: same style */
+html body.git-rag-page-body .app-shell .git-rag-top-meta-row .git-rag-menu-subtitle span,
+html body.git-rag-page-body .app-shell .git-rag-top-meta-row .git-rag-reindex-status,
+html body.git-rag-page-body .app-shell .git-rag-top-meta-row .git-rag-reindex-status--inline {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: none !important;
+
+  flex: 0 0 auto !important;
+
+  box-sizing: border-box !important;
+
+  margin: 0 !important;
+  padding: 2pt 8px !important;
+
+  background: #000000 !important;
+  background-color: #000000 !important;
+  background-image: none !important;
+
+  color: #ffffff !important;
+
+  border: 1px solid #ffffff !important;
+  border-radius: 0 !important;
+
+  line-height: 1 !important;
+  white-space: nowrap !important;
+
+  text-align: center !important;
+
+  cursor: default !important;
+
+  transition:
+    background-color 180ms ease,
+    color 180ms ease,
+    border-color 180ms ease !important;
+}
+
+/* Hover inversion */
+html body.git-rag-page-body .app-shell .git-rag-top-meta-row .git-rag-menu-subtitle span:hover,
+html body.git-rag-page-body .app-shell .git-rag-top-meta-row .git-rag-reindex-status:hover,
+html body.git-rag-page-body .app-shell .git-rag-top-meta-row .git-rag-reindex-status--inline:hover {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+
+  color: #000000 !important;
+
+  border-color: #ffffff !important;
+}
+
+/* Remove old block spacing from inline statuses */
+html body.git-rag-page-body .app-shell .git-rag-top-meta-right .git-rag-reindex-status {
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+
+  overflow: visible !important;
+}
+
+/* Git action buttons on this page: black idle, white text, inverted hover */
+html body.git-rag-page-body .app-shell .git-rag-files-actions button,
+html body.git-rag-page-body .app-shell .git-rag-reindex-btn,
+html body.git-rag-page-body .app-shell .git-rag-menu-close,
+html body.git-rag-page-body .app-shell .git-rag-back-btn,
+html body.git-rag-page-body .app-shell #gitRagBtn {
+  background: #000000 !important;
+  background-color: #000000 !important;
+  background-image: linear-gradient(#ffffff, #ffffff) !important;
+  background-repeat: no-repeat !important;
+  background-position: 0 100% !important;
+  background-size: 100% 0 !important;
+
+  color: #ffffff !important;
+
+  border: 1px solid #ffffff !important;
+  border-radius: 0 !important;
+
+  transition:
+    color 180ms ease,
+    background-size 220ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 180ms ease !important;
+}
+
+html body.git-rag-page-body .app-shell .git-rag-files-actions button:hover,
+html body.git-rag-page-body .app-shell .git-rag-reindex-btn:hover,
+html body.git-rag-page-body .app-shell .git-rag-menu-close:hover,
+html body.git-rag-page-body .app-shell .git-rag-back-btn:hover,
+html body.git-rag-page-body .app-shell #gitRagBtn:hover {
+  background-color: #000000 !important;
+  background-size: 100% 100% !important;
+
+  color: #000000 !important;
+
+  border-color: #ffffff !important;
+}
+
+/* Small screens: allow wrap only if physically required */
+@media (max-width: 900px) {
+  html body.git-rag-page-body .app-shell .git-rag-top-meta-row {
+    flex-wrap: wrap !important;
+  }
+
+  html body.git-rag-page-body .app-shell .git-rag-top-meta-left,
+  html body.git-rag-page-body .app-shell .git-rag-top-meta-right {
+    max-width: 100% !important;
+  }
+}
+
+/* =========================================================
+   KUZAI_GIT_RAG_META_INLINE_LEFT_STEP208
+   Stats + status: left aligned, uppercase, white background.
+   Idle = black text on white background.
+   Hover = white text on black background.
+   ========================================================= */
+
+html body.git-rag-page-body .app-shell .git-rag-top-meta-row {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+
+  width: 100% !important;
+  max-width: 100% !important;
+
+  box-sizing: border-box !important;
+
+  gap: 0 !important;
+
+  margin: 0 0 14px 0 !important;
+  padding: 0 0 14px 0 !important;
+
+  border-bottom: 1px solid #333333 !important;
+}
+
+html body.git-rag-page-body .app-shell .git-rag-top-meta-left {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+
+  width: auto !important;
+  max-width: 100% !important;
+
+  gap: 8px !important;
+}
+
+html body.git-rag-page-body .app-shell .git-rag-top-meta-right {
+  display: none !important;
+}
+
+html body.git-rag-page-body .app-shell .git-rag-top-meta-left .git-rag-menu-subtitle {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+
+  width: auto !important;
+  max-width: none !important;
+
+  gap: 8px !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+html body.git-rag-page-body .app-shell .git-rag-top-meta-row .git-rag-menu-subtitle span,
+html body.git-rag-page-body .app-shell .git-rag-top-meta-row .git-rag-reindex-status,
+html body.git-rag-page-body .app-shell .git-rag-top-meta-row .git-rag-reindex-status--inline {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: none !important;
+
+  flex: 0 0 auto !important;
+
+  box-sizing: border-box !important;
+
+  margin: 0 !important;
+  padding: 2pt 8px !important;
+
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  background-image: none !important;
+
+  color: #000000 !important;
+
+  border: 1px solid #ffffff !important;
+  border-radius: 0 !important;
+
+  line-height: 1 !important;
+  white-space: nowrap !important;
+
+  text-align: center !important;
+  text-transform: uppercase !important;
+
+  cursor: default !important;
+
+  transition:
+    background-color 180ms ease,
+    color 180ms ease,
+    border-color 180ms ease !important;
+}
+
+html body.git-rag-page-body .app-shell .git-rag-top-meta-row .git-rag-menu-subtitle span:hover,
+html body.git-rag-page-body .app-shell .git-rag-top-meta-row .git-rag-reindex-status:hover,
+html body.git-rag-page-body .app-shell .git-rag-top-meta-row .git-rag-reindex-status--inline:hover {
+  background: #000000 !important;
+  background-color: #000000 !important;
+
+  color: #ffffff !important;
+
+  border-color: #ffffff !important;
+}
+
+/* Remove old full-width status behavior */
+html body.git-rag-page-body .app-shell .git-rag-top-meta-row .git-rag-reindex-status {
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+
+  overflow: visible !important;
+}
+
+/* Keep row usable on small screens only */
+@media (max-width: 900px) {
+  html body.git-rag-page-body .app-shell .git-rag-top-meta-left,
+  html body.git-rag-page-body .app-shell .git-rag-top-meta-left .git-rag-menu-subtitle {
+    flex-wrap: wrap !important;
+  }
+}
+
+/* =========================================================
+   KUZAI_GIT_RAG_META_ROW_DIRECT_STEP209
+   Direct rendered meta row.
+   ========================================================= */
+
+html body.git-rag-page-body .app-shell {
+  width: 90vw !important;
+  max-width: 1800px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  zoom: 1 !important;
+  transform: none !important;
+}
+
+html body.git-rag-page-body .app-shell .git-rag-page-meta-row {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+
+  gap: 8px !important;
+
+  width: 100% !important;
+  max-width: 100% !important;
+
+  box-sizing: border-box !important;
+
+  margin: 0 0 14px 0 !important;
+  padding: 0 0 14px 0 !important;
+
+  border-bottom: 1px solid #333333 !important;
+}
+
+html body.git-rag-page-body .app-shell .git-rag-page-meta-row .git-rag-page-meta-pill,
+html body.git-rag-page-body .app-shell .git-rag-page-meta-row .git-rag-reindex-status {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: none !important;
+
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+
+  flex: 0 0 auto !important;
+
+  box-sizing: border-box !important;
+
+  margin: 0 !important;
+  padding: 2pt 8px !important;
+
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  background-image: none !important;
+
+  color: #000000 !important;
+
+  border: 1px solid #ffffff !important;
+  border-radius: 0 !important;
+
+  line-height: 1 !important;
+  white-space: nowrap !important;
+
+  text-align: center !important;
+  text-transform: uppercase !important;
+
+  cursor: default !important;
+
+  overflow: visible !important;
+
+  transition:
+    background-color 180ms ease,
+    color 180ms ease,
+    border-color 180ms ease !important;
+}
+
+html body.git-rag-page-body .app-shell .git-rag-page-meta-row .git-rag-page-meta-pill:hover,
+html body.git-rag-page-body .app-shell .git-rag-page-meta-row .git-rag-reindex-status:hover {
+  background: #000000 !important;
+  background-color: #000000 !important;
+
+  color: #ffffff !important;
+
+  border-color: #ffffff !important;
+}
+
+/* Old generated meta rows must not interfere anymore */
+html body.git-rag-page-body .app-shell .git-rag-top-meta-row {
+  display: none !important;
+}
+
+/* In case older CSS targets status blocks globally */
+html body.git-rag-page-body .app-shell .git-rag-page-meta-row #gitRagReindexStatus,
+html body.git-rag-page-body .app-shell .git-rag-page-meta-row #gitRagGitStatus {
+  display: inline-flex !important;
+  width: auto !important;
+  margin: 0 !important;
+  color: #000000 !important;
+}
+
+html body.git-rag-page-body .app-shell .git-rag-page-meta-row #gitRagReindexStatus:hover,
+html body.git-rag-page-body .app-shell .git-rag-page-meta-row #gitRagGitStatus:hover {
+  color: #ffffff !important;
+}
+
+@media (max-width: 900px) {
+  html body.git-rag-page-body .app-shell .git-rag-page-meta-row {
+    flex-wrap: wrap !important;
+  }
+}
+
+/* =========================================================
+   KUZAI_GIT_RAG_COLOR_FIX_STEP210
+   Fix colors for:
+   - GIT-RAG / REPO button
+   - INDEX READY / GIT READY pills
+   ========================================================= */
+
+html body.git-rag-page-body .app-shell .git-rag-page-current-repo,
+html body.git-rag-page-body .app-shell .git-rag-page-current-repo:link,
+html body.git-rag-page-body .app-shell .git-rag-page-current-repo:visited {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  color: #000000 !important;
+
+  border: 1px solid #ffffff !important;
+  border-radius: 0 !important;
+
+  padding: 2pt 8px !important;
+  line-height: 1 !important;
+  text-decoration: none !important;
+  text-transform: uppercase !important;
+}
+
+html body.git-rag-page-body .app-shell .git-rag-page-current-repo:hover,
+html body.git-rag-page-body .app-shell .git-rag-page-current-repo:focus {
+  background: #000000 !important;
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+}
+
+/* Force explicit colors for INDEX READY / GIT READY */
+html body.git-rag-page-body .app-shell .git-rag-page-meta-row #gitRagReindexStatus,
+html body.git-rag-page-body .app-shell .git-rag-page-meta-row #gitRagGitStatus {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  color: #000000 !important;
+
+  border: 1px solid #ffffff !important;
+  border-radius: 0 !important;
+
+  padding: 2pt 8px !important;
+  line-height: 1 !important;
+  text-transform: uppercase !important;
+  white-space: nowrap !important;
+}
+
+html body.git-rag-page-body .app-shell .git-rag-page-meta-row #gitRagReindexStatus:hover,
+html body.git-rag-page-body .app-shell .git-rag-page-meta-row #gitRagGitStatus:hover {
+  background: #000000 !important;
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+}
+
+/* =========================================================
+   KUZAI_GIT_RAG_MAIN_BUTTON_COLOR_FIX_STEP211
+   Correct visible button:
+   #gitRagBtn = GIT-RAG / REPO : ...
+   Idle: white background / black text
+   Hover: black background / white text
+   ========================================================= */
+
+html body.git-rag-page-body .app-shell .git-rag-page-content .git-rag-page-controls #gitRagBtn,
+html body.git-rag-page-body .app-shell #gitRagToolbar #gitRagBtn,
+html body.git-rag-page-body .app-shell button#gitRagBtn.git-rag-main-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: none !important;
+
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+
+  padding: 2pt 8px !important;
+  margin: 0 !important;
+
+  background-color: #ffffff !important;
+  background-image: linear-gradient(#000000, #000000) !important;
+  background-repeat: no-repeat !important;
+  background-position: 0 100% !important;
+  background-size: 100% 0 !important;
+
+  color: #000000 !important;
+
+  border: 1px solid #ffffff !important;
+  border-radius: 0 !important;
+
+  line-height: 1 !important;
+  white-space: nowrap !important;
+  text-transform: uppercase !important;
+  text-decoration: none !important;
+
+  box-shadow: none !important;
+  text-shadow: none !important;
+  outline: none !important;
+
+  overflow: hidden !important;
+
+  transition:
+    color 180ms ease,
+    background-size 220ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 180ms ease !important;
+}
+
+html body.git-rag-page-body .app-shell .git-rag-page-content .git-rag-page-controls #gitRagBtn::before,
+html body.git-rag-page-body .app-shell #gitRagToolbar #gitRagBtn::before,
+html body.git-rag-page-body .app-shell button#gitRagBtn.git-rag-main-btn::before {
+  content: none !important;
+  display: none !important;
+}
+
+html body.git-rag-page-body .app-shell .git-rag-page-content .git-rag-page-controls #gitRagBtn:hover,
+html body.git-rag-page-body .app-shell .git-rag-page-content .git-rag-page-controls #gitRagBtn:focus-visible,
+html body.git-rag-page-body .app-shell #gitRagToolbar #gitRagBtn:hover,
+html body.git-rag-page-body .app-shell #gitRagToolbar #gitRagBtn:focus-visible,
+html body.git-rag-page-body .app-shell button#gitRagBtn.git-rag-main-btn:hover,
+html body.git-rag-page-body .app-shell button#gitRagBtn.git-rag-main-btn:focus-visible {
+  background-color: #ffffff !important;
+  background-size: 100% 100% !important;
+
+  color: #ffffff !important;
+
+  border-top-color: #ffffff !important;
+  border-bottom-color: #ffffff !important;
+  border-left-color: transparent !important;
+  border-right-color: transparent !important;
+
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+/* =========================================================
+   KUZAI_GIT_RAG_REPOS_LIST_BUTTON_STEP212
+   Page entry button:
+   GIT-RAG / REPOS LIST
+   Idle: white background / black text
+   Hover: black background / white text
+   ========================================================= */
+
+html body.git-rag-page-body .app-shell #gitRagBtn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: none !important;
+
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+
+  padding: 2pt 8px !important;
+  margin: 0 !important;
+
+  background-color: #ffffff !important;
+  background-image: linear-gradient(#000000, #000000) !important;
+  background-repeat: no-repeat !important;
+  background-position: 0 100% !important;
+  background-size: 100% 0 !important;
+
+  color: #000000 !important;
+
+  border: 1px solid #ffffff !important;
+  border-radius: 0 !important;
+
+  line-height: 1 !important;
+  white-space: nowrap !important;
+  text-transform: uppercase !important;
+
+  overflow: hidden !important;
+
+  transition:
+    color 180ms ease,
+    background-size 220ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 180ms ease !important;
+}
+
+html body.git-rag-page-body .app-shell #gitRagBtn:hover,
+html body.git-rag-page-body .app-shell #gitRagBtn:focus-visible {
+  background-color: #ffffff !important;
+  background-size: 100% 100% !important;
+
+  color: #ffffff !important;
+
+  border-top-color: #ffffff !important;
+  border-bottom-color: #ffffff !important;
+  border-left-color: transparent !important;
+  border-right-color: transparent !important;
+}
+
+/* Repo list rows: readable and clickable */
+html body.git-rag-page-body .app-shell #gitRagRepoMenu:not([hidden]) {
+  margin-top: 14px !important;
+}
+
+html body.git-rag-page-body .app-shell #gitRagRepoMenu .git-rag-menu-title {
+  margin-bottom: 12px !important;
+}
+
+html body.git-rag-page-body .app-shell #gitRagRepoMenu button.git-rag-menu-item {
+  background: #000000 !important;
+  color: #ffffff !important;
+  border-bottom: 1px solid #333333 !important;
+}
+
+html body.git-rag-page-body .app-shell #gitRagRepoMenu button.git-rag-menu-item:hover {
+  background: #ffffff !important;
+  color: #000000 !important;
+}
+
+html body.git-rag-page-body .app-shell #gitRagRepoMenu button.git-rag-menu-item:hover * {
+  color: #000000 !important;
+}
+
+/* =========================================================
+   KUZAI_GIT_RAG_REPO_TITLE_INVERT_STEP213
+   GIT-RAG REPOSITORIES title:
+   idle = white background / black text
+   hover = black background / white text
+   ========================================================= */
+
+html body.git-rag-page-body .app-shell #gitRagRepoMenu .git-rag-menu-title {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  width: auto !important;
+  max-width: max-content !important;
+
+  margin: 0 0 12px 0 !important;
+  padding: 2pt 8px !important;
+
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  background-image: none !important;
+
+  color: #000000 !important;
+
+  border: 1px solid #ffffff !important;
+  border-radius: 0 !important;
+
+  line-height: 1 !important;
+  white-space: nowrap !important;
+  text-transform: uppercase !important;
+
+  transition:
+    background-color 180ms ease,
+    color 180ms ease,
+    border-color 180ms ease !important;
+}
+
+html body.git-rag-page-body .app-shell #gitRagRepoMenu .git-rag-menu-title:hover {
+  background: #000000 !important;
+  background-color: #000000 !important;
+
+  color: #ffffff !important;
+
+  border-color: #ffffff !important;
+}
+
+/* =========================================================
+   KUZAI_GIT_RAG_REPOS_LIST_FLOW_STEP214
+   Landing page: repo list visible, no repos-list button.
+   Repo page: button = GIT-RAG / BACK TO REPOS LIST.
+   ========================================================= */
+
+html body.git-rag-page-body .app-shell #gitRagBtn[hidden] {
+  display: none !important;
+}
+
+html body.git-rag-page-body .app-shell #gitRagRepoMenu:not([hidden]) {
+  display: block !important;
+  width: 100% !important;
+  margin-top: 14px !important;
+}
+
+html body.git-rag-page-body .app-shell #gitRagFilesMenu:not([hidden]) {
+  display: block !important;
+  width: 100% !important;
+}
+
+/* Repo page button: white idle / black text, black hover / white text */
+html body.git-rag-page-body .app-shell #gitRagBtn {
+  background-color: #ffffff !important;
+  background-image: linear-gradient(#000000, #000000) !important;
+  background-repeat: no-repeat !important;
+  background-position: 0 100% !important;
+  background-size: 100% 0 !important;
+
+  color: #000000 !important;
+
+  border: 1px solid #ffffff !important;
+  border-radius: 0 !important;
+
+  padding: 2pt 8px !important;
+  line-height: 1 !important;
+
+  text-transform: uppercase !important;
+
+  transition:
+    color 180ms ease,
+    background-size 220ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 180ms ease !important;
+}
+
+html body.git-rag-page-body .app-shell #gitRagBtn:hover,
+html body.git-rag-page-body .app-shell #gitRagBtn:focus-visible {
+  background-color: #ffffff !important;
+  background-size: 100% 100% !important;
+
+  color: #ffffff !important;
+
+  border-top-color: #ffffff !important;
+  border-bottom-color: #ffffff !important;
+  border-left-color: transparent !important;
+  border-right-color: transparent !important;
+}
+
+/* =========================================================
+   KUZAI_GIT_RAG_HIDE_BACK_BUTTON_ON_LIST_STEP215
+   The repo-list page must not show the back-to-repos button.
+   ========================================================= */
+
+html body.git-rag-page-body .app-shell #gitRagBtn[hidden] {
+  display: none !important;
+}
+
+/* =========================================================
+   KUZAI_GIT_RAG_FORCE_HIDDEN_BUTTON_STEP216
+   Force hidden state of #gitRagBtn on repository list.
+   ========================================================= */
+
+html body.git-rag-page-body .app-shell #gitRagBtn[hidden],
+html body.git-rag-page-body .app-shell .git-rag-page-controls #gitRagBtn[hidden],
+html body.git-rag-page-body .app-shell #gitRagToolbar #gitRagBtn[hidden] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* =========================================================
+   KUZAI_GIT_RAG_REPO_ROW_CENTER_DYNAMIC_STEP217
+   Repo available row:
+   idle  = white background / black text
+   hover = black expands from center / white text
+   ========================================================= */
+
+html body.git-rag-page-body .app-shell #gitRagRepoMenu button.git-rag-menu-item {
+  position: relative !important;
+  isolation: isolate !important;
+
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto !important;
+  align-items: center !important;
+  column-gap: 16px !important;
+
+  width: 100% !important;
+  max-width: 100% !important;
+
+  height: auto !important;
+  min-height: 44px !important;
+  max-height: none !important;
+
+  box-sizing: border-box !important;
+
+  margin: 0 !important;
+  padding: 8px 8px !important;
+
+  background-color: #ffffff !important;
+  background-image: linear-gradient(#000000, #000000) !important;
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
+  background-size: 0 100% !important;
+
+  color: #000000 !important;
+
+  border: 1px solid #ffffff !important;
+  border-radius: 0 !important;
+
+  text-align: left !important;
+
+  overflow: hidden !important;
+  white-space: normal !important;
+
+  box-shadow: none !important;
+  text-shadow: none !important;
+  transform: none !important;
+
+  cursor: pointer !important;
+
+  transition:
+    color 180ms ease,
+    background-size 260ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 180ms ease !important;
+}
+
+/* neutralise les anciennes couches dynamiques */
+html body.git-rag-page-body .app-shell #gitRagRepoMenu button.git-rag-menu-item::before,
+html body.git-rag-page-body .app-shell #gitRagRepoMenu button.git-rag-menu-item::after {
+  content: none !important;
+  display: none !important;
+}
+
+/* texte du repo + infos branche */
+html body.git-rag-page-body .app-shell #gitRagRepoMenu button.git-rag-menu-item *,
+html body.git-rag-page-body .app-shell #gitRagRepoMenu .git-rag-menu-item-main,
+html body.git-rag-page-body .app-shell #gitRagRepoMenu .git-rag-menu-item-meta {
+  position: relative !important;
+  z-index: 1 !important;
+
+  color: inherit !important;
+
+  visibility: visible !important;
+  opacity: 1 !important;
+
+  text-transform: uppercase !important;
+}
+
+/* hover : le noir part du centre vers les extérieurs */
+html body.git-rag-page-body .app-shell #gitRagRepoMenu button.git-rag-menu-item:hover,
+html body.git-rag-page-body .app-shell #gitRagRepoMenu button.git-rag-menu-item:focus-visible {
+  background-color: #ffffff !important;
+  background-size: 100% 100% !important;
+
+  color: #ffffff !important;
+
+  border-top-color: #ffffff !important;
+  border-bottom-color: #ffffff !important;
+  border-left-color: transparent !important;
+  border-right-color: transparent !important;
+
+  outline: none !important;
+}
+
+html body.git-rag-page-body .app-shell #gitRagRepoMenu button.git-rag-menu-item:hover *,
+html body.git-rag-page-body .app-shell #gitRagRepoMenu button.git-rag-menu-item:focus-visible * {
+  color: #ffffff !important;
+}
+
+
+/* =========================================================
+   KUZAI_GIT_RAG_REPO_ROW_FOOTER_DYNAMIC_STEP218
+   Same logic as footer:
+   idle  = white bar / black text
+   hover = black bar expanding from center / white text
+   ========================================================= */
+
+html body.git-rag-page-body .app-shell #gitRagRepoMenu button.git-rag-menu-item {
+  position: relative !important;
+  isolation: isolate !important;
+
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto !important;
+  align-items: center !important;
+  column-gap: 16px !important;
+
+  width: 100% !important;
+  max-width: 100% !important;
+
+  height: auto !important;
+  min-height: 44px !important;
+  max-height: none !important;
+
+  box-sizing: border-box !important;
+
+  margin: 0 !important;
+  padding: 8px 8px !important;
+
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  background-image: none !important;
+
+  color: #000000 !important;
+
+  border-top: 1px solid #ffffff !important;
+  border-bottom: 1px solid #ffffff !important;
+  border-left: 0 !important;
+  border-right: 0 !important;
+  border-radius: 0 !important;
+
+  text-align: left !important;
+  white-space: normal !important;
+
+  overflow: hidden !important;
+
+  box-shadow: none !important;
+  text-shadow: none !important;
+  transform: none !important;
+
+  cursor: pointer !important;
+
+  transition:
+    color 180ms ease,
+    border-color 180ms ease !important;
+}
+
+/* Dynamic black layer: starts at center, expands to both sides */
+html body.git-rag-page-body .app-shell #gitRagRepoMenu button.git-rag-menu-item::before {
+  content: "" !important;
+  display: block !important;
+
+  position: absolute !important;
+  inset: 0 !important;
+
+  z-index: 0 !important;
+
+  background: #000000 !important;
+  background-color: #000000 !important;
+
+  transform: scaleX(0) !important;
+  transform-origin: center center !important;
+
+  transition: transform 240ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+
+  pointer-events: none !important;
+}
+
+html body.git-rag-page-body .app-shell #gitRagRepoMenu button.git-rag-menu-item::after {
+  content: none !important;
+  display: none !important;
+}
+
+/* Text above the dynamic layer */
+html body.git-rag-page-body .app-shell #gitRagRepoMenu button.git-rag-menu-item *,
+html body.git-rag-page-body .app-shell #gitRagRepoMenu .git-rag-menu-item-main,
+html body.git-rag-page-body .app-shell #gitRagRepoMenu .git-rag-menu-item-meta {
+  position: relative !important;
+  z-index: 1 !important;
+
+  color: #000000 !important;
+
+  visibility: visible !important;
+  opacity: 1 !important;
+
+  text-transform: uppercase !important;
+}
+
+/* Hover: full black bar + white text */
+html body.git-rag-page-body .app-shell #gitRagRepoMenu button.git-rag-menu-item:hover,
+html body.git-rag-page-body .app-shell #gitRagRepoMenu button.git-rag-menu-item:focus-visible {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  background-image: none !important;
+
+  color: #ffffff !important;
+
+  border-top-color: #ffffff !important;
+  border-bottom-color: #ffffff !important;
+  border-left-color: transparent !important;
+  border-right-color: transparent !important;
+
+  outline: none !important;
+}
+
+html body.git-rag-page-body .app-shell #gitRagRepoMenu button.git-rag-menu-item:hover::before,
+html body.git-rag-page-body .app-shell #gitRagRepoMenu button.git-rag-menu-item:focus-visible::before {
+  transform: scaleX(1) !important;
+}
+
+html body.git-rag-page-body .app-shell #gitRagRepoMenu button.git-rag-menu-item:hover *,
+html body.git-rag-page-body .app-shell #gitRagRepoMenu button.git-rag-menu-item:focus-visible * {
+  color: #ffffff !important;
+}
+
+/* =========================================================
+   KUZAI_GIT_RAG_BACK_HOME_BOTTOM_STEP219
+   Bottom BACK HOME button, same wide black line style,
+   dynamic expansion from center toward edges.
+   ========================================================= */
+
+/* Remove visual space from old top-right container */
+html body.git-rag-page-body .app-shell .git-rag-page-top-actions[aria-hidden="true"] {
+  display: none !important;
+}
+
+html body.git-rag-page-body .app-shell .git-rag-bottom-nav {
+  width: 100% !important;
+  max-width: 100% !important;
+
+  box-sizing: border-box !important;
+
+  margin: 18px 0 8px 0 !important;
+  padding: 0 !important;
+}
+
+html body.git-rag-page-body .app-shell .git-rag-bottom-back-home {
+  position: relative !important;
+  isolation: isolate !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+
+  width: 100% !important;
+  max-width: 100% !important;
+
+  box-sizing: border-box !important;
+
+  padding: 0.42rem 1rem !important;
+  margin: 0 !important;
+
+  background: #000000 !important;
+  background-color: #000000 !important;
+  color: #ffffff !important;
+
+  border-top: 1px solid #333333 !important;
+  border-bottom: 1px solid #333333 !important;
+  border-left: 0 !important;
+  border-right: 0 !important;
+  border-radius: 0 !important;
+
+  text-decoration: none !important;
+  text-transform: uppercase !important;
+
+  overflow: hidden !important;
+
+  transition:
+    color 180ms ease,
+    border-color 180ms ease !important;
+}
+
+html body.git-rag-page-body .app-shell .git-rag-bottom-back-home::before {
+  content: "" !important;
+
+  position: absolute !important;
+  inset: 0 !important;
+
+  z-index: 0 !important;
+
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+
+  transform: scaleX(0) !important;
+  transform-origin: center center !important;
+
+  transition: transform 240ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+
+  pointer-events: none !important;
+}
+
+html body.git-rag-page-body .app-shell .git-rag-bottom-back-home__label,
+html body.git-rag-page-body .app-shell .git-rag-bottom-back-home__arrow {
+  position: relative !important;
+  z-index: 1 !important;
+
+  color: inherit !important;
+
+  line-height: 1 !important;
+  white-space: nowrap !important;
+}
+
+html body.git-rag-page-body .app-shell .git-rag-bottom-back-home:hover,
+html body.git-rag-page-body .app-shell .git-rag-bottom-back-home:focus-visible {
+  color: #000000 !important;
+
+  border-top-color: #ffffff !important;
+  border-bottom-color: #ffffff !important;
+
+  outline: none !important;
+}
+
+html body.git-rag-page-body .app-shell .git-rag-bottom-back-home:hover::before,
+html body.git-rag-page-body .app-shell .git-rag-bottom-back-home:focus-visible::before {
+  transform: scaleX(1) !important;
+}
+
+/* =========================================================
+   KUZAI_GIT_RAG_BACK_HOME_FOOTER_SIZE_STEP220
+   Match BACK HOME typography size with footer text.
+   ========================================================= */
+
+html body.git-rag-page-body .app-shell .git-rag-bottom-back-home,
+html body.git-rag-page-body .app-shell .git-rag-bottom-back-home__label,
+html body.git-rag-page-body .app-shell .git-rag-bottom-back-home__arrow {
+  font-size: clamp(1.05rem, 1.25vw, 1.45rem) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em !important;
+  line-height: 1 !important;
+}
+
+html body.git-rag-page-body .app-shell .git-rag-bottom-back-home {
+  padding-top: 0.48rem !important;
+  padding-bottom: 0.48rem !important;
+}
+
+/* =========================================================
+   KUZAI_GIT_RAG_SYSTEM_TITLE_STATIC_STEP221
+   GIT-RAG SYSTEM title:
+   static white background / black text.
+   No dynamic effect.
+   ========================================================= */
+
+html body.git-rag-page-body .app-shell .git-rag-page-header .section-kicker {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  width: auto !important;
+  max-width: max-content !important;
+
+  padding: 2pt 8px !important;
+  margin: 0 0 4px 0 !important;
+
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  background-image: none !important;
+
+  color: #000000 !important;
+
+  border: 1px solid #ffffff !important;
+  border-radius: 0 !important;
+
+  line-height: 1 !important;
+  white-space: nowrap !important;
+  text-transform: uppercase !important;
+
+  box-shadow: none !important;
+  text-shadow: none !important;
+
+  cursor: default !important;
+  transition: none !important;
+}
+
+html body.git-rag-page-body .app-shell .git-rag-page-header .section-kicker:hover {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+/* =========================================================
+   KUZAI_GIT_RAG_SYSTEM_TITLE_STATIC_STEP221
+   GIT-RAG SYSTEM title:
+   static white background / black text.
+   No dynamic effect.
+   ========================================================= */
+
+html body.git-rag-page-body .app-shell .git-rag-page-header .section-kicker {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  width: auto !important;
+  max-width: max-content !important;
+
+  padding: 2pt 8px !important;
+  margin: 0 0 4px 0 !important;
+
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  background-image: none !important;
+
+  color: #000000 !important;
+
+  border: 1px solid #ffffff !important;
+  border-radius: 0 !important;
+
+  line-height: 1 !important;
+  white-space: nowrap !important;
+  text-transform: uppercase !important;
+
+  box-shadow: none !important;
+  text-shadow: none !important;
+
+  cursor: default !important;
+  transition: none !important;
+}
+
+html body.git-rag-page-body .app-shell .git-rag-page-header .section-kicker:hover {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+/* =========================================================
+   KUZAI_GIT_RAG_SYSTEM_TITLE_FORCE_STEP222
+   Force GIT-RAG SYSTEM title only.
+   Static: white background / black text.
+   ========================================================= */
+
+html body.git-rag-page-body .app-shell .git-rag-page-header p.git-rag-system-title-static,
+html body.git-rag-page-body .app-shell .git-rag-page-header .section-kicker.git-rag-system-title-static,
+html body.git-rag-page-body .app-shell p.section-kicker.git-rag-system-title-static {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  width: auto !important;
+  max-width: max-content !important;
+
+  margin: 0 0 4px 0 !important;
+  padding: 2pt 8px !important;
+
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  background-image: none !important;
+
+  color: #000000 !important;
+
+  border: 1px solid #ffffff !important;
+  border-radius: 0 !important;
+
+  line-height: 1 !important;
+  white-space: nowrap !important;
+  text-transform: uppercase !important;
+
+  box-shadow: none !important;
+  text-shadow: none !important;
+
+  cursor: default !important;
+  pointer-events: none !important;
+
+  transition: none !important;
+  transform: none !important;
+}
+
+html body.git-rag-page-body .app-shell .git-rag-page-header p.git-rag-system-title-static:hover,
+html body.git-rag-page-body .app-shell .git-rag-page-header .section-kicker.git-rag-system-title-static:hover,
+html body.git-rag-page-body .app-shell p.section-kicker.git-rag-system-title-static:hover {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  background-image: none !important;
+
+  color: #000000 !important;
+
+  border-color: #ffffff !important;
+
+  transition: none !important;
+  transform: none !important;
+}
