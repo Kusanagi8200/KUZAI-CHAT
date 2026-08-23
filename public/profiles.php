@@ -956,6 +956,79 @@ $model = htmlspecialchars((string)($config['llm']['model'] ?? 'LOCAL MODEL'), EN
         }
     </style>
 
+
+<style id="profiles-step240-custom-llm-static">
+    .profiles-page-shell .profiles-section-title,
+    .profiles-page-shell .profiles-main-title,
+    .profiles-page-shell .profiles-content-title,
+    .profiles-page-shell h1,
+    .profiles-page-shell h2 {
+        letter-spacing: 0.06em;
+    }
+
+    .profiles-page-shell .profiles-section-title,
+    .profiles-page-shell .profiles-main-title,
+    .profiles-page-shell .profiles-content-title {
+        display: inline-block !important;
+        background: #f2f2f2 !important;
+        color: #000 !important;
+        padding: 2px 10px !important;
+        border: 1px solid #f2f2f2 !important;
+        text-transform: uppercase !important;
+        font-weight: 400 !important;
+        box-shadow: none !important;
+    }
+
+    .profiles-page-shell p,
+    .profiles-page-shell .profiles-section-subtitle,
+    .profiles-page-shell .profiles-description,
+    .profiles-page-shell .profiles-intro {
+        text-transform: uppercase !important;
+    }
+</style>
+
+
+    <style id="profiles-page-custom-llm-kicker-step241">
+        body.profiles-page-body .profiles-page-shell main.panel > .kicker,
+        body.profiles-page-body .profiles-page-shell .panel > .kicker,
+        body.profiles-page-body .profiles-page-shell p.kicker {
+            display: inline-block !important;
+            width: auto !important;
+            max-width: max-content !important;
+
+            margin: 0 0 10px 0 !important;
+            padding: 2px 10px !important;
+
+            background: #ffffff !important;
+            color: #000000 !important;
+
+            border: 1px solid #ffffff !important;
+            border-radius: 0 !important;
+
+            font-size: 0.82rem !important;
+            font-weight: 900 !important;
+            letter-spacing: 0.22em !important;
+            line-height: 1 !important;
+
+            text-transform: uppercase !important;
+            text-decoration: none !important;
+
+            box-shadow: none !important;
+            filter: none !important;
+            opacity: 1 !important;
+            transition: none !important;
+            pointer-events: none !important;
+        }
+
+        body.profiles-page-body .profiles-page-shell main.panel > .kicker:hover,
+        body.profiles-page-body .profiles-page-shell .panel > .kicker:hover,
+        body.profiles-page-body .profiles-page-shell p.kicker:hover {
+            background: #ffffff !important;
+            color: #000000 !important;
+            border-color: #ffffff !important;
+        }
+    </style>
+
 </head>
 <body class="profiles-page-body">
 <div class="app-shell profiles-page-shell">
@@ -989,7 +1062,7 @@ $model = htmlspecialchars((string)($config['llm']['model'] ?? 'LOCAL MODEL'), EN
 
     <main class="panel">
         <p class="kicker">CUSTOM LLM</p>
-        <h2>Select a profile and run it for the current KUZAI session</h2>
+        <h2>SELECT A PROFILE AND RUN IT FOR THE CURRENT KUZAI SESSION</h2>
 
         <div class="status" id="statusBox">
             Loading profiles...
