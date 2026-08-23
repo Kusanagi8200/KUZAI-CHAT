@@ -1053,11 +1053,10 @@ checkServer();
 
     const toolbar = document.getElementById('gitRagToolbar');
     const gitRagBtn = document.getElementById('gitRagBtn');
-    const activeRepoBtn = document.getElementById('gitRagActiveRepoBtn');
     const repoMenu = document.getElementById('gitRagRepoMenu');
     const filesMenu = document.getElementById('gitRagFilesMenu');
 
-    if (!toolbar || !gitRagBtn || !activeRepoBtn || !repoMenu || !filesMenu) {
+    if (!toolbar || !gitRagBtn || !repoMenu || !filesMenu) {
         return;
     }
 
@@ -1169,19 +1168,19 @@ checkServer();
         const activeRepo = getActiveRepo();
 
         if (!activeRepo) {
-            activeRepoBtn.textContent = '';
-            activeRepoBtn.title = 'No GIT-RAG repository selected';
-            activeRepoBtn.classList.remove('git-rag-active-repo-btn--selected');
-            activeRepoBtn.classList.add('git-rag-active-repo-btn--hidden');
-            activeRepoBtn.disabled = true;
+            gitRagBtn.textContent = 'GIT-RAG / SELECT A REPO';
+            gitRagBtn.title = 'Select GIT-RAG repository';
+            gitRagBtn.classList.remove('git-rag-main-btn--selected');
+            gitRagBtn.disabled = false;
             return;
         }
 
-        activeRepoBtn.textContent = activeRepo.name || activeRepo.id;
-        activeRepoBtn.title = `Active GIT-RAG repository: ${activeRepo.name || activeRepo.id}`;
-        activeRepoBtn.classList.remove('git-rag-active-repo-btn--hidden');
-        activeRepoBtn.classList.add('git-rag-active-repo-btn--selected');
-        activeRepoBtn.disabled = false;
+        const repoName = activeRepo.name || activeRepo.id;
+
+        gitRagBtn.textContent = `GIT-RAG / REPO : ${repoName}`;
+        gitRagBtn.title = `Active GIT-RAG repository: ${repoName}`;
+        gitRagBtn.classList.add('git-rag-main-btn--selected');
+        gitRagBtn.disabled = false;
     }
 
     function renderRepoMenu() {
@@ -1226,12 +1225,14 @@ checkServer();
         saveActiveRepoId(repo.id);
         renderRepoMenu();
         renderActiveRepoButton();
-        hideMenus();
+
+        repoMenu.hidden = true;
+        filesMenu.hidden = true;
+        loadFilesMenu();
     }
 
     async function fetchRepos() {
         gitRagBtn.disabled = true;
-        activeRepoBtn.disabled = true;
 
         try {
             const response = await fetch('api/git-rag-repos.php', {
@@ -1261,12 +1262,10 @@ checkServer();
             repos = [];
             saveActiveRepoId('');
             repoMenu.innerHTML = `<div class="git-rag-menu-empty">GIT-RAG error: ${gitRagEscapeHtml(error.message)}</div>`;
-            activeRepoBtn.textContent = '';
-            activeRepoBtn.title = 'GIT-RAG repository list unavailable';
-            activeRepoBtn.classList.add('git-rag-active-repo-btn--hidden');
+            gitRagBtn.textContent = 'GIT-RAG / SELECT A REPO';
+            gitRagBtn.title = 'GIT-RAG repository list unavailable';
         } finally {
             gitRagBtn.disabled = false;
-            activeRepoBtn.disabled = repos.length === 0;
         }
     }
 
@@ -1784,11 +1783,6 @@ checkServer();
     gitRagBtn.addEventListener('click', (event) => {
         event.stopPropagation();
         toggleRepoMenu();
-    });
-
-    activeRepoBtn.addEventListener('click', (event) => {
-        event.stopPropagation();
-        toggleFilesMenu();
     });
 
     repoMenu.addEventListener('click', (event) => {

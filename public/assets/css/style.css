@@ -4006,3 +4006,1288 @@ html body .app-shell .chat-panel .chat-header .chat-actions,
 html body .app-shell .chat-panel .chat-header .chat-actions * {
   pointer-events: auto !important;
 }
+
+/* === KUZAI_GIT_RAG_REPO_BUTTON_STEP198 === */
+
+html body .app-shell #gitRagActiveRepoBtn {
+  display: inline-flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: none !important;
+
+  background-color: #ffffff !important;
+  background-image: linear-gradient(#000000, #000000) !important;
+  background-repeat: no-repeat !important;
+  background-position: 0 100% !important;
+  background-size: 100% 0 !important;
+
+  color: #000000 !important;
+
+  border: 1px solid #ffffff !important;
+  border-radius: 0 !important;
+
+  padding-left: 0.82rem !important;
+  padding-right: 0.82rem !important;
+
+  cursor: pointer !important;
+  pointer-events: auto !important;
+
+  transition:
+    color 180ms ease,
+    border-color 180ms ease,
+    background-size 220ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+html body .app-shell #gitRagActiveRepoBtn:hover,
+html body .app-shell #gitRagActiveRepoBtn:focus-visible {
+  background-color: #ffffff !important;
+  background-size: 100% 100% !important;
+
+  color: #ffffff !important;
+
+  border-top-color: #ffffff !important;
+  border-bottom-color: #ffffff !important;
+  border-left-color: transparent !important;
+  border-right-color: transparent !important;
+}
+
+/* L'ancien état hidden ne doit plus masquer le bouton. */
+html body .app-shell #gitRagActiveRepoBtn.git-rag-active-repo-btn--hidden {
+  display: inline-flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* === KUZAI_GIT_RAG_SINGLE_BUTTON_STEP200 === */
+
+html body .app-shell #gitRagBtn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: none !important;
+
+  white-space: nowrap !important;
+
+  background-color: #ffffff !important;
+  background-image: linear-gradient(#000000, #000000) !important;
+  background-repeat: no-repeat !important;
+  background-position: 0 100% !important;
+  background-size: 100% 0 !important;
+
+  color: #000000 !important;
+
+  border: 1px solid #ffffff !important;
+  border-radius: 0 !important;
+
+  padding-left: 0.82rem !important;
+  padding-right: 0.82rem !important;
+
+  cursor: pointer !important;
+
+  transition:
+    color 180ms ease,
+    border-color 180ms ease,
+    background-size 220ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+html body .app-shell #gitRagBtn:hover,
+html body .app-shell #gitRagBtn:focus-visible {
+  background-color: #ffffff !important;
+  background-size: 100% 100% !important;
+
+  color: #ffffff !important;
+
+  border-top-color: #ffffff !important;
+  border-bottom-color: #ffffff !important;
+  border-left-color: transparent !important;
+  border-right-color: transparent !important;
+}
+
+/* =========================================================
+   KUZAI_GIT_RAG_LAYOUT_STEP201
+   Restore repository/file management UI after global buttons
+   ========================================================= */
+
+
+/* ---------- MAIN FILES PANEL ---------- */
+
+html body .app-shell .git-rag-menu-files {
+  box-sizing: border-box !important;
+
+  background: #000000 !important;
+  color: #ffffff !important;
+
+  padding: 18px !important;
+
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+
+  text-align: left !important;
+}
+
+
+/* ---------- HEADER ---------- */
+
+html body .app-shell .git-rag-files-header {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+  align-items: flex-start !important;
+
+  gap: 20px !important;
+
+  width: 100% !important;
+
+  padding: 0 0 14px 0 !important;
+  margin: 0 0 14px 0 !important;
+
+  border-bottom: 1px solid #444444 !important;
+}
+
+
+html body .app-shell .git-rag-menu-title {
+  display: block !important;
+
+  color: #ffffff !important;
+
+  font-weight: 600 !important;
+  text-align: left !important;
+
+  margin: 0 0 8px 0 !important;
+}
+
+
+html body .app-shell .git-rag-menu-subtitle {
+  display: flex !important;
+  flex-wrap: wrap !important;
+
+  gap: 8px !important;
+
+  color: #9a9a9a !important;
+
+  text-align: left !important;
+}
+
+
+/* ---------- META BADGES ---------- */
+
+html body .app-shell .git-rag-menu-subtitle span {
+  display: inline-flex !important;
+  align-items: center !important;
+
+  width: auto !important;
+
+  padding: 3px 8px !important;
+
+  background: #000000 !important;
+  color: #9a9a9a !important;
+
+  border: 1px solid #333333 !important;
+  border-radius: 0 !important;
+
+  white-space: nowrap !important;
+}
+
+
+/* ---------- ACTION BUTTONS ---------- */
+
+html body .app-shell .git-rag-files-actions {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: flex-end !important;
+  align-items: center !important;
+
+  gap: 8px !important;
+
+  width: auto !important;
+}
+
+
+html body .app-shell .git-rag-files-actions button,
+html body .app-shell .git-rag-reindex-btn,
+html body .app-shell .git-rag-menu-close {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  width: auto !important;
+
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+
+  padding: 2pt 0.70rem !important;
+
+  line-height: 1 !important;
+
+  white-space: nowrap !important;
+}
+
+
+/* ---------- STATUS ---------- */
+
+html body .app-shell .git-rag-reindex-status {
+  display: block !important;
+
+  width: 100% !important;
+  box-sizing: border-box !important;
+
+  padding: 9px 10px !important;
+  margin: 0 0 8px 0 !important;
+
+  background: #000000 !important;
+  color: #9a9a9a !important;
+
+  border: 1px solid #333333 !important;
+  border-radius: 0 !important;
+
+  text-align: left !important;
+}
+
+
+/* ---------- FILE LIST ---------- */
+
+html body .app-shell .git-rag-files-list {
+  display: flex !important;
+  flex-direction: column !important;
+
+  gap: 0 !important;
+
+  width: 100% !important;
+
+  margin-top: 14px !important;
+
+  background: #000000 !important;
+}
+
+
+/*
+ * IMPORTANT:
+ * git-rag-file-item is a BUTTON.
+ * Completely override the global KUZAI button rules here.
+ */
+
+html body .app-shell button.git-rag-file-item {
+  display: grid !important;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    auto !important;
+
+  align-items: center !important;
+  justify-content: stretch !important;
+
+  column-gap: 18px !important;
+
+  width: 100% !important;
+
+  height: auto !important;
+  min-height: 46px !important;
+  max-height: none !important;
+
+  box-sizing: border-box !important;
+
+  padding: 9px 10px !important;
+  margin: 0 !important;
+
+  background: #000000 !important;
+  background-image: none !important;
+
+  color: #ffffff !important;
+
+  border: 0 !important;
+  border-bottom: 1px solid #333333 !important;
+  border-radius: 0 !important;
+
+  text-align: left !important;
+
+  overflow: visible !important;
+
+  white-space: normal !important;
+
+  box-shadow: none !important;
+  transform: none !important;
+
+  transition:
+    background-color 160ms ease,
+    color 160ms ease !important;
+}
+
+
+/* no inherited pseudo animation */
+
+html body .app-shell button.git-rag-file-item::before,
+html body .app-shell button.git-rag-file-item::after {
+  content: none !important;
+  display: none !important;
+}
+
+
+/* file row hover */
+
+html body .app-shell button.git-rag-file-item:hover,
+html body .app-shell button.git-rag-file-item:focus-visible {
+  background: #ffffff !important;
+  background-image: none !important;
+
+  color: #000000 !important;
+
+  border-left: 0 !important;
+  border-right: 0 !important;
+  border-top: 0 !important;
+  border-bottom: 1px solid #ffffff !important;
+}
+
+
+/* ---------- FILE NAME / DIRECTORY ---------- */
+
+html body .app-shell .git-rag-file-main {
+  display: flex !important;
+  flex-direction: column !important;
+
+  align-items: flex-start !important;
+
+  min-width: 0 !important;
+
+  text-align: left !important;
+
+  color: inherit !important;
+}
+
+
+html body .app-shell .git-rag-file-name {
+  display: block !important;
+
+  width: 100% !important;
+
+  color: inherit !important;
+
+  font-weight: 600 !important;
+
+  text-align: left !important;
+
+  overflow-wrap: anywhere !important;
+}
+
+
+html body .app-shell .git-rag-file-dir {
+  display: block !important;
+
+  width: 100% !important;
+
+  margin-top: 3px !important;
+
+  color: #777777 !important;
+
+  text-align: left !important;
+
+  overflow-wrap: anywhere !important;
+}
+
+
+html body .app-shell button.git-rag-file-item:hover .git-rag-file-dir {
+  color: #333333 !important;
+}
+
+
+/* ---------- FILE INFO ---------- */
+
+html body .app-shell .git-rag-file-info {
+  display: flex !important;
+  flex-wrap: wrap !important;
+
+  justify-content: flex-end !important;
+  align-items: center !important;
+
+  gap: 6px !important;
+
+  width: auto !important;
+
+  color: inherit !important;
+}
+
+
+html body .app-shell .git-rag-file-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+
+  width: auto !important;
+
+  padding: 2px 6px !important;
+
+  background: transparent !important;
+  color: inherit !important;
+
+  border: 1px solid currentColor !important;
+  border-radius: 0 !important;
+
+  line-height: 1 !important;
+
+  white-space: nowrap !important;
+}
+
+
+/* ---------- REPOSITORY SELECTION LIST ---------- */
+
+/*
+ * Same protection for repository rows,
+ * which are also buttons.
+ */
+
+html body .app-shell button.git-rag-menu-item {
+  display: grid !important;
+
+  grid-template-columns: minmax(0, 1fr) auto !important;
+
+  align-items: center !important;
+
+  width: 100% !important;
+
+  height: auto !important;
+  min-height: 44px !important;
+  max-height: none !important;
+
+  padding: 8px 10px !important;
+
+  background: #000000 !important;
+  background-image: none !important;
+
+  color: #ffffff !important;
+
+  border: 0 !important;
+  border-bottom: 1px solid #333333 !important;
+  border-radius: 0 !important;
+
+  text-align: left !important;
+
+  overflow: visible !important;
+
+  white-space: normal !important;
+}
+
+
+html body .app-shell button.git-rag-menu-item::before,
+html body .app-shell button.git-rag-menu-item::after {
+  content: none !important;
+  display: none !important;
+}
+
+
+html body .app-shell button.git-rag-menu-item:hover,
+html body .app-shell button.git-rag-menu-item:focus-visible {
+  background: #ffffff !important;
+  color: #000000 !important;
+}
+
+
+/* ---------- FILE VIEWER ---------- */
+
+html body .app-shell .git-rag-file-viewer,
+html body .app-shell .git-rag-git-output {
+  display: block !important;
+
+  width: 100% !important;
+  box-sizing: border-box !important;
+
+  max-height: 55vh !important;
+  overflow: auto !important;
+
+  padding: 14px !important;
+
+  background: #050505 !important;
+  color: #ffffff !important;
+
+  border: 1px solid #333333 !important;
+
+  text-align: left !important;
+
+  white-space: pre-wrap !important;
+  overflow-wrap: anywhere !important;
+}
+
+
+/* ---------- FILE EDITOR ---------- */
+
+html body .app-shell .git-rag-file-editor {
+  width: 100% !important;
+  min-height: 50vh !important;
+
+  box-sizing: border-box !important;
+
+  padding: 14px !important;
+
+  background: #050505 !important;
+  color: #ffffff !important;
+
+  border: 1px solid #555555 !important;
+
+  text-align: left !important;
+
+  resize: vertical !important;
+}
+
+
+/* =========================================================
+   KUZAI_GIT_RAG_FIX_STEP202
+   ========================================================= */
+
+/* Respect HTML hidden attribute */
+html body .app-shell .git-rag-menu [hidden],
+html body .app-shell .git-rag-menu-files [hidden],
+html body .app-shell .git-rag-menu-repos [hidden],
+html body .app-shell #gitRagGitOutput[hidden],
+html body .app-shell #gitRagFileEditor[hidden] {
+  display: none !important;
+}
+
+
+/* MAIN CONTAINERS : NO ROUNDED CORNERS */
+
+html body .app-shell .git-rag-menu,
+html body .app-shell .git-rag-menu-files,
+html body .app-shell .git-rag-menu-repos {
+  border-radius: 0 !important;
+
+  background: #000000 !important;
+  color: #ffffff !important;
+
+  overflow-x: hidden !important;
+}
+
+
+/* FILES WINDOW */
+
+html body .app-shell .git-rag-menu-files {
+  box-sizing: border-box !important;
+
+  width: 100% !important;
+  max-width: 100% !important;
+
+  max-height: 72vh !important;
+
+  overflow-y: auto !important;
+
+  padding: 16px !important;
+}
+
+
+/* REMOVE ROUNDING EVERYWHERE INSIDE GIT-RAG */
+
+html body .app-shell .git-rag-menu-files *,
+html body .app-shell .git-rag-menu-repos * {
+  border-radius: 0 !important;
+}
+
+
+/* STATUS */
+
+html body .app-shell .git-rag-reindex-status {
+  display: block !important;
+
+  width: 100% !important;
+
+  box-sizing: border-box !important;
+
+  background: #000000 !important;
+  color: #ffffff !important;
+
+  border: 1px solid #333333 !important;
+
+  padding: 8px 10px !important;
+
+  margin: 0 0 8px 0 !important;
+}
+
+
+/* GIT OUTPUT */
+
+html body .app-shell .git-rag-git-output:not([hidden]) {
+  display: block !important;
+
+  width: 100% !important;
+
+  box-sizing: border-box !important;
+
+  margin: 10px 0 !important;
+  padding: 12px !important;
+
+  background: #000000 !important;
+  color: #ffffff !important;
+
+  border: 1px solid #444444 !important;
+
+  white-space: pre-wrap !important;
+}
+
+
+/* FILE LIST */
+
+html body .app-shell .git-rag-files-list {
+  display: flex !important;
+  flex-direction: column !important;
+
+  width: 100% !important;
+
+  box-sizing: border-box !important;
+
+  overflow: visible !important;
+
+  margin: 12px 0 0 0 !important;
+  padding: 0 !important;
+}
+
+
+/* FILE ROWS */
+
+html body .app-shell button.git-rag-file-item {
+  position: relative !important;
+  isolation: auto !important;
+
+  display: grid !important;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    auto !important;
+
+  align-items: center !important;
+
+  width: 100% !important;
+
+  height: auto !important;
+  min-height: 48px !important;
+  max-height: none !important;
+
+  box-sizing: border-box !important;
+
+  margin: 0 !important;
+  padding: 8px 8px !important;
+
+  overflow: visible !important;
+
+  background: #000000 !important;
+  background-image: none !important;
+
+  color: #ffffff !important;
+
+  border: 0 !important;
+  border-bottom: 1px solid #333333 !important;
+
+  text-align: left !important;
+
+  white-space: normal !important;
+}
+
+
+/* NO GLOBAL BUTTON ANIMATION ON FILE ROW */
+
+html body .app-shell button.git-rag-file-item::before,
+html body .app-shell button.git-rag-file-item::after {
+  content: none !important;
+  display: none !important;
+}
+
+
+/* TEXT ALWAYS VISIBLE */
+
+html body .app-shell button.git-rag-file-item *,
+html body .app-shell .git-rag-file-main,
+html body .app-shell .git-rag-file-name,
+html body .app-shell .git-rag-file-info,
+html body .app-shell .git-rag-file-badge {
+  visibility: visible !important;
+  opacity: 1 !important;
+
+  color: #ffffff !important;
+
+  z-index: auto !important;
+}
+
+
+/* DIRECTORY SECOND LINE */
+
+html body .app-shell .git-rag-file-dir {
+  display: block !important;
+
+  visibility: visible !important;
+  opacity: 1 !important;
+
+  margin-top: 3px !important;
+
+  color: #777777 !important;
+
+  text-align: left !important;
+}
+
+
+/* HOVER */
+
+html body .app-shell button.git-rag-file-item:hover {
+  background: #ffffff !important;
+  background-image: none !important;
+
+  color: #000000 !important;
+}
+
+
+html body .app-shell button.git-rag-file-item:hover *,
+html body .app-shell button.git-rag-file-item:hover .git-rag-file-name,
+html body .app-shell button.git-rag-file-item:hover .git-rag-file-info,
+html body .app-shell button.git-rag-file-item:hover .git-rag-file-badge {
+  color: #000000 !important;
+}
+
+
+html body .app-shell button.git-rag-file-item:hover .git-rag-file-dir {
+  color: #444444 !important;
+}
+
+
+/* REPO ROWS */
+
+html body .app-shell button.git-rag-menu-item {
+  position: relative !important;
+  isolation: auto !important;
+
+  width: 100% !important;
+
+  height: auto !important;
+  min-height: 46px !important;
+  max-height: none !important;
+
+  box-sizing: border-box !important;
+
+  overflow: visible !important;
+
+  background: #000000 !important;
+  background-image: none !important;
+
+  color: #ffffff !important;
+
+  border: 0 !important;
+  border-bottom: 1px solid #333333 !important;
+}
+
+
+html body .app-shell button.git-rag-menu-item::before,
+html body .app-shell button.git-rag-menu-item::after {
+  content: none !important;
+  display: none !important;
+}
+
+
+html body .app-shell button.git-rag-menu-item *,
+html body .app-shell .git-rag-menu-item-main,
+html body .app-shell .git-rag-menu-item-meta {
+  visibility: visible !important;
+  opacity: 1 !important;
+
+  color: #ffffff !important;
+}
+
+
+html body .app-shell button.git-rag-menu-item:hover {
+  background: #ffffff !important;
+  color: #000000 !important;
+}
+
+
+html body .app-shell button.git-rag-menu-item:hover * {
+  color: #000000 !important;
+}
+
+
+/* =========================================================
+   KUZAI_GIT_RAG_WINDOW_HARDFIX_STEP203
+   Clean fixed GIT-RAG management window.
+   ========================================================= */
+
+/* Respect hidden */
+html body .app-shell #gitRagFilesMenu[hidden],
+html body .app-shell #gitRagRepoMenu[hidden],
+html body .app-shell #gitRagGitOutput[hidden],
+html body .app-shell #gitRagFileEditor[hidden] {
+  display: none !important;
+}
+
+/* Main FILES window: fixed, centered, no overflow outside viewport */
+html body .app-shell #gitRagFilesMenu:not([hidden]) {
+  position: fixed !important;
+
+  top: 138px !important;
+  left: 50% !important;
+  right: auto !important;
+  bottom: auto !important;
+
+  transform: translateX(-50%) !important;
+
+  width: min(92vw, 1640px) !important;
+  max-width: calc(100vw - 48px) !important;
+
+  height: auto !important;
+  max-height: calc(100vh - 180px) !important;
+
+  box-sizing: border-box !important;
+
+  display: block !important;
+
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+
+  padding: 16px !important;
+  margin: 0 !important;
+
+  background: #000000 !important;
+  color: #ffffff !important;
+
+  border: 1px solid #ffffff !important;
+  border-radius: 0 !important;
+
+  z-index: 9999 !important;
+
+  text-align: left !important;
+}
+
+/* Repo selection menu also fixed and controlled */
+html body .app-shell #gitRagRepoMenu:not([hidden]) {
+  position: fixed !important;
+
+  top: 138px !important;
+  left: 50% !important;
+  right: auto !important;
+
+  transform: translateX(-50%) !important;
+
+  width: min(72vw, 1100px) !important;
+  max-width: calc(100vw - 48px) !important;
+  max-height: calc(100vh - 180px) !important;
+
+  box-sizing: border-box !important;
+
+  display: block !important;
+
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+
+  padding: 16px !important;
+  margin: 0 !important;
+
+  background: #000000 !important;
+  color: #ffffff !important;
+
+  border: 1px solid #ffffff !important;
+  border-radius: 0 !important;
+
+  z-index: 9999 !important;
+
+  text-align: left !important;
+}
+
+/* No rounded corners anywhere in GIT-RAG panels */
+html body .app-shell #gitRagFilesMenu *,
+html body .app-shell #gitRagRepoMenu * {
+  border-radius: 0 !important;
+}
+
+/* Header */
+html body .app-shell #gitRagFilesMenu .git-rag-files-header {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto !important;
+
+  align-items: start !important;
+  gap: 16px !important;
+
+  width: 100% !important;
+  max-width: 100% !important;
+
+  box-sizing: border-box !important;
+
+  padding: 0 0 14px 0 !important;
+  margin: 0 0 14px 0 !important;
+
+  border-bottom: 1px solid #333333 !important;
+}
+
+/* Title and subtitle */
+html body .app-shell #gitRagFilesMenu .git-rag-menu-title,
+html body .app-shell #gitRagRepoMenu .git-rag-menu-title {
+  display: block !important;
+
+  color: #ffffff !important;
+
+  text-align: left !important;
+  white-space: nowrap !important;
+
+  margin: 0 0 8px 0 !important;
+}
+
+html body .app-shell #gitRagFilesMenu .git-rag-menu-subtitle,
+html body .app-shell #gitRagRepoMenu .git-rag-menu-subtitle {
+  display: flex !important;
+  flex-wrap: wrap !important;
+
+  gap: 8px !important;
+
+  max-width: 100% !important;
+
+  color: #9a9a9a !important;
+
+  text-align: left !important;
+}
+
+/* Metadata badges */
+html body .app-shell #gitRagFilesMenu .git-rag-menu-subtitle span,
+html body .app-shell #gitRagRepoMenu .git-rag-menu-subtitle span {
+  display: inline-flex !important;
+
+  width: auto !important;
+
+  padding: 3px 7px !important;
+
+  background: #000000 !important;
+  color: #9a9a9a !important;
+
+  border: 1px solid #333333 !important;
+
+  white-space: nowrap !important;
+}
+
+/* Top right action buttons */
+html body .app-shell #gitRagFilesMenu .git-rag-files-actions {
+  display: flex !important;
+  flex-wrap: wrap !important;
+
+  justify-content: flex-end !important;
+  align-items: center !important;
+
+  gap: 7px !important;
+
+  max-width: 100% !important;
+
+  box-sizing: border-box !important;
+}
+
+html body .app-shell #gitRagFilesMenu .git-rag-files-actions button,
+html body .app-shell #gitRagFilesMenu .git-rag-reindex-btn,
+html body .app-shell #gitRagFilesMenu .git-rag-menu-close {
+  position: relative !important;
+
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: none !important;
+
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+
+  padding: 2pt 0.70rem !important;
+
+  background-color: #ffffff !important;
+  background-image: linear-gradient(#000000, #000000) !important;
+  background-repeat: no-repeat !important;
+  background-position: 0 100% !important;
+  background-size: 100% 0 !important;
+
+  color: #000000 !important;
+
+  border: 1px solid #ffffff !important;
+
+  line-height: 1 !important;
+  white-space: nowrap !important;
+
+  overflow: hidden !important;
+
+  transition:
+    color 180ms ease,
+    background-size 220ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+html body .app-shell #gitRagFilesMenu .git-rag-files-actions button::before,
+html body .app-shell #gitRagFilesMenu .git-rag-reindex-btn::before,
+html body .app-shell #gitRagFilesMenu .git-rag-menu-close::before {
+  content: none !important;
+  display: none !important;
+}
+
+html body .app-shell #gitRagFilesMenu .git-rag-files-actions button:hover,
+html body .app-shell #gitRagFilesMenu .git-rag-reindex-btn:hover,
+html body .app-shell #gitRagFilesMenu .git-rag-menu-close:hover {
+  background-size: 100% 100% !important;
+  color: #ffffff !important;
+
+  border-left-color: transparent !important;
+  border-right-color: transparent !important;
+}
+
+/* Status lines */
+html body .app-shell #gitRagFilesMenu .git-rag-reindex-status {
+  display: block !important;
+
+  width: 100% !important;
+
+  box-sizing: border-box !important;
+
+  padding: 8px 10px !important;
+  margin: 0 0 8px 0 !important;
+
+  background: #000000 !important;
+  color: #ffffff !important;
+
+  border: 1px solid #333333 !important;
+
+  text-align: left !important;
+}
+
+/* Git output only when visible */
+html body .app-shell #gitRagFilesMenu #gitRagGitOutput:not([hidden]) {
+  display: block !important;
+
+  width: 100% !important;
+  max-width: 100% !important;
+
+  box-sizing: border-box !important;
+
+  margin: 10px 0 !important;
+  padding: 12px !important;
+
+  background: #050505 !important;
+  color: #ffffff !important;
+
+  border: 1px solid #333333 !important;
+
+  white-space: pre-wrap !important;
+  overflow-wrap: anywhere !important;
+
+  overflow: auto !important;
+}
+
+/* File list */
+html body .app-shell #gitRagFilesMenu .git-rag-files-list {
+  display: flex !important;
+  flex-direction: column !important;
+
+  width: 100% !important;
+  max-width: 100% !important;
+
+  box-sizing: border-box !important;
+
+  margin: 12px 0 0 0 !important;
+  padding: 0 !important;
+
+  overflow: hidden !important;
+
+  background: #000000 !important;
+}
+
+/* File row buttons */
+html body .app-shell #gitRagFilesMenu button.git-rag-file-item {
+  display: grid !important;
+
+  grid-template-columns: minmax(0, 1fr) auto !important;
+
+  align-items: center !important;
+  column-gap: 14px !important;
+
+  width: 100% !important;
+  max-width: 100% !important;
+
+  min-width: 0 !important;
+
+  height: auto !important;
+  min-height: 44px !important;
+  max-height: none !important;
+
+  box-sizing: border-box !important;
+
+  margin: 0 !important;
+  padding: 8px 8px !important;
+
+  background: #000000 !important;
+  background-image: none !important;
+
+  color: #ffffff !important;
+
+  border: 0 !important;
+  border-bottom: 1px solid #333333 !important;
+
+  text-align: left !important;
+
+  overflow: hidden !important;
+
+  white-space: normal !important;
+
+  box-shadow: none !important;
+  transform: none !important;
+
+  cursor: pointer !important;
+}
+
+html body .app-shell #gitRagFilesMenu button.git-rag-file-item::before,
+html body .app-shell #gitRagFilesMenu button.git-rag-file-item::after {
+  content: none !important;
+  display: none !important;
+}
+
+/* Text columns */
+html body .app-shell #gitRagFilesMenu .git-rag-file-main {
+  display: flex !important;
+  flex-direction: column !important;
+
+  align-items: flex-start !important;
+
+  min-width: 0 !important;
+  max-width: 100% !important;
+
+  overflow: hidden !important;
+
+  color: inherit !important;
+}
+
+html body .app-shell #gitRagFilesMenu .git-rag-file-name {
+  display: block !important;
+
+  max-width: 100% !important;
+
+  color: #ffffff !important;
+
+  text-align: left !important;
+
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+html body .app-shell #gitRagFilesMenu .git-rag-file-dir {
+  display: block !important;
+
+  max-width: 100% !important;
+
+  margin-top: 3px !important;
+
+  color: #777777 !important;
+
+  text-align: left !important;
+
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+/* Right badges */
+html body .app-shell #gitRagFilesMenu .git-rag-file-info {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+
+  justify-content: flex-end !important;
+  align-items: center !important;
+
+  gap: 6px !important;
+
+  min-width: 0 !important;
+  max-width: 100% !important;
+
+  overflow: hidden !important;
+
+  color: #ffffff !important;
+}
+
+html body .app-shell #gitRagFilesMenu .git-rag-file-badge {
+  display: inline-flex !important;
+
+  flex: 0 0 auto !important;
+
+  align-items: center !important;
+
+  width: auto !important;
+
+  padding: 2px 6px !important;
+
+  background: transparent !important;
+  color: #ffffff !important;
+
+  border: 1px solid currentColor !important;
+
+  line-height: 1 !important;
+
+  white-space: nowrap !important;
+}
+
+/* File row hover */
+html body .app-shell #gitRagFilesMenu button.git-rag-file-item:hover {
+  background: #ffffff !important;
+  background-image: none !important;
+
+  color: #000000 !important;
+}
+
+html body .app-shell #gitRagFilesMenu button.git-rag-file-item:hover .git-rag-file-name,
+html body .app-shell #gitRagFilesMenu button.git-rag-file-item:hover .git-rag-file-info,
+html body .app-shell #gitRagFilesMenu button.git-rag-file-item:hover .git-rag-file-badge {
+  color: #000000 !important;
+}
+
+html body .app-shell #gitRagFilesMenu button.git-rag-file-item:hover .git-rag-file-dir {
+  color: #444444 !important;
+}
+
+/* Repo selection rows */
+html body .app-shell #gitRagRepoMenu button.git-rag-menu-item {
+  display: grid !important;
+
+  grid-template-columns: minmax(0, 1fr) auto !important;
+
+  align-items: center !important;
+
+  width: 100% !important;
+  max-width: 100% !important;
+
+  height: auto !important;
+  min-height: 44px !important;
+  max-height: none !important;
+
+  box-sizing: border-box !important;
+
+  padding: 8px 8px !important;
+  margin: 0 !important;
+
+  background: #000000 !important;
+  background-image: none !important;
+
+  color: #ffffff !important;
+
+  border: 0 !important;
+  border-bottom: 1px solid #333333 !important;
+
+  text-align: left !important;
+
+  overflow: hidden !important;
+}
+
+html body .app-shell #gitRagRepoMenu button.git-rag-menu-item::before,
+html body .app-shell #gitRagRepoMenu button.git-rag-menu-item::after {
+  content: none !important;
+  display: none !important;
+}
+
+html body .app-shell #gitRagRepoMenu button.git-rag-menu-item * {
+  color: #ffffff !important;
+}
+
+html body .app-shell #gitRagRepoMenu button.git-rag-menu-item:hover {
+  background: #ffffff !important;
+  color: #000000 !important;
+}
+
+html body .app-shell #gitRagRepoMenu button.git-rag-menu-item:hover * {
+  color: #000000 !important;
+}
+

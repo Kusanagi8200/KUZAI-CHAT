@@ -63,8 +63,7 @@ $model = htmlspecialchars($config['llm']['model'], ENT_QUOTES, 'UTF-8');
                     </div>
                     <div class="chat-actions">
                         <div class="git-rag-toolbar" id="gitRagToolbar">
-                            <button type="button" class="btn btn-secondary git-rag-active-repo-btn" id="gitRagActiveRepoBtn" title="No GIT-RAG repository selected">NO REPO</button>
-                            <button type="button" class="btn btn-secondary git-rag-main-btn" id="gitRagBtn" title="Select GIT-RAG repository">GIT-RAG</button>
+                            <button type="button" class="btn btn-secondary git-rag-main-btn" id="gitRagBtn" title="Select GIT-RAG repository">GIT-RAG / SELECT A REPO</button>
                             <div class="git-rag-menu git-rag-menu-repos" id="gitRagRepoMenu" hidden></div>
                             <div class="git-rag-menu git-rag-menu-files" id="gitRagFilesMenu" hidden></div>
                         </div>
