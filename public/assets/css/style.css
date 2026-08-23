@@ -7238,3 +7238,292 @@ html body.git-rag-page-body .app-shell #gitRagDeselectRepoBtn:focus-visible {
   border-left-color: transparent !important;
   border-right-color: transparent !important;
 }
+
+/* =========================================================
+   KUZAI_PROFILES_PAGE_SHELL_STEP229
+   profiles.php aligned with home / git-rag page shell.
+   ========================================================= */
+
+html body.profiles-page-body {
+  padding: 0 !important;
+  margin: 0 !important;
+  background: #000000 !important;
+  color: #ffffff !important;
+  font-family: "Anta", "Segoe UI", Arial, sans-serif !important;
+}
+
+html body.profiles-page-body .page {
+  width: 90vw !important;
+  max-width: 1800px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding: 0 !important;
+}
+
+/* Old rounded header neutralized by home header */
+html body.profiles-page-body .topbar.site-style-topbar {
+  border-radius: 0 !important;
+}
+
+/* Main panel: square, aligned to site style */
+html body.profiles-page-body .panel {
+  width: 100% !important;
+  max-width: 100% !important;
+
+  box-sizing: border-box !important;
+
+  margin: 0 !important;
+  padding: 16px !important;
+
+  background: #000000 !important;
+  color: #ffffff !important;
+
+  border: 1px solid #ffffff !important;
+  border-radius: 0 !important;
+}
+
+/* Page action row */
+html body.profiles-page-body .profiles-page-actions {
+  display: flex !important;
+  justify-content: flex-end !important;
+  align-items: center !important;
+
+  width: 100% !important;
+
+  margin: 0 0 16px 0 !important;
+  padding: 0 0 14px 0 !important;
+
+  border-bottom: 1px solid #333333 !important;
+}
+
+html body.profiles-page-body .profiles-page-create-action {
+  background-color: #ffffff !important;
+  background-image: linear-gradient(#000000, #000000) !important;
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
+  background-size: 0 100% !important;
+
+  color: #000000 !important;
+
+  border: 1px solid #ffffff !important;
+  border-radius: 0 !important;
+
+  padding: 2pt 8px !important;
+
+  line-height: 1 !important;
+  text-transform: uppercase !important;
+  text-decoration: none !important;
+
+  transition:
+    color 180ms ease,
+    background-size 240ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 180ms ease !important;
+}
+
+html body.profiles-page-body .profiles-page-create-action:hover,
+html body.profiles-page-body .profiles-page-create-action:focus-visible {
+  background-size: 100% 100% !important;
+  color: #ffffff !important;
+}
+
+/* Remove old rounded cards */
+html body.profiles-page-body .profile,
+html body.profiles-page-body .empty,
+html body.profiles-page-body .status {
+  border-radius: 0 !important;
+  background: #000000 !important;
+}
+
+/* Bottom BACK HOME, same logic as GIT-RAG page */
+html body.profiles-page-body .profiles-bottom-nav {
+  width: 100% !important;
+  max-width: 100% !important;
+
+  box-sizing: border-box !important;
+
+  margin: 40px 0 8px 0 !important;
+  padding: 0 !important;
+}
+
+html body.profiles-page-body .profiles-bottom-back-home {
+  position: relative !important;
+  isolation: isolate !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+
+  width: 100% !important;
+  max-width: 100% !important;
+
+  box-sizing: border-box !important;
+
+  padding: 0.48rem 1rem !important;
+  margin: 0 !important;
+
+  background: #000000 !important;
+  color: #ffffff !important;
+
+  border-top: 1px solid #333333 !important;
+  border-bottom: 1px solid #333333 !important;
+  border-left: 0 !important;
+  border-right: 0 !important;
+  border-radius: 0 !important;
+
+  font-size: clamp(1.05rem, 1.25vw, 1.45rem) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em !important;
+  line-height: 1 !important;
+
+  text-decoration: none !important;
+  text-transform: uppercase !important;
+
+  overflow: hidden !important;
+
+  transition:
+    color 180ms ease,
+    border-color 180ms ease !important;
+}
+
+html body.profiles-page-body .profiles-bottom-back-home::before {
+  content: "" !important;
+
+  position: absolute !important;
+  inset: 0 !important;
+
+  z-index: 0 !important;
+
+  background: #ffffff !important;
+
+  transform: scaleX(0) !important;
+  transform-origin: center center !important;
+
+  transition: transform 240ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+
+  pointer-events: none !important;
+}
+
+html body.profiles-page-body .profiles-bottom-back-home__label,
+html body.profiles-page-body .profiles-bottom-back-home__arrow {
+  position: relative !important;
+  z-index: 1 !important;
+  color: inherit !important;
+  line-height: 1 !important;
+  white-space: nowrap !important;
+}
+
+html body.profiles-page-body .profiles-bottom-back-home:hover,
+html body.profiles-page-body .profiles-bottom-back-home:focus-visible {
+  color: #000000 !important;
+  border-top-color: #ffffff !important;
+  border-bottom-color: #ffffff !important;
+  outline: none !important;
+}
+
+html body.profiles-page-body .profiles-bottom-back-home:hover::before,
+html body.profiles-page-body .profiles-bottom-back-home:focus-visible::before {
+  transform: scaleX(1) !important;
+}
+
+/* Footer aligned */
+html body.profiles-page-body .site-footer.app-site-footer {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+/* =========================================================
+   KUZAI_PROFILES_WIDTH_FIX_STEP230
+   Force profiles.php to use the same centered 90vw shell as home.
+   ========================================================= */
+
+html body.profiles-page-body {
+  width: 100% !important;
+  min-width: 0 !important;
+
+  padding: 0 !important;
+  margin: 0 !important;
+
+  overflow-x: hidden !important;
+
+  background: #000000 !important;
+}
+
+/* Main page shell */
+html body.profiles-page-body .page {
+  width: 90vw !important;
+  max-width: 1800px !important;
+  min-width: 0 !important;
+
+  margin-left: auto !important;
+  margin-right: auto !important;
+
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+
+  box-sizing: border-box !important;
+}
+
+/* Header must not escape the shell */
+html body.profiles-page-body .page > .topbar.site-style-topbar,
+html body.profiles-page-body .topbar.site-style-topbar {
+  width: 100% !important;
+  max-width: 100% !important;
+
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+
+  box-sizing: border-box !important;
+}
+
+/* Main content aligned to shell */
+html body.profiles-page-body .page > .panel,
+html body.profiles-page-body .panel {
+  width: 100% !important;
+  max-width: 100% !important;
+
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+
+  box-sizing: border-box !important;
+}
+
+/* Profile rows must stay inside panel */
+html body.profiles-page-body .profiles,
+html body.profiles-page-body .profile,
+html body.profiles-page-body .status,
+html body.profiles-page-body .empty {
+  width: 100% !important;
+  max-width: 100% !important;
+
+  box-sizing: border-box !important;
+}
+
+/* Bottom navigation aligned to same shell */
+html body.profiles-page-body .profiles-bottom-nav {
+  width: 100% !important;
+  max-width: 100% !important;
+
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+
+  box-sizing: border-box !important;
+}
+
+/* Footer aligned to same shell */
+html body.profiles-page-body .site-footer.app-site-footer {
+  width: 100% !important;
+  max-width: 100% !important;
+
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+
+  box-sizing: border-box !important;
+}
+
+/* Safety: no full viewport bleed */
+html body.profiles-page-body .topbar,
+html body.profiles-page-body .panel,
+html body.profiles-page-body .profiles-bottom-nav,
+html body.profiles-page-body .site-footer {
+  max-width: 100% !important;
+}

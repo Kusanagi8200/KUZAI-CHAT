@@ -6,6 +6,7 @@ $config = require __DIR__ . '/../app/config.php';
 
 $appName = htmlspecialchars((string)($config['app']['name'] ?? 'KUZAI'), ENT_QUOTES, 'UTF-8');
 $brandLine = htmlspecialchars((string)($config['app']['brand_line'] ?? 'A KUZ NETWORK SOLUTION'), ENT_QUOTES, 'UTF-8');
+$model = htmlspecialchars((string)($config['llm']['model'] ?? 'LOCAL MODEL'), ENT_QUOTES, 'UTF-8');
 
 ?><!doctype html>
 <html lang="en">
@@ -845,25 +846,239 @@ $brandLine = htmlspecialchars((string)($config['app']['brand_line'] ?? 'A KUZ NE
         /* KUZAI_SECONDARY_VALUE_TEXT_SIZE_MATCH_INDEX_END */
 
     </style>
+
+    <link rel="stylesheet" href="assets/css/style.css?v=profiles-page-shell-STEP229">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anta&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anta&display=swap" rel="stylesheet">
+
+
+    <style id="profiles-page-critical-shell-step233">
+        html,
+        body.profiles-page-body {
+            width: 100% !important;
+            min-width: 0 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            overflow-x: hidden !important;
+            background: #000000 !important;
+            color: #ffffff !important;
+            font-family: "Anta", "Segoe UI", Arial, sans-serif !important;
+        }
+
+        body.profiles-page-body .profiles-page-shell {
+            width: 90vw !important;
+            max-width: 1800px !important;
+            min-width: 0 !important;
+            margin-top: 24px !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+            padding: 0 !important;
+            box-sizing: border-box !important;
+            zoom: 1 !important;
+            transform: none !important;
+        }
+
+        body.profiles-page-body .profiles-page-shell > .topbar.site-style-topbar,
+        body.profiles-page-body .profiles-page-shell > .panel,
+        body.profiles-page-body .profiles-page-shell > .profiles-bottom-nav,
+        body.profiles-page-body .profiles-page-shell > .site-footer.app-site-footer {
+            width: 100% !important;
+            max-width: 100% !important;
+            min-width: 0 !important;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+            box-sizing: border-box !important;
+        }
+
+        body.profiles-page-body .profiles-page-shell > .panel {
+            margin-top: 0 !important;
+            padding: 16px !important;
+            border: 1px solid #ffffff !important;
+            border-radius: 0 !important;
+            background: #000000 !important;
+        }
+
+        body.profiles-page-body .profiles,
+        body.profiles-page-body .profile,
+        body.profiles-page-body .status,
+        body.profiles-page-body .empty {
+            width: 100% !important;
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+        }
+
+        body.profiles-page-body .profile,
+        body.profiles-page-body .status,
+        body.profiles-page-body .empty {
+            border-radius: 0 !important;
+            background: #000000 !important;
+        }
+
+        body.profiles-page-body .profiles-bottom-nav {
+            margin: 40px 0 8px 0 !important;
+            padding: 0 !important;
+        }
+
+        body.profiles-page-body .site-footer.app-site-footer {
+            margin-top: 0 !important;
+        }
+    </style>
+
+
+    <style id="profiles-page-bottom-gitrag-reference-step237">
+        body.profiles-page-body .profiles-bottom-nav {
+            width: 100% !important;
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+
+            margin: 40px 0 8px 0 !important;
+            padding: 0 !important;
+        }
+
+        body.profiles-page-body .profiles-bottom-back-home {
+            position: relative !important;
+            isolation: isolate !important;
+
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+
+            width: 100% !important;
+            max-width: 100% !important;
+
+            box-sizing: border-box !important;
+
+            margin: 0 !important;
+            padding: 0.48rem 1rem !important;
+
+            background: #000000 !important;
+            color: #ffffff !important;
+
+            border-top: 1px solid #333333 !important;
+            border-bottom: 1px solid #333333 !important;
+            border-left: 0 !important;
+            border-right: 0 !important;
+            border-radius: 0 !important;
+
+            font-size: clamp(1.05rem, 1.25vw, 1.45rem) !important;
+            font-weight: 700 !important;
+            letter-spacing: 0.08em !important;
+            line-height: 1 !important;
+
+            text-decoration: none !important;
+            text-transform: uppercase !important;
+
+            overflow: hidden !important;
+
+            transition:
+                color 180ms ease,
+                border-color 180ms ease !important;
+        }
+
+        body.profiles-page-body .profiles-bottom-back-home::before {
+            content: "" !important;
+
+            position: absolute !important;
+            inset: 0 !important;
+
+            z-index: 0 !important;
+
+            background: #ffffff !important;
+
+            transform: scaleX(0) !important;
+            transform-origin: center center !important;
+
+            transition: transform 240ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+
+            pointer-events: none !important;
+        }
+
+        body.profiles-page-body .profiles-bottom-back-home__label,
+        body.profiles-page-body .profiles-bottom-back-home__arrow {
+            position: relative !important;
+            z-index: 1 !important;
+
+            display: inline-flex !important;
+            align-items: center !important;
+
+            margin: 0 !important;
+            padding: 0 !important;
+
+            color: inherit !important;
+
+            font-size: clamp(1.05rem, 1.25vw, 1.45rem) !important;
+            font-weight: 700 !important;
+            letter-spacing: 0.08em !important;
+            line-height: 1 !important;
+
+            white-space: nowrap !important;
+        }
+
+        body.profiles-page-body .profiles-bottom-back-home:hover,
+        body.profiles-page-body .profiles-bottom-back-home:focus-visible {
+            color: #000000 !important;
+            border-top-color: #ffffff !important;
+            border-bottom-color: #ffffff !important;
+            outline: none !important;
+        }
+
+        body.profiles-page-body .profiles-bottom-back-home:hover::before,
+        body.profiles-page-body .profiles-bottom-back-home:focus-visible::before {
+            transform: scaleX(1) !important;
+        }
+
+        body.profiles-page-body .site-footer.app-site-footer {
+            margin-top: 0 !important;
+            margin-bottom: 0 !important;
+        }
+    </style>
+
+
+    <style id="profiles-page-bottom-gap-step238">
+        body.profiles-page-body .profiles-bottom-nav {
+            margin: 40px 0 26px 0 !important;
+            padding: 0 !important;
+        }
+
+        body.profiles-page-body .site-footer.app-site-footer {
+            margin-top: 0 !important;
+        }
+    </style>
+
 </head>
-<body>
-<div class="page">
-    <header class="topbar">
-        <div class="brand">
-            <div class="logo logo-image"><img src="assets/img/kuzai-logo.png" alt="KUZAI logo"></div>
-            <div>
-                <h1 class="brand-title"><?= $appName ?></h1>
-                <p class="brand-line"><?= $brandLine ?></p>
-                <p class="subtitle">/ RUN CUSTOM LLM PROFILE /</p>
-            </div>
+<body class="profiles-page-body">
+<div class="app-shell profiles-page-shell">
+    <header class="topbar site-style-topbar" aria-label="Main header">
+        <a class="brand-mark" href="./" aria-label="KUZAI home">
+            <img
+                class="brand-mark__logo"
+                src="assets/img/kuz_network_logo_transparent.png"
+                alt="KUZ Network logo"
+                width="112"
+                height="112"
+            >
+        </a>
+
+        <div class="header-title-block" aria-label="Project title">
+            <h1 class="header-title-block__title">KUZAI - THE LOCAL AI</h1>
+            <p class="header-title-block__meta">A KUZ NETWORK SOLUTION - BETA-0.03.2026</p>
         </div>
 
-        <div class="actions">
-            <a class="btn" href="/KUZAI/">BACK</a>
-            <a class="btn" href="/KUZAI/personality.php">CREATE NEW PROFILE</a>
+        <div class="topbar-meta site-header-runtime" aria-label="Runtime status">
+            <div class="meta-pill site-header-runtime__pill">
+                <span class="meta-label">MODEL</span>
+                <span class="meta-value" id="modelName"><?= $model ?></span>
+            </div>
+            <div class="meta-pill site-header-runtime__pill" id="serverState">
+                <span class="state-dot meta-dot"></span>
+                <span class="meta-value">CHECKING</span>
+            </div>
         </div>
     </header>
 
@@ -877,6 +1092,19 @@ $brandLine = htmlspecialchars((string)($config['app']['brand_line'] ?? 'A KUZ NE
 
         <div class="profiles" id="profilesList"></div>
     </main>
+
+    <nav class="profiles-bottom-nav" aria-label="Back to main chat">
+        <a class="profiles-bottom-back-home" href="/KUZAI/">
+            <span class="profiles-bottom-back-home__label">BACK HOME</span>
+            <span class="profiles-bottom-back-home__arrow">--&gt;</span>
+        </a>
+    </nav>
+
+    <footer class="site-footer site-footer--dynamic app-site-footer" aria-label="KUZ Network footer">
+        <div class="site-footer__inner">
+            <p class="site-footer__text">THE KUZ NETWORK - @2026 / BUILD LOCAL / KEEP CONTROL / OWN THE STACK</p>
+        </div>
+    </footer>
 </div>
 
 <script>
