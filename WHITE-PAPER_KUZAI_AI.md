@@ -536,6 +536,9 @@ KUZAI AI is an evolving beta project. Owning the stack also means owning its val
 - Persistent server-side conversation history.
 - Local long-term memory modules.
 - Profile import and export.
+- Versioned Custom LLM profile schema.
+- Full JSON Schema validation for profile documents.
+- Profile schema migration between application versions.
 - Authentication and role-based access control.
 - Model selection through the browser interface.
 - GPU, VRAM, memory, context, and runtime monitoring.
