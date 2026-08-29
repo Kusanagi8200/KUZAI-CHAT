@@ -310,6 +310,8 @@ KUZAI now separates profile management from profile editing through two dedicate
 
 The JSON editor provides an advanced mode for operators who want to modify the profile document directly instead of using only the structured form.
 
+---
+
 <a id="git-rag"></a>
 
 #### **`11. GIT-RAG REPOSITORY ANALYSIS`**
@@ -328,18 +330,27 @@ Git-RAG runs as an independent local microservice. The main KUZAI AI application
 - SSH-based repository access under operator-controlled credentials.
 - Single active repository workspace.
 - Active branch and repository readiness information.
-- Repository file inventory and source classification.
 - Code, Markdown, text, JSON, YAML, configuration, and log indexing.
-- Local file reading.
-- Controlled file editing with timestamped backup.
-- Git status and diff inspection.
-- Explicit commit operations with operator-defined messages.
-- Explicit push operations.
-- Fast-forward-only pull operations.
-- Manual repository reindexing.
 - Local embedding generation through llama.cpp.
 - Repository context injection into chat requests.
 - Independent local service on 127.0.0.1:8890.
+- Dedicated standalone GIT-RAG repository management interface.
+- Direct repository list on entry.
+- Persistent active-repository selection using local browser state.
+- Explicit BACK TO REPOS LIST and DESELECT REPO operations.
+- Integrated repository file explorer with path, extension, size, and text/binary classification.
+- Integrated file viewer and editor with EDIT, SAVE, and CANCEL controls.
+- Explicit confirmation before repository file writes.
+- Server-side timestamped backup before file modification.
+- Backup path returned after successful file save.
+- Repository dashboard showing file count, active branch, total indexed file size, index status, and Git status.
+- Git status and diff inspection directly from the interface.
+- Git operation results displayed directly in the repository interface.
+- Explicit confirmation before PULL and PUSH operations.
+- Operator-defined commit message before COMMIT.
+- Fast-forward-only PULL operations.
+- Manual repository reindexing.
+- Reindex progress and results including chunk count, skipped chunks, and indexing duration.
 
 ---
 
