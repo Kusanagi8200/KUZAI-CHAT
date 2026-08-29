@@ -6,6 +6,7 @@ $config = require __DIR__ . '/../app/config.php';
 
 $appName = htmlspecialchars((string)($config['app']['name'] ?? 'KUZAI'), ENT_QUOTES, 'UTF-8');
 $brandLine = htmlspecialchars((string)($config['app']['brand_line'] ?? 'A KUZ NETWORK SOLUTION'), ENT_QUOTES, 'UTF-8');
+$model = htmlspecialchars((string)($config['llm']['model'] ?? 'LOCAL MODEL'), ENT_QUOTES, 'UTF-8');
 
 ?><!doctype html>
 <html lang="en">
@@ -310,8 +311,8 @@ $brandLine = htmlspecialchars((string)($config['app']['brand_line'] ?? 'A KUZ NE
 
         .status {
             margin-top: 14px;
-            border: 1px solid var(--border-soft);
-            border-radius: 14px;
+            border: 1px solid #ffffff;
+            border-radius: 0 !important;
             padding: 14px;
             background: var(--panel-2);
             color: var(--soft);
@@ -321,12 +322,12 @@ $brandLine = htmlspecialchars((string)($config['app']['brand_line'] ?? 'A KUZ NE
         }
 
         .status-ok {
-            border-color: rgba(103, 243, 186, 0.5);
+            border-color: #ffffff;
             color: #dffdf2;
         }
 
         .status-error {
-            border-color: rgba(255, 123, 157, 0.58);
+            border-color: #ffffff;
             color: #ffdbe4;
         }
 
@@ -1109,34 +1110,835 @@ $brandLine = htmlspecialchars((string)($config['app']['brand_line'] ?? 'A KUZ NE
         /* KUZAI_PERSONALITY_SERVER_PROFILES_CLEAN_END */
 
     </style>
+
+    <link rel="stylesheet" href="assets/css/style.css?v=personality-step250">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anta&display=swap" rel="stylesheet">
+
+<style id="personality-shell-step250">
+
+html,
+body.personality-page-body {
+    width: 100% !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow-x: hidden !important;
+    background: #000000 !important;
+}
+
+body.personality-page-body .personality-page-shell {
+    width: 90vw !important;
+    max-width: 1800px !important;
+    min-width: 0 !important;
+
+    margin: 24px auto 0 auto !important;
+    padding: 0 !important;
+
+    box-sizing: border-box !important;
+
+    zoom: 1 !important;
+    transform: none !important;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+body.personality-page-body
+.personality-page-shell
+> .topbar.site-style-topbar {
+    width: 100% !important;
+    max-width: 100% !important;
+
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+
+    box-sizing: border-box !important;
+}
+
+
+/* Ensure actual central alignment */
+
+body.personality-page-body
+.personality-page-shell
+> .topbar.site-style-topbar
+.header-title-block {
+    text-align: center !important;
+}
+
+body.personality-page-body
+.personality-page-shell
+> .topbar.site-style-topbar
+.header-title-block__title,
+body.personality-page-body
+.personality-page-shell
+> .topbar.site-style-topbar
+.header-title-block__meta {
+    width: 100% !important;
+    text-align: center !important;
+}
+
+
+/* =========================================================
+   ACTION ROW BELOW HEADER
+   Existing commands preserved
+   ========================================================= */
+
+body.personality-page-body
+.personality-page-shell
+> .personality-action-toolbar {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+
+    align-items: center !important;
+    justify-content: flex-end !important;
+
+    gap: 8px !important;
+
+    width: 100% !important;
+
+    margin: 12px 0 18px 0 !important;
+    padding: 0 !important;
+
+    box-sizing: border-box !important;
+}
+
+body.personality-page-body
+.personality-action-toolbar
+.btn {
+    min-height: 0 !important;
+
+    margin: 0 !important;
+    padding: 4px 10px !important;
+
+    border-radius: 0 !important;
+
+    line-height: 1.1 !important;
+
+    white-space: nowrap !important;
+}
+
+
+/* =========================================================
+   BACK HOME
+   Same structure as other pages
+   ========================================================= */
+
+body.personality-page-body .personality-bottom-nav {
+    display: block !important;
+
+    width: 100% !important;
+
+    margin: 40px 0 26px 0 !important;
+    padding: 0 !important;
+
+    box-sizing: border-box !important;
+}
+
+body.personality-page-body .personality-bottom-back-home {
+    position: relative !important;
+    isolation: isolate !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+
+    width: 100% !important;
+
+    margin: 0 !important;
+    padding: .48rem 1rem !important;
+
+    box-sizing: border-box !important;
+
+    overflow: hidden !important;
+
+    background: #000000 !important;
+    color: #ffffff !important;
+
+    border-top: 1px solid #333333 !important;
+    border-bottom: 1px solid #333333 !important;
+    border-left: 0 !important;
+    border-right: 0 !important;
+    border-radius: 0 !important;
+
+    font-family: "Anta", "Segoe UI", Arial, sans-serif !important;
+    font-size: clamp(1.05rem, 1.25vw, 1.45rem) !important;
+    font-weight: 700 !important;
+
+    letter-spacing: .08em !important;
+    line-height: 1 !important;
+
+    text-decoration: none !important;
+    text-transform: uppercase !important;
+}
+
+body.personality-page-body .personality-bottom-back-home::before {
+    content: "" !important;
+
+    position: absolute !important;
+    inset: 0 !important;
+
+    z-index: 0 !important;
+
+    background: #ffffff !important;
+
+    transform: scaleX(0) !important;
+    transform-origin: center center !important;
+
+    transition: transform 240ms cubic-bezier(.16,1,.3,1) !important;
+}
+
+body.personality-page-body .personality-bottom-back-home__label,
+body.personality-page-body .personality-bottom-back-home__arrow {
+    position: relative !important;
+    z-index: 1 !important;
+
+    color: inherit !important;
+}
+
+body.personality-page-body .personality-bottom-back-home:hover,
+body.personality-page-body .personality-bottom-back-home:focus-visible {
+    color: #000000 !important;
+    outline: none !important;
+}
+
+body.personality-page-body .personality-bottom-back-home:hover::before,
+body.personality-page-body .personality-bottom-back-home:focus-visible::before {
+    transform: scaleX(1) !important;
+}
+
+
+/* Footer uses existing common KUZAI footer CSS */
+
+body.personality-page-body .site-footer.app-site-footer {
+    width: 100% !important;
+    max-width: 100% !important;
+
+    margin: 0 !important;
+
+    box-sizing: border-box !important;
+}
+
+</style>
+
+
+<style id="personality-section-titles-step251">
+
+/* =========================================================
+   KUZAI PERSONALITY — SECTION TITLES
+   WHITE / BLACK STATIC
+   BLACK CENTER EXPANSION ON HOVER
+   ========================================================= */
+
+/*
+ * Main section labels:
+ * PROFILE EDITOR
+ * SERVER PROFILES
+ * JSON PREVIEW
+ */
+body.personality-page-body
+.personality-page-shell
+.panel > .kicker,
+
+/*
+ * Numbered editor sections:
+ * 1. PROFILE FILE
+ * ...
+ * 8. ADDITIONAL FREE INSTRUCTIONS
+ */
+body.personality-page-body
+.personality-page-shell
+#profileForm > h3 {
+
+    position: relative !important;
+    isolation: isolate !important;
+
+    display: block !important;
+    width: max-content !important;
+    max-width: 100% !important;
+
+    box-sizing: border-box !important;
+
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+
+    padding: 3px 10px !important;
+
+    overflow: hidden !important;
+
+    background: #ffffff !important;
+    color: #000000 !important;
+
+    border: 1px solid #ffffff !important;
+    border-radius: 0 !important;
+
+    font-family: "Anta", "Segoe UI", Arial, sans-serif !important;
+    font-weight: 400 !important;
+
+    letter-spacing: .10em !important;
+    line-height: 1 !important;
+
+    text-transform: uppercase !important;
+
+    transition:
+        color 180ms ease,
+        border-color 180ms ease !important;
+}
+
+
+/* Black layer expanding from center */
+
+body.personality-page-body
+.personality-page-shell
+.panel > .kicker::before,
+
+body.personality-page-body
+.personality-page-shell
+#profileForm > h3::before {
+
+    content: "" !important;
+
+    position: absolute !important;
+    inset: 0 !important;
+
+    z-index: -1 !important;
+
+    background: #000000 !important;
+
+    transform: scaleX(0) !important;
+    transform-origin: center center !important;
+
+    transition:
+        transform 240ms cubic-bezier(.16, 1, .3, 1) !important;
+
+    pointer-events: none !important;
+}
+
+
+/* Dynamic state */
+
+body.personality-page-body
+.personality-page-shell
+.panel > .kicker:hover,
+
+body.personality-page-body
+.personality-page-shell
+.panel > .kicker:focus-visible,
+
+body.personality-page-body
+.personality-page-shell
+#profileForm > h3:hover,
+
+body.personality-page-body
+.personality-page-shell
+#profileForm > h3:focus-visible {
+
+    color: #ffffff !important;
+
+    border-top-color: #ffffff !important;
+    border-bottom-color: #ffffff !important;
+    border-left-color: transparent !important;
+    border-right-color: transparent !important;
+
+    outline: none !important;
+}
+
+
+body.personality-page-body
+.personality-page-shell
+.panel > .kicker:hover::before,
+
+body.personality-page-body
+.personality-page-shell
+.panel > .kicker:focus-visible::before,
+
+body.personality-page-body
+.personality-page-shell
+#profileForm > h3:hover::before,
+
+body.personality-page-body
+.personality-page-shell
+#profileForm > h3:focus-visible::before {
+
+    transform: scaleX(1) !important;
+}
+
+</style>
+
+
+<style id="personality-section-titles-bold-step252">
+
+/* KUZAI PERSONALITY — ALL SECTION TITLES BOLD */
+
+body.personality-page-body .personality-page-shell .panel > .kicker,
+body.personality-page-body .personality-page-shell #profileForm > h3,
+body.personality-page-body .personality-page-shell .panel > h2,
+body.personality-page-body .personality-page-shell .panel > h3 {
+    font-weight: 700 !important;
+}
+
+</style>
+
+
+<style id="personality-containers-square-step253">
+
+/* =========================================================
+   KUZAI PERSONALITY
+   CONTAINERS = WHITE BORDER / SQUARE CORNERS
+   Controls and buttons intentionally untouched.
+   ========================================================= */
+
+/* Main page panels */
+body.personality-page-body
+.personality-page-shell
+.panel {
+    border: 1px solid #ffffff !important;
+    border-radius: 0 !important;
+}
+
+
+/* Server profile cards */
+body.personality-page-body
+.personality-page-shell
+#profileList .profile-card {
+    border: 1px solid #ffffff !important;
+    border-radius: 0 !important;
+}
+
+
+/* Generic profile containers if present */
+body.personality-page-body
+.personality-page-shell
+.profile,
+body.personality-page-body
+.personality-page-shell
+.profiles,
+body.personality-page-body
+.personality-page-shell
+.profile-list,
+body.personality-page-body
+.personality-page-shell
+.profile-grid {
+    border-radius: 0 !important;
+}
+
+
+/* Form visual grouping containers only */
+body.personality-page-body
+.personality-page-shell
+.form-section,
+body.personality-page-body
+.personality-page-shell
+.form-group,
+body.personality-page-body
+.personality-page-shell
+.field-group {
+    border-color: #ffffff !important;
+    border-radius: 0 !important;
+}
+
+
+/*
+ * Explicit protection:
+ * do NOT alter controls/buttons in this step.
+ */
+body.personality-page-body
+.personality-page-shell
+input,
+body.personality-page-body
+.personality-page-shell
+select,
+body.personality-page-body
+.personality-page-shell
+textarea,
+body.personality-page-body
+.personality-page-shell
+button,
+body.personality-page-body
+.personality-page-shell
+.btn,
+body.personality-page-body
+.personality-page-shell
+.check-item {
+    /* intentionally no border override */
+}
+
+</style>
+
+
+<style id="personality-controls-square-step254">
+
+/* =========================================================
+   KUZAI PERSONALITY
+   ALL CONTROLS / MENUS / BUTTONS = SQUARE CORNERS
+   Functional behavior untouched.
+   ========================================================= */
+
+/* Text fields */
+body.personality-page-body
+.personality-page-shell
+input[type="text"],
+
+body.personality-page-body
+.personality-page-shell
+input[type="number"],
+
+body.personality-page-body
+.personality-page-shell
+input[type="search"],
+
+body.personality-page-body
+.personality-page-shell
+input[type="email"],
+
+body.personality-page-body
+.personality-page-shell
+input[type="url"],
+
+body.personality-page-body
+.personality-page-shell
+input[type="password"] {
+    border-radius: 0 !important;
+}
+
+
+/* Menus */
+body.personality-page-body
+.personality-page-shell
+select {
+    border-radius: 0 !important;
+}
+
+
+/* Text areas */
+body.personality-page-body
+.personality-page-shell
+textarea {
+    border-radius: 0 !important;
+}
+
+
+/* Checkbox option containers */
+body.personality-page-body
+.personality-page-shell
+.check-item {
+    border-radius: 0 !important;
+}
+
+
+/* Native buttons */
+body.personality-page-body
+.personality-page-shell
+button {
+    border-radius: 0 !important;
+}
+
+
+/* KUZAI buttons / links */
+body.personality-page-body
+.personality-page-shell
+.btn,
+body.personality-page-body
+.personality-page-shell
+a.btn {
+    border-radius: 0 !important;
+}
+
+
+/* Server profile delete buttons */
+body.personality-page-body
+.personality-page-shell
+.server-profile-delete-btn,
+body.personality-page-body
+.personality-page-shell
+.delete-profile-btn {
+    border-radius: 0 !important;
+}
+
+
+/* Action toolbar */
+body.personality-page-body
+.personality-page-shell
+.personality-action-toolbar
+button,
+body.personality-page-body
+.personality-page-shell
+.personality-action-toolbar
+a {
+    border-radius: 0 !important;
+}
+
+
+/* Back Home */
+body.personality-page-body
+.personality-page-shell
+.personality-bottom-back-home {
+    border-radius: 0 !important;
+}
+
+
+/* Checkbox itself */
+body.personality-page-body
+.personality-page-shell
+input[type="checkbox"],
+body.personality-page-body
+.personality-page-shell
+input[type="radio"] {
+    border-radius: 0 !important;
+}
+
+</style>
+
+
+<style id="personality-field-labels-step255">
+
+/* =========================================================
+   PERSONALITY FIELD LABELS
+   WHITE / BOLD / STATIC
+   Checkbox option labels intentionally excluded.
+   ========================================================= */
+
+body.personality-page-body
+.personality-page-shell
+#profileForm label:not(.check-item) {
+    color: #ffffff !important;
+
+    font-family: "Anta", "Segoe UI", Arial, sans-serif !important;
+    font-weight: 700 !important;
+
+    opacity: 1 !important;
+
+    background: transparent !important;
+
+    text-shadow: none !important;
+    text-decoration: none !important;
+
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
+}
+
+body.personality-page-body
+.personality-page-shell
+#profileForm label:not(.check-item):hover,
+body.personality-page-body
+.personality-page-shell
+#profileForm label:not(.check-item):focus {
+    color: #ffffff !important;
+    background: transparent !important;
+    transform: none !important;
+}
+
+</style>
+
+
+<style id="personality-available-profiles-step258">
+
+body.personality-page-body
+.personality-page-shell
+.personality-section-title {
+
+    position: relative !important;
+    isolation: isolate !important;
+
+    display: inline-block !important;
+    width: max-content !important;
+    max-width: 100% !important;
+
+    box-sizing: border-box !important;
+
+    margin: 0 0 12px 0 !important;
+    padding: 3px 10px !important;
+
+    overflow: hidden !important;
+
+    background: #ffffff !important;
+    color: #000000 !important;
+
+    border: 1px solid #ffffff !important;
+    border-radius: 0 !important;
+
+    font-family: "Anta", "Segoe UI", Arial, sans-serif !important;
+    font-weight: 700 !important;
+
+    letter-spacing: .10em !important;
+    line-height: 1 !important;
+
+    text-transform: uppercase !important;
+
+    transition:
+        color 180ms ease,
+        border-color 180ms ease !important;
+}
+
+body.personality-page-body
+.personality-page-shell
+.personality-section-title::before {
+
+    content: "" !important;
+
+    position: absolute !important;
+    inset: 0 !important;
+
+    z-index: -1 !important;
+
+    background: #000000 !important;
+
+    transform: scaleX(0) !important;
+    transform-origin: center center !important;
+
+    transition:
+        transform 240ms cubic-bezier(.16, 1, .3, 1) !important;
+
+    pointer-events: none !important;
+}
+
+body.personality-page-body
+.personality-page-shell
+.personality-section-title:hover,
+body.personality-page-body
+.personality-page-shell
+.personality-section-title:focus-visible {
+
+    color: #ffffff !important;
+
+    border-left-color: transparent !important;
+    border-right-color: transparent !important;
+
+    outline: none !important;
+}
+
+body.personality-page-body
+.personality-page-shell
+.personality-section-title:hover::before,
+body.personality-page-body
+.personality-page-shell
+.personality-section-title:focus-visible::before {
+
+    transform: scaleX(1) !important;
+}
+
+</style>
+
+
+<style id="personality-delete-square-step259">
+body.personality-page-body #profileList .server-profile-delete-btn,
+body.personality-page-body #profileList .delete-profile-btn {
+    border-radius: 0 !important;
+    -webkit-border-radius: 0 !important;
+    appearance: none !important;
+}
+</style>
+
+
+<style id="personality-json-editor-step265">
+
+body.personality-page-body
+.personality-page-shell
+#jsonPreview {
+    cursor: text !important;
+    user-select: text !important;
+    -webkit-user-select: text !important;
+
+    border-radius: 0 !important;
+
+    outline: none !important;
+}
+
+body.personality-page-body
+.personality-page-shell
+#jsonPreview:focus {
+    border-color: #ffffff !important;
+    outline: none !important;
+}
+
+</style>
+
+
+<style id="personality-json-header-step272">
+
+body.personality-page-body
+.personality-page-shell
+#jsonPreviewPanel
+.json-preview-header {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 20px !important;
+    width: 100% !important;
+    margin: 0 0 12px 0 !important;
+}
+
+body.personality-page-body
+.personality-page-shell
+#jsonPreviewPanel
+.json-preview-header h2 {
+    margin: 0 !important;
+    color: #ffffff !important;
+    font-weight: 700 !important;
+}
+
+body.personality-page-body
+.personality-page-shell
+#saveModifiedJsonBtn {
+    margin-left: auto !important;
+    flex: 0 0 auto !important;
+    border-radius: 0 !important;
+    white-space: nowrap !important;
+}
+
+</style>
+
 </head>
-<body>
-<div class="page">
-    <header class="topbar">
-        <div class="brand">
-            <div class="logo logo-image"><img src="assets/img/kuzai-logo.png" alt="KUZAI logo"></div>
-            <div>
-                <h1 class="brand-title"><?= $appName ?></h1>
-                <p class="brand-line"><?= $brandLine ?></p>
-                <p class="subtitle">/ CUSTOM LLM PROFILE /</p>
-            </div>
+<body class="personality-page-body">
+<div class="page app-shell personality-page-shell">
+    <header class="topbar site-style-topbar" aria-label="Main header">
+        <a class="brand-mark" href="./" aria-label="KUZAI home">
+            <img
+                class="brand-mark__logo"
+                src="assets/img/kuz_network_logo_transparent.png"
+                alt="KUZ Network logo"
+                width="112"
+                height="112"
+            >
+        </a>
+
+        <div class="header-title-block" aria-label="Project title">
+            <h1 class="header-title-block__title">KUZAI - THE LOCAL AI</h1>
+            <p class="header-title-block__meta">A KUZ NETWORK SOLUTION - BETA-0.03.2026</p>
         </div>
 
-        <div class="actions">
-            <a class="btn" href="/KUZAI/">BACK TO CHAT</a>
-            <button type="button" class="btn" id="previewBtn">PREVIEW JSON</button>
-            <button type="button" class="btn btn-primary" id="saveRunBtn">SAVE AND RUN PROFILE</button>
-            <button type="button" class="btn btn-primary" id="saveBtn">SAVE PROFILE</button>
+        <div class="topbar-meta site-header-runtime" aria-label="Runtime status">
+            <div class="meta-pill site-header-runtime__pill">
+                <span class="meta-label">MODEL</span>
+                <span class="meta-value" id="modelName"><?= $model ?></span>
+            </div>
+
+            <div class="meta-pill site-header-runtime__pill" id="serverState">
+                <span class="state-dot meta-dot"></span>
+                <span class="meta-value">CHECKING</span>
+            </div>
         </div>
     </header>
+
+    <div class="actions personality-action-toolbar" aria-label="Profile editor actions">
+        <a class="btn" href="/KUZAI/">BACK TO CHAT</a>
+        <a class="btn" href="/KUZAI/profiles.php">BACK TO PROFILES</a>
+        <button type="button" class="btn" id="previewBtn">PREVIEW JSON</button>
+        <button type="button" class="btn btn-primary" id="saveRunBtn">SAVE AND RUN PROFILE</button>
+        <button type="button" class="btn btn-primary" id="saveBtn">SAVE PROFILE</button>
+        <button type="button" class="btn" id="clearProfileBtn">CLEAR EDITION</button>
+    </div>
 
     <main class="layout">
         <section class="panel">
             <p class="kicker">PROFILE EDITOR</p>
-            <h2>Create or edit a KUZAI LLM behavior profile</h2>
+            <h2>CREATE OR EDIT A KUZAI LLM BEHAVIOR PROFILE</h2>
 
             <form id="profileForm">
                 <h3>1. Profile file</h3>
@@ -1343,20 +2145,39 @@ $brandLine = htmlspecialchars((string)($config['app']['brand_line'] ?? 'A KUZ NE
         </section>
 
         <aside>
-            <section class="panel">
-                <p class="kicker">SERVER PROFILES</p>
-                <h2>Available profiles</h2>
+            <section class="panel" id="availableProfilesPanel">
+<h2 class="personality-section-title">AVAILABLE PROFILES</h2>
                 <div class="side-list" id="profileList"></div>
                 <div class="status" id="statusBox">Ready.</div>
             </section>
 
-            <section class="panel">
+            <section class="panel" id="jsonPreviewPanel">
                 <p class="kicker">JSON PREVIEW</p>
-                <h2>Generated profile</h2>
-                <textarea class="json-preview" id="jsonPreview" readonly></textarea>
+                <div class="json-preview-header">
+                    <h2>THE GENERATED PROFILE CAN BE MODIFIED HERE</h2>
+                    <button type="button"
+                            class="btn"
+                            id="saveModifiedJsonBtn">
+                        SAVE THE MODIFIED JSON
+                    </button>
+                </div>
+                <textarea class="json-preview" id="jsonPreview" spellcheck="false"></textarea>
             </section>
         </aside>
-    </main>
+        </main>
+
+    <nav class="personality-bottom-nav" aria-label="Back to main chat">
+        <a class="personality-bottom-back-home" href="/KUZAI/">
+            <span class="personality-bottom-back-home__label">BACK HOME</span>
+            <span class="personality-bottom-back-home__arrow">--&gt;</span>
+        </a>
+    </nav>
+
+    <footer class="site-footer site-footer--dynamic app-site-footer" aria-label="KUZ Network footer">
+        <div class="site-footer__inner">
+            <p class="site-footer__text">THE KUZ NETWORK - @2026 / BUILD LOCAL / KEEP CONTROL / OWN THE STACK</p>
+        </div>
+    </footer>
 </div>
 
 <script>
@@ -1370,13 +2191,37 @@ const LOCKED_KEY = 'kuzai.customLlm.locked.session.v1';
 const profileForm = document.getElementById('profileForm');
 const saveBtn = document.getElementById('saveBtn');
 const saveRunBtn = document.getElementById('saveRunBtn');
+const clearProfileBtn = document.getElementById('clearProfileBtn');
+const saveModifiedJsonBtn = document.getElementById('saveModifiedJsonBtn');
 const previewBtn = document.getElementById('previewBtn');
 const statusBox = document.getElementById('statusBox');
 const jsonPreview = document.getElementById('jsonPreview');
 const profileList = document.getElementById('profileList');
 
+function scrollToAvailableProfiles() {
+    window.setTimeout(() => {
+        const panel = document.getElementById('availableProfilesPanel');
+
+        if (!panel) {
+            return;
+        }
+
+        const top =
+            panel.getBoundingClientRect().top
+            + window.scrollY
+            - 24;
+
+        window.scrollTo({
+            top: Math.max(0, top),
+            behavior: 'smooth'
+        });
+    }, 100);
+}
+
+
 function setStatus(message, type = '') {
     statusBox.textContent = message;
+    statusBox.style.display = 'block';
     statusBox.classList.remove('status-ok', 'status-error');
 
     if (type === 'ok') {
@@ -1524,6 +2369,171 @@ function buildProfileDocument() {
     };
 }
 
+
+/* KUZAI_PROFILE_EDIT_LOAD_STEP246_BEGIN */
+
+function setFieldValue(id, value) {
+    const element = document.getElementById(id);
+
+    if (!element) {
+        return;
+    }
+
+    element.value = value === undefined || value === null
+        ? ''
+        : String(value);
+}
+
+function setCheckboxGroup(groupName, values) {
+    const group = document.querySelector(`[data-group="${groupName}"]`);
+
+    if (!group) {
+        return;
+    }
+
+    const selected = Array.isArray(values)
+        ? values.map((value) => String(value))
+        : [];
+
+    group.querySelectorAll('input[type="checkbox"]').forEach((checkbox) => {
+        checkbox.checked = selected.includes(String(checkbox.value));
+    });
+}
+
+function populateProfileForm(documentData) {
+    if (!documentData || typeof documentData !== 'object') {
+        throw new Error('Invalid profile document');
+    }
+
+    const profile = documentData.profile || {};
+    const identity = profile.identity || {};
+    const scope = profile.scope || {};
+    const personality = profile.personality || {};
+    const tone = profile.tone || {};
+    const technicalBehavior = profile.technical_behavior || {};
+    const generalBehavior = profile.general_behavior || {};
+    const voice = profile.voice || {};
+
+    setFieldValue('profileId', documentData.id || '');
+    setFieldValue('label', documentData.label || '');
+    setFieldValue('description', documentData.description || '');
+
+    setFieldValue('identityName', identity.name || 'KUZAI');
+    setFieldValue('identityType', identity.type || '');
+    setFieldValue('mainSentence', identity.main_sentence || '');
+
+    setCheckboxGroup('positioning', identity.positioning || []);
+    setCheckboxGroup('priorityDomains', scope.priority_domains || []);
+    setCheckboxGroup('traits', personality.main_traits || []);
+
+    setFieldValue('initiativeLevel', personality.initiative_level || '');
+    setFieldValue('responseLength', tone.response_length || '');
+    setFieldValue('primaryLanguage', tone.primary_language || '');
+    setFieldValue('styleExample', tone.style_example || '');
+
+    if (generalBehavior.creativity_level !== undefined) {
+        setFieldValue('creativityLevel', generalBehavior.creativity_level);
+    }
+
+    setFieldValue('projectMode', technicalBehavior.project_mode || '');
+    setFieldValue('codeMode', technicalBehavior.code_generation_mode || '');
+    setFieldValue('explanationLevel', technicalBehavior.explanation_level || '');
+
+    setFieldValue('voiceStyle', voice.voice_style || '');
+
+    const customInstructions = Array.isArray(generalBehavior.custom_instructions)
+        ? generalBehavior.custom_instructions.join('\n')
+        : (generalBehavior.custom_instructions || '');
+
+    setFieldValue('customInstructions', customInstructions);
+
+    refreshPreview();
+}
+
+async function loadProfileForEditing(profileId) {
+    profileId = String(profileId || '').trim();
+
+    if (!profileId) {
+        return;
+    }
+
+    setStatus(`Loading profile: ${profileId}...`);
+
+    try {
+        const response = await fetch(
+            `${API_URL}?action=read&id=${encodeURIComponent(profileId)}`,
+            {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                },
+            }
+        );
+
+        const data = await response.json();
+
+        if (!response.ok || !data.ok || !data.profile_document) {
+            throw new Error(data.error || 'Unable to read profile');
+        }
+
+        populateProfileForm(data.profile_document);
+
+        setStatus(
+            `Profile loaded for editing: ${data.profile?.label || profileId}`,
+            'ok'
+        );
+
+    } catch (error) {
+        setStatus(`Profile edit load error: ${error.message}`, 'error');
+    }
+}
+
+function loadRequestedProfile() {
+    const params = new URLSearchParams(window.location.search);
+    const profileId = params.get('profile');
+
+    if (!profileId) {
+        return;
+    }
+
+    loadProfileForEditing(profileId);
+}
+
+/* KUZAI_PROFILE_EDIT_LOAD_STEP246_END */
+
+
+/* KUZAI_PERSONALITY_CREATE_EMPTY_STEP250_BEGIN */
+
+function resetProfileFormForCreate() {
+    if (!profileForm) {
+        return;
+    }
+
+    profileForm.querySelectorAll('input[type="text"], textarea').forEach((element) => {
+        element.value = '';
+    });
+
+    profileForm.querySelectorAll('input[type="checkbox"], input[type="radio"]').forEach((element) => {
+        element.checked = false;
+    });
+
+    profileForm.querySelectorAll('select').forEach((element) => {
+        element.selectedIndex = -1;
+    });
+
+    if (jsonPreview) {
+        jsonPreview.value = '';
+    }
+
+    if (statusBox) {
+        statusBox.textContent = '';
+        statusBox.style.display = 'none';
+        statusBox.classList.remove('status-ok', 'status-error');
+    }
+}
+
+/* KUZAI_PERSONALITY_CREATE_EMPTY_STEP250_END */
+
 function refreshPreview() {
     const documentData = buildProfileDocument();
     jsonPreview.value = JSON.stringify(documentData, null, 2);
@@ -1588,6 +2598,7 @@ async function deleteProfile(id, label) {
 
         setStatus(`Profile deleted: ${label}`);
         await loadProfiles();
+
     } catch (error) {
         setStatus(`Delete error: ${error.message}`, 'error');
     }
@@ -1734,16 +2745,61 @@ function runProfileAndReturn(id, label) {
     }, 450);
 }
 
+
+/* KUZAI_JSON_EDITOR_SAVE_STEP265_BEGIN */
+
+function getJsonDocumentForSave() {
+    const raw = String(jsonPreview?.value || '').trim();
+
+    /*
+     * Empty JSON editor:
+     * build from current form so existing workflow remains valid.
+     */
+    if (raw === '') {
+        return refreshPreview();
+    }
+
+    let documentData;
+
+    try {
+        documentData = JSON.parse(raw);
+    } catch (error) {
+        throw new Error(`Invalid JSON: ${error.message}`);
+    }
+
+    if (
+        !documentData ||
+        typeof documentData !== 'object' ||
+        Array.isArray(documentData)
+    ) {
+        throw new Error('JSON root must be an object.');
+    }
+
+    return documentData;
+}
+
+/* KUZAI_JSON_EDITOR_SAVE_STEP265_END */
+
 async function saveProfile(runAfterSave = false) {
-    const documentData = refreshPreview();
+    let documentData;
+
+    try {
+        documentData = getJsonDocumentForSave();
+    } catch (error) {
+        setStatus(error.message, 'error');
+        scrollToAvailableProfiles();
+        return;
+    }
 
     if (!documentData.id) {
         setStatus('Profile ID is empty. Fill the label or profile ID.', 'error');
+        scrollToAvailableProfiles();
         return;
     }
 
     if (!documentData.label) {
         setStatus('Profile label is required.', 'error');
+        scrollToAvailableProfiles();
         return;
     }
 
@@ -1770,12 +2826,14 @@ async function saveProfile(runAfterSave = false) {
 
         setStatus(`Profile saved: ${data.profile.file}`, 'ok');
         await loadProfiles();
+        scrollToAvailableProfiles();
 
         if (runAfterSave) {
             runProfileAndReturn(data.profile.id, data.profile.label);
         }
     } catch (error) {
         setStatus(`Save error: ${error.message}`, 'error');
+        scrollToAvailableProfiles();
     }
 }
 
@@ -1791,9 +2849,22 @@ function escapeHtml(value) {
 previewBtn.addEventListener('click', () => {
     refreshPreview();
     setStatus('JSON preview refreshed.', 'ok');
+
+    const previewPanel = document.getElementById('jsonPreviewPanel');
+
+    if (previewPanel) {
+        previewPanel.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+    }
 });
 
 saveBtn.addEventListener('click', () => {
+    saveProfile(false);
+});
+
+saveModifiedJsonBtn.addEventListener('click', () => {
     saveProfile(false);
 });
 
@@ -1838,12 +2909,38 @@ saveRunBtn.addEventListener('click', () => {
     saveProfile(true);
 });
 
+clearProfileBtn.addEventListener('click', () => {
+    resetProfileFormForCreate();
+
+    const cleanUrl = new URL(window.location.href);
+    cleanUrl.searchParams.delete('profile');
+
+    window.history.replaceState(
+        {},
+        '',
+        cleanUrl.pathname + cleanUrl.search + cleanUrl.hash
+    );
+
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
+
 profileForm.addEventListener('input', () => {
     refreshPreview();
 });
 
-refreshPreview();
 loadProfiles();
+
+const kuzaiRequestedProfileId =
+    new URLSearchParams(window.location.search).get('profile');
+
+if (kuzaiRequestedProfileId) {
+    loadRequestedProfile();
+} else {
+    resetProfileFormForCreate();
+}
 
 function kuzaiHideReadyStatus() {
     document.querySelectorAll('.status').forEach((element) => {

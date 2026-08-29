@@ -1029,6 +1029,44 @@ $model = htmlspecialchars((string)($config['llm']['model'] ?? 'LOCAL MODEL'), EN
         }
     </style>
 
+
+    <style id="profiles-create-edit-step246">
+
+        body.profiles-page-body .profiles-editor-toolbar {
+            display: flex !important;
+            justify-content: flex-end !important;
+            align-items: center !important;
+
+            width: 100% !important;
+
+            margin: 10px 0 14px 0 !important;
+            padding: 0 !important;
+        }
+
+        body.profiles-page-body .profiles-create-profile-btn,
+        body.profiles-page-body .profile-actions .edit-profile-btn {
+            background: #ffffff !important;
+            color: #000000 !important;
+
+            border: 1px solid #ffffff !important;
+            border-radius: 0 !important;
+
+            min-height: 0 !important;
+            padding: 2px 10px !important;
+
+            line-height: 1 !important;
+            text-transform: uppercase !important;
+            text-decoration: none !important;
+        }
+
+        body.profiles-page-body .profiles-create-profile-btn:hover,
+        body.profiles-page-body .profile-actions .edit-profile-btn:hover {
+            background: #000000 !important;
+            color: #ffffff !important;
+        }
+
+    </style>
+
 </head>
 <body class="profiles-page-body">
 <div class="app-shell profiles-page-shell">
@@ -1063,6 +1101,14 @@ $model = htmlspecialchars((string)($config['llm']['model'] ?? 'LOCAL MODEL'), EN
     <main class="panel">
         <p class="kicker">CUSTOM LLM</p>
         <h2>SELECT A PROFILE AND RUN IT FOR THE CURRENT KUZAI SESSION</h2>
+
+        <div class="profiles-editor-toolbar">
+            <a
+                class="btn profiles-create-profile-btn"
+                href="personality.php"
+                title="Create a new Custom LLM profile"
+            >CREATE NEW PROFILE</a>
+        </div>
 
         <div class="status" id="statusBox">
             Loading profiles...
@@ -1256,6 +1302,9 @@ function renderProfiles(profiles) {
                 <button type="button" class="btn btn-primary run-profile-btn" data-id="${escapeHtml(id)}" data-label="${escapeHtml(label)}">
                     RUN PROFILE
                 </button>
+                <button type="button" class="btn edit-profile-btn" data-id="${escapeHtml(id)}" data-label="${escapeHtml(label)}" title="Edit profile">
+                    EDIT
+                </button>
                 <button type="button" class="btn delete-profile-btn" data-id="${escapeHtml(id)}" data-label="${escapeHtml(label)}" ${deleteDisabled ? 'disabled' : ''} title="${isDefaultProfile ? 'Default profile is protected' : 'Delete profile'}">
                     DELETE
                 </button>
@@ -1315,6 +1364,11 @@ if (profilesList) {
 
         if (target.classList.contains('run-profile-btn')) {
             runProfile(id, label);
+            return;
+        }
+
+        if (target.classList.contains('edit-profile-btn')) {
+            window.location.href = `personality.php?profile=${encodeURIComponent(id)}`;
             return;
         }
 
