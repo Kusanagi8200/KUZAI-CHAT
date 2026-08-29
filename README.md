@@ -165,18 +165,18 @@ The validated Git-RAG architecture separates the PHP integration layer from a de
 
 #### **`5. CORE CAPABILITIES`**
 
-- **LOCAL AI CHAT** — Browser-based conversation with locally generated responses, conversation context, generation interruption, session clearing, dynamic response rendering, and direct access to a local llama.cpp runtime.
-- **LOCAL MODEL RUNTIME** — OpenAI-compatible local inference through llama.cpp with replaceable GGUF models selected according to hardware, language, context, performance, quantization, and licensing requirements.
-- **FILE UPLOAD AND ANALYSIS** — Server-side upload, validation, textual extraction, local storage, and prompt-context injection for source code, logs, JSON, CSV, configuration files, scripts, markup, and technical documents.
-- **LOCAL WEB SEARCH** — Locally hosted SearXNG search with result filtering, source URL extraction, contextual prompt injection, and an explicit WEB OFF or WEB ON operating mode.
-- **SOURCE-AWARE ANSWERS** — Selected web results are transformed into structured model context so that locally generated answers can retain and display the original source URLs.
-- **LOCAL VOICE SYNTHESIS** — Piper neural text-to-speech with browser playback, manual SPEAK controls, VOICE OFF or VOICE ON automatic playback, local WAV generation, and eSpeak NG fallback.
-- **SPEECH TEXT CLEANING** — Displayed technical answers remain complete while URLs, source lists, code blocks, commands, paths, and other technical noise are removed from the spoken version.
-- **CUSTOM LLM PROFILES** — Profile creation, editing, JSON preview, server-side storage, activation, runtime selection, listing, deletion, and session-level application for specialized assistant behavior.
-- **CUSTOM SYSTEM PROMPT** — Direct control over assistant identity, language, formatting, technical depth, task boundaries, priorities, response style, and domain-specific behavior.
-- **GIT-RAG** — Optional local repository retrieval and controlled Git workspace operations including repository selection, file reading, editing with backup, status, diff, commit, push, fast-forward-only pull, reindexing, and chat-context injection.
-- **RUNTIME STATUS** — Application, model, endpoint, service, repository, and health information exposed through local APIs, systemd supervision, logs, and standard Linux diagnostic tools.
-- **LOCAL STORAGE** — Uploaded files, profiles, generated voice files, repository metadata, indexes, backups, and application state remain on operator-controlled storage.
+- **LOCAL AI CHAT** - Browser-based conversation with locally generated responses, conversation context, generation interruption, session clearing, dynamic response rendering, and direct access to a local llama.cpp runtime.
+- **LOCAL MODEL RUNTIME** - OpenAI-compatible local inference through llama.cpp with replaceable GGUF models selected according to hardware, language, context, performance, quantization, and licensing requirements.
+- **FILE UPLOAD AND ANALYSIS** - Server-side upload, validation, textual extraction, local storage, and prompt-context injection for source code, logs, JSON, CSV, configuration files, scripts, markup, and technical documents.
+- **LOCAL WEB SEARCH** - Locally hosted SearXNG search with result filtering, source URL extraction, contextual prompt injection, and an explicit WEB OFF or WEB ON operating mode.
+- **SOURCE-AWARE ANSWERS** - Selected web results are transformed into structured model context so that locally generated answers can retain and display the original source URLs.
+- **LOCAL VOICE SYNTHESIS** - Piper neural text-to-speech with browser playback, manual SPEAK controls, VOICE OFF or VOICE ON automatic playback, local WAV generation, and eSpeak NG fallback.
+- **SPEECH TEXT CLEANING** - Displayed technical answers remain complete while URLs, source lists, code blocks, commands, paths, and other technical noise are removed from the spoken version.
+- **CUSTOM LLM PROFILES** - Profile creation, editing, JSON preview, server-side storage, activation, runtime selection, listing, deletion, and session-level application for specialized assistant behavior.
+- **CUSTOM SYSTEM PROMPT** - Direct control over assistant identity, language, formatting, technical depth, task boundaries, priorities, response style, and domain-specific behavior.
+- **GIT-RAG** - Optional local repository retrieval and controlled Git workspace operations including repository selection, file reading, editing with backup, status, diff, commit, push, fast-forward-only pull, reindexing, and chat-context injection.
+- **RUNTIME STATUS** - Application, model, endpoint, service, repository, and health information exposed through local APIs, systemd supervision, logs, and standard Linux diagnostic tools.
+- **LOCAL STORAGE** - Uploaded files, profiles, generated voice files, repository metadata, indexes, backups, and application state remain on operator-controlled storage.
 
 ---
 
