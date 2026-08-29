@@ -277,20 +277,38 @@ Displayed answers remain complete, while the spoken version is cleaned to remove
 
 Custom profiles provide task-specific model behavior without modifying or retraining the model weights.
 
-Each profile can define a dedicated system prompt, operational role, expected tone, formatting rules, language, technical depth, and response constraints.
+KUZAI now separates profile management from profile editing through two dedicated interfaces.
 
-The selected profile is activated as an explicit runtime layer and injected into the request sent to the local model.
+**PROFILE MANAGER**
 
-- Profile editor.
-- JSON profile preview.
-- Profile save and update workflow.
-- Server-side profile list.
-- Profile deletion.
-- Session-level active profile.
-- Runtime prompt injection.
-- Specialized Linux, development, security, writing, support, or research assistants.
+- Dedicated `profiles.php` profile management interface.
+- Create new profiles.
+- Run an existing profile for the current KUZAI session.
+- Edit an existing profile through the dedicated editor.
+- Delete user profiles.
+- Protected default profile.
+- Active-profile and session-lock protection.
+- Direct navigation between profile management, editing, and the main chat.
 
----
+**PROFILE EDITOR**
+
+- Dedicated `personality.php` editor.
+- Blank creation mode for new profiles.
+- Existing-profile loading through `?profile=<id>`.
+- Structured form covering identity, scope, personality, tone, technical behavior, general behavior, safety, web/files, and voice configuration.
+- Automatic JSON generation from the structured form.
+- Editable JSON representation of the complete profile.
+- JSON syntax validation before save.
+- Invalid JSON blocks the save operation and produces an explicit error.
+- Direct `SAVE THE MODIFIED JSON` operation.
+- `SAVE PROFILE` workflow.
+- `SAVE AND RUN PROFILE` workflow.
+- `CLEAR EDITION` without deleting the stored profile.
+- Server-side profile storage.
+- Session-level profile activation.
+- Runtime system-prompt injection.
+
+The JSON editor provides an advanced mode for operators who want to modify the profile document directly instead of using only the structured form.
 
 <a id="git-rag"></a>
 
