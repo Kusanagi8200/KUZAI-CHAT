@@ -2,7 +2,7 @@
 
 #### **`COMPLETE INSTALLATION OF A LOCAL, AUTONOMOUS, AND EXTENSIBLE AI ASSISTANT.`**
 
-![KUZAI-CHAT PROJECT STACK](assets/badges/project-stack-banner.svg)
+[![GITHUB](https://img.shields.io/badge/GITHUB-555555?style=flat-square&logo=github&logoColor=white)](https://github.com/Kusanagi8200/KUZAI-CHAT)![KUZAI-CHAT](https://img.shields.io/badge/KUZAI--CHAT-FFFFFF?style=flat-square)![LINUX](https://img.shields.io/badge/LINUX-2EA043?style=flat-square)![APACHE2](https://img.shields.io/badge/APACHE2-2EA043?style=flat-square)![PHP](https://img.shields.io/badge/PHP-2EA043?style=flat-square)![LLAMA.CPP](https://img.shields.io/badge/LLAMA.CPP-2EA043?style=flat-square)![SEARXNG](https://img.shields.io/badge/SEARXNG-2EA043?style=flat-square)![PIPER TTS](https://img.shields.io/badge/PIPER%20TTS-555555?style=flat-square)![BETA-0.03.2026](https://img.shields.io/badge/BETA--0.03.2026-D73A49?style=flat-square)
 
 ------------------------------------------------------------------------
 
