@@ -10,10 +10,10 @@
 
 #### **`WHITE PAPER`**
 
-[![STATUS: BETA-0.03.2026](https://img.shields.io/badge/STATUS-BETA--0.03.2026-7bf2ff?style=flat-square)](#project-information)
-[![DEPLOYMENT: LOCAL, SELF-HOSTED, MODULAR](https://img.shields.io/badge/DEPLOYMENT-LOCAL%20%7C%20SELF--HOSTED%20%7C%20MODULAR-8fc4ff?style=flat-square)](#project-information)
-[![RUNTIME: LLAMA.CPP](https://img.shields.io/badge/RUNTIME-LLAMA.CPP-c19cff?style=flat-square)](#deployment)
-[![PLATFORM: LINUX](https://img.shields.io/badge/PLATFORM-LINUX-fbfdff?style=flat-square&logo=linux&logoColor=000000)](#deployment)
+[![STATUS --> BETA-0.03.2026](https://img.shields.io/badge/STATUS-BETA--0.03.2026-7bf2ff?style=flat-square)](#project-information)
+[![DEPLOYMENT --> LOCAL, SELF-HOSTED, MODULAR](https://img.shields.io/badge/DEPLOYMENT-LOCAL%20%7C%20SELF--HOSTED%20%7C%20MODULAR-8fc4ff?style=flat-square)](#project-information)
+[![RUNTIME --> LLAMA.CPP](https://img.shields.io/badge/RUNTIME-LLAMA.CPP-c19cff?style=flat-square)](#deployment)
+[![PLATFORM --> LINUX](https://img.shields.io/badge/PLATFORM-LINUX-fbfdff?style=flat-square&logo=linux&logoColor=000000)](#deployment)
 
 > #### **`LOCAL AI IS NOT JUST ABOUT RUNNING A MODEL. IT IS ABOUT OWNING THE FULL STACK.`**
 
@@ -333,7 +333,7 @@ Git-RAG runs as an independent local microservice. The main KUZAI AI application
 - Code, Markdown, text, JSON, YAML, configuration, and log indexing.
 - Local embedding generation through llama.cpp.
 - Repository context injection into chat requests.
-- Independent local service on 127.0.0.1:8890.
+- Independent local service on 127.0.0.1 --> 8890.
 - Dedicated standalone GIT-RAG repository management interface.
 - Direct repository list on entry.
 - Persistent active-repository selection using local browser state.
@@ -365,9 +365,9 @@ The runtime interface is primarily a supervision and diagnostic layer. It does n
 systemd provides startup management, dependency handling, automatic restart, service status inspection, and journal-based diagnostics.
 
 - llama.cpp health, endpoint, and active-model checks.
-- Inference service verification on 127.0.0.1:8080.
-- SearXNG verification on 127.0.0.1:8888.
-- Git-RAG verification on 127.0.0.1:8890.
+- Inference service verification on 127.0.0.1 --> 8080.
+- SearXNG verification on 127.0.0.1 --> 8888.
+- Git-RAG verification on 127.0.0.1 --> 8890.
 - Piper and eSpeak NG TTS validation.
 - PHP syntax checking.
 - Apache configuration testing.
