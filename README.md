@@ -2,6 +2,8 @@
 
 #### **`COMPLETE INSTALLATION OF A LOCAL, AUTONOMOUS, AND EXTENSIBLE AI ASSISTANT.`**
 
+![KUZAI-CHAT PROJECT STACK](assets/badges/project-stack-banner.svg)
+
 ------------------------------------------------------------------------
 
 ![KUZAI LLM3](https://github.com/Kusanagi8200/Kusanagi8200/blob/main/KUZAI-LLM3.png)
