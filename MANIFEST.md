@@ -2,9 +2,9 @@
 
 ## BACKUP METADATA
 
-Generated at: 20260524-174850
-Source path: /var/www/html/KUZAI
-Repository path: /root/KUZAI-CHAT
+Generated at --> 20260524-174850
+Source path --> /var/www/html/KUZAI
+Repository path --> /root/KUZAI-CHAT
 
 ## BACKUP CONTENT
 
