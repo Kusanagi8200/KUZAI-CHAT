@@ -568,6 +568,22 @@ The objective is not to freeze every component. The objective is to ensure that 
 
 ---
 
+#### **`THE KUZ NETWORK MAINTENANCE`**
+
+The ChatGPT operator command `MAJ-THEKUZNETWORK` performs a coordinated review of the five canonical repositories -->
+
+- [Mini-Kuzai_YOUTUBE](https://github.com/Kusanagi8200/Mini-Kuzai_YOUTUBE)
+- [Mini-Kuzai](https://github.com/Kusanagi8200/Mini-Kuzai)
+- [KUZAI.ORG-VS2](https://github.com/Kusanagi8200/KUZAI.ORG-VS2)
+- [KUZ-DIN](https://github.com/Kusanagi8200/KUZ-DIN)
+- [KUZAI-CHAT](https://github.com/Kusanagi8200/KUZAI-CHAT)
+
+Each invocation audits current code/configuration dependencies, README files, current documentation and cross-project links. Repositories with no verified change are reported as `NO CHANGE`; frozen historical evidence is not rewritten.
+
+See [MAJ-THEKUZNETWORK.md](MAJ-THEKUZNETWORK.md).
+
+---
+
 #### **`THE KUZ NETWORK - KUSANAGI8200 - @2026`**
 
 ---
